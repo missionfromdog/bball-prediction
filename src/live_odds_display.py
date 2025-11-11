@@ -12,11 +12,21 @@ def load_live_odds():
     """Load live betting odds if available"""
     try:
         live_odds_path = DATAPATH / 'betting' / 'live_odds_latest.csv'
+        
+        # Debug print
+        print(f"Looking for live odds at: {live_odds_path}")
+        print(f"File exists: {live_odds_path.exists()}")
+        
         if live_odds_path.exists():
             df = pd.read_csv(live_odds_path)
+            print(f"Loaded {len(df)} games with live odds")
+            print(f"Columns: {df.columns.tolist()}")
             return df
+        else:
+            print("Live odds file not found")
         return None
-    except Exception:
+    except Exception as e:
+        print(f"Error loading live odds: {e}")
         return None
 
 

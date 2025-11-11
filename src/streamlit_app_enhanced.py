@@ -294,19 +294,13 @@ def main():
         if 'test_accuracy' in metrics and metrics['test_accuracy'] > 0:
             st.sidebar.metric("Test Accuracy", f"{metrics['test_accuracy']:.2%}")
     
-    # Comparison mode
+    # Auto-load all models for comparison (no checkbox needed)
     st.sidebar.markdown("---")
-    comparison_mode = st.sidebar.checkbox('🔬 Enable Model Comparison', value=False)
+    st.sidebar.markdown("**🔬 Model Comparison**")
+    st.sidebar.caption("All models loaded automatically")
     
-    if comparison_mode and len(models) > 1:
-        compare_models = st.sidebar.multiselect(
-            'Compare with:',
-            options=[k for k in model_options.keys() if k != selected_model_key],
-            format_func=lambda x: model_options[x],
-            default=[]
-        )
-    else:
-        compare_models = []
+    # Get all other models for comparison
+    compare_models = [k for k in model_options.keys() if k != selected_model_key]
     
     # Load live odds
     live_odds_df = load_live_odds()
@@ -320,9 +314,36 @@ def main():
     with tab1:
         fancy_header('Today\'s Game Predictions', font_size=28)
         
+        # Show data freshness info
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            # Check live odds freshness
+            odds_path = DATAPATH / 'betting' / 'live_odds_latest.csv'
+            if odds_path.exists():
+                odds_time = datetime.fromtimestamp(odds_path.stat().st_mtime)
+                st.info(f"🎲 Live Odds: {odds_time.strftime('%I:%M %p')}")
+            else:
+                st.warning("🎲 No live odds")
+        
+        with col2:
+            # Check injury data freshness
+            injury_path = DATAPATH / 'injuries' / 'nba_injuries_real_scraped.csv'
+            if injury_path.exists():
+                injury_time = datetime.fromtimestamp(injury_path.stat().st_mtime)
+                st.info(f"🏥 Injuries: {injury_time.strftime('%I:%M %p')}")
+            else:
+                st.warning("🏥 No injury data")
+        
+        with col3:
+            # Check main data freshness
+            data_path = DATAPATH / 'games_with_real_vegas.csv'
+            if data_path.exists():
+                data_time = datetime.fromtimestamp(data_path.stat().st_mtime)
+                st.info(f"📊 Data: {data_time.strftime('%I:%M %p')}")
+        
         # Show live odds status
         if live_odds_df is not None and len(live_odds_df) > 0:
-            st.success(f"🎲 Live Vegas odds loaded for {len(live_odds_df)} games from The Odds API")
+            st.success(f"✅ Live Vegas odds loaded for {len(live_odds_df)} games")
         
         st.markdown("")
         
@@ -475,14 +496,17 @@ def main():
                     st.markdown(f"**Winner:** {prediction}")
                     st.markdown(f"**Confidence:** :{conf_color}[{conf_text}]")
                 
-                # Show comparison if enabled
+                # Always show comparison (expanded by default)
                 if comparison_results:
-                    with st.expander(f"📊 Compare Models for this game"):
+                    with st.expander(f"📊 Compare All Models for this game", expanded=True):
                         comp_df = pd.DataFrame({
                             'Model': [selected_info['name']] + [comparison_results[k]['name'] for k in comparison_results],
                             'Home Win Prob': [prob] + [comparison_results[k]['proba'][idx] for k in comparison_results],
                         })
                         comp_df['Winner'] = comp_df['Home Win Prob'].apply(lambda x: 'Home' if x > 0.5 else 'Away')
+                        comp_df['Confidence'] = comp_df['Home Win Prob'].apply(
+                            lambda x: 'High' if abs(x - 0.5) > 0.15 else 'Medium' if abs(x - 0.5) > 0.05 else 'Low'
+                        )
                         comp_df['Home Win Prob'] = comp_df['Home Win Prob'].apply(lambda x: f"{x:.1%}")
                         st.dataframe(comp_df, use_container_width=True, hide_index=True)
                 
