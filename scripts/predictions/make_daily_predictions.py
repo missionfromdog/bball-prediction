@@ -9,6 +9,7 @@ and exports results to CSV for tracking and analysis.
 import pandas as pd
 import numpy as np
 import pickle
+import joblib
 from pathlib import Path
 from datetime import datetime, timedelta
 import warnings
@@ -20,21 +21,47 @@ MODELPATH = Path(__file__).resolve().parents[2] / 'models'
 PREDICTIONS_PATH = DATAPATH / 'predictions'
 PREDICTIONS_PATH.mkdir(exist_ok=True)
 
-# Best model
-BEST_MODEL_FILE = 'histgradient_vegas_calibrated.pkl'
+# Best model options (try in order)
+MODEL_OPTIONS = [
+    'histgradient_vegas_calibrated.pkl',
+    'xgboost_vegas_calibrated.pkl',
+    'best_model_randomforest_vegas.pkl',
+    'ensemble_stacking_vegas.pkl',
+    'ensemble_weighted_vegas.pkl',
+]
 
 
 def load_model():
     """Load the best performing model"""
-    model_path = MODELPATH / BEST_MODEL_FILE
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model not found: {model_path}")
+    last_error = None
     
-    with open(model_path, 'rb') as f:
-        model = pickle.load(f)
+    for model_file in MODEL_OPTIONS:
+        model_path = MODELPATH / model_file
+        if not model_path.exists():
+            continue
+        
+        try:
+            # Try joblib first (scikit-learn standard)
+            model = joblib.load(model_path)
+            print(f"✅ Loaded model with joblib: {model_file}")
+            return model
+        except Exception as e1:
+            try:
+                # Fallback to pickle
+                with open(model_path, 'rb') as f:
+                    model = pickle.load(f)
+                print(f"✅ Loaded model with pickle: {model_file}")
+                return model
+            except Exception as e2:
+                last_error = f"{model_file}: joblib error={e1}, pickle error={e2}"
+                continue
     
-    print(f"✅ Loaded model: {BEST_MODEL_FILE}")
-    return model
+    # If we get here, no model loaded successfully
+    raise FileNotFoundError(
+        f"Could not load any model. Tried: {MODEL_OPTIONS}\n"
+        f"Last error: {last_error}\n"
+        f"Models directory: {MODELPATH}"
+    )
 
 
 def load_todays_games():
