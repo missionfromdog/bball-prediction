@@ -9,6 +9,10 @@ on:
   # Allow manual trigger
   workflow_dispatch:
 
+# Grant write permissions to push changes
+permissions:
+  contents: write
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
