@@ -26,11 +26,19 @@ def load_latest_predictions():
     
     # Find today's predictions file
     today_str = datetime.now().strftime('%Y%m%d')
+    
+    # Try both naming patterns (daily_predictions_* and predictions_*)
     predictions_file = predictions_dir / f'daily_predictions_{today_str}.csv'
+    if not predictions_file.exists():
+        predictions_file = predictions_dir / f'predictions_{today_str}.csv'
     
     if not predictions_file.exists():
-        # Try to find the most recent file
-        prediction_files = sorted(predictions_dir.glob('daily_predictions_*.csv'), reverse=True)
+        # Try to find the most recent file with either pattern
+        prediction_files = sorted(
+            list(predictions_dir.glob('daily_predictions_*.csv')) + 
+            list(predictions_dir.glob('predictions_*.csv')),
+            reverse=True
+        )
         if prediction_files:
             predictions_file = prediction_files[0]
             print(f"⚠️  Today's predictions not found, using most recent: {predictions_file.name}")
