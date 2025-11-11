@@ -24,9 +24,20 @@ warnings.filterwarnings('ignore')
 try:
     from feature_engineering import fix_datatypes, remove_non_rolling
     from constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
+    from live_odds_display import load_live_odds, match_game_to_odds, format_odds_display
 except:
     from src.feature_engineering import fix_datatypes, remove_non_rolling
     from src.constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
+    try:
+        from src.live_odds_display import load_live_odds, match_game_to_odds, format_odds_display
+    except:
+        # Fallback if live_odds_display not available
+        def load_live_odds():
+            return None
+        def match_game_to_odds(matchup, odds_df):
+            return None
+        def format_odds_display(odds):
+            return None
 
 
 # Page configuration
@@ -297,6 +308,9 @@ def main():
     else:
         compare_models = []
     
+    # Load live odds
+    live_odds_df = load_live_odds()
+    
     # Main content tabs
     tab1, tab2, tab3 = st.tabs(['📊 Predictions', '📈 Performance', 'ℹ️ About'])
     
@@ -305,6 +319,11 @@ def main():
     # ========================================================================
     with tab1:
         fancy_header('Today\'s Game Predictions', font_size=28)
+        
+        # Show live odds status
+        if live_odds_df is not None and len(live_odds_df) > 0:
+            st.success(f"🎲 Live Vegas odds loaded for {len(live_odds_df)} games from The Odds API")
+        
         st.markdown("")
         
         # Load data
@@ -404,6 +423,32 @@ def main():
                 with col1:
                     st.markdown(f"### {row['MATCHUP']}")
                     st.caption(f"{row['GAME_DATE_EST']}")
+                    
+                    # Display live odds if available
+                    live_odds = match_game_to_odds(row['MATCHUP'], live_odds_df)
+                    if live_odds is not None:
+                        odds_display = format_odds_display(live_odds)
+                        if odds_display:
+                            st.markdown("**🎲 Live Vegas Odds:**")
+                            odds_cols = st.columns(3)
+                            
+                            with odds_cols[0]:
+                                if 'spread' in odds_display:
+                                    st.caption(f"Spread: {odds_display['spread']}")
+                                else:
+                                    st.caption("Spread: --")
+                            
+                            with odds_cols[1]:
+                                if 'total' in odds_display:
+                                    st.caption(f"O/U: {odds_display['total']}")
+                                else:
+                                    st.caption("O/U: --")
+                            
+                            with odds_cols[2]:
+                                if 'ml_home' in odds_display:
+                                    st.caption(f"ML: {odds_display['ml_home']}")
+                                else:
+                                    st.caption("ML: --")
                 
                 with col2:
                     prob = row['HOME_WIN_PROB']
