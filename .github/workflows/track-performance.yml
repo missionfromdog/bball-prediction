@@ -1,0 +1,95 @@
+name: Track Betting Performance
+
+on:
+  schedule:
+    # Run at 11 PM UTC (3 PM PST / 6 PM EST) after most games finish
+    - cron: '0 23 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Grant write permissions
+permissions:
+  contents: write
+
+jobs:
+  track-performance:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: true
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy
+      
+      - name: Track Performance
+        run: |
+          echo "📊 Tracking prediction performance..."
+          python scripts/predictions/track_performance.py
+        continue-on-error: true  # Don't fail if no data yet
+      
+      - name: Commit Performance Data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Add performance files
+          git add data/performance/*.csv data/performance/*.txt 2>/dev/null || true
+          
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "✅ No performance updates (no completed games to track)"
+          else
+            git commit -m "📊 Update betting performance tracking: $(date +'%Y-%m-%d')
+            
+            Daily performance metrics update
+            - Accuracy by confidence level
+            - ROI and profit/loss
+            - Recent performance trends
+            
+            [skip ci]"
+            git push
+            echo "✅ Performance data committed and pushed"
+          fi
+      
+      - name: Create Summary
+        if: always()
+        run: |
+          echo "## 📊 Performance Tracking Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "data/performance/performance_metrics_latest.csv" ]; then
+            echo "### ✅ Performance Updated" >> $GITHUB_STEP_SUMMARY
+            echo "- Tracked predictions vs actual results" >> $GITHUB_STEP_SUMMARY
+            echo "- Updated accuracy metrics" >> $GITHUB_STEP_SUMMARY
+            echo "- Calculated ROI" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            if [ -f "data/performance/performance_report_$(date +'%Y%m%d').txt" ]; then
+              echo "### 📈 Latest Metrics" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+              head -20 "data/performance/performance_report_$(date +'%Y%m%d').txt" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "### ⚠️ No Data to Track" >> $GITHUB_STEP_SUMMARY
+            echo "No predictions or results available yet" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔄 Next Update" >> $GITHUB_STEP_SUMMARY
+          echo "Tomorrow at 11:00 PM UTC" >> $GITHUB_STEP_SUMMARY
+

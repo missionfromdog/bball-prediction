@@ -1,0 +1,93 @@
+name: Daily NBA Predictions
+
+on:
+  schedule:
+    # Run at 9 AM UTC (1 AM PST / 4 AM EST) before games typically start
+    - cron: '0 9 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Grant write permissions
+permissions:
+  contents: write
+
+jobs:
+  make-predictions:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: true
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy scikit-learn xgboost lightgbm
+      
+      - name: Make Daily Predictions
+        run: |
+          echo "🎯 Making predictions for today's NBA games..."
+          python scripts/predictions/make_daily_predictions.py
+        continue-on-error: false
+      
+      - name: Commit Predictions
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Add prediction files
+          git add data/predictions/*.csv 2>/dev/null || true
+          
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "✅ No games to predict today (or predictions unchanged)"
+          else
+            git commit -m "🎯 Daily NBA predictions: $(date +'%Y-%m-%d')
+            
+            Automated predictions for today's games
+            - Model: HistGradient + Vegas (70.20% AUC)
+            - Includes confidence levels
+            - Matched with live odds when available
+            
+            [skip ci]"
+            git push
+            echo "✅ Predictions committed and pushed"
+          fi
+      
+      - name: Create Summary
+        if: always()
+        run: |
+          echo "## 🎯 Daily Predictions Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "data/predictions/predictions_latest.csv" ]; then
+            GAMES_COUNT=$(tail -n +2 data/predictions/predictions_latest.csv | wc -l)
+            echo "### ✅ Predictions Made" >> $GITHUB_STEP_SUMMARY
+            echo "- Predicted **${GAMES_COUNT}** games for today" >> $GITHUB_STEP_SUMMARY
+            echo "- Model: HistGradient + Vegas (70.20% AUC)" >> $GITHUB_STEP_SUMMARY
+            echo "- File: \`data/predictions/predictions_latest.csv\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 📊 Preview" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            head -5 data/predictions/predictions_latest.csv >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ⚠️ No Games Today" >> $GITHUB_STEP_SUMMARY
+            echo "No NBA games scheduled or predictions failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔄 Next Prediction" >> $GITHUB_STEP_SUMMARY
+          echo "Tomorrow at 9:00 AM UTC" >> $GITHUB_STEP_SUMMARY
+
