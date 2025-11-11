@@ -101,6 +101,14 @@ def load_live_odds():
 
 def prepare_features(df):
     """Prepare features for prediction"""
+    # Create MATCHUP if it doesn't exist
+    if 'MATCHUP' not in df.columns:
+        if 'HOME_TEAM_ABBREVIATION' in df.columns and 'VISITOR_TEAM_ABBREVIATION' in df.columns:
+            df['MATCHUP'] = df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + df['HOME_TEAM_ABBREVIATION']
+        else:
+            # Fallback if team abbreviations don't exist
+            df['MATCHUP'] = 'Game ' + df.index.astype(str)
+    
     # Features to drop
     drop_cols = [
         'TARGET', 'GAME_DATE_EST', 'GAME_ID', 'MATCHUP',
@@ -115,7 +123,10 @@ def prepare_features(df):
     X = df.drop(columns=existing_drops, errors='ignore')
     
     # Keep metadata for display
-    metadata = df[['GAME_DATE_EST', 'MATCHUP']].copy()
+    metadata_cols = ['GAME_DATE_EST', 'MATCHUP']
+    metadata = df[metadata_cols].copy()
+    
+    # Add team abbreviations if available
     if 'HOME_TEAM_ABBREVIATION' in df.columns:
         metadata['HOME_TEAM_ABBREVIATION'] = df['HOME_TEAM_ABBREVIATION']
     if 'VISITOR_TEAM_ABBREVIATION' in df.columns:
