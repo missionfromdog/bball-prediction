@@ -66,104 +66,137 @@ def format_html_email(df, filename):
     medium_conf = len(df[df['Confidence'] == 'Medium'])
     low_conf = len(df[df['Confidence'] == 'Low'])
     
-    # Start HTML
+    # Start HTML with improved styling
     html = f"""
     <html>
     <head>
         <style>
             body {{
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
                 line-height: 1.6;
-                color: #333;
-                max-width: 800px;
+                color: #1a1a1a;
+                max-width: 700px;
                 margin: 0 auto;
                 padding: 20px;
-                background-color: #f5f5f5;
+                background-color: #f8f9fa;
             }}
             .header {{
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 color: white;
-                padding: 30px;
-                border-radius: 10px;
+                padding: 40px 20px;
+                border-radius: 12px;
                 text-align: center;
                 margin-bottom: 30px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             }}
             .header h1 {{
                 margin: 0;
-                font-size: 28px;
+                font-size: 32px;
+                font-weight: 700;
+                letter-spacing: -0.5px;
             }}
             .header p {{
-                margin: 10px 0 0 0;
-                opacity: 0.9;
+                margin: 12px 0 0 0;
+                opacity: 0.95;
+                font-size: 16px;
+                font-weight: 500;
             }}
             .summary {{
                 background: white;
-                padding: 20px;
-                border-radius: 8px;
-                margin-bottom: 20px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                padding: 25px;
+                border-radius: 12px;
+                margin-bottom: 25px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             }}
             .summary h2 {{
-                margin-top: 0;
+                margin: 0 0 20px 0;
                 color: #667eea;
+                font-size: 20px;
+                font-weight: 700;
             }}
             .stats {{
-                display: flex;
-                justify-content: space-around;
-                margin-top: 15px;
+                display: table;
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 10px 0;
             }}
             .stat {{
+                display: table-cell;
                 text-align: center;
+                padding: 15px 10px;
+                background: #f8f9fa;
+                border-radius: 8px;
             }}
             .stat-value {{
-                font-size: 24px;
-                font-weight: bold;
+                font-size: 32px;
+                font-weight: 700;
                 color: #667eea;
+                display: block;
+                margin-bottom: 5px;
             }}
             .stat-label {{
-                font-size: 12px;
-                color: #666;
+                font-size: 11px;
+                color: #6c757d;
                 text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 0.5px;
             }}
             .game {{
                 background: white;
-                padding: 20px;
-                border-radius: 8px;
-                margin-bottom: 15px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                border-radius: 12px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                overflow: hidden;
             }}
             .game-header {{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 15px;
-                border-bottom: 2px solid #f0f0f0;
-                padding-bottom: 10px;
+                background: #f8f9fa;
+                padding: 15px 20px;
+                border-bottom: 2px solid #e9ecef;
             }}
             .matchup {{
-                font-size: 18px;
-                font-weight: bold;
-                color: #333;
+                font-size: 20px;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin: 0;
             }}
-            .game-time {{
-                color: #666;
-                font-size: 14px;
+            .prediction-section {{
+                padding: 20px;
             }}
-            .prediction {{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            .prediction-row {{
+                display: table;
+                width: 100%;
+                margin-bottom: 15px;
+            }}
+            .prediction-left {{
+                display: table-cell;
+                vertical-align: middle;
+                width: 70%;
+            }}
+            .prediction-right {{
+                display: table-cell;
+                vertical-align: middle;
+                width: 30%;
+                text-align: right;
             }}
             .predicted-winner {{
-                font-size: 20px;
-                font-weight: bold;
+                font-size: 18px;
+                font-weight: 700;
                 color: #667eea;
+                margin: 0 0 5px 0;
+            }}
+            .win-probability {{
+                font-size: 14px;
+                color: #6c757d;
+                margin: 0;
             }}
             .confidence {{
-                padding: 5px 15px;
+                display: inline-block;
+                padding: 8px 20px;
                 border-radius: 20px;
-                font-size: 14px;
-                font-weight: bold;
+                font-size: 13px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }}
             .conf-high {{
                 background-color: #10b981;
@@ -177,35 +210,55 @@ def format_html_email(df, filename):
                 background-color: #ef4444;
                 color: white;
             }}
-            .odds {{
-                display: flex;
-                justify-content: space-around;
-                margin-top: 10px;
-                padding-top: 10px;
-                border-top: 1px solid #f0f0f0;
+            .odds-table {{
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                margin-top: 15px;
+                border-top: 2px solid #e9ecef;
+                padding-top: 15px;
             }}
-            .odds-item {{
+            .odds-table td {{
+                padding: 10px 15px;
                 text-align: center;
+                border-right: 1px solid #e9ecef;
+            }}
+            .odds-table td:last-child {{
+                border-right: none;
             }}
             .odds-label {{
                 font-size: 11px;
-                color: #999;
+                color: #6c757d;
                 text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                display: block;
+                margin-bottom: 5px;
             }}
             .odds-value {{
-                font-size: 14px;
-                font-weight: bold;
-                color: #333;
+                font-size: 18px;
+                font-weight: 700;
+                color: #1a1a1a;
+                display: block;
+            }}
+            .no-odds {{
+                color: #adb5bd;
+                font-style: italic;
             }}
             .footer {{
                 text-align: center;
-                padding: 20px;
-                color: #666;
-                font-size: 12px;
+                padding: 30px 20px;
+                color: #6c757d;
+                font-size: 13px;
             }}
             .footer a {{
                 color: #667eea;
                 text-decoration: none;
+                font-weight: 600;
+            }}
+            .footer-divider {{
+                margin: 15px 0;
+                color: #adb5bd;
             }}
         </style>
     </head>
@@ -219,26 +272,26 @@ def format_html_email(df, filename):
             <h2>📊 Today's Summary</h2>
             <div class="stats">
                 <div class="stat">
-                    <div class="stat-value">{total_games}</div>
-                    <div class="stat-label">Total Games</div>
+                    <span class="stat-value">{total_games}</span>
+                    <span class="stat-label">Total Games</span>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">{high_conf}</div>
-                    <div class="stat-label">High Confidence</div>
+                    <span class="stat-value">{high_conf}</span>
+                    <span class="stat-label">High Confidence</span>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">{medium_conf}</div>
-                    <div class="stat-label">Medium Confidence</div>
+                    <span class="stat-value">{medium_conf}</span>
+                    <span class="stat-label">Medium Confidence</span>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">{low_conf}</div>
-                    <div class="stat-label">Low Confidence</div>
+                    <span class="stat-value">{low_conf}</span>
+                    <span class="stat-label">Low Confidence</span>
                 </div>
             </div>
         </div>
     """
     
-    # Add each game
+    # Add each game with improved table layout
     for _, row in df.iterrows():
         matchup = row['Matchup']
         predicted_winner = row['Predicted_Winner']
@@ -254,41 +307,63 @@ def format_html_email(df, filename):
         else:
             prob_text = f"{(1-home_win_prob):.1%} Away Win"
         
-        # Add game card
+        # Add game card with table layout
         html += f"""
         <div class="game">
             <div class="game-header">
-                <div class="matchup">{matchup}</div>
+                <h3 class="matchup">{matchup}</h3>
             </div>
-            <div class="prediction">
-                <div>
-                    <div class="predicted-winner">🎯 {predicted_winner} wins</div>
-                    <div style="color: #666; margin-top: 5px;">{prob_text}</div>
+            <div class="prediction-section">
+                <div class="prediction-row">
+                    <div class="prediction-left">
+                        <p class="predicted-winner">🎯 {predicted_winner} wins</p>
+                        <p class="win-probability">{prob_text}</p>
+                    </div>
+                    <div class="prediction-right">
+                        <span class="confidence {conf_class}">{confidence}</span>
+                    </div>
                 </div>
-                <div class="confidence {conf_class}">{confidence}</div>
-            </div>
         """
         
-        # Add Vegas odds if available
-        if 'Vegas_Spread' in df.columns and pd.notna(row.get('Vegas_Spread')):
+        # Add Vegas odds table if any odds are available
+        has_spread = 'Vegas_Spread' in row and pd.notna(row.get('Vegas_Spread'))
+        has_total = 'Vegas_Total' in row and pd.notna(row.get('Vegas_Total'))
+        has_ml_home = 'Vegas_ML_Home' in row and pd.notna(row.get('Vegas_ML_Home'))
+        has_ml_away = 'Vegas_ML_Away' in row and pd.notna(row.get('Vegas_ML_Away'))
+        
+        if has_spread or has_total or has_ml_home:
+            # Format the odds values
+            spread_val = f"{row.get('Vegas_Spread', 0):+.1f}" if has_spread else '<span class="no-odds">--</span>'
+            total_val = f"{row.get('Vegas_Total', 0):.1f}" if has_total else '<span class="no-odds">--</span>'
+            
+            # Format moneyline
+            if has_ml_home:
+                ml_home = row.get('Vegas_ML_Home')
+                ml_val = f"{ml_home:+.0f}" if ml_home != 0 else '<span class="no-odds">--</span>'
+            else:
+                ml_val = '<span class="no-odds">--</span>'
+            
             html += f"""
-            <div class="odds">
-                <div class="odds-item">
-                    <div class="odds-label">Spread</div>
-                    <div class="odds-value">{row.get('Vegas_Spread', 'N/A')}</div>
-                </div>
-                <div class="odds-item">
-                    <div class="odds-label">Total</div>
-                    <div class="odds-value">{row.get('Vegas_Total', 'N/A')}</div>
-                </div>
-                <div class="odds-item">
-                    <div class="odds-label">Moneyline</div>
-                    <div class="odds-value">{row.get('Vegas_ML_Home', 'N/A')}</div>
-                </div>
-            </div>
+                <table class="odds-table">
+                    <tr>
+                        <td>
+                            <span class="odds-label">Spread</span>
+                            <span class="odds-value">{spread_val}</span>
+                        </td>
+                        <td>
+                            <span class="odds-label">Over/Under</span>
+                            <span class="odds-value">{total_val}</span>
+                        </td>
+                        <td>
+                            <span class="odds-label">Moneyline</span>
+                            <span class="odds-value">{ml_val}</span>
+                        </td>
+                    </tr>
+                </table>
             """
         
         html += """
+            </div>
         </div>
         """
     
@@ -296,8 +371,11 @@ def format_html_email(df, filename):
     html += """
         <div class="footer">
             <p>🤖 Generated by NBA Prediction System</p>
-            <p>Model: HistGradient Boosting (70.20% AUC)</p>
-            <p><a href="https://github.com/missionfromdog/bball-prediction">View on GitHub</a></p>
+            <p class="footer-divider">• • •</p>
+            <p>Model: HistGradient Boosting (70.20% AUC) with Vegas Lines + Injury Data</p>
+            <p style="margin-top: 15px;">
+                <a href="https://github.com/missionfromdog/bball-prediction">View on GitHub</a>
+            </p>
         </div>
     </body>
     </html>
