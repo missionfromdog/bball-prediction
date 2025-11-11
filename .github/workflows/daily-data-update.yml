@@ -1,0 +1,112 @@
+name: Daily Data Update - Injuries & Odds
+
+on:
+  schedule:
+    # Run every day at 10 AM UTC (2 AM PST / 5 AM EST)
+    # Injuries are typically updated overnight
+    - cron: '0 10 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true  # Pull LFS files
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'  # Use 3.11 for better compatibility
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium webdriver-manager beautifulsoup4 pandas requests kaggle
+      
+      - name: Install Chrome and ChromeDriver
+        run: |
+          # Install Chrome
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          
+          # ChromeDriver is handled by webdriver-manager
+      
+      - name: Scrape NBA Injuries
+        run: |
+          echo "🏥 Scraping current NBA injuries..."
+          python scripts/data_collection/scrape_real_injuries.py
+        continue-on-error: true  # Don't fail workflow if scraping fails
+      
+      - name: Download Latest Vegas Odds
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          echo "🎲 Checking for updated Vegas odds..."
+          # Create kaggle credentials
+          mkdir -p ~/.kaggle
+          echo "{\"username\":\"$KAGGLE_USERNAME\",\"key\":\"$KAGGLE_KEY\"}" > ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+          
+          # Download latest odds (if available)
+          python scripts/data_collection/download_real_vegas_data.py || echo "No new Vegas data available"
+        continue-on-error: true
+      
+      - name: Process and Merge Data
+        run: |
+          echo "⚙️ Processing and merging updated data..."
+          python scripts/data_collection/process_real_vegas_lines.py || echo "Processing skipped - no new data"
+        continue-on-error: true
+      
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Add any changed data files
+          git add data/injuries/*.csv data/betting/*.csv data/games_with_real_vegas.csv 2>/dev/null || true
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Automated data update: $(date +'%Y-%m-%d')
+            
+            - Updated NBA injury data
+            - Updated Vegas betting lines (if available)
+            - Regenerated games_with_real_vegas.csv
+            
+            [skip ci]"
+            git push
+            echo "✅ Changes pushed to repository"
+          fi
+      
+      - name: Create Summary
+        if: always()
+        run: |
+          echo "## 📊 Daily Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🏥 Injury Data" >> $GITHUB_STEP_SUMMARY
+          if [ -f "data/injuries/nba_injuries_real_scraped.csv" ]; then
+            INJURY_COUNT=$(tail -n +2 data/injuries/nba_injuries_real_scraped.csv | wc -l)
+            echo "- ✅ Successfully scraped **${INJURY_COUNT}** current injuries" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Injury scraping failed or no file generated" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎲 Vegas Odds" >> $GITHUB_STEP_SUMMARY
+          echo "- Check Kaggle dataset for latest updates" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔄 Next Update" >> $GITHUB_STEP_SUMMARY
+          echo "Scheduled for tomorrow at 10:00 AM UTC" >> $GITHUB_STEP_SUMMARY
+

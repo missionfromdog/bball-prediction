@@ -1,0 +1,71 @@
+name: Scrape Live Betting Odds (Optional)
+
+# This workflow can scrape odds from live sources if you have API access
+# Currently set to manual trigger only
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: 'Odds source'
+        required: true
+        default: 'kaggle'
+        type: choice
+        options:
+          - kaggle
+          - oddsapi
+          - custom
+
+jobs:
+  scrape-odds:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests kaggle
+      
+      - name: Scrape from Kaggle
+        if: inputs.source == 'kaggle'
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          mkdir -p ~/.kaggle
+          echo "{\"username\":\"$KAGGLE_USERNAME\",\"key\":\"$KAGGLE_KEY\"}" > ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+          python scripts/data_collection/download_real_vegas_data.py
+      
+      - name: Scrape from The Odds API
+        if: inputs.source == 'oddsapi'
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          # This requires an API key from the-odds-api.com
+          # Create a custom script to fetch live odds
+          echo "The Odds API integration not yet implemented"
+          echo "Sign up at: https://the-odds-api.com/"
+      
+      - name: Process Odds Data
+        run: |
+          python scripts/data_collection/process_real_vegas_lines.py
+      
+      - name: Commit Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/betting/*.csv data/games_with_real_vegas.csv
+          git commit -m "🎲 Updated betting odds from ${{ inputs.source }}: $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
+
