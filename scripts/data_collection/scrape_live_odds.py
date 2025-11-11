@@ -126,13 +126,72 @@ def save_live_odds(df, filename=None):
     df.to_csv(filepath, index=False)
     print(f"✅ Saved live odds to: {filepath}")
     
+    # Also save as latest.csv for easy access
+    latest_path = BETTING_PATH / 'live_odds_latest.csv'
+    df.to_csv(latest_path, index=False)
+    print(f"✅ Saved as latest: {latest_path}")
+    
     return filepath
+
+
+def convert_to_vegas_format(df):
+    """
+    Convert The Odds API format to match our Vegas betting lines format
+    
+    Returns:
+        DataFrame compatible with process_real_vegas_lines.py
+    """
+    if df is None or df.empty:
+        return None
+    
+    print("🔄 Converting to Vegas format...")
+    
+    # Map team names to standard abbreviations
+    # The Odds API uses full names, we need abbreviations
+    team_map = {
+        'Atlanta Hawks': 'ATL', 'Boston Celtics': 'BOS', 'Brooklyn Nets': 'BKN',
+        'Charlotte Hornets': 'CHA', 'Chicago Bulls': 'CHI', 'Cleveland Cavaliers': 'CLE',
+        'Dallas Mavericks': 'DAL', 'Denver Nuggets': 'DEN', 'Detroit Pistons': 'DET',
+        'Golden State Warriors': 'GSW', 'Houston Rockets': 'HOU', 'Indiana Pacers': 'IND',
+        'Los Angeles Clippers': 'LAC', 'Los Angeles Lakers': 'LAL', 'Memphis Grizzlies': 'MEM',
+        'Miami Heat': 'MIA', 'Milwaukee Bucks': 'MIL', 'Minnesota Timberwolves': 'MIN',
+        'New Orleans Pelicans': 'NOP', 'New York Knicks': 'NYK', 'Oklahoma City Thunder': 'OKC',
+        'Orlando Magic': 'ORL', 'Philadelphia 76ers': 'PHI', 'Phoenix Suns': 'PHX',
+        'Portland Trail Blazers': 'POR', 'Sacramento Kings': 'SAC', 'San Antonio Spurs': 'SAS',
+        'Toronto Raptors': 'TOR', 'Utah Jazz': 'UTA', 'Washington Wizards': 'WAS'
+    }
+    
+    converted = []
+    for _, row in df.iterrows():
+        # Parse date
+        date = pd.to_datetime(row['commence_time']).strftime('%Y-%m-%d')
+        
+        # Get team abbreviations
+        home_abbr = team_map.get(row['home_team'], row['home_team'][:3].upper())
+        away_abbr = team_map.get(row['away_team'], row['away_team'][:3].upper())
+        
+        # Create row in Vegas format
+        vegas_row = {
+            'Date': date,
+            'VH': 'H',  # Home
+            'Team': home_abbr,
+            'Open': row.get('home_spread', 0),
+            'Close': row.get('home_spread', 0),
+            'ML': row.get('home_ml', 0),
+            'OU': row.get('total', 0),
+        }
+        converted.append(vegas_row)
+    
+    result = pd.DataFrame(converted)
+    print(f"✅ Converted {len(result)} games to Vegas format")
+    
+    return result
 
 
 def main():
     """Main execution"""
     print("=" * 60)
-    print("NBA LIVE ODDS SCRAPER")
+    print("NBA LIVE ODDS SCRAPER - The Odds API")
     print("=" * 60)
     print()
     
@@ -140,8 +199,15 @@ def main():
     df = fetch_live_odds()
     
     if df is not None:
-        # Save to CSV
-        save_live_odds(df)
+        # Save raw data
+        raw_path = save_live_odds(df)
+        
+        # Convert to Vegas format
+        vegas_df = convert_to_vegas_format(df)
+        if vegas_df is not None:
+            vegas_path = BETTING_PATH / 'live_odds_vegas_format.csv'
+            vegas_df.to_csv(vegas_path, index=False)
+            print(f"✅ Saved Vegas format: {vegas_path}")
         
         # Display summary
         print()
@@ -150,24 +216,35 @@ def main():
         print(f"Games fetched: {len(df)}")
         print(f"Upcoming games:")
         for _, row in df.iterrows():
+            commence = pd.to_datetime(row['commence_time'])
             print(f"  • {row['away_team']} @ {row['home_team']}")
-            if 'home_spread' in row:
+            print(f"    Time: {commence.strftime('%Y-%m-%d %I:%M %p')}")
+            if 'home_spread' in row and pd.notna(row['home_spread']):
                 print(f"    Spread: {row['home_spread']:+.1f}")
-            if 'total' in row:
+            if 'total' in row and pd.notna(row['total']):
                 print(f"    O/U: {row['total']}")
+            if 'home_ml' in row and pd.notna(row['home_ml']):
+                print(f"    ML: {row['home_ml']:+.0f} / {row.get('away_ml', 0):+.0f}")
         
         print()
+        print("✅ SUCCESS!")
+        print("-" * 60)
+        print(f"📁 Raw data saved: {raw_path}")
+        if vegas_df is not None:
+            print(f"📁 Vegas format: {vegas_path}")
+        print()
         print("💡 Next steps:")
-        print("  1. Review the fetched odds in data/betting/")
-        print("  2. Run process_real_vegas_lines.py to merge with games")
-        print("  3. Retrain models with updated data")
+        print("  1. Data ready in data/betting/")
+        print("  2. Use live odds in your Streamlit app")
+        print("  3. Or merge with historical data for training")
     else:
         print("❌ Failed to fetch odds")
         print()
-        print("💡 Options:")
-        print("  1. Get free API key: https://the-odds-api.com/")
-        print("  2. Set environment variable: export ODDS_API_KEY=your_key")
-        print("  3. Or use Kaggle dataset: python download_real_vegas_data.py")
+        print("💡 Troubleshooting:")
+        print("  1. Check your API key: https://the-odds-api.com/account")
+        print("  2. Verify API credits remaining")
+        print("  3. Set environment variable: export ODDS_API_KEY=your_key")
+        print("  4. Or add to GitHub Secrets for automation")
 
 
 if __name__ == "__main__":
