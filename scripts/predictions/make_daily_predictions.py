@@ -100,7 +100,7 @@ def load_live_odds():
 
 
 def prepare_features(df):
-    """Prepare features for prediction"""
+    """Prepare features for prediction - MUST match training data exactly"""
     # Create MATCHUP if it doesn't exist
     if 'MATCHUP' not in df.columns:
         if 'HOME_TEAM_ABBREVIATION' in df.columns and 'VISITOR_TEAM_ABBREVIATION' in df.columns:
@@ -109,18 +109,39 @@ def prepare_features(df):
             # Fallback if team abbreviations don't exist
             df['MATCHUP'] = 'Game ' + df.index.astype(str)
     
-    # Features to drop
+    # Features to drop - these are target, metadata, categorical, or leaky features
+    # This MUST match what was used in training (from streamlit_app_enhanced.py)
     drop_cols = [
-        'TARGET', 'GAME_DATE_EST', 'GAME_ID', 'MATCHUP',
+        # Target
+        'TARGET',
+        # Metadata
+        'GAME_DATE_EST', 'GAME_ID', 'MATCHUP', 'SEASON',
+        # Team identifiers (categorical)
+        'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 
         'HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION',
-        'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON',
-        'HOME_TEAM_WINS', 'VISITOR_TEAM_WINS', 'HOME_WL', 'VISITOR_WL',
-        'PTS_home', 'PTS_away'
+        # Leaky features (reveal outcome)
+        'HOME_TEAM_WINS', 'VISITOR_TEAM_WINS', 
+        'HOME_WL', 'VISITOR_WL',
+        'PTS_home', 'PTS_away',
+        'FG_PCT_home', 'FG_PCT_away',
+        'FT_PCT_home', 'FT_PCT_away', 
+        'FG3_PCT_home', 'FG3_PCT_away',
+        'AST_home', 'AST_away',
+        'REB_home', 'REB_away'
     ]
     
     # Drop columns that exist
     existing_drops = [col for col in drop_cols if col in df.columns]
     X = df.drop(columns=existing_drops, errors='ignore')
+    
+    # Remove any other object/string columns
+    object_cols = X.select_dtypes(include=['object']).columns
+    if len(object_cols) > 0:
+        print(f"⚠️  Dropping {len(object_cols)} object columns: {list(object_cols)}")
+        X = X.drop(columns=object_cols)
+    
+    print(f"✅ Prepared features: {X.shape[1]} features")
+    print(f"   First few features: {list(X.columns[:10])}")
     
     # Keep metadata for display
     metadata_cols = ['GAME_DATE_EST', 'MATCHUP']
