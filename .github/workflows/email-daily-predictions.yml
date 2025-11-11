@@ -5,10 +5,16 @@ on:
     # Run daily at 9:30 AM UTC (after predictions are made at 9 AM)
     - cron: '30 9 * * *'
   workflow_dispatch:  # Allow manual trigger
+  workflow_run:
+    workflows: ["Daily NBA Predictions"]
+    types:
+      - completed
 
 jobs:
   email-predictions:
     runs-on: ubuntu-latest
+    # Only run if predictions workflow succeeded (when triggered by workflow_run)
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     
     steps:
       - name: Checkout code

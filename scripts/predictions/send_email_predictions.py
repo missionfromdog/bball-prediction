@@ -17,6 +17,13 @@ def load_latest_predictions():
     """Load the most recent predictions file"""
     predictions_dir = Path(__file__).resolve().parents[2] / 'data' / 'predictions'
     
+    # Ensure directory exists
+    if not predictions_dir.exists():
+        raise FileNotFoundError(
+            f"Predictions directory not found: {predictions_dir}\n"
+            "Run 'Daily NBA Predictions' workflow first to generate predictions."
+        )
+    
     # Find today's predictions file
     today_str = datetime.now().strftime('%Y%m%d')
     predictions_file = predictions_dir / f'daily_predictions_{today_str}.csv'
@@ -26,8 +33,13 @@ def load_latest_predictions():
         prediction_files = sorted(predictions_dir.glob('daily_predictions_*.csv'), reverse=True)
         if prediction_files:
             predictions_file = prediction_files[0]
+            print(f"⚠️  Today's predictions not found, using most recent: {predictions_file.name}")
         else:
-            raise FileNotFoundError("No prediction files found")
+            raise FileNotFoundError(
+                f"No prediction files found in {predictions_dir}\n"
+                "Available files: " + str(list(predictions_dir.glob('*.csv'))) + "\n"
+                "Run 'Daily NBA Predictions' workflow first to generate predictions."
+            )
     
     df = pd.read_csv(predictions_file)
     return df, predictions_file.stem
