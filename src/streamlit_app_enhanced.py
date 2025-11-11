@@ -566,46 +566,85 @@ def main():
     # TAB 2: PERFORMANCE
     # ========================================================================
     with tab2:
-        fancy_header('Model Performance Comparison', font_size=28)
+        fancy_header('Model Performance Analysis', font_size=28)
         st.markdown("")
         
-        if performance_metrics:
-            # Create comparison dataframe
-            perf_data = []
-            for key, metrics in performance_metrics.items():
-                if key in model_info:
-                    perf_data.append({
-                        'Model': model_info[key]['name'],
-                        'Type': model_info[key]['type'].title(),
-                        'Test AUC': metrics.get('test_auc', 0),
-                        'Test Accuracy': metrics.get('test_accuracy', 0),
-                    })
-            
-            if perf_data:
-                perf_df = pd.DataFrame(perf_data)
-                perf_df = perf_df.sort_values('Test AUC', ascending=False)
+        # Try to load performance metrics
+        perf_metrics_path = DATAPATH / 'predictions' / 'performance_metrics_latest.csv'
+        perf_detailed_path = DATAPATH / 'predictions' / 'detailed_tracking_latest.csv'
+        
+        if perf_metrics_path.exists() and perf_detailed_path.exists():
+            # Load performance data
+            try:
+                metrics_df = pd.read_csv(perf_metrics_path)
+                detailed_df = pd.read_csv(perf_detailed_path)
                 
                 # Display metrics
-                col1, col2 = st.columns(2)
+                st.subheader("📊 Overall Performance")
                 
+                col1, col2, col3, col4 = st.columns(4)
                 with col1:
-                    st.subheader("📊 AUC Scores")
-                    st.bar_chart(perf_df.set_index('Model')['Test AUC'])
-                
+                    acc = metrics_df['Overall_Accuracy'].iloc[0]
+                    st.metric("Overall Accuracy", f"{acc:.1%}")
                 with col2:
-                    st.subheader("🎯 Accuracy")
-                    st.bar_chart(perf_df.set_index('Model')['Test Accuracy'])
+                    total = metrics_df['Total_Predictions'].iloc[0]
+                    correct = metrics_df['Correct_Predictions'].iloc[0]
+                    st.metric("Predictions", f"{correct}/{total}")
+                with col3:
+                    if 'ROI' in metrics_df.columns:
+                        roi = metrics_df['ROI'].iloc[0]
+                        st.metric("ROI", f"{roi:+.1f}%")
+                with col4:
+                    if 'Total_Profit' in metrics_df.columns:
+                        profit = metrics_df['Total_Profit'].iloc[0]
+                        st.metric("Profit/Loss", f"${profit:+,.0f}")
                 
-                # Full table
-                st.subheader("📋 Detailed Metrics")
-                display_perf = perf_df.copy()
-                display_perf['Test AUC'] = display_perf['Test AUC'].apply(lambda x: f"{x:.4f}")
-                display_perf['Test Accuracy'] = display_perf['Test Accuracy'].apply(lambda x: f"{x:.2%}")
-                st.dataframe(display_perf, use_container_width=True, hide_index=True)
-            else:
-                st.info("No performance metrics available. Run model comparison to generate metrics.")
+                st.markdown("---")
+                
+                # Performance by confidence
+                st.subheader("🎯 Accuracy by Confidence Level")
+                conf_cols = st.columns(3)
+                
+                for idx, conf in enumerate(['High', 'Medium', 'Low']):
+                    count_col = f'{conf}_Confidence_Predictions'
+                    acc_col = f'{conf}_Confidence_Accuracy'
+                    
+                    if count_col in metrics_df.columns and acc_col in metrics_df.columns:
+                        with conf_cols[idx]:
+                            count = metrics_df[count_col].iloc[0]
+                            acc = metrics_df[acc_col].iloc[0]
+                            st.metric(f"{conf} Confidence", f"{acc:.1%}", f"{count} games")
+                
+                st.markdown("---")
+                
+                # Recent games
+                st.subheader("🕒 Recent Predictions")
+                recent = detailed_df.sort_values('Date', ascending=False).head(10)
+                
+                display_recent = recent[['Date', 'Matchup', 'Predicted_Winner', 'Actual_Winner', 'Correct', 'Confidence']].copy()
+                display_recent['Date'] = pd.to_datetime(display_recent['Date']).dt.strftime('%Y-%m-%d')
+                display_recent['Result'] = display_recent['Correct'].apply(lambda x: '✅' if x else '❌')
+                display_recent = display_recent.drop('Correct', axis=1)
+                
+                st.dataframe(display_recent, use_container_width=True, hide_index=True)
+                
+            except Exception as e:
+                st.error(f"Error loading performance data: {e}")
+                st.info("Run 'Track Betting Performance' workflow to generate metrics")
         else:
-            st.info("No performance metrics found. Run `python build_ensemble.py` to generate comparison metrics.")
+            st.info("📊 No performance data available yet")
+            st.markdown("""
+            **To see performance metrics:**
+            1. Make some predictions (Daily NBA Predictions workflow)
+            2. Wait for games to complete
+            3. Run 'Track Betting Performance' workflow
+            
+            Performance tracking will show:
+            - Overall accuracy
+            - Accuracy by confidence level
+            - ROI and profit/loss
+            - Recent prediction results
+            """)
     
     # ========================================================================
     # TAB 3: ABOUT
