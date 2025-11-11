@@ -1,0 +1,43 @@
+name: Email Daily Predictions
+
+on:
+  schedule:
+    # Run daily at 9:30 AM UTC (after predictions are made at 9 AM)
+    - cron: '30 9 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  email-predictions:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: true
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+      
+      - name: Send predictions email
+        env:
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+        run: |
+          python scripts/predictions/send_email_predictions.py
+      
+      - name: Summary
+        run: |
+          echo "📧 Email sent with today's NBA predictions!"
+
