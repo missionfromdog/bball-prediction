@@ -1,0 +1,13 @@
+# this is just barebones quick-fix to get the streamlit cloud app to work again
+# one of its dependencies that had been working fine just started failing at runtime
+# streamlit cloud uses the requirements.txt to create its virtual machine
+# the other file in the this repo - requirements.txt.main, should be renamed and used for local installs
+streamlit 
+joblib
+pandas==1.5.3
+datetime 
+pathlib
+xgboost==1.6.1
+python-dotenv
+scikit-learn==1.1.3
+libgl1-mesa-glx

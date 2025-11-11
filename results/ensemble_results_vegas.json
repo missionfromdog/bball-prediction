@@ -1,0 +1,31 @@
+{
+  "individual_models": {
+    "RandomForest": {
+      "auc": 0.6937415680417268,
+      "accuracy": 0.6569155160308916
+    },
+    "XGBoost": {
+      "auc": 0.6884885822029017,
+      "accuracy": 0.6536391294172712
+    },
+    "HistGradientBoosting": {
+      "auc": 0.7020467647467838,
+      "accuracy": 0.662532178797098
+    }
+  },
+  "ensembles": {
+    "weighted": {
+      "auc": 0.6980672642257408,
+      "accuracy": 0.6576175988766675
+    },
+    "stacking": {
+      "auc": 0.6991210896934605,
+      "accuracy": 0.6622981511818394
+    }
+  },
+  "best_model": {
+    "name": "HistGradientBoosting",
+    "auc": 0.7020467647467838
+  },
+  "trained_on": "2025-11-11 11:33:31"
+}

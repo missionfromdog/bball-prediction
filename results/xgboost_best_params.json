@@ -1,0 +1,17 @@
+{
+  "num_round": 109,
+  "learning_rate": 0.032397756501047516,
+  "max_bin": 637,
+  "max_depth": 3,
+  "alpha": 6.102848293976433,
+  "gamma": 10.890797687113116,
+  "reg_lambda": 2.9915067497864993,
+  "colsample_bytree": 0.4103829230356298,
+  "subsample": 0.7555511385430487,
+  "min_child_weight": 2.7455779858994696,
+  "scale_pos_weight": 2,
+  "test_auc": 0.6167263427109975,
+  "test_accuracy": 0.48771929824561405,
+  "test_auc_calibrated": 0.6245268542199488,
+  "test_accuracy_calibrated": 0.6140350877192983
+}

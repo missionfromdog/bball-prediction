@@ -1,0 +1,66 @@
+# Core Data Science & ML
+numpy>=1.24.0,<2.0.0
+pandas>=2.0.0,<3.0.0
+scikit-learn>=1.3.0,<2.0.0
+
+# Machine Learning Models
+xgboost>=2.0.0,<3.0.0
+lightgbm>=4.0.0,<5.0.0
+catboost>=1.2.0,<2.0.0
+
+# AutoML
+# Note: AutoGluon requires Python 3.9-3.12 (not compatible with 3.13 yet)
+# To use AutoGluon, create a Python 3.11 or 3.12 environment
+# autogluon.tabular[all]>=1.1.0,<2.0.0
+
+# Hyperparameter Tuning
+optuna>=3.0.0,<4.0.0
+
+# Model Interpretation
+shap>=0.45.0,<1.0.0
+
+# Visualization
+matplotlib>=3.7.0,<4.0.0
+seaborn>=0.13.0,<1.0.0
+sweetviz>=2.3.0,<3.0.0
+plotly>=5.18.0,<6.0.0
+
+# Experiment Tracking (Neptune.ai)
+# NOTE: Only install 'neptune', not 'neptune-client' (they conflict in newer versions)
+neptune>=1.0.0,<2.0.0
+neptune-xgboost>=1.0.0,<2.0.0
+neptune-lightgbm>=1.0.0,<2.0.0
+neptune-optuna>=1.0.0,<2.0.0
+
+# Web Scraping
+selenium>=4.15.0,<5.0.0
+beautifulsoup4>=4.12.0,<5.0.0
+scrapingant-client>=1.0.0,<2.0.0
+webdriver-manager>=4.0.0,<5.0.0
+lxml>=5.0.0,<6.0.0
+pytz>=2023.3
+
+# Streamlit App
+streamlit>=1.30.0,<2.0.0
+joblib>=1.3.0,<2.0.0
+
+# Utilities
+python-dotenv>=1.0.0,<2.0.0
+
+# Feature Store (Optional - currently not in use per README)
+# hopsworks>=3.0.0,<4.0.0
+
+# Google Drive Integration (Optional)
+google-api-python-client>=2.100.0,<3.0.0
+google-auth-httplib2>=0.2.0,<1.0.0
+google-auth-oauthlib>=1.1.0,<2.0.0
+
+# Jupyter Notebook Support
+jupyter>=1.0.0,<2.0.0
+ipykernel>=6.25.0,<7.0.0
+ipywidgets>=8.1.0,<9.0.0
+
+# Additional utilities found in code
+Pillow>=10.0.0,<11.0.0
+requests>=2.31.0,<3.0.0
+

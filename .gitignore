@@ -1,0 +1,57 @@
+/venv
+/old
+/.ipynb_checkpoints
+.hw_api_key
+.ipynb_checkpoints
+.neptune
+__pycache__
+ca_chain
+certfile
+keyfile
+geckodriver.log
+.env
+.vs
+.vscode
+pandas.ipynb
+notebooks/*.nbconvert.ipynb
+*.nbconvert.ipynb
+
+# Python cache
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Jupyter
+*.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+geckodriver.log
+
+# Selenium
+chromedriver
+geckodriver
+
+# Environment
+.env
+*.env
+
+# Model files (if you want to exclude large models)
+# models/*.pkl
+
+# Data files (if not using Git LFS)
+# data/*.csv
