@@ -1,0 +1,23 @@
+name: Test - Check Predictions Directory
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Check predictions directory
+        run: |
+          echo "Checking data directory structure..."
+          ls -la data/ || echo "No data directory"
+          echo ""
+          echo "Checking predictions directory..."
+          ls -la data/predictions/ || echo "No predictions directory"
+          echo ""
+          echo "All CSV files in data/predictions:"
+          find data/predictions -name "*.csv" 2>/dev/null || echo "No CSV files found"
