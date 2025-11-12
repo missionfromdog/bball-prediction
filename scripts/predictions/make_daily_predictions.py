@@ -31,14 +31,68 @@ MODEL_OPTIONS = [
 ]
 
 
+def is_valid_model_file(filepath):
+    """Check if model file is valid (not LFS pointer)"""
+    if not filepath.exists():
+        return False
+    size = filepath.stat().st_size
+    # LFS pointer files are tiny (< 200 bytes), real models are 2-3 MB
+    return size > 1000
+
+
+def retrain_model():
+    """Retrain model if needed - called automatically if model is invalid"""
+    print("\n" + "="*80)
+    print("🔧 MODEL MISSING OR INVALID - RETRAINING")
+    print("="*80)
+    print("This will take ~2-3 minutes...")
+    
+    import sys
+    PROJECTPATH = Path(__file__).resolve().parents[2]
+    sys.path.insert(0, str(PROJECTPATH / 'scripts' / 'predictions'))
+    
+    try:
+        from setup_model import retrain_model as do_retrain, MODEL_PATH
+        success = do_retrain()
+        
+        if success and is_valid_model_file(MODEL_PATH):
+            print("\n✅ Model retrained successfully!")
+            return MODEL_PATH
+        else:
+            print("\n❌ Model retraining failed")
+            return None
+    except Exception as e:
+        print(f"\n❌ Error during retraining: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+
 def load_model():
-    """Load the best performing model"""
+    """Load the best performing model - retrain automatically if invalid"""
     last_error = None
     
     for model_file in MODEL_OPTIONS:
         model_path = MODELPATH / model_file
         if not model_path.exists():
             continue
+        
+        # Check if file is valid (not LFS pointer)
+        if not is_valid_model_file(model_path):
+            file_size = model_path.stat().st_size
+            print(f"⚠️  {model_file} is too small ({file_size} bytes) - probably LFS pointer")
+            
+            # Only try to retrain the first/best model
+            if model_file == MODEL_OPTIONS[0]:
+                print("🔄 Attempting to retrain best model...")
+                retrained_path = retrain_model()
+                if retrained_path and is_valid_model_file(retrained_path):
+                    model_path = retrained_path
+                else:
+                    print("❌ Retraining failed, trying other models...")
+                    continue
+            else:
+                continue
         
         try:
             # Try joblib first (scikit-learn standard)
