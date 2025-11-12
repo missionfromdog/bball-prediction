@@ -23,81 +23,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           lfs: false  # DISABLE LFS to avoid bandwidth issues
 
-      - name: Download best model (bypass LFS)
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📦 MODEL SETUP"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          
-          mkdir -p models
-          
-          # Check if model exists and if it's an LFS pointer
-          if [ -f "models/histgradient_vegas_calibrated.pkl" ]; then
-            echo "📄 Found existing file, checking if it's LFS pointer..."
-            if head -1 models/histgradient_vegas_calibrated.pkl 2>/dev/null | grep -q "version https://git-lfs"; then
-              echo "⚠️  File is LFS pointer ($(wc -c < models/histgradient_vegas_calibrated.pkl) bytes)"
-              echo "🔄 Downloading actual model file..."
-              
-              # Try multiple download methods
-              SUCCESS=false
-              
-              # Method 1: GitHub media URL (for LFS)
-              echo "Trying GitHub media URL..."
-              if curl -L --fail --progress-bar \
-                "https://media.githubusercontent.com/media/missionfromdog/bball-prediction/main/models/histgradient_vegas_calibrated.pkl" \
-                -o models/histgradient_vegas_calibrated.pkl.tmp 2>&1; then
-                mv models/histgradient_vegas_calibrated.pkl.tmp models/histgradient_vegas_calibrated.pkl
-                SUCCESS=true
-                echo "✅ Downloaded from GitHub media URL"
-              else
-                echo "❌ GitHub media URL failed"
-              fi
-              
-              # Method 2: Try raw.githubusercontent.com (for non-LFS)
-              if [ "$SUCCESS" = false ]; then
-                echo "Trying raw.githubusercontent.com..."
-                if curl -L --fail --progress-bar \
-                  "https://raw.githubusercontent.com/missionfromdog/bball-prediction/main/models/histgradient_vegas_calibrated.pkl" \
-                  -o models/histgradient_vegas_calibrated.pkl.tmp 2>&1; then
-                  mv models/histgradient_vegas_calibrated.pkl.tmp models/histgradient_vegas_calibrated.pkl
-                  SUCCESS=true
-                  echo "✅ Downloaded from raw.githubusercontent.com"
-                else
-                  echo "❌ raw.githubusercontent.com failed"
-                fi
-              fi
-              
-              if [ "$SUCCESS" = false ]; then
-                echo "❌ All download methods failed!"
-                echo "Will try to use local training instead..."
-              fi
-            else
-              echo "✅ File is already valid (not LFS pointer)"
-            fi
-          else
-            echo "❌ No model file found at all!"
-            echo "Will need to train or download..."
-          fi
-          
-          # Final check
-          echo ""
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          if [ -f "models/histgradient_vegas_calibrated.pkl" ]; then
-            FILE_SIZE=$(wc -c < models/histgradient_vegas_calibrated.pkl)
-            echo "📊 Final model file size: ${FILE_SIZE} bytes"
-            
-            # LFS pointer files are tiny (< 200 bytes), real models are 2-3 MB
-            if [ "$FILE_SIZE" -lt 1000 ]; then
-              echo "⚠️  WARNING: File is suspiciously small (probably still LFS pointer)"
-              echo "Model loading will likely fail..."
-            else
-              echo "✅ Model file looks good!"
-            fi
-          else
-            echo "❌ No model file present!"
-          fi
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -107,7 +32,164 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pandas numpy scikit-learn==1.3.0 xgboost lightgbm joblib
-      
+
+      - name: Check and fix model file
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📦 MODEL SETUP"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          mkdir -p models
+          
+          # Check if model exists and if it's an LFS pointer
+          MODEL_OK=false
+          
+          if [ -f "models/histgradient_vegas_calibrated.pkl" ]; then
+            FILE_SIZE=$(wc -c < models/histgradient_vegas_calibrated.pkl)
+            echo "📄 Found model file (${FILE_SIZE} bytes)"
+            
+            # LFS pointer files are tiny (< 200 bytes), real models are 2-3 MB
+            if [ "$FILE_SIZE" -gt 1000 ]; then
+              echo "✅ Model file looks valid (large enough to be real)"
+              MODEL_OK=true
+            else
+              echo "⚠️  File is too small - probably LFS pointer"
+              echo "First line:"
+              head -1 models/histgradient_vegas_calibrated.pkl
+              echo ""
+              
+              echo "🔄 Attempting to download actual model..."
+              
+              # Try downloading from GitHub
+              if curl -L --fail --silent --show-error \
+                "https://media.githubusercontent.com/media/missionfromdog/bball-prediction/main/models/histgradient_vegas_calibrated.pkl" \
+                -o models/histgradient_vegas_calibrated.pkl.tmp 2>&1; then
+                
+                NEW_SIZE=$(wc -c < models/histgradient_vegas_calibrated.pkl.tmp)
+                if [ "$NEW_SIZE" -gt 1000 ]; then
+                  mv models/histgradient_vegas_calibrated.pkl.tmp models/histgradient_vegas_calibrated.pkl
+                  echo "✅ Downloaded valid model (${NEW_SIZE} bytes)"
+                  MODEL_OK=true
+                else
+                  echo "❌ Downloaded file is also too small"
+                  rm -f models/histgradient_vegas_calibrated.pkl.tmp
+                fi
+              else
+                echo "❌ Download failed"
+              fi
+            fi
+          else
+            echo "❌ No model file found"
+          fi
+          
+          # If model still not OK, retrain it
+          if [ "$MODEL_OK" = false ]; then
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "🔧 RETRAINING MODEL (this takes ~2-3 minutes)"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            
+            python - << 'PYEOF'
+import pandas as pd
+import numpy as np
+from pathlib import Path
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import train_test_split
+import joblib
+
+print("\n📊 Loading training data...")
+DATAPATH = Path('data')
+df = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
+
+print(f"   Loaded {len(df)} games")
+
+# Prepare features
+print("\n🔧 Preparing features...")
+X = df.copy()
+
+# Drop target and metadata
+target_cols = ['HOME_TEAM_WINS']
+metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP']
+categorical_cols = ['HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION', 
+                   'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON']
+
+# Drop leaky features (post-game stats)
+leaky_patterns = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
+                 'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
+                 'REB_home', 'REB_away', 'PTS_home', 'PTS_away']
+
+drop_cols = target_cols + metadata_cols + categorical_cols
+for pattern in leaky_patterns:
+    drop_cols.extend([col for col in X.columns if pattern in col and col not in drop_cols])
+
+X = X.drop(columns=[col for col in drop_cols if col in X.columns], errors='ignore')
+y = df['HOME_TEAM_WINS']
+
+print(f"   Features: {len(X.columns)}")
+print(f"   Samples: {len(X)}")
+
+# Train/test split
+print("\n✂️  Splitting data...")
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Train model
+print("\n🎯 Training HistGradientBoosting...")
+model = HistGradientBoostingClassifier(
+    random_state=42,
+    max_iter=200,
+    max_depth=7,
+    learning_rate=0.05,
+    max_leaf_nodes=31,
+    min_samples_leaf=20,
+    max_features=0.8,
+    verbose=0
+)
+model.fit(X_train, y_train)
+
+# Calibrate
+print("🎨 Calibrating probabilities...")
+calibrated = CalibratedClassifierCV(model, cv=3, method='isotonic')
+calibrated.fit(X_train, y_train)
+
+# Evaluate
+train_score = calibrated.score(X_train, y_train)
+test_score = calibrated.score(X_test, y_test)
+print(f"\n📊 Training accuracy: {train_score:.4f}")
+print(f"📊 Test accuracy: {test_score:.4f}")
+
+# Save
+print("\n💾 Saving model...")
+Path('models').mkdir(exist_ok=True)
+joblib.dump(calibrated, 'models/histgradient_vegas_calibrated.pkl')
+
+file_size = Path('models/histgradient_vegas_calibrated.pkl').stat().st_size
+print(f"✅ Model saved ({file_size / 1024 / 1024:.1f} MB)")
+PYEOF
+            
+            if [ $? -eq 0 ]; then
+              echo "✅ Model retrained successfully!"
+              MODEL_OK=true
+            else
+              echo "❌ Model retraining failed!"
+              exit 1
+            fi
+          fi
+          
+          # Final verification
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          if [ "$MODEL_OK" = true ]; then
+            FINAL_SIZE=$(wc -c < models/histgradient_vegas_calibrated.pkl)
+            echo "✅ READY: Model file is valid (${FINAL_SIZE} bytes)"
+          else
+            echo "❌ FAILED: Could not get valid model"
+            exit 1
+          fi
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
       - name: Make Daily Predictions
         run: |
           echo "🎯 Making predictions for today's NBA games..."
