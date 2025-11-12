@@ -59,9 +59,13 @@ jobs:
       
       - name: Install dependencies
         run: |
+          # Create fresh virtual environment to avoid hostedtoolcache issues
+          python -m venv /tmp/pred_env
+          source /tmp/pred_env/bin/activate
+          
           python -m pip install --upgrade pip
-          # Install ALL packages together with numpy constraint
-          # This prevents later packages from pulling in numpy 2.0+
+          
+          # Install with specific numpy constraint
           pip install --no-cache-dir \
             "numpy>=1.23.0,<1.27.0" \
             pandas \
@@ -69,11 +73,16 @@ jobs:
             xgboost \
             lightgbm \
             joblib
+          
           echo ""
           echo "═══════════════════════════════════════════════════════"
           echo "Installed versions:"
           pip list | grep -E "(numpy|scikit-learn|pandas|xgboost|lightgbm)"
           echo "═══════════════════════════════════════════════════════"
+          
+          # Make venv available to next steps
+          echo "VIRTUAL_ENV=/tmp/pred_env" >> $GITHUB_ENV
+          echo "/tmp/pred_env/bin" >> $GITHUB_PATH
 
       - name: Make Daily Predictions (with auto-retraining)
         run: |
