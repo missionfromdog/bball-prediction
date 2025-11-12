@@ -73,10 +73,17 @@ def retrain_model():
     print(f"   Features: {len(X.columns)}")
     print(f"   Samples: {len(X):,}")
     
-    # Handle missing values
+    # Handle missing values (only for numeric columns)
     if X.isnull().any().any():
         print("   Filling missing values...")
-        X = X.fillna(X.mean())
+        numeric_cols = X.select_dtypes(include=[np.number]).columns
+        X[numeric_cols] = X[numeric_cols].fillna(X[numeric_cols].mean())
+        # Drop rows with any remaining NaN (shouldn't be many)
+        initial_count = len(X)
+        X = X.dropna()
+        y = y[X.index]
+        if len(X) < initial_count:
+            print(f"   Dropped {initial_count - len(X)} rows with remaining NaN values")
     
     # Train/test split
     print("\n✂️  Splitting data (80/20)...")
