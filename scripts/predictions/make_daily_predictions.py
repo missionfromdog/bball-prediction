@@ -32,12 +32,26 @@ MODEL_OPTIONS = [
 
 
 def is_valid_model_file(filepath):
-    """Check if model file is valid (not LFS pointer)"""
+    """Check if model file is valid (not LFS pointer) and can be loaded"""
     if not filepath.exists():
         return False
+    
     size = filepath.stat().st_size
     # LFS pointer files are tiny (< 200 bytes), real models are 2-3 MB
-    return size > 1000
+    if size < 1000:
+        return False
+    
+    # File size is OK, but can we actually load it?
+    # Try loading to detect numpy version mismatches or corruption
+    try:
+        import joblib
+        model = joblib.load(filepath)
+        # Successfully loaded!
+        return True
+    except Exception as e:
+        # Can't load (numpy mismatch, corruption, etc.)
+        print(f"⚠️  Model file exists but can't be loaded: {e}")
+        return False
 
 
 def retrain_model():
