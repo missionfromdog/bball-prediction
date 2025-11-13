@@ -6,7 +6,7 @@ on:
     - cron: '30 9 * * *'
   workflow_dispatch:  # Allow manual trigger
   workflow_run:
-    workflows: ["Daily NBA Predictions"]
+    workflows: ["Daily NBA Predictions v2"]
     types:
       - completed
 
