@@ -29,29 +29,41 @@ def fetch_todays_games():
     print("="*80)
     print("📅 FETCHING TODAY'S NBA SCHEDULE")
     print("="*80)
+    print("   [DEBUG] Starting fetch_todays_games()")
     
     try:
+        print("   [DEBUG] Importing selenium...")
         from selenium import webdriver
         from selenium.webdriver.chrome.options import Options
         from selenium.webdriver.chrome.service import Service
         from webdriver_manager.chrome import ChromeDriverManager
         
+        print("   [DEBUG] Setting up Chrome options...")
         # Setup headless Chrome
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         
+        print("   [DEBUG] Installing ChromeDriver...")
         service = Service(ChromeDriverManager().install())
+        print("   [DEBUG] Starting Chrome browser...")
         driver = webdriver.Chrome(service=service, options=chrome_options)
+        print("   [DEBUG] Chrome started successfully")
         
         # Scrape NBA.com schedule
         NBA_SCHEDULE = "https://www.nba.com/schedule?region=1"
+        print(f"   [DEBUG] Loading {NBA_SCHEDULE}...")
         driver.get(NBA_SCHEDULE)
+        print("   [DEBUG] Waiting 15 seconds for page to load...")
         time.sleep(15)  # Wait longer for page to load
         
-        source = soup(driver.page_source, 'html.parser')
+        print("   [DEBUG] Parsing page source...")
+        page_source = driver.page_source
+        print(f"   [DEBUG] Page source length: {len(page_source)} characters")
+        source = soup(page_source, 'html.parser')
         driver.quit()
+        print("   [DEBUG] Browser closed")
         
         # Debug: Print page title to confirm we got the page
         print(f"   Page title: {source.find('title').text if source.find('title') else 'Not found'}")
