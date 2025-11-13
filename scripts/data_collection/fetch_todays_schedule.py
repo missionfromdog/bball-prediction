@@ -1,18 +1,30 @@
 #!/usr/bin/env python3
 """
-Fetch today's NBA schedule and append to data file with engineered features.
+Fetch today's NBA schedule from ESPN and append to data file.
 Uses incremental updates (change data capture) to keep file sizes manageable.
 """
 
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
-from bs4 import BeautifulSoup as soup
+import sys
+from bs4 import BeautifulSoup
+import requests
 
 PROJECTPATH = Path(__file__).resolve().parents[2]
 DATAPATH = PROJECTPATH / 'data'
+
+# Team abbreviation mapping (ESPN to our format)
+ESPN_TO_STANDARD = {
+    'GS': 'GSW',
+    'NY': 'NYK',
+    'SA': 'SAS',
+    'NO': 'NOP',
+    'PHX': 'PHO',
+    # Add more if needed
+}
 
 
 def load_teams():
@@ -21,313 +33,277 @@ def load_teams():
     return teams_df
 
 
-def fetch_todays_games():
+def fetch_todays_games_espn():
     """
-    Fetch today's NBA schedule from NBA.com
-    Returns DataFrame with basic game info
+    Fetch today's NBA schedule from ESPN
+    Returns list of games with visitor/home team info
     """
-    import sys
+    import re
+    
     print("="*80, flush=True)
-    print("📅 FETCHING TODAY'S NBA SCHEDULE", flush=True)
+    print("📅 FETCHING TODAY'S NBA SCHEDULE FROM ESPN", flush=True)
     print("="*80, flush=True)
-    print("   [DEBUG] Starting fetch_todays_games()", flush=True)
     sys.stdout.flush()
     
-    try:
-        print("   [DEBUG] Importing selenium...")
-        from selenium import webdriver
-        from selenium.webdriver.chrome.options import Options
-        from selenium.webdriver.chrome.service import Service
-        from webdriver_manager.chrome import ChromeDriverManager
-        
-        print("   [DEBUG] Setting up Chrome options...")
-        # Setup headless Chrome
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        
-        print("   [DEBUG] Installing ChromeDriver...")
-        service = Service(ChromeDriverManager().install())
-        print("   [DEBUG] Starting Chrome browser...")
-        driver = webdriver.Chrome(service=service, options=chrome_options)
-        print("   [DEBUG] Chrome started successfully")
-        
-        # Scrape NBA.com schedule
-        NBA_SCHEDULE = "https://www.nba.com/schedule?region=1"
-        print(f"   [DEBUG] Loading {NBA_SCHEDULE}...")
-        driver.get(NBA_SCHEDULE)
-        print("   [DEBUG] Waiting 45 seconds for JavaScript to render games...")
-        time.sleep(45)  # Wait much longer for client-side JavaScript to populate games
-        
-        print("   [DEBUG] Parsing page source...")
-        page_source = driver.page_source
-        print(f"   [DEBUG] Page source length: {len(page_source)} characters")
-        source = soup(page_source, 'html.parser')
-        driver.quit()
-        print("   [DEBUG] Browser closed")
-        
-        # Debug: Print page title to confirm we got the page
-        print(f"   Page title: {source.find('title').text if source.find('title') else 'Not found'}")
-        
-        # Find today's games
-        CLASS_GAMES_PER_DAY = "ScheduleDay_sdGames__NGdO5"
-        CLASS_DAY = "ScheduleDay_sdDay__3s2Xt"
-        
-        # Look for the first game block (should be today's or next available games)
-        all_game_blocks = source.find_all('div', {'class': CLASS_GAMES_PER_DAY})
-        all_day_headers = source.find_all('h4', {'class': CLASS_DAY})
-        
-        print(f"   Found {len(all_game_blocks)} game blocks")
-        print(f"   Found {len(all_day_headers)} day headers")
-        
-        if len(all_day_headers) > 0:
-            for i, header in enumerate(all_day_headers[:3]):  # Check first 3 days
-                print(f"   Day {i+1}: {header.text}")
-        
-        # Get current date in different formats to match
-        from datetime import datetime, timedelta
-        today = datetime.utcnow()  # Use UTC since workflow runs in UTC
-        yesterday = today - timedelta(days=1)
-        tomorrow = today + timedelta(days=1)
-        
-        # Try to match today, yesterday, or tomorrow (to handle timezone issues)
-        date_patterns = [
-            today.strftime('%A, %B %d')[:3],      # "Tue" from "Tuesday, November 12"
-            yesterday.strftime('%A, %B %d')[:3],
-            tomorrow.strftime('%A, %B %d')[:3],
-        ]
-        
-        print(f"   Looking for dates: {date_patterns}")
-        
-        # Find the first available game block
-        todays_games = None
-        matched_date = None
-        
-        for game_block, day_header in zip(all_game_blocks, all_day_headers):
-            day_text = day_header.text[:3]
-            if day_text in date_patterns:
-                todays_games = game_block
-                matched_date = day_header.text
-                print(f"   ✅ Matched date: {matched_date}")
-                break
-        
-        if todays_games is None:
-            # Fallback: Just take the first game block if we can't match dates
-            if len(all_game_blocks) > 0:
-                todays_games = all_game_blocks[0]
-                matched_date = all_day_headers[0].text if len(all_day_headers) > 0 else "Unknown"
-                print(f"   ⚠️  Using first available game block: {matched_date}")
-            else:
-                print("   ❌ No game blocks found at all")
-                return None
-        
-        # Extract team IDs
-        CLASS_ID = "Anchor_anchor__cSc3P Link_styled__okbXW"
-        links = todays_games.find_all('a', {'class': CLASS_ID})
-        teams_list = [i.get("href") for i in links]
-        
-        # Parse matchups (visitor, home)
-        matchups = []
-        game_ids = []
-        for i in range(0, len(teams_list), 2):
-            if i+1 < len(teams_list):
-                visitor_id = teams_list[i].partition("team/")[2].partition("/")[0]
-                home_id = teams_list[i+1].partition("team/")[2].partition("/")[0]
-                matchups.append([visitor_id, home_id])
-        
-        # Extract game IDs
-        CLASS_GAME_ID = "Anchor_anchor__cSc3P TabLink_link__f_15h"
-        game_links = todays_games.find_all('a', {'class': CLASS_GAME_ID})
-        game_links = [i for i in game_links if i.get('data-text') == "PREVIEW"]
-        for link in game_links:
-            game_href = link.get("href")
-            if game_href:
-                game_id = game_href.partition("-00")[2]
-                if len(game_id) > 0:
-                    game_ids.append(game_id)
-        
-        if len(matchups) == 0:
-            print("ℹ️  No games scheduled for today")
-            return None
-        
-        print(f"✅ Found {len(matchups)} games scheduled for today")
-        
-        # Create DataFrame with game info
-        games = []
-        today = datetime.now().strftime('%Y-%m-%d')
-        current_season = datetime.now().year
-        if datetime.now().month < 10:
-            current_season -= 1
-        
-        for i, (matchup, game_id) in enumerate(zip(matchups, game_ids)):
-            visitor_id, home_id = matchup
-            games.append({
-                'GAME_ID': game_id,
-                'GAME_DATE_EST': today,
-                'SEASON': current_season,
-                'HOME_TEAM_ID': int(home_id),
-                'VISITOR_TEAM_ID': int(visitor_id),
-                # Placeholder values for unplayed games
-                'PTS_home': 0,
-                'PTS_away': 0,
-                'FG_PCT_home': 0,
-                'FT_PCT_home': 0,
-                'FG3_PCT_home': 0,
-                'AST_home': 0,
-                'REB_home': 0,
-                'FG_PCT_away': 0,
-                'FT_PCT_away': 0,
-                'FG3_PCT_away': 0,
-                'AST_away': 0,
-                'REB_away': 0,
-                'HOME_TEAM_WINS': 0,
-                'TARGET': 0,
-            })
-        
-        df_today = pd.DataFrame(games)
-        
-        # Add team abbreviations
-        teams_df = load_teams()
-        df_today = df_today.merge(
-            teams_df[['TEAM_ID', 'ABBREVIATION']].rename(
-                columns={'TEAM_ID': 'HOME_TEAM_ID', 'ABBREVIATION': 'HOME_TEAM_ABBREVIATION'}
-            ),
-            on='HOME_TEAM_ID',
-            how='left'
-        )
-        df_today = df_today.merge(
-            teams_df[['TEAM_ID', 'ABBREVIATION']].rename(
-                columns={'TEAM_ID': 'VISITOR_TEAM_ID', 'ABBREVIATION': 'VISITOR_TEAM_ABBREVIATION'}
-            ),
-            on='VISITOR_TEAM_ID',
-            how='left'
-        )
-        
-        # Create MATCHUP
-        df_today['MATCHUP'] = df_today['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + df_today['HOME_TEAM_ABBREVIATION']
-        
-        print(f"   Games: {df_today['MATCHUP'].tolist()}")
-        return df_today
+    # Team name to abbreviation mapping
+    TEAM_NAME_MAP = {
+        'Toronto': 'TOR', 'Cleveland': 'CLE', 'Indiana': 'IND', 'Phoenix': 'PHX',
+        'Miami': 'MIA', 'New York': 'NYK', 'Brooklyn': 'BKN', 'Orlando': 'ORL',
+        'Philadelphia': 'PHI', 'Memphis': 'MEM', 'Golden State': 'GSW', 'Oklahoma City': 'OKC',
+        'Denver': 'DEN', 'Sacramento': 'SAC', 'Boston': 'BOS', 'Chicago': 'CHI',
+        'Milwaukee': 'MIL', 'LA Lakers': 'LAL', 'LA Clippers': 'LAC', 'Los Angeles': 'LAL',  # Default LA to Lakers
+        'LA': 'LAC',  # Fallback
+        'Portland': 'POR', 'Utah': 'UTA', 'San Antonio': 'SAS', 'Dallas': 'DAL', 
+        'Houston': 'HOU', 'New Orleans': 'NOP', 'Washington': 'WAS', 'Charlotte': 'CHA', 
+        'Atlanta': 'ATL', 'Detroit': 'DET', 'Minnesota': 'MIN'
+    }
     
-    except Exception as e:
-        import sys
-        import traceback
-        print(f"\n❌ ERROR FETCHING SCHEDULE: {e}", flush=True)
-        print("="*80, flush=True)
-        traceback.print_exc()
+    # Try today and tomorrow (in case of timezone differences)
+    dates_to_try = [
+        datetime.now(),
+        datetime.now() + timedelta(days=1)
+    ]
+    
+    for date_obj in dates_to_try:
+        date_str = date_obj.strftime('%Y%m%d')
+        url = f"https://www.espn.com/nba/schedule/_/date/{date_str}"
+        
+        print(f"\n🔍 Trying date: {date_obj.strftime('%Y-%m-%d')} ({date_str})", flush=True)
+        print(f"   URL: {url}", flush=True)
         sys.stdout.flush()
-        return None
-
-
-def load_existing_data():
-    """Load existing game data"""
-    print("\n📂 Loading existing data...")
-    
-    # Try different data files
-    for filename in ['games_with_real_vegas.csv', 'games_engineered.csv', 'games.csv']:
-        filepath = DATAPATH / filename
-        if filepath.exists() and filepath.stat().st_size > 1000:
-            try:
-                df = pd.read_csv(filepath, low_memory=False)
-                print(f"   ✅ Loaded {len(df):,} games from {filename}")
-                return df, filename
-            except Exception as e:
-                print(f"   ⚠️  Could not load {filename}: {e}")
+        
+        try:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            }
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            html = response.text
+            soup_obj = BeautifulSoup(html, 'html.parser')
+            
+            games = []
+            
+            # Find the date header for today
+            date_header_text = date_obj.strftime('%A, %B %-d, %Y')  # e.g., "Thursday, November 13, 2025"
+            # Try with and without leading zero
+            date_patterns = [
+                date_obj.strftime('%A, %B %-d, %Y'),  # "Thursday, November 13, 2025"
+                date_obj.strftime('%A, %B %d, %Y'),   # "Thursday, November 13, 2025" (with zero)
+            ]
+            
+            date_div = None
+            for pattern in date_patterns:
+                date_div = soup_obj.find('div', string=lambda x: x and pattern in str(x))
+                if date_div:
+                    print(f"   ✅ Found date header: {pattern}", flush=True)
+                    break
+            
+            if not date_div:
+                print(f"   ⚠️  Could not find date header for {date_obj.strftime('%Y-%m-%d')}", flush=True)
                 continue
-    
-    print("   ⚠️  No existing data found, starting fresh")
-    return None, None
-
-
-def engineer_features_for_new_games(df_new, df_existing):
-    """
-    Engineer features for new games based on existing historical data.
-    Note: For simplicity, we skip full feature engineering here.
-    Features will be calculated during prediction time from historical context.
-    """
-    print("\n🔧 Preparing new games...")
-    
-    if df_existing is None:
-        print("   ⚠️  No historical data available")
-        print("   ℹ️  Games added with basic features only")
-        return df_new
-    
-    # For now, just add games with basic features
-    # Full feature engineering (rolling stats) happens during prediction
-    # when the model loads all historical data
-    print(f"   ✅ Added {len(df_new)} new games")
-    print("   ℹ️  Features will be calculated during prediction")
-    return df_new
-
-
-def append_and_save(df_new, df_existing, filename):
-    """
-    Append new games to existing data and save.
-    Implements change data capture - only adds new/updated records.
-    """
-    print("\n💾 Saving updated data...")
-    
-    if df_existing is None:
-        # No existing data, just save new
-        df_final = df_new
-    else:
-        # Remove any existing records for today's games (in case of re-run)
-        today = datetime.now().strftime('%Y-%m-%d')
-        df_existing_filtered = df_existing[
-            pd.to_datetime(df_existing['GAME_DATE_EST']).dt.strftime('%Y-%m-%d') != today
-        ]
+            
+            # Find the next table after the date header
+            table = date_div.find_next('tbody', class_='Table__TBODY')
+            
+            if not table:
+                print(f"   ⚠️  No table found after date header", flush=True)
+                continue
+            
+            rows = table.find_all('tr', class_='Table__TR')
+            print(f"   Found {len(rows)} games for this date", flush=True)
+            
+            for row in rows:
+                # Find all team links (pattern: /nba/team/_/name/)
+                team_links = row.find_all('a', href=re.compile(r'/nba/team/_/name/'))
+                
+                # Filter to only links with text (ignore logo links)
+                team_links_with_text = [l for l in team_links if l.text.strip()]
+                
+                if len(team_links_with_text) >= 2:
+                    away_name = team_links_with_text[0].text.strip()
+                    home_name = team_links_with_text[1].text.strip()
+                    
+                    # Convert to abbreviations
+                    away_abbr = TEAM_NAME_MAP.get(away_name)
+                    home_abbr = TEAM_NAME_MAP.get(home_name)
+                    
+                    if away_abbr and home_abbr:
+                        games.append({
+                            'visitor': away_abbr,
+                            'home': home_abbr,
+                            'date': date_obj.strftime('%Y-%m-%d')
+                        })
+                    else:
+                        print(f"   ⚠️  Unknown teams: {away_name} @ {home_name}", flush=True)
+            
+            if games:
+                print(f"\n✅ Found {len(games)} games for {date_obj.strftime('%Y-%m-%d')}:", flush=True)
+                for g in games:
+                    print(f"   • {g['visitor']} @ {g['home']}", flush=True)
+                sys.stdout.flush()
+                return games
+            else:
+                print(f"   ⚠️  No games found for {date_obj.strftime('%Y-%m-%d')}", flush=True)
+                sys.stdout.flush()
         
-        # Append new games
-        df_final = pd.concat([df_existing_filtered, df_new], ignore_index=True)
+        except Exception as e:
+            print(f"   ❌ Error fetching {date_str}: {e}", flush=True)
+            import traceback
+            traceback.print_exc()
+            sys.stdout.flush()
+            continue
+    
+    print("\n⚠️  No games found for today or tomorrow", flush=True)
+    sys.stdout.flush()
+    return []
+
+
+def create_game_rows(games, teams_df):
+    """
+    Convert games list to DataFrame rows with proper IDs
+    """
+    print("\n🔧 Creating game rows with team IDs...", flush=True)
+    sys.stdout.flush()
+    
+    rows = []
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    # Create team lookup
+    team_lookup = {}
+    for _, team in teams_df.iterrows():
+        team_lookup[team['ABBREVIATION']] = team['TEAM_ID']
+    
+    for game in games:
+        visitor_abbr = game['visitor'].upper()
+        home_abbr = game['home'].upper()
         
-        print(f"   📊 Previous: {len(df_existing):,} games")
-        print(f"   ➕ Added: {len(df_new):,} new games")
-        print(f"   📊 Total: {len(df_final):,} games")
+        # Try to find team IDs
+        visitor_id = team_lookup.get(visitor_abbr)
+        home_id = team_lookup.get(home_abbr)
+        
+        if not visitor_id or not home_id:
+            print(f"   ⚠️  Skipping {visitor_abbr} @ {home_abbr} - team not found in database", flush=True)
+            continue
+        
+        # Create a game ID (date + teams)
+        game_id = int(f"{datetime.now().strftime('%Y%m%d')}{visitor_id}{home_id}")
+        
+        row = {
+            'GAME_ID': game_id,
+            'GAME_DATE_EST': today,
+            'HOME_TEAM_ID': home_id,
+            'VISITOR_TEAM_ID': visitor_id,
+            'HOME_TEAM_ABBREVIATION': home_abbr,
+            'VISITOR_TEAM_ABBREVIATION': visitor_abbr,
+            'SEASON': 2024,  # Current season
+            'PTS_home': 0,  # Unplayed
+            'PTS_away': 0,  # Unplayed
+            'HOME_TEAM_WINS': 0,  # Placeholder
+            'MATCHUP': f"{visitor_abbr} @ {home_abbr}"
+        }
+        
+        rows.append(row)
+    
+    print(f"   ✅ Created {len(rows)} game rows", flush=True)
+    sys.stdout.flush()
+    
+    return pd.DataFrame(rows)
+
+
+def append_to_data_file(new_games_df):
+    """
+    Append new games to the workflow data file
+    Only adds games that don't already exist (by GAME_ID)
+    """
+    print("\n💾 Appending to data file...", flush=True)
+    sys.stdout.flush()
+    
+    data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+    
+    if not data_file.exists():
+        print(f"   ❌ Data file not found: {data_file}", flush=True)
+        return False
+    
+    # Load existing data
+    existing_df = pd.read_csv(data_file)
+    print(f"   Existing data: {len(existing_df):,} rows", flush=True)
+    
+    # Filter out games that already exist
+    new_game_ids = set(new_games_df['GAME_ID'].values)
+    existing_game_ids = set(existing_df['GAME_ID'].values)
+    
+    duplicate_ids = new_game_ids & existing_game_ids
+    if duplicate_ids:
+        print(f"   ⚠️  Skipping {len(duplicate_ids)} games that already exist", flush=True)
+        new_games_df = new_games_df[~new_games_df['GAME_ID'].isin(duplicate_ids)]
+    
+    if len(new_games_df) == 0:
+        print("   ℹ️  No new games to add", flush=True)
+        return True
+    
+    # Ensure new games have all the same columns as existing data
+    # Fill missing columns with 0 or NaN as appropriate
+    for col in existing_df.columns:
+        if col not in new_games_df.columns:
+            if existing_df[col].dtype in ['int64', 'float64']:
+                new_games_df[col] = 0
+            else:
+                new_games_df[col] = ''
+    
+    # Reorder columns to match existing data
+    new_games_df = new_games_df[existing_df.columns]
+    
+    # Append
+    combined_df = pd.concat([existing_df, new_games_df], ignore_index=True)
     
     # Save
-    output_file = DATAPATH / filename if filename else DATAPATH / 'games_with_real_vegas.csv'
-    df_final.to_csv(output_file, index=False)
+    combined_df.to_csv(data_file, index=False)
     
-    # Also save to workflow dataset (smaller, last 5K games)
-    df_workflow = df_final.tail(5000)
-    workflow_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
-    df_workflow.to_csv(workflow_file, index=False)
+    print(f"   ✅ Added {len(new_games_df)} new games", flush=True)
+    print(f"   📊 Total games: {len(combined_df):,}", flush=True)
+    sys.stdout.flush()
     
-    print(f"   ✅ Saved to {output_file.name}")
-    print(f"   ✅ Saved workflow dataset: {len(df_workflow):,} games")
-    
-    return df_final
+    return True
 
 
 def main():
     """Main execution"""
-    print("\n" + "="*80)
-    print("NBA SCHEDULE UPDATER - Incremental Data Capture")
-    print("="*80)
+    print("\n" + "="*80, flush=True)
+    print("🏀 NBA SCHEDULE FETCH - ESPN EDITION", flush=True)
+    print("="*80 + "\n", flush=True)
+    sys.stdout.flush()
     
-    # Step 1: Fetch today's schedule
-    df_new = fetch_todays_games()
-    if df_new is None or len(df_new) == 0:
-        print("\n✅ No games to add today")
-        return
+    # Load teams
+    teams_df = load_teams()
+    print(f"✅ Loaded {len(teams_df)} teams\n", flush=True)
     
-    # Step 2: Load existing data
-    df_existing, filename = load_existing_data()
+    # Fetch today's games
+    games = fetch_todays_games_espn()
     
-    # Step 3: Engineer features for new games
-    df_new_engineered = engineer_features_for_new_games(df_new, df_existing)
+    if not games:
+        print("\n⚠️  No games found - nothing to update", flush=True)
+        sys.exit(0)
     
-    # Step 4: Append and save
-    df_final = append_and_save(df_new_engineered, df_existing, filename)
+    # Create game rows
+    new_games_df = create_game_rows(games, teams_df)
     
-    print("\n" + "="*80)
-    print(f"✅ SCHEDULE UPDATE COMPLETE")
-    print(f"   Total games in database: {len(df_final):,}")
-    print(f"   Added today: {len(df_new):,} games")
-    print("="*80)
+    if len(new_games_df) == 0:
+        print("\n⚠️  Could not create valid game rows", flush=True)
+        sys.exit(1)
+    
+    # Append to data file
+    success = append_to_data_file(new_games_df)
+    
+    if success:
+        print("\n" + "="*80, flush=True)
+        print("✅ SCHEDULE FETCH COMPLETE", flush=True)
+        print("="*80, flush=True)
+        sys.stdout.flush()
+    else:
+        print("\n❌ Failed to update data file", flush=True)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
     main()
-
