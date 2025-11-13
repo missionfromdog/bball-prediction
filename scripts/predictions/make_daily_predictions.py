@@ -423,14 +423,27 @@ def main():
     try:
         import subprocess
         print("🔄 Pulling latest data from git...")
+        
+        # First, show current commit
+        current_commit = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], 
+                                       capture_output=True, text=True, cwd=PROJECTPATH)
+        print(f"   Current commit: {current_commit.stdout.strip()}")
+        
+        # Do the pull
         result = subprocess.run(['git', 'pull', 'origin', 'main'], 
                               capture_output=True, text=True, cwd=PROJECTPATH)
+        print(f"   Git pull stdout: {result.stdout.strip()}")
+        print(f"   Git pull stderr: {result.stderr.strip()}")
+        
+        # Show new commit
+        new_commit = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], 
+                                   capture_output=True, text=True, cwd=PROJECTPATH)
+        print(f"   After pull commit: {new_commit.stdout.strip()}")
+        
         if result.returncode == 0:
-            print("   ✅ Data updated")
-            if 'Already up to date' not in result.stdout:
-                print(f"   📥 Changes pulled: {result.stdout.strip()}")
+            print("   ✅ Git pull completed")
         else:
-            print(f"   ⚠️  Git pull warning: {result.stderr.strip()}")
+            print(f"   ⚠️  Git pull failed")
     except Exception as e:
         print(f"   ⚠️  Could not pull latest data: {e}")
         print("   Continuing with existing data...")
