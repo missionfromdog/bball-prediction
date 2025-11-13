@@ -1,6 +1,7 @@
 """
 Send NBA Predictions via Email
 Formats daily predictions into a nice HTML email
+VERSION: 2.0 (Column Normalization Fix)
 """
 
 import pandas as pd
@@ -11,6 +12,12 @@ from pathlib import Path
 from datetime import datetime
 import os
 import sys
+
+# Print version immediately
+print("\n" + "="*80, flush=True)
+print("📧 EMAIL SCRIPT VERSION 2.0 - COLUMN NORMALIZATION", flush=True)
+print("="*80 + "\n", flush=True)
+sys.stdout.flush()
 
 
 def load_latest_predictions():
@@ -341,11 +348,16 @@ def format_html_email(df, filename):
     """
     
     # Add each game with improved table layout
-    for _, row in df.iterrows():
-        matchup = row['Matchup']
-        predicted_winner = row['Predicted_Winner']
-        home_win_prob = row['Home_Win_Probability']
-        confidence = row['Confidence']
+    for idx, row in df.iterrows():
+        try:
+            matchup = row.get('Matchup', row.get('matchup', row.get('MATCHUP', f'Game {idx}')))
+            predicted_winner = row.get('Predicted_Winner', row.get('predicted_winner', 'Unknown'))
+            home_win_prob = float(row.get('Home_Win_Probability', row.get('home_win_probability', 0.5)))
+            confidence = row.get('Confidence', row.get('confidence', 'Medium'))
+        except Exception as e:
+            print(f"   [ERROR] Row {idx} access failed: {e}", flush=True)
+            print(f"   [ERROR] Available columns: {row.index.tolist()}", flush=True)
+            raise
         
         # Determine confidence class
         conf_class = f"conf-{confidence.lower()}"
