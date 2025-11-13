@@ -54,7 +54,7 @@ def retrain_model():
     X = df.copy()
     
     # Drop target and metadata
-    target_cols = ['HOME_TEAM_WINS']
+    target_cols = ['HOME_TEAM_WINS', 'TARGET']  # Added TARGET
     metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP', 'GAME_STATUS_TEXT']
     categorical_cols = ['HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION', 
                        'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON',
