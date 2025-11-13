@@ -57,8 +57,13 @@ def format_html_email(df, filename):
     """Format predictions as HTML email"""
     
     # Extract date from filename (handle both naming patterns)
-    date_str = filename.replace('daily_predictions_', '').replace('predictions_', '')
-    formatted_date = datetime.strptime(date_str, '%Y%m%d').strftime('%A, %B %d, %Y')
+    date_str = filename.replace('daily_predictions_', '').replace('predictions_', '').replace('.csv', '')
+    
+    # Handle "latest" filename - use today's date
+    if date_str == 'latest':
+        formatted_date = datetime.now().strftime('%A, %B %d, %Y')
+    else:
+        formatted_date = datetime.strptime(date_str, '%Y%m%d').strftime('%A, %B %d, %Y')
     
     # Count games and high confidence predictions
     total_games = len(df)
