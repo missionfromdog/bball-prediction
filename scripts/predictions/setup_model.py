@@ -13,7 +13,8 @@ import joblib
 # Paths
 ROOT = Path(__file__).resolve().parents[2]
 MODEL_PATH = ROOT / 'models' / 'histgradient_vegas_calibrated.pkl'
-DATA_PATH = ROOT / 'data' / 'games_with_real_vegas.csv'
+# Use smaller workflow dataset (5K games, 17.7MB) to avoid LFS issues
+DATA_PATH = ROOT / 'data' / 'games_with_real_vegas_workflow.csv'
 
 
 def is_valid_model(filepath):
