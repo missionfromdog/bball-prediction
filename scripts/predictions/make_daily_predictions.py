@@ -85,11 +85,14 @@ def retrain_model():
 def load_model():
     """Load the best performing model - retrain automatically if invalid"""
     last_error = None
+    any_model_exists = False
     
     for model_file in MODEL_OPTIONS:
         model_path = MODELPATH / model_file
         if not model_path.exists():
             continue
+        
+        any_model_exists = True
         
         # Check if file is valid (not LFS pointer)
         if not is_valid_model_file(model_path):
@@ -124,7 +127,19 @@ def load_model():
                 last_error = f"{model_file}: joblib error={e1}, pickle error={e2}"
                 continue
     
-    # If we get here, no model loaded successfully
+    # If NO models exist at all, train one
+    if not any_model_exists:
+        print("⚠️  No model files found in models directory")
+        print("🔄 Training model from scratch...")
+        retrained_path = retrain_model()
+        if retrained_path and is_valid_model_file(retrained_path):
+            model = joblib.load(retrained_path)
+            print(f"✅ Loaded newly trained model")
+            return model
+        else:
+            raise FileNotFoundError("Model training failed")
+    
+    # If we get here, models existed but none loaded successfully
     raise FileNotFoundError(
         f"Could not load any model. Tried: {MODEL_OPTIONS}\n"
         f"Last error: {last_error}\n"
