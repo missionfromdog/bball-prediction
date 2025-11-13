@@ -177,7 +177,9 @@ def load_todays_games():
         if 'HOME_TEAM_WINS_AVG_LAST_10_HOME' in df_unplayed.columns:
             print(f"   [DEBUG] Before feature filter: {len(df_unplayed)} games")
             df_unplayed = df_unplayed[df_unplayed['HOME_TEAM_WINS_AVG_LAST_10_HOME'] != 0].copy()
-            print(f"   [DEBUG] After feature filter: {len(df_unplayed)} games (removed games without engineered features)")
+            print(f"   [DEBUG] After feature filter: {len(df_unplayed)} games")
+            print(f"   ⚠️  NOTE: New games from schedule fetch need feature engineering before prediction!")
+            print(f"   ⚠️  Only predicting on games that already have full features.")
         
         # Filter for upcoming games only (today and next 7 days)
         # This avoids predicting on old games that should have been played already
