@@ -18,13 +18,40 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Use v4 to avoid cache issues
         with:
+          ref: main  # Explicitly checkout main branch
           token: ${{ secrets.GITHUB_TOKEN }}
           lfs: false
       
+      - name: Verify code version
+        run: |
+          echo "════════════════════════════════════════════════════════════════════════════════"
+          echo "🔍 CODE VERSION CHECK"
+          echo "════════════════════════════════════════════════════════════════════════════════"
+          echo "Git commit:"
+          git log -1 --pretty=format:"%h %s"
+          echo ""
+          echo ""
+          echo "Checking for VERSION 2.0 marker in email script..."
+          if grep -q "VERSION: 2.0" scripts/predictions/send_email_predictions.py; then
+            echo "✅ NEW CODE DETECTED - VERSION 2.0 found!"
+          else
+            echo "❌ OLD CODE DETECTED - VERSION 2.0 NOT found!"
+            exit 1
+          fi
+          echo ""
+          echo "Checking for row.get() pattern..."
+          if grep -q "row.get('Matchup'" scripts/predictions/send_email_predictions.py; then
+            echo "✅ NEW CODE DETECTED - row.get() found!"
+          else
+            echo "❌ OLD CODE DETECTED - row.get() NOT found!"
+            exit 1
+          fi
+          echo "════════════════════════════════════════════════════════════════════════════════"
+      
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5  # Use v5 to match predictions workflow
         with:
           python-version: '3.11'
       
