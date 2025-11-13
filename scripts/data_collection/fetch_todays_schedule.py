@@ -8,15 +8,10 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from datetime import datetime
-import sys
+import time
+from bs4 import BeautifulSoup as soup
 
-# Add src to path for imports
 PROJECTPATH = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(PROJECTPATH / 'src'))
-
-from webscraping import get_todays_matchups, get_game_details
-from feature_engineering import process_features
-
 DATAPATH = PROJECTPATH / 'data'
 
 
@@ -50,11 +45,63 @@ def fetch_todays_games():
         service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=chrome_options)
         
-        # Get today's matchups
-        matchups, game_ids = get_todays_matchups(api_key="", driver=driver)
+        # Scrape NBA.com schedule
+        NBA_SCHEDULE = "https://www.nba.com/schedule?region=1"
+        driver.get(NBA_SCHEDULE)
+        time.sleep(10)  # Wait for page to load
+        
+        source = soup(driver.page_source, 'html.parser')
         driver.quit()
         
-        if matchups is None or len(matchups) == 0:
+        # Find today's games
+        CLASS_GAMES_PER_DAY = "ScheduleDay_sdGames__NGdO5"
+        CLASS_DAY = "ScheduleDay_sdDay__3s2Xt"
+        
+        div_games = source.find('div', {'class': CLASS_GAMES_PER_DAY})
+        div_game_day = source.find('h4', {'class': CLASS_DAY})
+        today = datetime.today().strftime('%A, %B %d')[:3]
+        
+        # Find today's games block
+        todays_games = None
+        while div_games:
+            if div_game_day and today == div_game_day.text[:3]:
+                todays_games = div_games
+                break
+            else:
+                div_games = div_games.find_next('div', {'class': CLASS_GAMES_PER_DAY})
+                if div_game_day:
+                    div_game_day = div_game_day.find_next('h4', {'class': CLASS_DAY})
+        
+        if todays_games is None:
+            print("ℹ️  No games scheduled for today")
+            return None
+        
+        # Extract team IDs
+        CLASS_ID = "Anchor_anchor__cSc3P Link_styled__okbXW"
+        links = todays_games.find_all('a', {'class': CLASS_ID})
+        teams_list = [i.get("href") for i in links]
+        
+        # Parse matchups (visitor, home)
+        matchups = []
+        game_ids = []
+        for i in range(0, len(teams_list), 2):
+            if i+1 < len(teams_list):
+                visitor_id = teams_list[i].partition("team/")[2].partition("/")[0]
+                home_id = teams_list[i+1].partition("team/")[2].partition("/")[0]
+                matchups.append([visitor_id, home_id])
+        
+        # Extract game IDs
+        CLASS_GAME_ID = "Anchor_anchor__cSc3P TabLink_link__f_15h"
+        game_links = todays_games.find_all('a', {'class': CLASS_GAME_ID})
+        game_links = [i for i in game_links if i.get('data-text') == "PREVIEW"]
+        for link in game_links:
+            game_href = link.get("href")
+            if game_href:
+                game_id = game_href.partition("-00")[2]
+                if len(game_id) > 0:
+                    game_ids.append(game_id)
+        
+        if len(matchups) == 0:
             print("ℹ️  No games scheduled for today")
             return None
         
@@ -147,33 +194,22 @@ def load_existing_data():
 def engineer_features_for_new_games(df_new, df_existing):
     """
     Engineer features for new games based on existing historical data.
-    This is a simplified version - full feature engineering requires all historical context.
+    Note: For simplicity, we skip full feature engineering here.
+    Features will be calculated during prediction time from historical context.
     """
-    print("\n🔧 Engineering features for new games...")
+    print("\n🔧 Preparing new games...")
     
     if df_existing is None:
-        print("   ⚠️  No historical data available for feature engineering")
-        print("   ℹ️  New games will have minimal features")
+        print("   ⚠️  No historical data available")
+        print("   ℹ️  Games added with basic features only")
         return df_new
     
-    # Combine new and existing for feature engineering
-    df_combined = pd.concat([df_existing, df_new], ignore_index=True)
-    
-    # Run feature engineering (this will calculate rolling stats for new games)
-    try:
-        df_engineered = process_features(df_combined)
-        
-        # Extract only the new games
-        new_game_ids = df_new['GAME_ID'].tolist()
-        df_new_engineered = df_engineered[df_engineered['GAME_ID'].isin(new_game_ids)]
-        
-        print(f"   ✅ Engineered {len(df_new_engineered.columns)} features")
-        return df_new_engineered
-    
-    except Exception as e:
-        print(f"   ⚠️  Feature engineering failed: {e}")
-        print("   ℹ️  Returning games with basic features only")
-        return df_new
+    # For now, just add games with basic features
+    # Full feature engineering (rolling stats) happens during prediction
+    # when the model loads all historical data
+    print(f"   ✅ Added {len(df_new)} new games")
+    print("   ℹ️  Features will be calculated during prediction")
+    return df_new
 
 
 def append_and_save(df_new, df_existing, filename):
