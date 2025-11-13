@@ -209,6 +209,12 @@ def create_game_rows(games, teams_df):
         # Create a game ID (date + teams)
         game_id = int(f"{datetime.now().strftime('%Y%m%d')}{visitor_id}{home_id}")
         
+        # Calculate season (same logic as prediction script)
+        # NBA season year is the year in which it STARTS (Oct-Sep)
+        season_year = datetime.now().year
+        if datetime.now().month < 10:  # Jan-Sep uses previous year
+            season_year -= 1
+        
         row = {
             'GAME_ID': game_id,
             'GAME_DATE_EST': today,
@@ -216,7 +222,7 @@ def create_game_rows(games, teams_df):
             'VISITOR_TEAM_ID': visitor_id,
             'HOME_TEAM_ABBREVIATION': home_abbr,
             'VISITOR_TEAM_ABBREVIATION': visitor_abbr,
-            'SEASON': 2024,  # Current season
+            'SEASON': season_year,  # Current season (2024 for 2024-25 season)
             'PTS_home': 0,  # Unplayed
             'PTS_away': 0,  # Unplayed
             'HOME_TEAM_WINS': 0,  # Placeholder
