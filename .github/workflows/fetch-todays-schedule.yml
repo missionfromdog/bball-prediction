@@ -57,13 +57,13 @@ jobs:
             GAMES_ADDED=$(git diff --cached --numstat | awk '{print $1}' | head -1)
             
             git commit -m "📅 Update: Added today's NBA schedule
-
-Automated incremental update
-- Fetched schedule from NBA.com
-- Engineered features for new games
-- Updated data files
-
-[skip ci]"
+            
+            Automated incremental update
+            - Fetched schedule from NBA.com
+            - Engineered features for new games
+            - Updated data files
+            
+            [skip ci]"
             git push
             echo "✅ Data updated and pushed"
           fi
