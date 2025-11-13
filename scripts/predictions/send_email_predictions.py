@@ -67,6 +67,16 @@ def format_html_email(df, filename):
     
     # Count games and high confidence predictions
     total_games = len(df)
+    
+    # Handle missing Confidence column (calculate from probability if needed)
+    if 'Confidence' not in df.columns:
+        if 'Home_Win_Probability' in df.columns:
+            df['Confidence'] = df['Home_Win_Probability'].apply(
+                lambda p: 'High' if abs(p - 0.5) > 0.15 else 'Medium' if abs(p - 0.5) > 0.05 else 'Low'
+            )
+        else:
+            df['Confidence'] = 'Medium'  # Default
+    
     high_conf = len(df[df['Confidence'] == 'High'])
     medium_conf = len(df[df['Confidence'] == 'Medium'])
     low_conf = len(df[df['Confidence'] == 'Low'])
