@@ -408,6 +408,23 @@ def main():
     print("=" * 80)
     print()
     
+    # Pull latest data in case workflow didn't (GitHub Actions cache workaround)
+    try:
+        import subprocess
+        print("🔄 Pulling latest data from git...")
+        result = subprocess.run(['git', 'pull', 'origin', 'main'], 
+                              capture_output=True, text=True, cwd=PROJECTPATH)
+        if result.returncode == 0:
+            print("   ✅ Data updated")
+            if 'Already up to date' not in result.stdout:
+                print(f"   📥 Changes pulled: {result.stdout.strip()}")
+        else:
+            print(f"   ⚠️  Git pull warning: {result.stderr.strip()}")
+    except Exception as e:
+        print(f"   ⚠️  Could not pull latest data: {e}")
+        print("   Continuing with existing data...")
+    print()
+    
     # Load model
     model = load_model()
     
