@@ -57,7 +57,8 @@ def retrain_model():
     target_cols = ['HOME_TEAM_WINS']
     metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP']
     categorical_cols = ['HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION', 
-                       'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON']
+                       'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON',
+                       'data_source', 'whos_favored', 'is_real_vegas_line']
     
     # Drop leaky features (post-game stats)
     leaky_patterns = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
