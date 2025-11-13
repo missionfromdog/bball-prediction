@@ -1,8 +1,14 @@
 name: Daily NBA Predictions v2
 
 on:
-  # Allow manual trigger only (for now)
-  workflow_dispatch:
+  schedule:
+    # Run daily at 9:00 AM UTC (after schedule fetch at 8 AM)
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual trigger
+  workflow_run:
+    workflows: ["Fetch Today's Schedule"]
+    types:
+      - completed
 
 # Grant write permissions
 permissions:
