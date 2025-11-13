@@ -56,6 +56,16 @@ def load_latest_predictions():
 def format_html_email(df, filename):
     """Format predictions as HTML email"""
     
+    # Normalize column names (handle case variations)
+    df.columns = df.columns.str.strip()
+    column_map = {col.lower(): col for col in df.columns}
+    
+    # Map common column name variations
+    if 'matchup' not in column_map and 'match_up' in column_map:
+        df.rename(columns={column_map['match_up']: 'Matchup'}, inplace=True)
+    elif 'matchup' in column_map:
+        df.rename(columns={column_map['matchup']: 'Matchup'}, inplace=True)
+    
     # Extract date from filename (handle both naming patterns)
     date_str = filename.replace('daily_predictions_', '').replace('predictions_', '').replace('.csv', '')
     
@@ -70,9 +80,15 @@ def format_html_email(df, filename):
     
     # Handle missing Confidence column (calculate from probability if needed)
     if 'Confidence' not in df.columns:
-        if 'Home_Win_Probability' in df.columns:
-            df['Confidence'] = df['Home_Win_Probability'].apply(
-                lambda p: 'High' if abs(p - 0.5) > 0.15 else 'Medium' if abs(p - 0.5) > 0.05 else 'Low'
+        prob_col = None
+        for col in ['Home_Win_Probability', 'home_win_probability', 'Probability', 'probability']:
+            if col in df.columns:
+                prob_col = col
+                break
+        
+        if prob_col:
+            df['Confidence'] = df[prob_col].apply(
+                lambda p: 'High' if abs(float(p) - 0.5) > 0.15 else 'Medium' if abs(float(p) - 0.5) > 0.05 else 'Low'
             )
         else:
             df['Confidence'] = 'Medium'  # Default
