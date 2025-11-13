@@ -48,33 +48,65 @@ def fetch_todays_games():
         # Scrape NBA.com schedule
         NBA_SCHEDULE = "https://www.nba.com/schedule?region=1"
         driver.get(NBA_SCHEDULE)
-        time.sleep(10)  # Wait for page to load
+        time.sleep(15)  # Wait longer for page to load
         
         source = soup(driver.page_source, 'html.parser')
         driver.quit()
+        
+        # Debug: Print page title to confirm we got the page
+        print(f"   Page title: {source.find('title').text if source.find('title') else 'Not found'}")
         
         # Find today's games
         CLASS_GAMES_PER_DAY = "ScheduleDay_sdGames__NGdO5"
         CLASS_DAY = "ScheduleDay_sdDay__3s2Xt"
         
-        div_games = source.find('div', {'class': CLASS_GAMES_PER_DAY})
-        div_game_day = source.find('h4', {'class': CLASS_DAY})
-        today = datetime.today().strftime('%A, %B %d')[:3]
+        # Look for the first game block (should be today's or next available games)
+        all_game_blocks = source.find_all('div', {'class': CLASS_GAMES_PER_DAY})
+        all_day_headers = source.find_all('h4', {'class': CLASS_DAY})
         
-        # Find today's games block
+        print(f"   Found {len(all_game_blocks)} game blocks")
+        print(f"   Found {len(all_day_headers)} day headers")
+        
+        if len(all_day_headers) > 0:
+            for i, header in enumerate(all_day_headers[:3]):  # Check first 3 days
+                print(f"   Day {i+1}: {header.text}")
+        
+        # Get current date in different formats to match
+        from datetime import datetime, timedelta
+        today = datetime.utcnow()  # Use UTC since workflow runs in UTC
+        yesterday = today - timedelta(days=1)
+        tomorrow = today + timedelta(days=1)
+        
+        # Try to match today, yesterday, or tomorrow (to handle timezone issues)
+        date_patterns = [
+            today.strftime('%A, %B %d')[:3],      # "Tue" from "Tuesday, November 12"
+            yesterday.strftime('%A, %B %d')[:3],
+            tomorrow.strftime('%A, %B %d')[:3],
+        ]
+        
+        print(f"   Looking for dates: {date_patterns}")
+        
+        # Find the first available game block
         todays_games = None
-        while div_games:
-            if div_game_day and today == div_game_day.text[:3]:
-                todays_games = div_games
+        matched_date = None
+        
+        for game_block, day_header in zip(all_game_blocks, all_day_headers):
+            day_text = day_header.text[:3]
+            if day_text in date_patterns:
+                todays_games = game_block
+                matched_date = day_header.text
+                print(f"   ✅ Matched date: {matched_date}")
                 break
-            else:
-                div_games = div_games.find_next('div', {'class': CLASS_GAMES_PER_DAY})
-                if div_game_day:
-                    div_game_day = div_game_day.find_next('h4', {'class': CLASS_DAY})
         
         if todays_games is None:
-            print("ℹ️  No games scheduled for today")
-            return None
+            # Fallback: Just take the first game block if we can't match dates
+            if len(all_game_blocks) > 0:
+                todays_games = all_game_blocks[0]
+                matched_date = all_day_headers[0].text if len(all_day_headers) > 0 else "Unknown"
+                print(f"   ⚠️  Using first available game block: {matched_date}")
+            else:
+                print("   ❌ No game blocks found at all")
+                return None
         
         # Extract team IDs
         CLASS_ID = "Anchor_anchor__cSc3P Link_styled__okbXW"
