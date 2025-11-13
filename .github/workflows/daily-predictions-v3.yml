@@ -26,15 +26,20 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           lfs: false
       
-      - name: Pull latest data from schedule fetch
+      - name: Force update to latest commit (for manual triggers)
         run: |
-          echo "🔄 Pulling latest data updates from schedule fetch workflow..."
-          git pull origin main
-          echo "Current commit:"
+          echo "🔄 Forcing update to absolute latest commit on main..."
+          echo "Before:"
           git log -1 --oneline
           echo ""
-          echo "Data file check:"
-          tail -3 data/games_with_real_vegas_workflow.csv | head -1
+          git fetch origin
+          git reset --hard origin/main
+          echo ""
+          echo "After:"
+          git log -1 --oneline
+          echo ""
+          echo "Latest games in data file:"
+          tail -3 data/games_with_real_vegas_workflow.csv
 
       - name: Verify code version
         run: |
