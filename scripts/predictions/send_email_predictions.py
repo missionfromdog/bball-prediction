@@ -56,15 +56,33 @@ def load_latest_predictions():
 def format_html_email(df, filename):
     """Format predictions as HTML email"""
     
+    print(f"   [DEBUG] Original columns: {df.columns.tolist()}", flush=True)
+    
     # Normalize column names (handle case variations)
     df.columns = df.columns.str.strip()
     column_map = {col.lower(): col for col in df.columns}
     
-    # Map common column name variations
-    if 'matchup' not in column_map and 'match_up' in column_map:
-        df.rename(columns={column_map['match_up']: 'Matchup'}, inplace=True)
-    elif 'matchup' in column_map:
-        df.rename(columns={column_map['matchup']: 'Matchup'}, inplace=True)
+    # Map common column name variations to standard names
+    rename_map = {}
+    
+    # Matchup column
+    for col_lower, col_actual in column_map.items():
+        if 'matchup' in col_lower or 'match_up' in col_lower:
+            if col_actual != 'Matchup':
+                rename_map[col_actual] = 'Matchup'
+    
+    if rename_map:
+        df.rename(columns=rename_map, inplace=True)
+        print(f"   [DEBUG] Renamed columns: {rename_map}", flush=True)
+    
+    # Ensure Matchup column exists
+    if 'Matchup' not in df.columns:
+        print(f"   [ERROR] Matchup column not found! Available: {df.columns.tolist()}", flush=True)
+        # Try to create it from other columns if possible
+        if 'Date' in df.columns:
+            df['Matchup'] = 'Game ' + df.index.astype(str)
+    
+    print(f"   [DEBUG] Final columns: {df.columns.tolist()}", flush=True)
     
     # Extract date from filename (handle both naming patterns)
     date_str = filename.replace('daily_predictions_', '').replace('predictions_', '').replace('.csv', '')
