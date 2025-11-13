@@ -68,15 +68,6 @@ jobs:
           pip list | grep -E "(numpy|scikit-learn|pandas|xgboost|lightgbm)"
           echo "═══════════════════════════════════════════════════════"
 
-      - name: Prepare training data
-        run: |
-          echo "Regenerating games_with_real_vegas.csv from source data..."
-          # The file exists as LFS pointer, need to regenerate from actual data
-          python scripts/data_collection/process_real_vegas_lines.py || echo "Data prep may have issues, continuing..."
-          
-          echo "Checking data file:"
-          wc -l data/games_with_real_vegas.csv || echo "File not found"
-      
       - name: Remove old incompatible model files
         run: |
           echo "Removing old model files to force retrain with current Python environment..."
