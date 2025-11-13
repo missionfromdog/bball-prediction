@@ -148,21 +148,44 @@ def load_model():
 
 
 def load_todays_games():
-    """Load today's scheduled games"""
+    """Load today's scheduled games (unplayed games with PTS_home == 0)"""
     try:
-        # Load games with all features
-        df = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
+        # Load games with all features (use workflow dataset in workflows)
+        data_file = DATAPATH / 'games_with_real_vegas.csv'
+        if not data_file.exists() or data_file.stat().st_size < 1000:
+            # LFS pointer or missing - try workflow dataset
+            data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+        
+        df = pd.read_csv(data_file, low_memory=False)
         df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'])
         
-        # Get today's games
-        today = datetime.now().date()
-        df_today = df[df['GAME_DATE_EST'].dt.date == today].copy()
+        # Get current season
+        current_season = datetime.now().year
+        if datetime.now().month < 10:
+            current_season -= 1
         
-        print(f"📅 Found {len(df_today)} games scheduled for {today}")
-        return df_today
+        # Filter for current season
+        df = df[df['SEASON'] == current_season]
+        
+        # Get unplayed games (PTS_home == 0)
+        df_unplayed = df[df['PTS_home'] == 0].copy()
+        
+        # Sort by date to get next scheduled games
+        df_unplayed = df_unplayed.sort_values('GAME_DATE_EST')
+        
+        if len(df_unplayed) > 0:
+            next_game_date = df_unplayed['GAME_DATE_EST'].iloc[0].date()
+            print(f"📅 Found {len(df_unplayed)} unplayed games")
+            print(f"   Next game date: {next_game_date}")
+        else:
+            print("📅 No unplayed games found")
+        
+        return df_unplayed
     
     except Exception as e:
         print(f"❌ Error loading games: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
