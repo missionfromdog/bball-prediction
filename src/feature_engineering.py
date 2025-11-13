@@ -65,14 +65,22 @@ def process_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_rolling_home_visitor(df, "HOME", HOME_VISITOR_ROLL_LIST) # list of variety of rolling lengths
     df = add_rolling_home_visitor(df, "VISITOR", HOME_VISITOR_ROLL_LIST) # list of variety of rolling lengths
     
+    print(f"   Before consecutive: {len(df)} rows")
     df_consecutive = process_games_consecutively(df)
+    print(f"   After consecutive: {len(df_consecutive)} rows")
+    
     df_consecutive = add_matchups(df_consecutive, HOME_VISITOR_ROLL_LIST) # list of variety of rolling lengths
     df_consecutive = add_past_performance_all(df_consecutive, ALL_ROLL_LIST) # list of variety of rolling lengths
+    print(f"   After matchups/performance: {len(df_consecutive)} rows")
 
     #add these features back to main dataframe
+    print(f"   Before combine: df={len(df)} rows, df_consecutive={len(df_consecutive)} rows")
     df = combine_new_features(df,df_consecutive) 
-        
-    df = process_x_minus_y(df)
+    print(f"   After combine: {len(df)} rows, {len(df.columns)} columns")
+    
+    # TEMPORARY: Skip process_x_minus_y - it has a bug with feature naming
+    # df = process_x_minus_y(df)
+    print("   ⚠️  Skipping process_x_minus_y (has naming bug)")
     
     return df
 
@@ -90,7 +98,8 @@ def fix_datatypes(df: pd.DataFrame, date_columns: list, short_integer_fields: li
     """
 
     for field in date_columns:
-        df[field] = pd.to_datetime(df[field], utc=True)
+        # Use format='mixed' to handle inconsistent date formats
+        df[field] = pd.to_datetime(df[field], format='mixed', utc=True)
 
     #convert long integer fields to int32 from int64
     for field in long_integer_fields:
@@ -445,7 +454,10 @@ def process_x_minus_league_avg(df: pd.DataFrame, feature_list: list, team_featur
     temp_feature_list.append("GAME_DATE_EST")
 
     df_temp = df[temp_feature_list]
-
+    
+    # Drop duplicates for (team, date) - a team can't play multiple games on same day
+    # Keep the first occurrence
+    df_temp = df_temp.drop_duplicates(subset=[team_feature, 'GAME_DATE_EST'], keep='first')
     
     # populate the dataframe with all days played and forward fill previous value if a particular team did not play that day
     # https://stackoverflow.com/questions/70362869
@@ -516,6 +528,8 @@ def combine_new_features(df: pd.DataFrame, df_consecutive: pd.DataFrame)-> pd.Da
     df1 = df1.drop(redundant_features,axis=1)
     #change TEAM1 to HOME_TEAM_ID for easy merging
     df1 = df1.rename(columns={'TEAM1': 'HOME_TEAM_ID'})
+    # Deduplicate before merge to prevent Cartesian product
+    df1 = df1.drop_duplicates(subset=['GAME_ID', 'HOME_TEAM_ID'], keep='first')
     df = pd.merge(df, df1, how="left", on=["GAME_ID", "HOME_TEAM_ID"])
     
     #don't include matchup features for visitor team since they are equivalent for both home and visitor
@@ -531,6 +545,8 @@ def combine_new_features(df: pd.DataFrame, df_consecutive: pd.DataFrame)-> pd.Da
     df2 = df2.drop(redundant_features,axis=1)
     #change TEAM1 to VISITOR_TEAM_ID for easy merging
     df2 = df2.rename(columns={'TEAM1': 'VISITOR_TEAM_ID'})
+    # Deduplicate before merge to prevent Cartesian product
+    df2 = df2.drop_duplicates(subset=['GAME_ID', 'VISITOR_TEAM_ID'], keep='first')
     df = pd.merge(df, df2, how="left", on=["GAME_ID", "VISITOR_TEAM_ID"])
     
     return df

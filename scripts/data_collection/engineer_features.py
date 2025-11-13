@@ -31,10 +31,13 @@ def main():
     
     # Load dataset
     print("📊 Loading dataset...")
-    data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+    # Use raw combined data (not already engineered)
+    data_file = DATAPATH / 'games_raw_combined.csv'
     
     if not data_file.exists():
         print(f"❌ Data file not found: {data_file}")
+        print(f"   Looking for: {data_file}")
+        print(f"   Run the data combination script first!")
         sys.exit(1)
     
     df = pd.read_csv(data_file, low_memory=False)
