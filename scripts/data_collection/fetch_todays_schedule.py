@@ -206,8 +206,12 @@ def create_game_rows(games, teams_df):
             print(f"   ⚠️  Skipping {visitor_abbr} @ {home_abbr} - team not found in database", flush=True)
             continue
         
-        # Create a game ID (date + teams)
-        game_id = int(f"{datetime.now().strftime('%Y%m%d')}{visitor_id}{home_id}")
+        # Create a game ID (use hash to keep it small enough for int32)
+        # Format: YYYYMMDD + last 3 digits of visitor_id + last 3 digits of home_id
+        date_part = int(datetime.now().strftime('%Y%m%d'))
+        visitor_part = visitor_id % 1000  # Last 3 digits
+        home_part = home_id % 1000  # Last 3 digits
+        game_id = date_part * 1000000 + visitor_part * 1000 + home_part
         
         # Calculate season (same logic as prediction script)
         # NBA season year is the year in which it STARTS (Oct-Sep)
