@@ -34,7 +34,9 @@ jobs:
             selenium \
             webdriver-manager \
             beautifulsoup4 \
-            requests
+            requests \
+            scrapingant-client \
+            lxml
       
       - name: Fetch today's NBA schedule
         run: |
