@@ -1,0 +1,109 @@
+name: Fetch Today's Schedule v2
+
+on:
+  workflow_dispatch:  # Allow manual trigger for testing
+  # schedule:
+  #   # Run daily at 8:00 AM UTC (before predictions at 9 AM)
+  #   - cron: '0 8 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-schedule:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Explicitly checkout main branch
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: false  # Disable LFS to avoid bandwidth issues
+      
+      - name: Verify code version
+        run: |
+          echo "════════════════════════════════════════════════════════════════════════════════"
+          echo "🔍 SCHEDULE FETCH v2 - CODE VERSION CHECK"
+          echo "════════════════════════════════════════════════════════════════════════════════"
+          echo "Git commit:"
+          git log -1 --pretty=format:"%h %s"
+          echo ""
+          echo ""
+          echo "Checking for ESPN scraping code..."
+          if grep -q "espn.com/nba/schedule" scripts/data_collection/fetch_todays_schedule.py; then
+            echo "✅ NEW CODE DETECTED - ESPN scraper found!"
+          else
+            echo "❌ OLD CODE DETECTED - Still using NBA.com!"
+            head -50 scripts/data_collection/fetch_todays_schedule.py
+            exit 1
+          fi
+          echo ""
+          echo "Line count:"
+          wc -l scripts/data_collection/fetch_todays_schedule.py
+          echo "════════════════════════════════════════════════════════════════════════════════"
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-cache-dir \
+            pandas \
+            numpy \
+            beautifulsoup4 \
+            requests
+      
+      - name: Fetch today's NBA schedule from ESPN
+        run: |
+          echo "📅 Fetching today's NBA schedule from ESPN..."
+          python scripts/data_collection/fetch_todays_schedule.py
+        continue-on-error: false
+      
+      - name: Commit updated data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Check if data files changed
+          if git diff --quiet data/*.csv; then
+            echo "✅ No new games added (data unchanged)"
+          else
+            git add data/games_with_real_vegas_workflow.csv
+            
+            # Get number of lines added
+            CHANGES=$(git diff --cached --numstat data/games_with_real_vegas_workflow.csv | awk '{print $1}')
+            
+            git commit -m "📅 Update: Added today's NBA schedule from ESPN [skip ci]"
+            git push
+            echo "✅ Data updated: +${CHANGES} rows"
+          fi
+      
+      - name: Create Summary
+        if: always()
+        run: |
+          echo "## 📅 Schedule Update Summary (ESPN)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "data/games_with_real_vegas_workflow.csv" ]; then
+            TOTAL_GAMES=$(tail -n +2 data/games_with_real_vegas_workflow.csv | wc -l)
+            echo "### ✅ Data Updated" >> $GITHUB_STEP_SUMMARY
+            echo "- Total games in dataset: **${TOTAL_GAMES}**" >> $GITHUB_STEP_SUMMARY
+            echo "- Schedule source: **ESPN** (stable & reliable)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ⚠️ No Update" >> $GITHUB_STEP_SUMMARY
+            echo "No games scheduled or update failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔄 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. **9:00 AM UTC**: Daily predictions workflow runs" >> $GITHUB_STEP_SUMMARY
+          echo "2. **9:30 AM UTC**: Email predictions sent" >> $GITHUB_STEP_SUMMARY
+
+
