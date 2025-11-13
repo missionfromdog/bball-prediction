@@ -457,6 +457,11 @@ def main():
     
     if df_today is None or len(df_today) == 0:
         print("❌ No games found for today")
+        print()
+        print("[DEBUG] Last 10 rows of data file:")
+        data_path = DATAPATH / 'games_with_real_vegas_workflow.csv'
+        df_check = pd.read_csv(data_path)
+        print(df_check[['GAME_DATE_EST', 'HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION', 'PTS_home']].tail(10))
         return
     
     # Prepare features
