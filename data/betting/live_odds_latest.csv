@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-79db13d01456b1f6d86ba8c25c83c765,basketball_nba,2025-11-14T00:10:00Z,Cleveland Cavaliers,Toronto Raptors,fanduel,-295,240,-7.5,-110,7.5,-110,240.5,-110,-110
-71660f977b7bf30f2a30794e936a3f61,basketball_nba,2025-11-14T02:10:00Z,Utah Jazz,Atlanta Hawks,fanduel,114,-134,2.0,-108,-2.0,-112,233.5,-110,-110
-e11cbb23685bc3bd5b4336ec7e390531,basketball_nba,2025-11-14T02:10:00Z,Phoenix Suns,Indiana Pacers,fanduel,-184,154,-4.5,-110,4.5,-110,233.5,-110,-110
-63016986bd7402f9433def9ec4be4fe1,basketball_nba,2025-11-15T00:10:00Z,New York Knicks,Miami Heat,draftkings,-225,185,-4.5,-120,4.5,100,234.5,-110,-110
+79db13d01456b1f6d86ba8c25c83c765,basketball_nba,2025-11-14T00:10:00Z,Cleveland Cavaliers,Toronto Raptors,fanduel,-280,230,-7.5,-110,7.5,-110,238.5,-110,-110
+71660f977b7bf30f2a30794e936a3f61,basketball_nba,2025-11-14T02:10:00Z,Utah Jazz,Atlanta Hawks,fanduel,112,-132,2.0,-110,-2.0,-110,232.5,-110,-110
+e11cbb23685bc3bd5b4336ec7e390531,basketball_nba,2025-11-14T02:10:00Z,Phoenix Suns,Indiana Pacers,fanduel,-190,160,-4.5,-110,4.5,-110,233.5,-110,-110
+63016986bd7402f9433def9ec4be4fe1,basketball_nba,2025-11-15T00:10:00Z,New York Knicks,Miami Heat,draftkings,-218,180,-5.5,100,5.5,-120,234.5,-110,-110
 46fc9b98835561f7bfa81c7275b3ed37,basketball_nba,2025-11-15T02:40:00Z,San Antonio Spurs,Golden State Warriors,draftkings,-135,114,-2.5,-105,2.5,-115,235.5,-110,-110
 f557c9173a46a3c7c87afb4bd68f6644,basketball_nba,2025-12-25T17:00:00Z,New York Knicks,Cleveland Cavaliers,betrivers,-143,117,-2.5,-113,2.5,-113,229.5,-113,-113
 9010f7d8f26d5880c63b67355800f997,basketball_nba,2025-12-25T22:00:00Z,Golden State Warriors,Dallas Mavericks,betrivers,-195,150,-4.5,-114,4.5,-112,227.0,-115,-110
