@@ -25,6 +25,16 @@ jobs:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
           lfs: false
+      
+      - name: Pull latest data from schedule fetch
+        run: |
+          echo "🔄 Pulling latest data updates from schedule fetch workflow..."
+          git pull origin main
+          echo "Current commit:"
+          git log -1 --oneline
+          echo ""
+          echo "Data file check:"
+          tail -3 data/games_with_real_vegas_workflow.csv | head -1
 
       - name: Verify code version
         run: |
