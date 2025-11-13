@@ -6,7 +6,7 @@ on:
     - cron: '0 9 * * *'
   workflow_dispatch:  # Allow manual trigger
   workflow_run:
-    workflows: ["Fetch Today's Schedule"]
+    workflows: ["Fetch Today's Schedule v2"]
     types:
       - completed
 
