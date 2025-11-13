@@ -26,10 +26,12 @@ def fetch_todays_games():
     Fetch today's NBA schedule from NBA.com
     Returns DataFrame with basic game info
     """
-    print("="*80)
-    print("📅 FETCHING TODAY'S NBA SCHEDULE")
-    print("="*80)
-    print("   [DEBUG] Starting fetch_todays_games()")
+    import sys
+    print("="*80, flush=True)
+    print("📅 FETCHING TODAY'S NBA SCHEDULE", flush=True)
+    print("="*80, flush=True)
+    print("   [DEBUG] Starting fetch_todays_games()", flush=True)
+    sys.stdout.flush()
     
     try:
         print("   [DEBUG] Importing selenium...")
@@ -209,9 +211,12 @@ def fetch_todays_games():
         return df_today
     
     except Exception as e:
-        print(f"❌ Error fetching schedule: {e}")
+        import sys
         import traceback
+        print(f"\n❌ ERROR FETCHING SCHEDULE: {e}", flush=True)
+        print("="*80, flush=True)
         traceback.print_exc()
+        sys.stdout.flush()
         return None
 
 
