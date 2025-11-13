@@ -1,7 +1,4 @@
 Date,Matchup,Home_Win_Probability,Predicted_Winner,Confidence,Model
-2025-11-11,MEM @ NYK,0.7832086600602018,Home,High,HistGradient + Vegas (70.20% AUC)
-2025-11-11,IND @ UTA,0.5110545515712174,Home,Low,HistGradient + Vegas (70.20% AUC)
-2025-11-11,TOR @ BKN,0.27881234385623893,Away,High,HistGradient + Vegas (70.20% AUC)
-2025-11-11,GSW @ OKC,0.8025546500608574,Home,High,HistGradient + Vegas (70.20% AUC)
-2025-11-11,DEN @ SAC,0.34553770329175726,Away,High,HistGradient + Vegas (70.20% AUC)
-2025-11-11,BOS @ PHI,0.5756517137998937,Home,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-13,Game 29364,0.5731836147244586,Home,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-13,Game 29365,0.7036766046924531,Home,High,HistGradient + Vegas (70.20% AUC)
+2025-11-13,Game 29366,0.36896525495772875,Away,Medium,HistGradient + Vegas (70.20% AUC)

@@ -13,8 +13,8 @@ import joblib
 # Paths
 ROOT = Path(__file__).resolve().parents[2]
 MODEL_PATH = ROOT / 'models' / 'histgradient_vegas_calibrated.pkl'
-# Use smaller workflow dataset (5K games, 17.7MB) to avoid LFS issues
-DATA_PATH = ROOT / 'data' / 'games_with_real_vegas_workflow.csv'
+# Use main dataset - matches what prediction script loads
+DATA_PATH = ROOT / 'data' / 'games_with_real_vegas.csv'
 
 
 def is_valid_model(filepath):
@@ -55,9 +55,10 @@ def retrain_model():
     
     # Drop target and metadata
     target_cols = ['HOME_TEAM_WINS']
-    metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP']
+    metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP', 'GAME_STATUS_TEXT']
     categorical_cols = ['HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION', 
                        'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON',
+                       'TEAM_ID_home', 'TEAM_ID_away',
                        'data_source', 'whos_favored', 'is_real_vegas_line']
     
     # Drop leaky features (post-game stats)
@@ -70,6 +71,13 @@ def retrain_model():
         drop_cols.extend([col for col in X.columns if pattern in col and col not in drop_cols])
     
     X = X.drop(columns=[col for col in drop_cols if col in X.columns], errors='ignore')
+    
+    # Drop any remaining object/string columns
+    object_cols = X.select_dtypes(include=['object']).columns.tolist()
+    if object_cols:
+        print(f"   Dropping {len(object_cols)} object columns: {object_cols[:10]}")
+        X = X.drop(columns=object_cols)
+    
     y = df['HOME_TEAM_WINS']
     
     print(f"   Features: {len(X.columns)}")

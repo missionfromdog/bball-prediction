@@ -247,25 +247,22 @@ def prepare_features(df):
             df['MATCHUP'] = 'Game ' + df.index.astype(str)
     
     # Features to drop - these are target, metadata, categorical, or leaky features
-    # This MUST match what was used in training (from streamlit_app_enhanced.py)
-    drop_cols = [
-        # Target
-        'TARGET',
-        # Metadata
-        'GAME_DATE_EST', 'GAME_ID', 'MATCHUP', 'SEASON',
-        # Team identifiers (categorical)
-        'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 
-        'HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION',
-        # Leaky features (reveal outcome)
-        'HOME_TEAM_WINS', 'VISITOR_TEAM_WINS', 
-        'HOME_WL', 'VISITOR_WL',
-        'PTS_home', 'PTS_away',
-        'FG_PCT_home', 'FG_PCT_away',
-        'FT_PCT_home', 'FT_PCT_away', 
-        'FG3_PCT_home', 'FG3_PCT_away',
-        'AST_home', 'AST_away',
-        'REB_home', 'REB_away'
-    ]
+    # This MUST match what was used in training (setup_model.py logic)
+    target_cols = ['HOME_TEAM_WINS', 'TARGET']
+    metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP', 'GAME_STATUS_TEXT', 'SEASON']
+    categorical_cols = ['HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION',
+                       'HOME_TEAM_ID', 'VISITOR_TEAM_ID',
+                       'TEAM_ID_home', 'TEAM_ID_away',
+                       'data_source', 'whos_favored', 'is_real_vegas_line']
+    
+    # Leaky patterns - drop ANY column containing these (matches training logic)
+    leaky_patterns = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
+                     'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
+                     'REB_home', 'REB_away', 'PTS_home', 'PTS_away']
+    
+    drop_cols = target_cols + metadata_cols + categorical_cols
+    for pattern in leaky_patterns:
+        drop_cols.extend([col for col in df.columns if pattern in col and col not in drop_cols])
     
     # Drop columns that exist
     existing_drops = [col for col in drop_cols if col in df.columns]
