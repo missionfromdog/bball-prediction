@@ -16,8 +16,9 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Paths
-DATAPATH = Path(__file__).resolve().parents[2] / 'data'
-MODELPATH = Path(__file__).resolve().parents[2] / 'models'
+PROJECTPATH = Path(__file__).resolve().parents[2]
+DATAPATH = PROJECTPATH / 'data'
+MODELPATH = PROJECTPATH / 'models'
 PREDICTIONS_PATH = DATAPATH / 'predictions'
 PREDICTIONS_PATH.mkdir(exist_ok=True)
 
