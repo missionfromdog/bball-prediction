@@ -171,6 +171,14 @@ def load_todays_games():
         # Get unplayed games (PTS_home == 0)
         df_unplayed = df[df['PTS_home'] == 0].copy()
         
+        # Filter out games that don't have proper feature engineering
+        # (new games from schedule fetch have all features = 0, which isn't valid)
+        # Check for a key rolling average feature - if it's 0 or missing, skip the game
+        if 'HOME_TEAM_WINS_AVG_LAST_10_HOME' in df_unplayed.columns:
+            print(f"   [DEBUG] Before feature filter: {len(df_unplayed)} games")
+            df_unplayed = df_unplayed[df_unplayed['HOME_TEAM_WINS_AVG_LAST_10_HOME'] != 0].copy()
+            print(f"   [DEBUG] After feature filter: {len(df_unplayed)} games (removed games without engineered features)")
+        
         # Filter for upcoming games only (today and next 7 days)
         # This avoids predicting on old games that should have been played already
         from datetime import timedelta
