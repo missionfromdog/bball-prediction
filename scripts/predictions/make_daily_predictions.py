@@ -170,13 +170,23 @@ def load_todays_games():
         # Get unplayed games (PTS_home == 0)
         df_unplayed = df[df['PTS_home'] == 0].copy()
         
+        # Filter for upcoming games only (today and next 7 days)
+        # This avoids predicting on old games that should have been played already
+        today = datetime.now().date()
+        df_unplayed['GAME_DATE_EST'] = pd.to_datetime(df_unplayed['GAME_DATE_EST']).dt.date
+        df_unplayed = df_unplayed[
+            (df_unplayed['GAME_DATE_EST'] >= today) & 
+            (df_unplayed['GAME_DATE_EST'] <= today + pd.Timedelta(days=7))
+        ]
+        
         # Sort by date to get next scheduled games
         df_unplayed = df_unplayed.sort_values('GAME_DATE_EST')
         
         if len(df_unplayed) > 0:
-            next_game_date = df_unplayed['GAME_DATE_EST'].iloc[0].date()
-            print(f"📅 Found {len(df_unplayed)} unplayed games")
+            next_game_date = df_unplayed['GAME_DATE_EST'].iloc[0]
+            print(f"📅 Found {len(df_unplayed)} upcoming games")
             print(f"   Next game date: {next_game_date}")
+            print(f"   Date range: {today} to {today + pd.Timedelta(days=7)}")
         else:
             print("📅 No unplayed games found")
         
