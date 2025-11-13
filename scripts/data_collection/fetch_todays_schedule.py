@@ -57,8 +57,8 @@ def fetch_todays_games():
         NBA_SCHEDULE = "https://www.nba.com/schedule?region=1"
         print(f"   [DEBUG] Loading {NBA_SCHEDULE}...")
         driver.get(NBA_SCHEDULE)
-        print("   [DEBUG] Waiting 15 seconds for page to load...")
-        time.sleep(15)  # Wait longer for page to load
+        print("   [DEBUG] Waiting 45 seconds for JavaScript to render games...")
+        time.sleep(45)  # Wait much longer for client-side JavaScript to populate games
         
         print("   [DEBUG] Parsing page source...")
         page_source = driver.page_source
