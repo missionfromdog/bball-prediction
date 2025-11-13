@@ -178,13 +178,16 @@ def load_todays_games():
         max_date = today + timedelta(days=7)
         
         df_unplayed['GAME_DATE_EST'] = pd.to_datetime(df_unplayed['GAME_DATE_EST']).dt.date
+        
+        print(f"   [DEBUG] Date filter: {today} to {max_date}")
+        print(f"   [DEBUG] Unplayed games before filter: {len(df[df['PTS_home'] == 0])}")
+        print(f"   [DEBUG] Unique dates in unplayed games: {sorted(df_unplayed['GAME_DATE_EST'].unique())}")
+        
         df_unplayed = df_unplayed[
             (df_unplayed['GAME_DATE_EST'] >= today) & 
             (df_unplayed['GAME_DATE_EST'] <= max_date)
         ]
         
-        print(f"   [DEBUG] Date filter: {today} to {max_date}")
-        print(f"   [DEBUG] Unplayed games before filter: {len(df[df['PTS_home'] == 0])}")
         print(f"   [DEBUG] Unplayed games after filter: {len(df_unplayed)}")
         
         # Sort by date to get next scheduled games
