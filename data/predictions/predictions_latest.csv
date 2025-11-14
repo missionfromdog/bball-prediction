@@ -1,4 +1,10 @@
 Date,Matchup,Home_Win_Probability,Predicted_Winner,Confidence,Model
-2025-11-13,Game 29364,0.5731836147244586,Home,Medium,HistGradient + Vegas (70.20% AUC)
-2025-11-13,Game 29365,0.7036766046924531,Home,High,HistGradient + Vegas (70.20% AUC)
-2025-11-13,Game 29366,0.36896525495772875,Away,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-14,MIA @ NYK,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,BKN @ ORL,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,PHI @ DET,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,POR @ HOU,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,CHA @ MIL,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,SAC @ MIN,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,LAL @ NOP,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,LAC @ DAL,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,GSW @ SAS,0.03333333333333333,Away,High,HistGradient + Vegas (70.20% AUC)
