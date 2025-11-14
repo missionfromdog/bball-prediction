@@ -16,6 +16,10 @@ MODEL_PATH = ROOT / 'models' / 'histgradient_vegas_calibrated.pkl'
 # Use master dataset (30k games with full history)
 DATA_PATH = ROOT / 'data' / 'games_master_engineered.csv'
 
+# Import feature engineering
+sys.path.insert(0, str(ROOT))
+from src.feature_engineering import process_features
+
 
 def is_valid_model(filepath):
     """Check if model file is valid (not LFS pointer)"""
@@ -56,11 +60,49 @@ def retrain_model():
     else:
         print(f"   Using master dataset: {data_file}")
     
-    df = pd.read_csv(data_file)
+    df = pd.read_csv(data_file, low_memory=False, dtype={'GAME_DATE_EST': str})
     print(f"   Loaded {len(df):,} games")
     
+    # ═══════════════════════════════════════════════════════════════════
+    # CRITICAL: Engineer features before training
+    # ═══════════════════════════════════════════════════════════════════
+    # Check if features already exist
+    rolling_cols = [col for col in df.columns if 'AVG_LAST' in col or 'WIN_STREAK' in col]
+    if not rolling_cols or df[rolling_cols[0]].sum() == 0:
+        print("\n🔨 Engineering features (this takes 2-5 minutes)...")
+        print("   (Features must be engineered during training AND prediction)")
+        
+        # Parse dates first
+        def standardize_date_string(date_str):
+            if not isinstance(date_str, str):
+                return date_str
+            if '+' in date_str:
+                date_str = date_str.split('+')[0].strip()
+            if date_str.endswith('Z'):
+                date_str = date_str[:-1].strip()
+            if len(date_str) == 10 and date_str.count('-') == 2:
+                date_str = date_str + ' 00:00:00'
+            return date_str
+        
+        df['GAME_DATE_EST'] = df['GAME_DATE_EST'].apply(standardize_date_string)
+        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
+        if pd.api.types.is_datetime64tz_dtype(df['GAME_DATE_EST']):
+            df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_localize(None)
+        
+        # Run feature engineering
+        df = process_features(df)
+        print(f"   ✅ Features engineered: {len(df):,} rows, {len(df.columns)} columns")
+        
+        # Save engineered dataset for future use
+        print(f"   💾 Saving engineered dataset...")
+        df.to_csv(data_file, index=False)
+        print(f"   ✅ Saved to {data_file.name}")
+    else:
+        print(f"   ✅ Features already engineered ({len(rolling_cols)} rolling features found)")
+    # ═══════════════════════════════════════════════════════════════════
+    
     # Prepare features
-    print("\n🔧 Preparing features...")
+    print("\n🔧 Preparing features for training...")
     X = df.copy()
     
     # Drop target and metadata
