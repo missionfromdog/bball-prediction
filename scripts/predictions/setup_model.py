@@ -42,11 +42,21 @@ def retrain_model():
     
     # Load data
     print("\n📊 Loading training data...")
-    if not DATA_PATH.exists():
-        print(f"❌ Training data not found: {DATA_PATH}")
-        return False
     
-    df = pd.read_csv(DATA_PATH)
+    # Try master dataset, fallback to workflow dataset
+    data_file = DATA_PATH
+    if not data_file.exists():
+        print(f"⚠️  Master dataset not found: {data_file}")
+        # Try workflow dataset
+        data_file = ROOT / 'data' / 'games_with_real_vegas_workflow.csv'
+        if not data_file.exists():
+            print(f"❌ No training data found (tried master and workflow datasets)")
+            return False
+        print(f"   Using workflow dataset: {data_file}")
+    else:
+        print(f"   Using master dataset: {data_file}")
+    
+    df = pd.read_csv(data_file)
     print(f"   Loaded {len(df):,} games")
     
     # Prepare features

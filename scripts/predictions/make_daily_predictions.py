@@ -151,12 +151,15 @@ def load_model():
 def load_todays_games():
     """Load today's scheduled games (unplayed games with PTS_home == 0)"""
     try:
-        # Load games with all features (use workflow dataset in workflows)
-        # Use master dataset (30k games with full history)
+        # Load games with all features (prioritize master dataset, fallback for workflows)
+        # Try master dataset first (30k games with full history)
         data_file = DATAPATH / 'games_master_engineered.csv'
         if not data_file.exists() or data_file.stat().st_size < 1000:
-            # Fallback to old dataset
-            data_file = DATAPATH / 'games_with_real_vegas.csv'
+            # Try workflow dataset (5k games, used in GitHub Actions)
+            data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+            if not data_file.exists() or data_file.stat().st_size < 1000:
+                # Final fallback to old dataset
+                data_file = DATAPATH / 'games_with_real_vegas.csv'
         
         df = pd.read_csv(data_file, low_memory=False)
         df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'])
