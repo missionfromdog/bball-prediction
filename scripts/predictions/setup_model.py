@@ -13,8 +13,8 @@ import joblib
 # Paths
 ROOT = Path(__file__).resolve().parents[2]
 MODEL_PATH = ROOT / 'models' / 'histgradient_vegas_calibrated.pkl'
-# Use main dataset - matches what prediction script loads
-DATA_PATH = ROOT / 'data' / 'games_with_real_vegas.csv'
+# Use master dataset (30k games with full history)
+DATA_PATH = ROOT / 'data' / 'games_master_engineered.csv'
 
 
 def is_valid_model(filepath):
@@ -61,14 +61,12 @@ def retrain_model():
                        'TEAM_ID_home', 'TEAM_ID_away',
                        'data_source', 'whos_favored', 'is_real_vegas_line']
     
-    # Drop leaky features (post-game stats)
-    leaky_patterns = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
-                     'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
-                     'REB_home', 'REB_away', 'PTS_home', 'PTS_away']
+    # Drop leaky features (EXACT post-game stats only, not rolling averages)
+    leaky_cols = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
+                  'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
+                  'REB_home', 'REB_away', 'PTS_home', 'PTS_away']
     
-    drop_cols = target_cols + metadata_cols + categorical_cols
-    for pattern in leaky_patterns:
-        drop_cols.extend([col for col in X.columns if pattern in col and col not in drop_cols])
+    drop_cols = target_cols + metadata_cols + categorical_cols + leaky_cols
     
     X = X.drop(columns=[col for col in drop_cols if col in X.columns], errors='ignore')
     

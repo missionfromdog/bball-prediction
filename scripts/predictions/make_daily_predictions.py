@@ -152,10 +152,11 @@ def load_todays_games():
     """Load today's scheduled games (unplayed games with PTS_home == 0)"""
     try:
         # Load games with all features (use workflow dataset in workflows)
-        data_file = DATAPATH / 'games_with_real_vegas.csv'
+        # Use master dataset (30k games with full history)
+        data_file = DATAPATH / 'games_master_engineered.csv'
         if not data_file.exists() or data_file.stat().st_size < 1000:
-            # LFS pointer or missing - try workflow dataset
-            data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+            # Fallback to old dataset
+            data_file = DATAPATH / 'games_with_real_vegas.csv'
         
         df = pd.read_csv(data_file, low_memory=False)
         df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'])
@@ -255,14 +256,12 @@ def prepare_features(df):
                        'TEAM_ID_home', 'TEAM_ID_away',
                        'data_source', 'whos_favored', 'is_real_vegas_line']
     
-    # Leaky patterns - drop ANY column containing these (matches training logic)
-    leaky_patterns = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
-                     'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
-                     'REB_home', 'REB_away', 'PTS_home', 'PTS_away']
+    # Leaky features - EXACT post-game stats only (matches training logic)
+    leaky_cols = ['FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
+                  'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
+                  'REB_home', 'REB_away', 'PTS_home', 'PTS_away']
     
-    drop_cols = target_cols + metadata_cols + categorical_cols
-    for pattern in leaky_patterns:
-        drop_cols.extend([col for col in df.columns if pattern in col and col not in drop_cols])
+    drop_cols = target_cols + metadata_cols + categorical_cols + leaky_cols
     
     # Drop columns that exist
     existing_drops = [col for col in drop_cols if col in df.columns]
