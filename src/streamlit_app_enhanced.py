@@ -543,7 +543,7 @@ def main():
             
             df_past_display['HOME_WIN_PROB'] = past_proba
             df_past_display['PREDICTED_WINNER'] = past_predictions
-            df_past_display['ACTUAL_WINNER'] = df_past_display['TARGET']
+            df_past_display['ACTUAL_WINNER'] = df_past_display['HOME_TEAM_WINS']
             df_past_display['CORRECT'] = df_past_display['PREDICTED_WINNER'] == df_past_display['ACTUAL_WINNER']
             
             # Sort and limit
