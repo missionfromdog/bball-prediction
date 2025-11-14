@@ -196,27 +196,29 @@ def prepare_data_for_prediction(df):
     # Add matchup column for display
     df['MATCHUP'] = df['VISITOR_TEAM_ID'].map(NBA_TEAMS_NAMES) + " @ " + df['HOME_TEAM_ID'].map(NBA_TEAMS_NAMES)
     
-    # Drop only the columns that should never be in predictions
-    # Keep ALL features including injury and Vegas features
-    drop_cols = ['TARGET', 'GAME_DATE_EST', 'GAME_ID', 'merge_key', 'MATCHUP']
+    # Drop columns to match training logic (EXACT matches only)
+    # Target and metadata
+    target_cols = ['HOME_TEAM_WINS', 'TARGET']
+    metadata_cols = ['GAME_DATE_EST', 'GAME_ID', 'MATCHUP', 'GAME_STATUS_TEXT', 'merge_key']
     
-    # Drop categorical features
+    # Categorical features
     categorical_cols = [
         'HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION',
         'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'SEASON',
+        'TEAM_ID_home', 'TEAM_ID_away',
         'whos_favored', 'data_source', 'is_real_vegas_line'
     ]
-    drop_cols.extend(categorical_cols)
     
-    # Drop leaky features (game results)
-    leaky_features = [
-        'HOME_TEAM_WINS', 'PTS_home', 'PTS_away',
+    # Leaky features (EXACT post-game stats only, not rolling averages)
+    leaky_cols = [
         'FG_PCT_home', 'FG_PCT_away', 'FT_PCT_home', 'FT_PCT_away',
         'FG3_PCT_home', 'FG3_PCT_away', 'AST_home', 'AST_away',
-        'REB_home', 'REB_away', 'PLAYOFF',
-        'score_home', 'score_away', 'q1_home', 'q2_home', 'q3_home', 'q4_home'
+        'REB_home', 'REB_away', 'PTS_home', 'PTS_away',
+        'PLAYOFF', 'score_home', 'score_away', 
+        'q1_home', 'q2_home', 'q3_home', 'q4_home'
     ]
-    drop_cols.extend(leaky_features)
+    
+    drop_cols = target_cols + metadata_cols + categorical_cols + leaky_cols
     
     # Create feature matrix
     X = df.drop(columns=drop_cols, errors='ignore').fillna(0)
@@ -350,7 +352,13 @@ def main():
         # Load data
         try:
             # Load data with ALL features (injuries + Vegas)
-            df_current_season = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
+            # Load master dataset (30k games, 102 features)
+            master_file = DATAPATH / 'games_master_engineered.csv'
+            if master_file.exists():
+                df_current_season = pd.read_csv(master_file)
+            else:
+                # Fallback to old dataset
+                df_current_season = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
             
             # Get current season
             current_season = datetime.today().year

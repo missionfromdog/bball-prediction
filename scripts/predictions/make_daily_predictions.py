@@ -312,10 +312,25 @@ def match_live_odds(metadata, live_odds_df):
     for _, game in metadata.iterrows():
         matchup = game['MATCHUP']
         
+        # Ensure matchup is a string (not NaN or float)
+        if not isinstance(matchup, str):
+            matched_odds.append(None)
+            continue
+        
         # Try to find matching game in live odds
         matched = None
         for _, odds in live_odds_df.iterrows():
-            odds_matchup = f"{odds.get('away_team', '')} @ {odds.get('home_team', '')}"
+            # Build odds matchup string
+            away = odds.get('away_team', '')
+            home = odds.get('home_team', '')
+            
+            # Skip if either team is missing
+            if not away or not home:
+                continue
+            
+            odds_matchup = f"{away} @ {home}"
+            
+            # Fuzzy match: check if either string contains the other
             if matchup in odds_matchup or odds_matchup in matchup:
                 matched = odds
                 break
