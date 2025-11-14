@@ -1,6 +1,10 @@
 """
 Setup model for predictions - handles LFS issues by retraining if needed
 """
+print("\n" + "="*80, flush=True)
+print("🔥 setup_model.py MODULE BEING IMPORTED", flush=True)
+print("="*80 + "\n", flush=True)
+
 import sys
 from pathlib import Path
 import pandas as pd
@@ -18,7 +22,9 @@ DATA_PATH = ROOT / 'data' / 'games_master_engineered.csv'
 
 # Import feature engineering
 sys.path.insert(0, str(ROOT))
+print("🔥 About to import process_features...", flush=True)
 from src.feature_engineering import process_features
+print("🔥 process_features imported successfully!", flush=True)
 
 
 def is_valid_model(filepath):
