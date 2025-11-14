@@ -3,7 +3,7 @@ name: Email Daily Predictions v2
 on:
   workflow_dispatch:  # Allow manual trigger for testing
   workflow_run:
-    workflows: ["Daily NBA Predictions v3"]
+    workflows: ["Daily NBA Predictions v3", "Daily NBA Predictions v4 - FORCE NEW"]
     types:
       - completed
   # schedule:
