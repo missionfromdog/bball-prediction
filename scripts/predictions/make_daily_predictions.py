@@ -162,7 +162,10 @@ def load_todays_games():
                 data_file = DATAPATH / 'games_with_real_vegas.csv'
         
         df = pd.read_csv(data_file, low_memory=False)
-        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'])
+        print(f"   [DEBUG] Loaded {len(df):,} games from CSV")
+        
+        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], format='mixed', errors='coerce').dt.tz_localize(None)
+        print(f"   [DEBUG] After date parsing: {len(df):,} games ({df['GAME_DATE_EST'].isna().sum()} NaT values)")
         
         # Get current season
         current_season = datetime.now().year
@@ -170,20 +173,18 @@ def load_todays_games():
             current_season -= 1
         
         # Filter for current season
+        print(f"   [DEBUG] Filtering for SEASON == {current_season}")
         df = df[df['SEASON'] == current_season]
+        print(f"   [DEBUG] After SEASON filter: {len(df):,} games")
         
         # Get unplayed games (PTS_home == 0)
         df_unplayed = df[df['PTS_home'] == 0].copy()
+        print(f"   [DEBUG] After PTS_home == 0 filter: {len(df_unplayed)} games")
         
-        # Filter out games that don't have proper feature engineering
-        # (new games from schedule fetch have all features = 0, which isn't valid)
-        # Check for a key rolling average feature - if it's 0 or missing, skip the game
-        if 'HOME_TEAM_WINS_AVG_LAST_10_HOME' in df_unplayed.columns:
-            print(f"   [DEBUG] Before feature filter: {len(df_unplayed)} games")
-            df_unplayed = df_unplayed[df_unplayed['HOME_TEAM_WINS_AVG_LAST_10_HOME'] != 0].copy()
-            print(f"   [DEBUG] After feature filter: {len(df_unplayed)} games")
-            print(f"   ⚠️  NOTE: New games from schedule fetch need feature engineering before prediction!")
-            print(f"   ⚠️  Only predicting on games that already have full features.")
+        # Note: New games from schedule fetch will have features = 0
+        # The model can still make predictions, they just won't be as accurate
+        # without historical rolling averages
+        print(f"   [DEBUG] Total unplayed games found: {len(df_unplayed)}")
         
         # Filter for upcoming games only (today and next 7 days)
         # This avoids predicting on old games that should have been played already
@@ -191,11 +192,16 @@ def load_todays_games():
         today = datetime.now().date()
         max_date = today + timedelta(days=7)
         
-        df_unplayed['GAME_DATE_EST'] = pd.to_datetime(df_unplayed['GAME_DATE_EST']).dt.date
+        print(f"   [DEBUG] GAME_DATE_EST dtype before .dt.date: {df_unplayed['GAME_DATE_EST'].dtype}")
+        print(f"   [DEBUG] Sample dates before conversion: {df_unplayed['GAME_DATE_EST'].head(10).tolist()}")
+        print(f"   [DEBUG] Any NaT values? {df_unplayed['GAME_DATE_EST'].isna().sum()}")
         
+        df_unplayed['GAME_DATE_EST'] = df_unplayed['GAME_DATE_EST'].dt.date
+        
+        print(f"   [DEBUG] Sample dates after .dt.date: {df_unplayed['GAME_DATE_EST'].head(10).tolist()}")
         print(f"   [DEBUG] Date filter: {today} to {max_date}")
         print(f"   [DEBUG] Unplayed games before filter: {len(df[df['PTS_home'] == 0])}")
-        print(f"   [DEBUG] Unique dates in unplayed games: {sorted(df_unplayed['GAME_DATE_EST'].unique())}")
+        print(f"   [DEBUG] Unique dates in unplayed games: {sorted([d for d in df_unplayed['GAME_DATE_EST'].unique() if d is not None])}")
         
         df_unplayed = df_unplayed[
             (df_unplayed['GAME_DATE_EST'] >= today) & 
