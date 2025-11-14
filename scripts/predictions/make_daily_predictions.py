@@ -410,8 +410,21 @@ def prepare_features(df):
     if 'MATCHUP' not in df.columns:
         if 'HOME_TEAM_ABBREVIATION' in df.columns and 'VISITOR_TEAM_ABBREVIATION' in df.columns:
             df['MATCHUP'] = df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + df['HOME_TEAM_ABBREVIATION']
+        elif 'HOME_TEAM_ID' in df.columns and 'VISITOR_TEAM_ID' in df.columns:
+            # Map team IDs to abbreviations
+            TEAM_ID_TO_ABB = {
+                1610612737: 'ATL', 1610612738: 'BOS', 1610612739: 'CLE', 1610612740: 'NOP',
+                1610612741: 'CHI', 1610612742: 'DAL', 1610612743: 'DEN', 1610612744: 'GSW',
+                1610612745: 'HOU', 1610612746: 'LAC', 1610612754: 'IND', 1610612747: 'LAL',
+                1610612763: 'MEM', 1610612748: 'MIA', 1610612749: 'MIL', 1610612750: 'MIN',
+                1610612751: 'BKN', 1610612752: 'NYK', 1610612753: 'ORL', 1610612755: 'PHI',
+                1610612756: 'PHX', 1610612757: 'POR', 1610612758: 'SAC', 1610612759: 'SAS',
+                1610612760: 'OKC', 1610612761: 'TOR', 1610612762: 'UTA', 1610612764: 'WAS',
+                1610612765: 'DET', 1610612766: 'CHA'
+            }
+            df['MATCHUP'] = df['VISITOR_TEAM_ID'].map(TEAM_ID_TO_ABB) + ' @ ' + df['HOME_TEAM_ID'].map(TEAM_ID_TO_ABB)
         else:
-            # Fallback if team abbreviations don't exist
+            # Fallback if team IDs don't exist
             df['MATCHUP'] = 'Game ' + df.index.astype(str)
     
     # Features to drop - these are target, metadata, categorical, or leaky features
