@@ -104,6 +104,14 @@ def retrain_model():
 
 def load_model():
     """Load the best performing model - retrain automatically if invalid"""
+    print("\n" + "🔵"*80, flush=True)
+    print("🔵 INSIDE load_model() FUNCTION", flush=True)
+    print(f"🔵 Models directory: {MODELPATH}", flush=True)
+    print(f"🔵 Directory exists: {MODELPATH.exists()}", flush=True)
+    if MODELPATH.exists():
+        print(f"🔵 Files in models/: {list(MODELPATH.glob('*.pkl'))}", flush=True)
+    print("🔵"*80 + "\n", flush=True)
+    
     last_error = None
     any_model_exists = False
     
@@ -149,9 +157,17 @@ def load_model():
     
     # If NO models exist at all, train one
     if not any_model_exists:
-        print("⚠️  No model files found in models directory")
-        print("🔄 Training model from scratch...")
+        print("\n" + "🔴"*80, flush=True)
+        print("🔴 NO MODELS EXIST - SHOULD RETRAIN", flush=True)
+        print("🔴"*80 + "\n", flush=True)
+        
+        print("⚠️  No model files found in models directory", flush=True)
+        print("🔄 Training model from scratch...", flush=True)
         retrained_path = retrain_model()
+        
+        print("\n" + "🔴"*80, flush=True)
+        print(f"🔴 retrain_model() returned: {retrained_path}", flush=True)
+        print("🔴"*80 + "\n", flush=True)
         if retrained_path and is_valid_model_file(retrained_path):
             model = joblib.load(retrained_path)
             print(f"✅ Loaded newly trained model")
@@ -160,6 +176,11 @@ def load_model():
             raise FileNotFoundError("Model training failed")
     
     # If we get here, models existed but none loaded successfully
+    print("\n" + "🟡"*80, flush=True)
+    print("🟡 MODELS EXISTED BUT NONE LOADED - RAISING EXCEPTION", flush=True)
+    print(f"🟡 Last error: {last_error}", flush=True)
+    print("🟡"*80 + "\n", flush=True)
+    
     raise FileNotFoundError(
         f"Could not load any model. Tried: {MODEL_OPTIONS}\n"
         f"Last error: {last_error}\n"
