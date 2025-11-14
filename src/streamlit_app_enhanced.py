@@ -376,8 +376,15 @@ def main():
             
             df_current_season = df_current_season[df_current_season['SEASON'] == current_season]
             
-            # Get today's games
-            df_today = df_current_season[df_current_season['PTS_home'] == 0]
+            # Get today's games (unplayed + today's date only)
+            today = pd.to_datetime(datetime.today().date())
+            df_current_season['GAME_DATE_EST'] = pd.to_datetime(df_current_season['GAME_DATE_EST'], errors='coerce')
+            
+            # Filter for today's date AND unplayed
+            df_today = df_current_season[
+                (df_current_season['PTS_home'] == 0) & 
+                (df_current_season['GAME_DATE_EST'].dt.date == today.date())
+            ]
             df_past = df_current_season[df_current_season['PTS_home'] != 0]
             
         except Exception as e:
