@@ -176,17 +176,19 @@ def engineer_features_for_dataset(data_file):
     This is the core of Option A: ensure all games (including new ones)
     have proper engineered features before making predictions.
     """
-    print(f"\n📊 Loading dataset: {data_file.name}")
+    print(f"\n📊 Loading dataset: {data_file.name}", flush=True)
     df = pd.read_csv(data_file, low_memory=False, dtype={'GAME_DATE_EST': str})
-    print(f"   Loaded {len(df):,} games")
+    print(f"   Loaded {len(df):,} games", flush=True)
     
     # Check if features already exist
-    if check_features_engineered(df):
-        print(f"   ✅ Features already engineered - skipping")
+    has_features = check_features_engineered(df)
+    print(f"   Checking if features exist... {has_features}", flush=True)
+    if has_features:
+        print(f"   ✅ Features already engineered - skipping", flush=True)
         return df
     
-    print(f"   ⚠️  Features NOT engineered - running feature engineering...")
-    print(f"   (This takes 2-5 minutes for {len(df):,} games)")
+    print(f"   ⚠️  Features NOT engineered - running feature engineering...", flush=True)
+    print(f"   (This takes 2-5 minutes for {len(df):,} games)", flush=True)
     
     # Parse dates first (needed for feature engineering)
     def standardize_date_string(date_str):
@@ -215,41 +217,58 @@ def engineer_features_for_dataset(data_file):
     
     # Run feature engineering
     try:
+        print(f"   🔨 Calling process_features()...", flush=True)
         df = process_features(df)
-        print(f"   ✅ Feature engineering complete: {len(df):,} rows, {len(df.columns)} columns")
+        print(f"   ✅ Feature engineering complete: {len(df):,} rows, {len(df.columns)} columns", flush=True)
         
         # Save back to file
-        print(f"   💾 Saving engineered dataset to {data_file.name}...")
+        print(f"   💾 Saving engineered dataset to {data_file.name}...", flush=True)
         df.to_csv(data_file, index=False)
-        print(f"   ✅ Saved")
+        print(f"   ✅ Saved", flush=True)
         
         return df
     
     except Exception as e:
-        print(f"   ❌ Error during feature engineering: {e}")
-        print(f"   Continuing with non-engineered features (predictions will be poor)")
+        print(f"   ❌ Error during feature engineering: {e}", flush=True)
+        import traceback
+        traceback.print_exc()
+        print(f"   Continuing with non-engineered features (predictions will be poor)", flush=True)
         return df
 
 
 def load_todays_games():
     """Load today's scheduled games (unplayed games with PTS_home == 0)"""
+    print("\n" + "="*80, flush=True)
+    print("🔧 LOADING TODAY'S GAMES", flush=True)
+    print("="*80, flush=True)
     try:
         # Load games with all features (prioritize master dataset, fallback for workflows)
         # Try master dataset first (30k games with full history)
+        print(f"\n📂 Looking for datasets...", flush=True)
         data_file = DATAPATH / 'games_master_engineered.csv'
+        print(f"   Checking master: {data_file}", flush=True)
+        print(f"   Exists: {data_file.exists()}", flush=True)
         if not data_file.exists() or data_file.stat().st_size < 1000:
             # Try workflow dataset (5k games, used in GitHub Actions)
             data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+            print(f"   Checking workflow: {data_file}", flush=True)
+            print(f"   Exists: {data_file.exists()}", flush=True)
             if not data_file.exists() or data_file.stat().st_size < 1000:
                 # Final fallback to old dataset
                 data_file = DATAPATH / 'games_with_real_vegas.csv'
+                print(f"   Checking old: {data_file}", flush=True)
+                print(f"   Exists: {data_file.exists()}", flush=True)
+        
+        print(f"\n✅ Using dataset: {data_file.name}", flush=True)
         
         # ═══════════════════════════════════════════════════════════════════
         # OPTION A: FEATURE ENGINEERING BEFORE PREDICTION
         # ═══════════════════════════════════════════════════════════════════
+        print(f"\n🔧 Calling engineer_features_for_dataset()...", flush=True)
         # Engineer features for ALL games (including newly added ones)
         # This ensures predictions use all 374 features the model was trained on
         df = engineer_features_for_dataset(data_file)
+        print(f"✅ engineer_features_for_dataset() returned: {len(df)} rows, {len(df.columns)} cols", flush=True)
         # ═══════════════════════════════════════════════════════════════════
         
         # Dates are already parsed by engineer_features_for_dataset(), 
