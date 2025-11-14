@@ -164,7 +164,11 @@ def load_todays_games():
         df = pd.read_csv(data_file, low_memory=False)
         print(f"   [DEBUG] Loaded {len(df):,} games from CSV")
         
-        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], format='mixed', errors='coerce').dt.tz_localize(None)
+        # Parse dates - handles both '2025-11-14' and '2025-11-11 00:00:00+00:00'
+        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
+        # Strip timezone if present (makes all dates timezone-naive for consistency)
+        if pd.api.types.is_datetime64tz_dtype(df['GAME_DATE_EST']):
+            df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_localize(None)
         print(f"   [DEBUG] After date parsing: {len(df):,} games ({df['GAME_DATE_EST'].isna().sum()} NaT values)")
         
         # Get current season
