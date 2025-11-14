@@ -70,18 +70,18 @@ def load_available_models():
     model_info = {}
     
     # Define available models and their info
-    # NOTE: Only NEW models trained on 102-feature master dataset (30k games)
-    # Old models were trained on 260+ feature dataset and are INCOMPATIBLE
+    # NOTE: Only NEW models trained on 215-feature workflow dataset (30k games)
+    # Old models were trained on different feature sets and are INCOMPATIBLE
     model_definitions = {
         'histgradient_vegas': {
-            'name': '🏆 HistGradient + Vegas (NEW - 62.82%)',
-            'description': '62.82% accuracy on 30k games with 102 features',
+            'name': '🏆 HistGradient + Vegas (NEW - 62.46%)',
+            'description': '62.46% accuracy on 30k games with 215 features',
             'file': 'histgradient_vegas_calibrated.pkl',
             'type': 'individual',
             'is_best': True
         },
-        # OLD MODELS BELOW - INCOMPATIBLE WITH NEW 102-FEATURE DATASET
-        # Uncomment after retraining with new master dataset
+        # OLD MODELS BELOW - INCOMPATIBLE WITH NEW 215-FEATURE DATASET
+        # Uncomment after retraining with new workflow dataset
         # 'ensemble_stacking_vegas': {
         #     'name': '🥈 Stacking Ensemble + Vegas (69.91%)',
         #     'description': '69.91% AUC - New stacking with Vegas data',
@@ -361,10 +361,10 @@ def main():
         # Load data
         try:
             # Load data with ALL features (injuries + Vegas)
-            # Load master dataset (30k games, 102 features)
-            master_file = DATAPATH / 'games_master_engineered.csv'
-            if master_file.exists():
-                df_current_season = pd.read_csv(master_file)
+            # Load workflow dataset (30k games, 215 features)
+            workflow_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+            if workflow_file.exists():
+                df_current_season = pd.read_csv(workflow_file)
             else:
                 # Fallback to old dataset
                 df_current_season = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
