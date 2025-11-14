@@ -166,7 +166,20 @@ def load_todays_games():
         print(f"   [DEBUG] Loaded {len(df):,} games from CSV")
         print(f"   [DEBUG] Sample raw date strings: {df['GAME_DATE_EST'].tail(10).tolist()}")
         
-        # Parse dates - handles both '2025-11-14' and '2025-11-11 00:00:00+00:00'
+        # CRITICAL FIX: Standardize date format before parsing
+        # Simple dates like '2025-11-14' need to be converted to full format
+        # Otherwise pandas gets confused by mixed formats in the same column
+        def standardize_date_string(date_str):
+            """Convert '2025-11-14' to '2025-11-14 00:00:00' for consistent parsing"""
+            if isinstance(date_str, str) and len(date_str) == 10 and date_str.count('-') == 2:
+                # Simple date format, add time
+                return date_str + ' 00:00:00'
+            return date_str
+        
+        df['GAME_DATE_EST'] = df['GAME_DATE_EST'].apply(standardize_date_string)
+        print(f"   [DEBUG] After standardizing: {df['GAME_DATE_EST'].tail(10).tolist()}")
+        
+        # Now parse dates (all in consistent format)
         df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
         
         # Show which rows have NaT BEFORE timezone conversion
