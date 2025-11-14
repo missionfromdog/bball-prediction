@@ -161,21 +161,26 @@ def load_todays_games():
                 # Final fallback to old dataset
                 data_file = DATAPATH / 'games_with_real_vegas.csv'
         
-        df = pd.read_csv(data_file, low_memory=False)
+        # Force GAME_DATE_EST to be read as string first (prevents auto-parsing issues)
+        df = pd.read_csv(data_file, low_memory=False, dtype={'GAME_DATE_EST': str})
         print(f"   [DEBUG] Loaded {len(df):,} games from CSV")
+        print(f"   [DEBUG] Sample raw date strings: {df['GAME_DATE_EST'].tail(10).tolist()}")
         
         # Parse dates - handles both '2025-11-14' and '2025-11-11 00:00:00+00:00'
-        # Use infer_datetime_format=True for better parsing
-        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], infer_datetime_format=True, errors='coerce')
+        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
         
         # Show which rows have NaT BEFORE timezone conversion
         nat_count_before = df['GAME_DATE_EST'].isna().sum()
         if nat_count_before > 0:
-            print(f"   [DEBUG] WARNING: {nat_count_before} NaT values after parsing - checking raw values...")
-            nat_rows = df[df['GAME_DATE_EST'].isna()]
-            if len(nat_rows) > 0:
-                # Get the original string values from CSV for these rows
-                print(f"   [DEBUG] First NaT row index: {nat_rows.index[0]}")
+            print(f"   [DEBUG] ⚠️  WARNING: {nat_count_before} NaT values after parsing!")
+            # Re-read those specific rows to see raw strings
+            df_raw = pd.read_csv(data_file, low_memory=False, dtype=str)
+            nat_indices = df[df['GAME_DATE_EST'].isna()].index.tolist()
+            print(f"   [DEBUG] NaT row indices: {nat_indices[:10]}")
+            print(f"   [DEBUG] Raw date strings for NaT rows:")
+            for idx in nat_indices[:5]:
+                raw_date = df_raw.iloc[idx]['GAME_DATE_EST']
+                print(f"      Row {idx}: '{raw_date}' (len={len(raw_date)}, repr={repr(raw_date)})")
         
         # Strip timezone if present (makes all dates timezone-naive for consistency)
         if pd.api.types.is_datetime64tz_dtype(df['GAME_DATE_EST']):
