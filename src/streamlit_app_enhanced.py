@@ -354,7 +354,8 @@ def main():
         
         # Show live odds status
         if live_odds_df is not None and len(live_odds_df) > 0:
-            st.success(f"✅ Live Vegas odds loaded for {len(live_odds_df)} games")
+            # Note: Odds API returns multiple days, we filter to today's games below
+            st.success(f"✅ Live Vegas odds available ({len(live_odds_df)} games in feed)")
         
         st.markdown("")
         
