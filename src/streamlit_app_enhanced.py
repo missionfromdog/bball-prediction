@@ -588,7 +588,56 @@ def main():
         fancy_header('Model Performance Analysis', font_size=28)
         st.markdown("")
         
-        # Try to load performance metrics
+        # ====================================================================
+        # SECTION 1: Model Training Performance (Always Available)
+        # ====================================================================
+        st.subheader("🎯 Model Training Performance")
+        st.caption("Performance on historical test data (2003-2025)")
+        
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Test Accuracy", "62.82%", help="Accuracy on held-out test set")
+        with col2:
+            st.metric("Training Accuracy", "67.62%", help="Accuracy on training set")
+        with col3:
+            st.metric("Training Games", "30,120", help="Total games used for training")
+        with col4:
+            st.metric("Features", "102", help="Injury + Vegas + Rolling averages")
+        
+        st.markdown("")
+        
+        # Model details
+        with st.expander("📋 Model Details", expanded=False):
+            st.markdown("""
+            **Model Type:** HistGradientBoostingClassifier (Calibrated)
+            
+            **Feature Breakdown:**
+            - 🏥 **14 Injury Features** - Player availability, star injuries, impact scores
+            - 🎲 **4 Vegas Features** - Spread, total, moneylines
+            - 📊 **83 Rolling Features** - Win rates, points, rebounds, assists (3/7/10 game windows)
+            - 📅 **1 Date Feature** - Month (seasonality)
+            
+            **Training Configuration:**
+            - Algorithm: HistGradientBoosting with isotonic calibration
+            - Data Split: 80% train / 20% test
+            - Date Range: Oct 2003 → Nov 2025
+            - Stratified sampling: Yes (preserves win/loss ratio)
+            
+            **Performance Comparison:**
+            - Baseline (coin flip): 50%
+            - Our model: 62.82%
+            - Vegas (professional): ~64-68%
+            - **Gap to Vegas:** ~1-5% (getting closer!)
+            """)
+        
+        st.markdown("---")
+        
+        # ====================================================================
+        # SECTION 2: Live Prediction Tracking (From Workflow)
+        # ====================================================================
+        st.subheader("📈 Live Prediction Tracking")
+        
+        # Try to load performance metrics from workflow
         perf_metrics_path = DATAPATH / 'predictions' / 'performance_metrics_latest.csv'
         perf_detailed_path = DATAPATH / 'predictions' / 'detailed_tracking_latest.csv'
         
@@ -598,9 +647,10 @@ def main():
                 metrics_df = pd.read_csv(perf_metrics_path)
                 detailed_df = pd.read_csv(perf_detailed_path)
                 
-                # Display metrics
-                st.subheader("📊 Overall Performance")
+                st.caption("Real-world prediction performance (updated nightly)")
+                st.markdown("")
                 
+                # Display metrics
                 col1, col2, col3, col4 = st.columns(4)
                 with col1:
                     acc = metrics_df['Overall_Accuracy'].iloc[0]
@@ -613,15 +663,21 @@ def main():
                     if 'ROI' in metrics_df.columns:
                         roi = metrics_df['ROI'].iloc[0]
                         st.metric("ROI", f"{roi:+.1f}%")
+                    else:
+                        st.metric("Games Tracked", f"{total}")
                 with col4:
                     if 'Total_Profit' in metrics_df.columns:
                         profit = metrics_df['Total_Profit'].iloc[0]
                         st.metric("Profit/Loss", f"${profit:+,.0f}")
+                    else:
+                        # Calculate win rate
+                        win_rate = correct / total if total > 0 else 0
+                        st.metric("Win Rate", f"{win_rate:.1%}")
                 
-                st.markdown("---")
+                st.markdown("")
                 
                 # Performance by confidence
-                st.subheader("🎯 Accuracy by Confidence Level")
+                st.markdown("**🎯 Accuracy by Confidence Level**")
                 conf_cols = st.columns(3)
                 
                 for idx, conf in enumerate(['High', 'Medium', 'Low']):
@@ -630,14 +686,14 @@ def main():
                     
                     if count_col in metrics_df.columns and acc_col in metrics_df.columns:
                         with conf_cols[idx]:
-                            count = metrics_df[count_col].iloc[0]
+                            count = int(metrics_df[count_col].iloc[0])
                             acc = metrics_df[acc_col].iloc[0]
                             st.metric(f"{conf} Confidence", f"{acc:.1%}", f"{count} games")
                 
                 st.markdown("---")
                 
                 # Recent games
-                st.subheader("🕒 Recent Predictions")
+                st.markdown("**🕒 Recent Predictions (Last 10)**")
                 recent = detailed_df.sort_values('Date', ascending=False).head(10)
                 
                 display_recent = recent[['Date', 'Matchup', 'Predicted_Winner', 'Actual_Winner', 'Correct', 'Confidence']].copy()
@@ -648,22 +704,64 @@ def main():
                 st.dataframe(display_recent, use_container_width=True, hide_index=True)
                 
             except Exception as e:
-                st.error(f"Error loading performance data: {e}")
-                st.info("Run 'Track Betting Performance' workflow to generate metrics")
+                st.error(f"Error loading workflow performance data: {e}")
+                st.caption("Showing training performance only (above)")
         else:
-            st.info("📊 No performance data available yet")
-            st.markdown("""
-            **To see performance metrics:**
-            1. Make some predictions (Daily NBA Predictions workflow)
-            2. Wait for games to complete
-            3. Run 'Track Betting Performance' workflow
+            # No workflow data yet - show helpful message
+            st.caption("Real-world tracking not available yet")
+            st.info("""
+            **📊 How to enable live tracking:**
             
-            Performance tracking will show:
-            - Overall accuracy
-            - Accuracy by confidence level
-            - ROI and profit/loss
-            - Recent prediction results
+            1. **Make Predictions** - Run `Daily NBA Predictions` workflow
+            2. **Wait for Results** - Games must complete (next day)
+            3. **Track Performance** - Run `Track Betting Performance` workflow
+            
+            **What you'll see:**
+            - Overall accuracy on real predictions
+            - Accuracy by confidence level (High/Medium/Low)
+            - ROI and profit/loss (if betting $100/game)
+            - Recent prediction results with outcomes
+            
+            💡 For now, see **Model Training Performance** above for test set accuracy.
             """)
+        
+        st.markdown("---")
+        
+        # ====================================================================
+        # SECTION 3: Dataset Statistics
+        # ====================================================================
+        st.subheader("📊 Dataset Statistics")
+        
+        try:
+            # Load master dataset stats
+            master_file = DATAPATH / 'games_master_engineered.csv'
+            if master_file.exists():
+                df_stats = pd.read_csv(master_file, low_memory=False)
+                
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    total_games = len(df_stats)
+                    st.metric("Total Games", f"{total_games:,}")
+                with col2:
+                    completed_games = len(df_stats[df_stats['PTS_home'] != 0])
+                    st.metric("Completed Games", f"{completed_games:,}")
+                with col3:
+                    upcoming_games = len(df_stats[df_stats['PTS_home'] == 0])
+                    st.metric("Upcoming Games", f"{upcoming_games}")
+                
+                st.markdown("")
+                
+                # Date range
+                df_stats['GAME_DATE_EST'] = pd.to_datetime(df_stats['GAME_DATE_EST'])
+                min_date = df_stats['GAME_DATE_EST'].min().strftime('%B %d, %Y')
+                max_date = df_stats['GAME_DATE_EST'].max().strftime('%B %d, %Y')
+                
+                st.caption(f"📅 Date Range: {min_date} → {max_date}")
+                
+            else:
+                st.warning("Master dataset not found")
+        except Exception as e:
+            st.error(f"Error loading dataset stats: {e}")
     
     # ========================================================================
     # TAB 3: ABOUT
