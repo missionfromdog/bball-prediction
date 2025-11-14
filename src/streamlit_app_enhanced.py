@@ -332,7 +332,7 @@ def main():
             odds_path = DATAPATH / 'betting' / 'live_odds_latest.csv'
             if odds_path.exists():
                 odds_time = datetime.fromtimestamp(odds_path.stat().st_mtime)
-                st.info(f"🎲 Live Odds: {odds_time.strftime('%I:%M %p')}")
+                st.info(f"🎲 Live Odds: {odds_time.strftime('%b %d, %I:%M %p')}")
             else:
                 st.warning("🎲 No live odds")
         
@@ -341,7 +341,7 @@ def main():
             injury_path = DATAPATH / 'injuries' / 'nba_injuries_real_scraped.csv'
             if injury_path.exists():
                 injury_time = datetime.fromtimestamp(injury_path.stat().st_mtime)
-                st.info(f"🏥 Injuries: {injury_time.strftime('%I:%M %p')}")
+                st.info(f"🏥 Injuries: {injury_time.strftime('%b %d, %I:%M %p')}")
             else:
                 st.warning("🏥 No injury data")
         
@@ -350,7 +350,7 @@ def main():
             data_path = DATAPATH / 'games_with_real_vegas.csv'
             if data_path.exists():
                 data_time = datetime.fromtimestamp(data_path.stat().st_mtime)
-                st.info(f"📊 Data: {data_time.strftime('%I:%M %p')}")
+                st.info(f"📊 Data: {data_time.strftime('%b %d, %I:%M %p')}")
         
         # Show live odds status
         if live_odds_df is not None and len(live_odds_df) > 0:
