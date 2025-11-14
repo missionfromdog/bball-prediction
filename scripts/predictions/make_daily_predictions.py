@@ -577,6 +577,9 @@ def display_summary(df):
 
 def main():
     """Main execution"""
+    print("\n" + "#" * 80, flush=True)
+    print("### MAIN() FUNCTION STARTED", flush=True)
+    print("#" * 80 + "\n", flush=True)
     print()
     print("=" * 80)
     print("NBA DAILY PREDICTION GENERATOR")
@@ -614,10 +617,21 @@ def main():
     print()
     
     # Load model
+    print("\n" + "#" * 80, flush=True)
+    print("### ABOUT TO LOAD MODEL", flush=True)
+    print("#" * 80 + "\n", flush=True)
     model = load_model()
+    
+    print("\n" + "#" * 80, flush=True)
+    print("### MODEL LOADED, ABOUT TO LOAD TODAY'S GAMES", flush=True)
+    print("#" * 80 + "\n", flush=True)
     
     # Load today's games
     df_today = load_todays_games()
+    
+    print("\n" + "#" * 80, flush=True)
+    print(f"### GAMES LOADED: {len(df_today) if df_today is not None else 0} games", flush=True)
+    print("#" * 80 + "\n", flush=True)
     
     if df_today is None or len(df_today) == 0:
         print("❌ No games found for today")
@@ -665,5 +679,11 @@ def main():
 
 
 if __name__ == "__main__":
+    print("\n" + "*" * 80, flush=True)
+    print("*** SCRIPT STARTED (__name__ == '__main__')", flush=True)
+    print("*" * 80 + "\n", flush=True)
     main()
+    print("\n" + "*" * 80, flush=True)
+    print("*** SCRIPT COMPLETED", flush=True)
+    print("*" * 80 + "\n", flush=True)
 
