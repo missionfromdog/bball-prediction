@@ -2,7 +2,7 @@ Date,Matchup,Home_Win_Probability,Predicted_Winner,Confidence,Model
 2025-11-14,Game 30120,0.6147956942965475,Home,Medium,HistGradient + Vegas (70.20% AUC)
 2025-11-14,Game 30121,0.4404789275919683,Away,Medium,HistGradient + Vegas (70.20% AUC)
 2025-11-14,Game 30122,0.2744462321030991,Away,High,HistGradient + Vegas (70.20% AUC)
-2025-11-14,Game 30123,0.6610850343972806,Home,High,HistGradient + Vegas (70.20% AUC)
+2025-11-14,Game 30123,0.6610850343972807,Home,High,HistGradient + Vegas (70.20% AUC)
 2025-11-14,Game 30124,0.3798428764164273,Away,Medium,HistGradient + Vegas (70.20% AUC)
 2025-11-14,Game 30125,0.5359661670724856,Home,Low,HistGradient + Vegas (70.20% AUC)
 2025-11-14,Game 30126,0.6147956942965475,Home,Medium,HistGradient + Vegas (70.20% AUC)
