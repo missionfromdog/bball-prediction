@@ -165,10 +165,22 @@ def load_todays_games():
         print(f"   [DEBUG] Loaded {len(df):,} games from CSV")
         
         # Parse dates - handles both '2025-11-14' and '2025-11-11 00:00:00+00:00'
-        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
+        # Use infer_datetime_format=True for better parsing
+        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], infer_datetime_format=True, errors='coerce')
+        
+        # Show which rows have NaT BEFORE timezone conversion
+        nat_count_before = df['GAME_DATE_EST'].isna().sum()
+        if nat_count_before > 0:
+            print(f"   [DEBUG] WARNING: {nat_count_before} NaT values after parsing - checking raw values...")
+            nat_rows = df[df['GAME_DATE_EST'].isna()]
+            if len(nat_rows) > 0:
+                # Get the original string values from CSV for these rows
+                print(f"   [DEBUG] First NaT row index: {nat_rows.index[0]}")
+        
         # Strip timezone if present (makes all dates timezone-naive for consistency)
         if pd.api.types.is_datetime64tz_dtype(df['GAME_DATE_EST']):
             df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_localize(None)
+        
         print(f"   [DEBUG] After date parsing: {len(df):,} games ({df['GAME_DATE_EST'].isna().sum()} NaT values)")
         
         # Get current season
@@ -203,9 +215,15 @@ def load_todays_games():
         df_unplayed['GAME_DATE_EST'] = df_unplayed['GAME_DATE_EST'].dt.date
         
         print(f"   [DEBUG] Sample dates after .dt.date: {df_unplayed['GAME_DATE_EST'].head(10).tolist()}")
+        
+        # Remove rows with NaT dates (can't predict games with invalid dates)
+        df_unplayed = df_unplayed.dropna(subset=['GAME_DATE_EST'])
+        print(f"   [DEBUG] After dropping NaT dates: {len(df_unplayed)} games")
+        
+        # Filter out NaT values before getting unique dates
+        valid_dates = df_unplayed['GAME_DATE_EST'].unique()
+        print(f"   [DEBUG] Unique dates in unplayed games: {sorted(valid_dates)}")
         print(f"   [DEBUG] Date filter: {today} to {max_date}")
-        print(f"   [DEBUG] Unplayed games before filter: {len(df[df['PTS_home'] == 0])}")
-        print(f"   [DEBUG] Unique dates in unplayed games: {sorted([d for d in df_unplayed['GAME_DATE_EST'].unique() if d is not None])}")
         
         df_unplayed = df_unplayed[
             (df_unplayed['GAME_DATE_EST'] >= today) & 
