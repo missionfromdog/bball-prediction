@@ -277,16 +277,16 @@ def load_todays_games():
     print("🔧 LOADING TODAY'S GAMES", flush=True)
     print("="*80, flush=True)
     try:
-        # Load games with all features (prioritize master dataset, fallback for workflows)
-        # Try master dataset first (30k games with full history)
+        # Load games with all features
+        # ⚠️ WORKFLOW FIRST - has latest games added by schedule fetch!
         print(f"\n📂 Looking for datasets...", flush=True)
-        data_file = DATAPATH / 'games_master_engineered.csv'
-        print(f"   Checking master: {data_file}", flush=True)
+        data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+        print(f"   Checking workflow: {data_file}", flush=True)
         print(f"   Exists: {data_file.exists()}", flush=True)
         if not data_file.exists() or data_file.stat().st_size < 1000:
-            # Try workflow dataset (5k games, used in GitHub Actions)
-            data_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
-            print(f"   Checking workflow: {data_file}", flush=True)
+            # Try master dataset (30k games with full history)
+            data_file = DATAPATH / 'games_master_engineered.csv'
+            print(f"   Checking master: {data_file}", flush=True)
             print(f"   Exists: {data_file.exists()}", flush=True)
             if not data_file.exists() or data_file.stat().st_size < 1000:
                 # Final fallback to old dataset
