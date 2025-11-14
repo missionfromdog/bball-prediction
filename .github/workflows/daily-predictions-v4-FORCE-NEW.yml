@@ -113,6 +113,12 @@ jobs:
           echo "🎯 Making predictions for today's NBA games..."
           echo "(Model will retrain - takes 2-3 minutes)"
           echo ""
+          echo "🔥 FORCE DELETING ALL MODELS TO ENSURE FRESH TRAIN"
+          rm -rf models
+          mkdir -p models
+          echo "Models directory is now empty:"
+          ls -la models/ || true
+          echo ""
           python -u scripts/predictions/make_daily_predictions.py
         continue-on-error: false
       
