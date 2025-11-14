@@ -337,6 +337,17 @@ def prepare_features(df):
     print(f"✅ Prepared features: {X.shape[1]} features")
     print(f"   First few features: {list(X.columns[:10])}")
     
+    # DEBUG: Check feature values for first game
+    if len(X) > 0:
+        first_game_features = X.iloc[0]
+        non_zero_features = first_game_features[first_game_features != 0]
+        print(f"   [DEBUG] Non-zero features in first game: {len(non_zero_features)}")
+        if len(non_zero_features) > 0 and len(non_zero_features) < 20:
+            print(f"   [DEBUG] Non-zero features: {dict(non_zero_features)}")
+        elif len(non_zero_features) == 0:
+            print(f"   [DEBUG] ⚠️  ALL FEATURES ARE ZERO! Games need feature engineering.")
+            print(f"   [DEBUG] Available features: {list(X.columns[:20])}")
+    
     # Keep metadata for display
     metadata_cols = ['GAME_DATE_EST', 'MATCHUP']
     metadata = df[metadata_cols].copy()
