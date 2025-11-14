@@ -70,38 +70,42 @@ def load_available_models():
     model_info = {}
     
     # Define available models and their info
+    # NOTE: Only NEW models trained on 102-feature master dataset (30k games)
+    # Old models were trained on 260+ feature dataset and are INCOMPATIBLE
     model_definitions = {
         'histgradient_vegas': {
-            'name': '🏆 HistGradient + Vegas (BEST - 70.20%)',
-            'description': '70.20% AUC - Champion model!',
+            'name': '🏆 HistGradient + Vegas (NEW - 62.82%)',
+            'description': '62.82% accuracy on 30k games with 102 features',
             'file': 'histgradient_vegas_calibrated.pkl',
             'type': 'individual',
             'is_best': True
         },
-        'ensemble_stacking_vegas': {
-            'name': '🥈 Stacking Ensemble + Vegas (69.91%)',
-            'description': '69.91% AUC - New stacking with Vegas data',
-            'file': 'ensemble_stacking_vegas.pkl',
-            'type': 'ensemble'
-        },
-        'ensemble_weighted_vegas': {
-            'name': '🥉 Weighted Ensemble + Vegas (69.81%)',
-            'description': '69.81% AUC - Weighted with Vegas data',
-            'file': 'ensemble_weighted_vegas.pkl',
-            'type': 'ensemble'
-        },
-        'randomforest_vegas': {
-            'name': '🌲 RandomForest + Vegas (69.37%)',
-            'description': '69.37% AUC - Retrained with Vegas data',
-            'file': 'best_model_randomforest_vegas.pkl',
-            'type': 'individual'
-        },
-        'xgboost_vegas': {
-            'name': '⚡ XGBoost + Vegas (68.85%)',
-            'description': '68.85% AUC - XGBoost with Vegas data',
-            'file': 'xgboost_vegas_calibrated.pkl',
-            'type': 'individual'
-        },
+        # OLD MODELS BELOW - INCOMPATIBLE WITH NEW 102-FEATURE DATASET
+        # Uncomment after retraining with new master dataset
+        # 'ensemble_stacking_vegas': {
+        #     'name': '🥈 Stacking Ensemble + Vegas (69.91%)',
+        #     'description': '69.91% AUC - New stacking with Vegas data',
+        #     'file': 'ensemble_stacking_vegas.pkl',
+        #     'type': 'ensemble'
+        # },
+        # 'ensemble_weighted_vegas': {
+        #     'name': '🥉 Weighted Ensemble + Vegas (69.81%)',
+        #     'description': '69.81% AUC - Weighted with Vegas data',
+        #     'file': 'ensemble_weighted_vegas.pkl',
+        #     'type': 'ensemble'
+        # },
+        # 'randomforest_vegas': {
+        #     'name': '🌲 RandomForest + Vegas (69.37%)',
+        #     'description': '69.37% AUC - Retrained with Vegas data',
+        #     'file': 'best_model_randomforest_vegas.pkl',
+        #     'type': 'individual'
+        # },
+        # 'xgboost_vegas': {
+        #     'name': '⚡ XGBoost + Vegas (68.85%)',
+        #     'description': '68.85% AUC - XGBoost with Vegas data',
+        #     'file': 'xgboost_vegas_calibrated.pkl',
+        #     'type': 'individual'
+        # },
     }
     
     # Load models that exist
@@ -299,10 +303,15 @@ def main():
     # Auto-load all models for comparison (no checkbox needed)
     st.sidebar.markdown("---")
     st.sidebar.markdown("**🔬 Model Comparison**")
-    st.sidebar.caption("All models loaded automatically")
     
     # Get all other models for comparison
     compare_models = [k for k in model_options.keys() if k != selected_model_key]
+    
+    if compare_models:
+        st.sidebar.caption(f"Comparing {len(compare_models)} other model(s)")
+    else:
+        st.sidebar.caption("No other models available for comparison")
+        st.sidebar.info("💡 Old models need retraining for new 102-feature dataset")
     
     # Load live odds
     live_odds_df = load_live_odds()
@@ -414,10 +423,12 @@ def main():
                 for comp_key in compare_models:
                     comp_model = models[comp_key]
                     comp_pred, comp_proba = predict_with_model(comp_model, X_today, comp_key)
-                    comparison_results[comp_key] = {
-                        'proba': comp_proba,
-                        'name': model_info[comp_key]['name']
-                    }
+                    # Only add if predictions succeeded
+                    if comp_pred is not None and comp_proba is not None:
+                        comparison_results[comp_key] = {
+                            'proba': comp_proba,
+                            'name': model_info[comp_key]['name']
+                        }
             
             # Create export DataFrame
             export_df = pd.DataFrame({
@@ -695,11 +706,11 @@ def main():
         
         ### 📊 Current Performance
         
-        - **🏆 Best Model**: 70.20% AUC (HistGradient + Real Vegas) - WE HIT 70%!
-        - **🥈 Stacking**: 69.91% AUC (New ensemble with Vegas data)
-        - **🥉 Weighted**: 69.81% AUC (Weighted ensemble with Vegas)
-        - **Baseline**: 58% AUC (home team always wins)
-        - **Professional Target**: 70-75% AUC - ✅ ACHIEVED!
+        - **🏆 Current Model**: 62.82% Accuracy (HistGradient + Vegas on 30k games)
+        - **Training Data**: 30,120 games (2003-2025) - 6x more historical data!
+        - **Features**: 102 predictive features (injury + Vegas + rolling averages)
+        - **Baseline**: 50% (coin flip)
+        - **Professional Target**: 64-68% (Vegas level) - 📈 Getting closer!
         
         ### 🎓 How It Works
         
