@@ -620,10 +620,26 @@ def main():
     print("\n" + "#" * 80, flush=True)
     print("### ABOUT TO LOAD MODEL", flush=True)
     print("#" * 80 + "\n", flush=True)
-    model = load_model()
+    
+    try:
+        model = load_model()
+    except Exception as e:
+        print("\n" + "!"*80, flush=True)
+        print(f"!!! EXCEPTION IN LOAD_MODEL(): {e}", flush=True)
+        print("!"*80 + "\n", flush=True)
+        import traceback
+        traceback.print_exc()
+        raise  # Re-raise to fail the workflow
+    
+    if model is None:
+        print("\n" + "!"*80, flush=True)
+        print("!!! MODEL IS NONE - LOAD FAILED", flush=True)
+        print("!"*80 + "\n", flush=True)
+        raise RuntimeError("Model loading returned None")
     
     print("\n" + "#" * 80, flush=True)
-    print("### MODEL LOADED, ABOUT TO LOAD TODAY'S GAMES", flush=True)
+    print("### MODEL LOADED SUCCESSFULLY, ABOUT TO LOAD TODAY'S GAMES", flush=True)
+    print(f"### Model type: {type(model)}", flush=True)
     print("#" * 80 + "\n", flush=True)
     
     # Load today's games
