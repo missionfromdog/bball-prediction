@@ -40,12 +40,12 @@ def is_valid_model(filepath):
 
 def retrain_model():
     """Retrain the model from scratch"""
-    print("\n" + "="*80)
-    print("🔧 RETRAINING MODEL")
-    print("="*80)
+    print("\n" + "="*80, flush=True)
+    print("🔧 RETRAINING MODEL", flush=True)
+    print("="*80, flush=True)
     
     # Load data
-    print("\n📊 Loading training data...")
+    print("\n📊 Loading training data...", flush=True)
     
     # Try master dataset, fallback to workflow dataset
     data_file = DATA_PATH
@@ -66,9 +66,23 @@ def retrain_model():
     # ═══════════════════════════════════════════════════════════════════
     # CRITICAL: Engineer features before training
     # ═══════════════════════════════════════════════════════════════════
+    print(f"\n🔍 Checking if features need engineering...", flush=True)
+    print(f"   Total columns: {len(df.columns)}", flush=True)
+    print(f"   First 20 columns: {list(df.columns[:20])}", flush=True)
+    
     # Check if features already exist
     rolling_cols = [col for col in df.columns if 'AVG_LAST' in col or 'WIN_STREAK' in col]
-    if not rolling_cols or df[rolling_cols[0]].sum() == 0:
+    print(f"   Found {len(rolling_cols)} rolling feature columns", flush=True)
+    
+    if rolling_cols:
+        # Check if values are non-zero
+        first_col_sum = df[rolling_cols[0]].sum()
+        print(f"   First rolling col '{rolling_cols[0]}' sum: {first_col_sum}", flush=True)
+    
+    needs_engineering = not rolling_cols or (rolling_cols and df[rolling_cols[0]].sum() == 0)
+    print(f"   Needs engineering: {needs_engineering}", flush=True)
+    
+    if needs_engineering:
         print("\n🔨 Engineering features (this takes 2-5 minutes)...")
         print("   (Features must be engineered during training AND prediction)")
         
