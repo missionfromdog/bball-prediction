@@ -13,10 +13,15 @@ import joblib
 from pathlib import Path
 from datetime import datetime, timedelta
 import warnings
+import sys
 warnings.filterwarnings('ignore')
 
 # Paths
 PROJECTPATH = Path(__file__).resolve().parents[2]
+
+# Add src to path for feature engineering
+sys.path.insert(0, str(PROJECTPATH))
+from src.feature_engineering import process_features
 DATAPATH = PROJECTPATH / 'data'
 MODELPATH = PROJECTPATH / 'models'
 PREDICTIONS_PATH = DATAPATH / 'predictions'
@@ -148,6 +153,84 @@ def load_model():
     )
 
 
+def check_features_engineered(df):
+    """Check if dataset has engineered features"""
+    # Check for rolling average columns (key indicator of feature engineering)
+    rolling_cols = [col for col in df.columns if 'AVG_LAST' in col or 'WIN_STREAK' in col]
+    
+    if not rolling_cols:
+        return False
+    
+    # Check if values are non-zero (not just column names)
+    for col in rolling_cols[:5]:
+        if col in df.columns and df[col].sum() != 0:
+            return True
+    
+    return False
+
+
+def engineer_features_for_dataset(data_file):
+    """
+    Load dataset and engineer features if needed.
+    
+    This is the core of Option A: ensure all games (including new ones)
+    have proper engineered features before making predictions.
+    """
+    print(f"\n📊 Loading dataset: {data_file.name}")
+    df = pd.read_csv(data_file, low_memory=False, dtype={'GAME_DATE_EST': str})
+    print(f"   Loaded {len(df):,} games")
+    
+    # Check if features already exist
+    if check_features_engineered(df):
+        print(f"   ✅ Features already engineered - skipping")
+        return df
+    
+    print(f"   ⚠️  Features NOT engineered - running feature engineering...")
+    print(f"   (This takes 2-5 minutes for {len(df):,} games)")
+    
+    # Parse dates first (needed for feature engineering)
+    def standardize_date_string(date_str):
+        """Normalize all date formats to 'YYYY-MM-DD HH:MM:SS' (no timezone)"""
+        if not isinstance(date_str, str):
+            return date_str
+        
+        # Strip timezone suffix if present
+        if '+' in date_str:
+            date_str = date_str.split('+')[0].strip()
+        if date_str.endswith('Z'):
+            date_str = date_str[:-1].strip()
+        
+        # If simple date (YYYY-MM-DD), add time
+        if len(date_str) == 10 and date_str.count('-') == 2:
+            date_str = date_str + ' 00:00:00'
+        
+        return date_str
+    
+    df['GAME_DATE_EST'] = df['GAME_DATE_EST'].apply(standardize_date_string)
+    df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
+    
+    # Strip timezone if present
+    if pd.api.types.is_datetime64tz_dtype(df['GAME_DATE_EST']):
+        df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_localize(None)
+    
+    # Run feature engineering
+    try:
+        df = process_features(df)
+        print(f"   ✅ Feature engineering complete: {len(df):,} rows, {len(df.columns)} columns")
+        
+        # Save back to file
+        print(f"   💾 Saving engineered dataset to {data_file.name}...")
+        df.to_csv(data_file, index=False)
+        print(f"   ✅ Saved")
+        
+        return df
+    
+    except Exception as e:
+        print(f"   ❌ Error during feature engineering: {e}")
+        print(f"   Continuing with non-engineered features (predictions will be poor)")
+        return df
+
+
 def load_todays_games():
     """Load today's scheduled games (unplayed games with PTS_home == 0)"""
     try:
@@ -161,57 +244,41 @@ def load_todays_games():
                 # Final fallback to old dataset
                 data_file = DATAPATH / 'games_with_real_vegas.csv'
         
-        # Force GAME_DATE_EST to be read as string first (prevents auto-parsing issues)
-        df = pd.read_csv(data_file, low_memory=False, dtype={'GAME_DATE_EST': str})
-        print(f"   [DEBUG] Loaded {len(df):,} games from CSV")
-        print(f"   [DEBUG] Sample raw date strings: {df['GAME_DATE_EST'].tail(10).tolist()}")
+        # ═══════════════════════════════════════════════════════════════════
+        # OPTION A: FEATURE ENGINEERING BEFORE PREDICTION
+        # ═══════════════════════════════════════════════════════════════════
+        # Engineer features for ALL games (including newly added ones)
+        # This ensures predictions use all 374 features the model was trained on
+        df = engineer_features_for_dataset(data_file)
+        # ═══════════════════════════════════════════════════════════════════
         
-        # CRITICAL FIX: Standardize date format before parsing
-        # Problem: Mixed formats cause pandas to fail
-        #   - '2025-11-11 00:00:00+00:00' (with timezone)
-        #   - '2025-11-14' (simple date)
-        # Solution: Normalize EVERYTHING to 'YYYY-MM-DD HH:MM:SS' (no timezone)
-        def standardize_date_string(date_str):
-            """Normalize all date formats to 'YYYY-MM-DD HH:MM:SS' (no timezone)"""
-            if not isinstance(date_str, str):
-                return date_str
-            
-            # Strip timezone suffix if present (+00:00, +05:30, etc.)
-            if '+' in date_str:
-                date_str = date_str.split('+')[0].strip()
-            if date_str.endswith('Z'):
-                date_str = date_str[:-1].strip()
-            
-            # If simple date (YYYY-MM-DD), add time
-            if len(date_str) == 10 and date_str.count('-') == 2:
-                date_str = date_str + ' 00:00:00'
-            
-            return date_str
+        # Dates are already parsed by engineer_features_for_dataset(), 
+        # but if features were already present, we need to parse again
+        if not pd.api.types.is_datetime64_any_dtype(df['GAME_DATE_EST']):
+            # Force GAME_DATE_EST to be read as string first (prevents auto-parsing issues)
+            if df['GAME_DATE_EST'].dtype == 'object':
+                # Standardize date strings
+                def standardize_date_string(date_str):
+                    """Normalize all date formats to 'YYYY-MM-DD HH:MM:SS' (no timezone)"""
+                    if not isinstance(date_str, str):
+                        return date_str
+                    
+                    # Strip timezone suffix if present
+                    if '+' in date_str:
+                        date_str = date_str.split('+')[0].strip()
+                    if date_str.endswith('Z'):
+                        date_str = date_str[:-1].strip()
+                    
+                    # If simple date (YYYY-MM-DD), add time
+                    if len(date_str) == 10 and date_str.count('-') == 2:
+                        date_str = date_str + ' 00:00:00'
+                    
+                    return date_str
+                
+                df['GAME_DATE_EST'] = df['GAME_DATE_EST'].apply(standardize_date_string)
+                df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
         
-        df['GAME_DATE_EST'] = df['GAME_DATE_EST'].apply(standardize_date_string)
-        print(f"   [DEBUG] After standardizing: {df['GAME_DATE_EST'].tail(10).tolist()}")
-        
-        # Now parse dates (all in consistent format)
-        df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
-        
-        # Show which rows have NaT BEFORE timezone conversion
-        nat_count_before = df['GAME_DATE_EST'].isna().sum()
-        if nat_count_before > 0:
-            print(f"   [DEBUG] ⚠️  WARNING: {nat_count_before} NaT values after parsing!")
-            # Re-read those specific rows to see raw strings
-            df_raw = pd.read_csv(data_file, low_memory=False, dtype=str)
-            nat_indices = df[df['GAME_DATE_EST'].isna()].index.tolist()
-            print(f"   [DEBUG] NaT row indices: {nat_indices[:10]}")
-            print(f"   [DEBUG] Raw date strings for NaT rows:")
-            for idx in nat_indices[:5]:
-                raw_date = df_raw.iloc[idx]['GAME_DATE_EST']
-                print(f"      Row {idx}: '{raw_date}' (len={len(raw_date)}, repr={repr(raw_date)})")
-        
-        # Strip timezone if present (makes all dates timezone-naive for consistency)
-        if pd.api.types.is_datetime64tz_dtype(df['GAME_DATE_EST']):
-            df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_localize(None)
-        
-        print(f"   [DEBUG] After date parsing: {len(df):,} games ({df['GAME_DATE_EST'].isna().sum()} NaT values)")
+        print(f"   ✅ Loaded {len(df):,} games with engineered features")
         
         # Get current season
         current_season = datetime.now().year
@@ -225,12 +292,7 @@ def load_todays_games():
         
         # Get unplayed games (PTS_home == 0)
         df_unplayed = df[df['PTS_home'] == 0].copy()
-        print(f"   [DEBUG] After PTS_home == 0 filter: {len(df_unplayed)} games")
-        
-        # Note: New games from schedule fetch will have features = 0
-        # The model can still make predictions, they just won't be as accurate
-        # without historical rolling averages
-        print(f"   [DEBUG] Total unplayed games found: {len(df_unplayed)}")
+        print(f"   📅 Found {len(df_unplayed)} unplayed games")
         
         # Filter for upcoming games only (today and next 7 days)
         # This avoids predicting on old games that should have been played already
@@ -238,29 +300,19 @@ def load_todays_games():
         today = datetime.now().date()
         max_date = today + timedelta(days=7)
         
-        print(f"   [DEBUG] GAME_DATE_EST dtype before .dt.date: {df_unplayed['GAME_DATE_EST'].dtype}")
-        print(f"   [DEBUG] Sample dates before conversion: {df_unplayed['GAME_DATE_EST'].head(10).tolist()}")
-        print(f"   [DEBUG] Any NaT values? {df_unplayed['GAME_DATE_EST'].isna().sum()}")
-        
+        # Convert to date objects for comparison
         df_unplayed['GAME_DATE_EST'] = df_unplayed['GAME_DATE_EST'].dt.date
-        
-        print(f"   [DEBUG] Sample dates after .dt.date: {df_unplayed['GAME_DATE_EST'].head(10).tolist()}")
         
         # Remove rows with NaT dates (can't predict games with invalid dates)
         df_unplayed = df_unplayed.dropna(subset=['GAME_DATE_EST'])
-        print(f"   [DEBUG] After dropping NaT dates: {len(df_unplayed)} games")
         
-        # Filter out NaT values before getting unique dates
-        valid_dates = df_unplayed['GAME_DATE_EST'].unique()
-        print(f"   [DEBUG] Unique dates in unplayed games: {sorted(valid_dates)}")
-        print(f"   [DEBUG] Date filter: {today} to {max_date}")
-        
+        # Filter for upcoming week
         df_unplayed = df_unplayed[
             (df_unplayed['GAME_DATE_EST'] >= today) & 
             (df_unplayed['GAME_DATE_EST'] <= max_date)
         ]
         
-        print(f"   [DEBUG] Unplayed games after filter: {len(df_unplayed)}")
+        print(f"   📅 Filtered to {len(df_unplayed)} games ({today} to {max_date})")
         
         # Sort by date to get next scheduled games
         df_unplayed = df_unplayed.sort_values('GAME_DATE_EST')
