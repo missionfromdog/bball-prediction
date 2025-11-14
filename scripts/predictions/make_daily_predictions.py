@@ -167,13 +167,25 @@ def load_todays_games():
         print(f"   [DEBUG] Sample raw date strings: {df['GAME_DATE_EST'].tail(10).tolist()}")
         
         # CRITICAL FIX: Standardize date format before parsing
-        # Simple dates like '2025-11-14' need to be converted to full format
-        # Otherwise pandas gets confused by mixed formats in the same column
+        # Problem: Mixed formats cause pandas to fail
+        #   - '2025-11-11 00:00:00+00:00' (with timezone)
+        #   - '2025-11-14' (simple date)
+        # Solution: Normalize EVERYTHING to 'YYYY-MM-DD HH:MM:SS' (no timezone)
         def standardize_date_string(date_str):
-            """Convert '2025-11-14' to '2025-11-14 00:00:00' for consistent parsing"""
-            if isinstance(date_str, str) and len(date_str) == 10 and date_str.count('-') == 2:
-                # Simple date format, add time
-                return date_str + ' 00:00:00'
+            """Normalize all date formats to 'YYYY-MM-DD HH:MM:SS' (no timezone)"""
+            if not isinstance(date_str, str):
+                return date_str
+            
+            # Strip timezone suffix if present (+00:00, +05:30, etc.)
+            if '+' in date_str:
+                date_str = date_str.split('+')[0].strip()
+            if date_str.endswith('Z'):
+                date_str = date_str[:-1].strip()
+            
+            # If simple date (YYYY-MM-DD), add time
+            if len(date_str) == 10 and date_str.count('-') == 2:
+                date_str = date_str + ' 00:00:00'
+            
             return date_str
         
         df['GAME_DATE_EST'] = df['GAME_DATE_EST'].apply(standardize_date_string)
