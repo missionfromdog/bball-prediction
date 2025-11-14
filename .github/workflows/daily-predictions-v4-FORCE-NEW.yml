@@ -89,9 +89,12 @@ jobs:
           pip list | grep -E "(numpy|scikit-learn|pandas|xgboost|lightgbm)"
           echo "═══════════════════════════════════════════════════════"
 
-      - name: Remove old incompatible model files
+      - name: Clear Python cache and remove old models
         run: |
-          echo "Removing old model files to force retrain with current Python environment..."
+          echo "Clearing Python bytecode cache..."
+          find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name "*.pyc" -delete 2>/dev/null || true
+          echo "Removing old model files..."
           rm -f models/*.pkl
           ls -la models/ || true
       
@@ -100,10 +103,17 @@ jobs:
           echo "================================================================================"
           echo "🔥 WORKFLOW V4 - FORCE NEW - THIS PROVES NEW CODE IS RUNNING"
           echo "================================================================================"
+          echo "Verifying script content..."
+          echo "Line count of make_daily_predictions.py:"
+          wc -l scripts/predictions/make_daily_predictions.py
+          echo ""
+          echo "Checking for 🔵 marker (should be present):"
+          grep -c "🔵.*INSIDE load_model" scripts/predictions/make_daily_predictions.py || echo "NOT FOUND!"
+          echo ""
           echo "🎯 Making predictions for today's NBA games..."
           echo "(Model will retrain - takes 2-3 minutes)"
           echo ""
-          python scripts/predictions/make_daily_predictions.py
+          python -u scripts/predictions/make_daily_predictions.py
         continue-on-error: false
       
       - name: Commit Predictions
