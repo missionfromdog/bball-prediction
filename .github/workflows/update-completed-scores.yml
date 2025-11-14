@@ -1,0 +1,55 @@
+name: Update Completed Game Scores
+
+on:
+  schedule:
+    # Run daily at 12 PM UTC (7 AM EST)
+    # This catches games from the previous night
+    - cron: '0 12 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-scores:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: false
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests beautifulsoup4 lxml
+      
+      - name: Update completed game scores
+        run: |
+          echo "🏀 Updating completed game scores from ESPN..."
+          python scripts/data_collection/update_completed_scores.py
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Check if there are changes
+          if git diff --quiet data/games_with_real_vegas_workflow.csv; then
+            echo "No score updates needed"
+          else
+            echo "Committing score updates..."
+            git add data/games_with_real_vegas_workflow.csv
+            git commit -m "🤖 AUTO: Update completed game scores [$(date +'%Y-%m-%d')]"
+            git push
+            echo "✅ Scores updated and pushed"
+          fi
+
