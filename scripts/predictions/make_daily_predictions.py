@@ -62,18 +62,30 @@ def is_valid_model_file(filepath):
 
 def retrain_model():
     """Retrain model if needed - called automatically if model is invalid"""
-    print("\n" + "="*80)
-    print("🔧 MODEL MISSING OR INVALID - RETRAINING")
-    print("="*80)
-    print("This will take ~2-3 minutes...")
+    print("\n" + "="*80, flush=True)
+    print("🔧 MODEL MISSING OR INVALID - RETRAINING", flush=True)
+    print("="*80, flush=True)
+    print("This will take ~2-3 minutes...", flush=True)
     
     import sys
     PROJECTPATH = Path(__file__).resolve().parents[2]
     sys.path.insert(0, str(PROJECTPATH / 'scripts' / 'predictions'))
     
+    print("\n" + "!"*80, flush=True)
+    print("!!! ABOUT TO IMPORT setup_model", flush=True)
+    print("!"*80 + "\n", flush=True)
+    
     try:
         from setup_model import retrain_model as do_retrain, MODEL_PATH
+        print("\n" + "!"*80, flush=True)
+        print("!!! IMPORT SUCCESSFUL, ABOUT TO CALL do_retrain()", flush=True)
+        print("!"*80 + "\n", flush=True)
+        
         success = do_retrain()
+        
+        print("\n" + "!"*80, flush=True)
+        print(f"!!! do_retrain() RETURNED: {success}", flush=True)
+        print("!"*80 + "\n", flush=True)
         
         if success and is_valid_model_file(MODEL_PATH):
             print("\n✅ Model retrained successfully!")
@@ -82,7 +94,9 @@ def retrain_model():
             print("\n❌ Model retraining failed")
             return None
     except Exception as e:
-        print(f"\n❌ Error during retraining: {e}")
+        print("\n" + "!"*80, flush=True)
+        print(f"!!! EXCEPTION DURING RETRAIN/IMPORT: {e}", flush=True)
+        print("!"*80 + "\n", flush=True)
         import traceback
         traceback.print_exc()
         return None
