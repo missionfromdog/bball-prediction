@@ -1,3 +1,97 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:29de410835d8ef1586c789a97c37a264911703d96be8937c46a297fee0c405cd
-size 18506
+player_name,player_id,team,update_date,description,scrape_date
+Nikola Djurisic,djurini01,Atlanta Hawks,"Fri, Nov 14, 2025",Day To Day (Elbow) - Durisic did not play in Thursday's (Nov. 14) game against the Jazz.,2025-11-15 10:24:50
+Kristaps Porziņģis,porzikr01,Atlanta Hawks,"Fri, Nov 14, 2025",Day To Day (Rest) - Porzingis did not play in Thursday's (Nov. 14) game against the Jazz.,2025-11-15 10:24:50
+Trae Young,youngtr01,Atlanta Hawks,"Sat, Nov 1, 2025","Out (Knee) - Young will be re-evaluated in four weeks, per ESPN's Shams Charania.",2025-11-15 10:24:50
+Jayson Tatum,tatumja01,Boston Celtics,"Thu, Oct 9, 2025","Out (Achilles) - The Celtics have not ruled Tatum out for the 2025-26 season, ESPN's Shams Charania reported on the Pat McAfee Show on Thursday (Oct. 9).",2025-11-15 10:24:50
+Haywood Highsmith,highsha01,Brooklyn Nets,"Sun, Oct 19, 2025","Out (Knee) - Highsmith experienced swelling during rehab recently and will be re-evaluated in eight weeks, per Brett Siegel of ClutchPoints.com.",2025-11-15 10:24:50
+Day'Ron Sharpe,sharpda01,Brooklyn Nets,"Thu, Nov 13, 2025",Day To Day (Hamstring) - The Nets listed Sharpe as Probable for Friday's (Nov. 14) game against the Magic.,2025-11-15 10:24:50
+Cam Thomas,thomaca02,Brooklyn Nets,"Fri, Nov 7, 2025","Out (Hamstring) - Thomas has been diagnosed with a left hamstring strain, and he will be re-evaluated in 3-4 weeks, per Marc J. Spears of ESPN.com.",2025-11-15 10:24:50
+LaMelo Ball,ballla01,Charlotte Hornets,"Thu, Nov 13, 2025",Day To Day (Ankle) - The Hornets listed Ball as Probable for Friday's (Nov. 14) game against the Bucks.,2025-11-15 10:24:50
+Josh Green,greenjo02,Charlotte Hornets,"Thu, Nov 13, 2025",Out (Shoulder) - The Hornets listed Green as Out for Friday's (Nov. 14) game against the Bucks.,2025-11-15 10:24:50
+Ryan Kalkbrenner,kalkbry01,Charlotte Hornets,"Thu, Nov 13, 2025",Out (Personal) - The Hornets listed Kalkbrenner as Out for Friday's (Nov. 14) game against the Bucks.,2025-11-15 10:24:50
+Liam McNeeley,mcneeli01,Charlotte Hornets,"Thu, Nov 13, 2025",Day To Day (Illness) - The Hornets listed McNeeley as Questionable for Friday's (Nov. 14) game against the Bucks.,2025-11-15 10:24:50
+Brandon Miller,millebr02,Charlotte Hornets,"Mon, Nov 3, 2025",Out (Shoulder) - The Charlotte Hornets said Miller diagnosed with shoulder subluxation; expected to miss at least 2 weeks.,2025-11-15 10:24:50
+KJ Simpson,simpskj01,Charlotte Hornets,"Thu, Nov 13, 2025",Day To Day (Joint) - The Hornets listed Simpson as Probable for Friday's (Nov. 14) game against the Bucks.,2025-11-15 10:24:50
+Grant Williams,willigr01,Charlotte Hornets,"Thu, Nov 13, 2025",Out (ACL) - The Hornets listed Williams as Out for Friday's (Nov. 14) game against the Bucks.,2025-11-15 10:24:50
+Zach Collins,colliza01,Chicago Bulls,"Sat, Oct 18, 2025",Out (Wrist) - The Bulls said on Saturday (Oct. 18) that Collins will miss at least 4 weeks after undergoing surgery to repair a fractured wrist.,2025-11-15 10:24:50
+Josh Giddey,giddejo01,Chicago Bulls,"Thu, Nov 13, 2025",Day To Day (Ankle) - Giddey did not play in Wednesday's (Nov. 12) game against the Pistons.,2025-11-15 10:24:50
+Coby White,whiteco01,Chicago Bulls,"Mon, Oct 20, 2025",Out (Calf) - The Bulls announced on Monday (Oct. 20) that White will be re-evaluated in two weeks.,2025-11-15 10:24:50
+Lonzo Ball,balllo01,Cleveland Cavaliers,"Fri, Nov 14, 2025",Day To Day (Rest) - Ball did not play in Thursday's (Nov. 13) game against the Raptors.,2025-11-15 10:24:50
+Darius Garland,garlada01,Cleveland Cavaliers,"Fri, Nov 14, 2025",Day To Day (Toe) - Garland did not play in Thursday's (Nov. 13) game against the Raptors.,2025-11-15 10:24:50
+Max Strus,strusma01,Cleveland Cavaliers,"Tue, Sep 30, 2025","Out (Foot) - Strus is no longer wearing a walking boot Tuesday (Sept. 30) but still has a lengthy recovery process ahead due to the surgery on his fractured left foot, per Chris Fedor of The Cleveland Plain Dealer.",2025-11-15 10:24:50
+Jaylon Tyson,tysonja01,Cleveland Cavaliers,"Fri, Nov 14, 2025",Day To Day (Illness) - Tyson did not play in Thursday's (Nov. 13) game against the Raptors.,2025-11-15 10:24:50
+Anthony Davis,davisan02,Dallas Mavericks,"Thu, Nov 13, 2025",Day To Day (Calf) - The Mavericks have listed Davis as Questionable for Friday's (Nov. 14) game against the Clippers.,2025-11-15 10:24:50
+Dante Exum,exumda01,Dallas Mavericks,"Thu, Nov 13, 2025",Day To Day (Knee) - Exum did not play in Wednesday's (Nov. 12) game against Phoenix.,2025-11-15 10:24:50
+Kyrie Irving,irvinky01,Dallas Mavericks,"Mon, Sep 29, 2025",Out (Knee) - The Mavericks said on Monday (Sept. 29) that Irving is ahead of schedule in his left ACL recovery but there's no timeline on his return yet.,2025-11-15 10:24:50
+Dereck Lively II,livelde01,Dallas Mavericks,"Thu, Nov 13, 2025",Day To Day (Knee) - The Mavericks have listed Lively as Questionable for Friday's (Nov. 14) game against the Clippers.,2025-11-15 10:24:50
+P.J. Washington,washipj01,Dallas Mavericks,"Thu, Nov 13, 2025",Day To Day (Shoulder) - The Mavericks have listed Washington as Questionable for Friday's (Nov. 14) game against the Clippers.,2025-11-15 10:24:50
+Christian Braun,braunch01,Denver Nuggets,"Thu, Nov 13, 2025",Day To Day (Ankle) - Braun did not return to Wednesday's (Nov. 12) game against the Clippers.,2025-11-15 10:24:50
+Cameron Johnson,johnsca02,Denver Nuggets,"Thu, Nov 13, 2025",Day To Day (Arm) - Johnson did not return to Wednesday's (Nov. 12) game against the Clippers.,2025-11-15 10:24:50
+Cade Cunningham,cunnica01,Detroit Pistons,"Thu, Nov 13, 2025",Day To Day (Hip) - The Pistons have listed Cunningham as Questionable for Friday's (Nov. 14) game against the 76ers.,2025-11-15 10:24:50
+Jalen Duren,durenja01,Detroit Pistons,"Thu, Nov 13, 2025",Day To Day (Ankle) - The Pistons have listed Duren as Questionable for Friday's (Nov. 14) game against the 76ers.,2025-11-15 10:24:50
+Tobias Harris,harrito02,Detroit Pistons,"Thu, Nov 13, 2025",Out (Ankle) - The Pistons have listed Harris as OUT for Friday's (Nov. 14) game against the 76ers.,2025-11-15 10:24:50
+Jaden Ivey,iveyja01,Detroit Pistons,"Thu, Oct 16, 2025",Out (Knee) - The Pistons announced on Thursday (Oct. 16) that Ivey underwent an arthroscopic procedure to relieve right knee discomfort and will be re-evaluated in four weeks.,2025-11-15 10:24:50
+Marcus Sasser,sassema01,Detroit Pistons,"Sat, Nov 8, 2025",Out (Hip) - The Detroit Pistons announced Saturday (Nov. 8) that Sasser will remain out as he continues rehabilitation for a right hip impingement. Sasser will be re-evaluated in approximately four weeks.,2025-11-15 10:24:50
+Isaiah Stewart,stewais01,Detroit Pistons,"Thu, Nov 13, 2025",Day To Day (Ankle) - The Pistons have listed Stewart as Questionable for Friday's (Nov. 14) game against the 76ers.,2025-11-15 10:24:50
+Ausar Thompson,thompau01,Detroit Pistons,"Thu, Nov 13, 2025",Out (Ankle) - The Pistons have listed Thompson as OUT for Friday's (Nov. 14) game against the 76ers.,2025-11-15 10:24:50
+Jonathan Kuminga,kuminjo01,Golden State Warriors,"Thu, Nov 13, 2025",Day To Day (Knee) - The Warriors listed Kuminga as Questionable for Friday's (Nov. 14) game against the Spurs.,2025-11-15 10:24:50
+De'Anthony Melton,meltode01,Golden State Warriors,"Wed, Oct 29, 2025",Out (Knee) - The Warriors announced Wednesday (Oct. 29) that Melton will miss at least three more weeks.,2025-11-15 10:24:50
+Dorian Finney-Smith,finnedo01,Houston Rockets,"Thu, Nov 13, 2025",Out (Ankle) - The Rockets listed Finney-Smith as Out for Friday's (Nov. 14) game against the Lakers.,2025-11-15 10:24:50
+Fred VanVleet,vanvlfr01,Houston Rockets,"Mon, Sep 22, 2025","Out For Season (ACL) - The Rockets said on Monday (Sept. 22) that VanVleet suffered a torn ACL and may be out for the entire 2025-26 campaign, per Shams Charania of ESPN.",2025-11-15 10:24:50
+Johnny Furphy,furphjo01,Indiana Pacers,"Wed, Nov 5, 2025","Out (Ankle) - Furphy is set to miss at least the next five games for the Pacers, per Alex Golden of the Setting the Pace podcast.",2025-11-15 10:24:50
+Tyrese Haliburton,halibty01,Indiana Pacers,"Mon, Jul 7, 2025",Out For Season (Achilles) - The Pacers confirmed that Haliburton will miss the 2025-2026 season as he recovers from a torn Achilles.,2025-11-15 10:24:50
+Quenton Jackson,jacksqu01,Indiana Pacers,"Thu, Nov 6, 2025","Out (Hamstring) - Pacers head coach Rick Carlisle said that Jackson will be out for a while, as he's set to miss at least the next five games for Indiana, Alex Golden of the Setting the Pace podcast.",2025-11-15 10:24:50
+Kam Jones,joneska03,Indiana Pacers,"Thu, Oct 16, 2025",Out (Back) - Pacers head coach Rick Carlisle said Thursday (Oct. 16) that Jones won't be available to make his NBA debut through at least Nov. 9 (Sunday).,2025-11-15 10:24:50
+Cody Martin,martico01,Indiana Pacers,"Fri, Nov 14, 2025",Day To Day (Illness) - Martin did not play in Thursday's (Nov. 13) game against the Suns.,2025-11-15 10:24:50
+Bennedict Mathurin,mathube01,Indiana Pacers,"Fri, Nov 14, 2025",Day To Day (Foot) - Mathurin did not play in Thursday's (Nov. 13) game against the Suns.,2025-11-15 10:24:50
+Aaron Nesmith,nesmiaa01,Indiana Pacers,"Fri, Nov 14, 2025",Day To Day (Knee) - Nesmith did not return to Thursday's (Nov. 13) game against the Suns.,2025-11-15 10:24:50
+Obi Toppin,toppiob01,Indiana Pacers,"Fri, Oct 31, 2025",Out (Foot) - The Pacers announced that Toppin will undergo foot surgery and miss at least three months.,2025-11-15 10:24:50
+Bradley Beal,bealbr01,Los Angeles Clippers,"Wed, Nov 12, 2025","Out For Season (Hip) - Beal will undergo season-ending surgery on his left hip, as per ESPN's Shams Charania reports.",2025-11-15 10:24:50
+Kawhi Leonard,leonaka01,Los Angeles Clippers,"Thu, Nov 13, 2025",Out (Injury Management) - The Clippers listed Leonard as Out for Friday's (Nov. 14) game against the Mavericks.,2025-11-15 10:24:50
+LeBron James,jamesle01,Los Angeles Lakers,"Thu, Nov 6, 2025",Out (Sciatica) - The Lakers said on Thursday (Nov. 6) that James is now cleared for contact and will miss at least 1-2 more weeks. per Shams Charania of ESPN.,2025-11-15 10:24:50
+Adou Thiero,thierad01,Los Angeles Lakers,"Thu, Nov 13, 2025",Day To Day (Knee) - The Lakers listed Thiero as Questionable for Friday's (Nov. 14) game against the Pelicans.,2025-11-15 10:24:50
+Gabe Vincent,vincega01,Los Angeles Lakers,"Mon, Oct 27, 2025","Out (Ankle) - The Los Angeles Lakers said on Monday (Oct. 27) that Vincent is expected to miss two to four weeks, per Shams Charania of ESPN.",2025-11-15 10:24:50
+Brandon Clarke,clarkbr01,Memphis Grizzlies,"Tue, Nov 11, 2025","Out (Knee) - The Grizzlies announced Tuesday (Nov. 11) that Clarke is progressing well, but he will be sidelined for another six-to-nine weeks.",2025-11-15 10:24:50
+Zach Edey,edeyza01,Memphis Grizzlies,"Thu, Nov 13, 2025",Day To Day (Ankle) - Edey did not play in Wednesday's (Nov. 12) game against the Celtics.,2025-11-15 10:24:50
+Ty Jerome,jeromty01,Memphis Grizzlies,"Mon, Oct 20, 2025",Out (Calf) - The Grizzlies announced that Jerome will miss at least 4 weeks with a high grade strained calf.,2025-11-15 10:24:50
+Ja Morant,moranja01,Memphis Grizzlies,"Thu, Nov 13, 2025",Day To Day (Ankle) - Morant did not play in Wednesday's (Nov. 12) game against the Celtics.,2025-11-15 10:24:50
+Scotty Pippen Jr.,pippesc02,Memphis Grizzlies,"Sat, Oct 18, 2025",Out (Toe) - The Grizzlies announced on Saturday (Oct. 18) that Pippen Jr. will undergo a procedure on his left big toe injury and will be re-evaluated in 12 weeks.,2025-11-15 10:24:50
+Javon Small,smallja01,Memphis Grizzlies,"Thu, Nov 13, 2025",Day To Day (Toe) - Small did not play in Wednesday's (Nov. 12) game against the Celtics.,2025-11-15 10:24:50
+Bam Adebayo,adebaba01,Miami Heat,"Thu, Nov 13, 2025",Out (Foot) - The Heat have listed Adebayo as OUT for Friday's (Nov. 14) game against the Knicks.,2025-11-15 10:24:50
+Tyler Herro,herroty01,Miami Heat,"Tue, Sep 30, 2025","Out (Ankle) - The Heat reported on Tuesday (Sept. 30) that Herro is ahead of schedule in his recovery and expects to be back in 8-to-12 weeks, per Wes Goldberg of the Locked On Podcast Network.",2025-11-15 10:24:50
+Giannis Antetokounmpo,antetgi01,Milwaukee Bucks,"Thu, Nov 13, 2025",Day To Day (Knee) - The Bucks listed Antetokounmpo as Probable for Friday's (Nov. 14) game against the Hornets.,2025-11-15 10:24:50
+Kevin Porter Jr.,porteke02,Milwaukee Bucks,"Fri, Oct 31, 2025","Out (Ankle) - Porter sustained a right knee meniscus injury while going through on-court work Thursday (Oct. 30), which will require a minor orthopedic procedure that will keep him sidelined for at least four weeks.",2025-11-15 10:24:50
+Taurean Prince,princta02,Milwaukee Bucks,"Thu, Nov 13, 2025",Out (Neck) - The Team announce that Prince underwent surgery Thursday (Nov. 13) to repair the herniated disc in his neck and will remain out indefinitely.,2025-11-15 10:24:50
+Terrence Shannon Jr.,shannte01,Minnesota Timberwolves,"Thu, Nov 13, 2025",Out (Foot) - The Timberwolves listed Shannon Jr. as Out for Friday's (Nov. 14) game against the Kings.,2025-11-15 10:24:50
+Dejounte Murray,murrade01,New Orleans Pelicans,"Thu, Sep 25, 2025",Out (Leg) - The Pelicans said on Thursday (Sept. 25) that Murray could return right after New Year's.,2025-11-15 10:24:50
+Jordan Poole,poolejo01,New Orleans Pelicans,"Fri, Nov 7, 2025","Out (Knee) - The Wizards said on Friday (Nov. 7) that Poole has been diagnosed with a mild left quadriceps strain, and he will be re-evaluated in 7-10 days.",2025-11-15 10:24:50
+Zion Williamson,willizi01,New Orleans Pelicans,"Thu, Nov 13, 2025",Out (Hamstring) - The Pelicans announced Thursday (Nov. 13) that Williamson continues to progress well through his rehabilitation and has been cleared to resume on-court basketball activities with contact.,2025-11-15 10:24:50
+Jalen Brunson,brunsja01,New York Knicks,"Thu, Nov 13, 2025","Out (Ankle) - The Knicks listed Brunson as Out for Friday's (Nov. 14) game against the Heat due to a Grade 1 right ankle sprain and will be evaluated daily, per Shams Charania of ESPN.",2025-11-15 10:24:50
+Luguentz Dort,dortlu01,Oklahoma City Thunder,"Thu, Nov 13, 2025",Day To Day (Shoulder) - Dort did not play in Wednesday's (Nov. 12) game against the Lakers.,2025-11-15 10:24:50
+Thomas Sorber,sorbeth01,Oklahoma City Thunder,"Fri, Sep 5, 2025",Out For Season (Knee) - The Thunder announced on Friday (Sept. 5) that Sorber will miss the 2025-2026 season with a torn ACL.,2025-11-15 10:24:50
+Nikola Topić,topicni01,Oklahoma City Thunder,"Thu, Oct 30, 2025",Out (Groin) - The Thunder announced that Topic is dealing with testicular cancer and there is no timetable for his return.,2025-11-15 10:24:50
+Aaron Wiggins,wiggiaa01,Oklahoma City Thunder,"Thu, Nov 13, 2025",Day To Day (Thigh) - Wiggins did not play in Wednesday's (Nov. 12) game against the Lakers.,2025-11-15 10:24:50
+Jalen Williams,willija06,Oklahoma City Thunder,"Thu, Nov 13, 2025",Day To Day (Wrist) - Williams did not play in Wednesday's (Nov. 12) game against the Lakers.,2025-11-15 10:24:50
+Kenrich Williams,willike04,Oklahoma City Thunder,"Tue, Sep 30, 2025","Out (Knee) - The Thunder said on Tuesday (Sept. 30) that Williams will undergo surgery on his left knee Tuesday (Sept. 30) and will be re-evaluated in six to eight weeks, per Justin Martinez of The Oklahoman.",2025-11-15 10:24:50
+Paolo Banchero,banchpa01,Orlando Magic,"Thu, Nov 13, 2025","Out (Groin) - The Magic announced Thursday (Nov. 13) that Banchero has been diagnosed with a left groin strain that will force him to miss at least one game, as per Jason Beede of the Orlando Sentinel reports.",2025-11-15 10:24:50
+Moritz Wagner,wagnemo01,Orlando Magic,"Thu, Nov 13, 2025",Out (Knee) - The Magic listed Wagner as Out for Friday's (Nov. 14) game against the Nets.,2025-11-15 10:24:50
+VJ Edgecombe,edgecvj01,Philadelphia 76ers,"Thu, Nov 13, 2025",Day To Day (Back) - The 76ers listed Edgecombe as Questionable for Friday's (Nov. 14) game against the Pistons.,2025-11-15 10:24:50
+Joel Embiid,embiijo01,Philadelphia 76ers,"Thu, Nov 13, 2025",Out (Knee) - The 76ers listed Embiid as Out for Friday's (Nov. 14) game against the Pistons.,2025-11-15 10:24:50
+Paul George,georgpa01,Philadelphia 76ers,"Thu, Nov 13, 2025",Out (Knee) - The 76ers have listed George as OUT for Friday's (Nov. 14) game against the Pistons.,2025-11-15 10:24:50
+Jalen Green,greenja05,Phoenix Suns,"Tue, Nov 11, 2025","Out (Hamstring) - Green will be re-evaluated in four-to-six weeks, as per Shams Charania of ESPN reports.",2025-11-15 10:24:50
+Mark Williams,willima07,Phoenix Suns,"Fri, Nov 14, 2025",Day To Day (Injury Management) - Williams did not play in Thursday's (Nov. 13) game against the Pacers.,2025-11-15 10:24:50
+Scoot Henderson,hendesc01,Portland Trail Blazers,"Fri, Sep 26, 2025",Out (Hamstring) - The Trail Blazers said on Friday (Sept. 26) that Henderson suffered a left hamstring tear during an off-season workout and is expected to be sidelined 4-8 weeks.,2025-11-15 10:24:50
+Damian Lillard,lillada01,Portland Trail Blazers,"Thu, Sep 25, 2025",Out For Season (Achilles) - The Trail Blazers said on Thursday (Sept. 25) that Lillard won't be back on the court for the 2025-26 season due to his achilles injury.,2025-11-15 10:24:50
+Matisse Thybulle,thybuma01,Portland Trail Blazers,"Fri, Oct 31, 2025",Out (Thumb) - The Team announced that Thybulle underwent surgery Friday (Oct. 31) to repair a torn UCL in his left thumb and will be re-evaluated in 4-6 weeks.,2025-11-15 10:24:50
+Blake Wesley,weslebl01,Portland Trail Blazers,"Wed, Nov 5, 2025","Out (Foot) - Wesley underwent a successful procedure to repair a fracture of the fifth metatarsal base in his right foot Wednesday (Nov. 5), and he's expected to be sidelined for 8-12 weeks, per Brett Siegel of ClutchPoints.com.",2025-11-15 10:24:50
+Malik Monk,monkma01,Sacramento Kings,"Thu, Nov 13, 2025",Day To Day (Ankle) - The Kings listed Monk as Questionable for Friday's (Nov. 14) game against the Timberwolves.,2025-11-15 10:24:50
+Keegan Murray,murrake02,Sacramento Kings,"Sun, Oct 12, 2025","Out (Thumb) - The Kings said on Sunday (Oct. 12) that Murray will undergo surgery after tearing the UCL ligament in his left thumb and will be sidelined for 4-6 weeks, per Frankie Cartoscelli of KHTK Sactown Sports 1140.",2025-11-15 10:24:50
+Domantas Sabonis,sabondo01,Sacramento Kings,"Thu, Nov 13, 2025",Day To Day (Ribcage) - The Kings listed Sabonis as Questionable for Friday's (Nov. 14) game against the Timberwolves.,2025-11-15 10:24:50
+Dylan Harper,harpedy01,San Antonio Spurs,"Mon, Nov 3, 2025",Out (Calf) - San Antonio Spurs said guard Dylan Harper has suffered a left calf strain and is expected to miss multiple weeks.,2025-11-15 10:24:50
+Ochai Agbaji,agbajoc01,Toronto Raptors,"Fri, Nov 14, 2025",Day To Day (Back) - Agbaji did not play in Thursday's (Nov. 13) game against the Cavaliers.,2025-11-15 10:24:50
+Collin Murray-Boyles,murraco01,Toronto Raptors,"Fri, Nov 14, 2025",Day To Day (Illness) - Murray-Boyles did not play in Thursday's (Nov. 13) game against the Cavaliers.,2025-11-15 10:24:50
+Kyle Anderson,anderky01,Utah Jazz,"Fri, Nov 14, 2025",Day To Day (Back) - Anderson did not play in Thursday's (Nov. 13) game against the Hawks.,2025-11-15 10:24:50
+Taylor Hendricks,hendrta01,Utah Jazz,"Fri, Nov 14, 2025",Day To Day (Hamstring) - Hendricks did not play in Thursday's (Nov. 13) game against the Hawks.,2025-11-15 10:24:50
+Walker Kessler,kesslwa01,Utah Jazz,"Wed, Nov 5, 2025","Out For Season (Shoulder) - Kessler will undergo left shoulder surgery to address a torn labrum and will miss the remainder of the 2025-26 season, as per Tony Jones of The Athletic.",2025-11-15 10:24:50
+Georges Niang,niangge01,Utah Jazz,"Fri, Nov 14, 2025",Day To Day (Foot) - Niang did not play in Thursday's (Nov. 13) game against the Hawks.,2025-11-15 10:24:50
+Bilal Coulibaly,coulibi01,Washington Wizards,"Thu, Nov 13, 2025",Day To Day (Leg) - Coulibaly did not play in Wednesday's (Nov. 12) game against Houston.,2025-11-15 10:24:50
