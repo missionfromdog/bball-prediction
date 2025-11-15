@@ -1,9 +1,9 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-6cfe378a18675db378f3fcfa4861fa4c,basketball_nba,2025-11-15T22:10:00Z,Cleveland Cavaliers,Memphis Grizzlies,fanduel,-460,360,-10.5,-112,10.5,-108,238.5,-108,-112
-487e7f4cbc287a6a3d1851600ff450ab,basketball_nba,2025-11-16T00:10:00Z,Charlotte Hornets,Oklahoma City Thunder,fanduel,730,-1150,15.5,-110,-15.5,-110,227.5,-110,-110
-e9059827f4e5f8d7061aea311c337ab8,basketball_nba,2025-11-16T00:10:00Z,Indiana Pacers,Toronto Raptors,fanduel,245,-300,7.5,-114,-7.5,-106,233.5,-110,-110
-d2f772aad312e45cf7aef9e46583ed2b,basketball_nba,2025-11-16T01:10:00Z,Minnesota Timberwolves,Denver Nuggets,fanduel,-112,-104,-1.5,-106,1.5,-114,234.5,-110,-110
-d65dc4b4f3707a93b34f070c80080cce,basketball_nba,2025-11-16T01:10:00Z,Milwaukee Bucks,Los Angeles Lakers,fanduel,102,-120,1.5,-112,-1.5,-108,230.5,-110,-110
+6cfe378a18675db378f3fcfa4861fa4c,basketball_nba,2025-11-15T22:10:00Z,Cleveland Cavaliers,Memphis Grizzlies,fanduel,-590,430,-11.5,-114,11.5,-106,240.5,-110,-110
+487e7f4cbc287a6a3d1851600ff450ab,basketball_nba,2025-11-16T00:10:00Z,Charlotte Hornets,Oklahoma City Thunder,fanduel,1040,-2000,17.5,-112,-17.5,-108,224.5,-112,-108
+e9059827f4e5f8d7061aea311c337ab8,basketball_nba,2025-11-16T00:10:00Z,Indiana Pacers,Toronto Raptors,fanduel,230,-280,6.5,-106,-6.5,-114,233.5,-110,-110
+d2f772aad312e45cf7aef9e46583ed2b,basketball_nba,2025-11-16T01:10:00Z,Minnesota Timberwolves,Denver Nuggets,fanduel,-142,120,-3.0,-110,3.0,-110,234.5,-110,-110
+d65dc4b4f3707a93b34f070c80080cce,basketball_nba,2025-11-16T01:10:00Z,Milwaukee Bucks,Los Angeles Lakers,fanduel,-106,-110,-1.0,-106,1.0,-114,231.5,-106,-114
 f557c9173a46a3c7c87afb4bd68f6644,basketball_nba,2025-12-25T17:00:00Z,New York Knicks,Cleveland Cavaliers,betrivers,-143,117,-2.5,-113,2.5,-113,229.5,-113,-113
 9010f7d8f26d5880c63b67355800f997,basketball_nba,2025-12-25T22:00:00Z,Golden State Warriors,Dallas Mavericks,betrivers,-195,150,-4.5,-114,4.5,-112,227.0,-115,-110
 6b9d46fb1b22af30b771b5f6b8a4c6f8,basketball_nba,2025-12-26T03:30:00Z,Denver Nuggets,Minnesota Timberwolves,betrivers,-220,175,-5.0,-117,5.0,-109,229.5,-112,-114
