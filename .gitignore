@@ -50,8 +50,9 @@ geckodriver
 .env
 *.env
 
-# Model files (if you want to exclude large models)
-# models/*.pkl
+# Model files - workflows will retrain automatically
+# CRITICAL: Models must NOT be in Git to avoid feature mismatch
+models/*.pkl
 
 # IGNORE LARGE DATA FILES - keep only what workflows need
 # Original data files (not needed for workflows)
