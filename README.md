@@ -25,22 +25,31 @@ This project significantly improves upon the original NBA prediction model by **
 
 ### **Major Improvements:**
 - ✅ **+2.52% AUC improvement** (67.68% → 70.20%)
-- ✅ **Real Vegas betting lines integration** - 23,118 historical games (2007-2024) from Kaggle
-- ✅ **NBA injury data scraping** - Live injury tracking from Basketball-Reference
+- ✅ **Real Vegas betting lines integration** - 23,118 historical games (2007-2024) from Kaggle + live odds via The Odds API
+- ✅ **NBA injury data scraping** - Real-time injury tracking from Basketball-Reference with Selenium
 - ✅ **11 ML models tested** - Including XGBoost, LightGBM, HistGradientBoosting, CatBoost, RandomForest
 - ✅ **Ensemble models** - Stacking and Weighted voting classifiers
-- ✅ **Enhanced Streamlit app** - Model comparison, CSV export, confidence indicators
-- ✅ **Organized codebase** - Professional structure with `scripts/` directory
+- ✅ **Enhanced Streamlit app** - Model comparison, CSV export, confidence indicators, performance tracking
+- ✅ **Fully automated workflows** - Daily schedule fetch, predictions, score updates, and email notifications via GitHub Actions
+- ✅ **Organized codebase** - Professional structure with `scripts/` directory and comprehensive documentation
 
 ### **Performance:**
-| Model | AUC | Status |
-|-------|-----|--------|
-| **HistGradientBoosting + Vegas** | **70.20%** | 🏆 **BEST** |
-| Stacking Ensemble | 69.91% | 🥈 |
-| Weighted Ensemble | 69.81% | 🥉 |
-| RandomForest + Vegas | 69.37% | ⭐ |
-| XGBoost + Vegas | 68.85% | ⭐ |
-| Legacy XGBoost (baseline) | 67.68% | 📊 |
+| Model | AUC | Accuracy | Status |
+|-------|-----|----------|--------|
+| **HistGradientBoosting + Vegas** | **70.20%** | **~63%** | 🏆 **BEST** (In Production) |
+| Stacking Ensemble | 69.91% | ~62% | 🥈 |
+| Weighted Ensemble | 69.81% | ~62% | 🥉 |
+| RandomForest + Vegas | 69.37% | ~61% | ⭐ |
+| XGBoost + Vegas | 68.85% | ~60% | ⭐ |
+| Legacy XGBoost (baseline) | 67.68% | ~59% | 📊 |
+
+### **Automated Daily Workflows:**
+| Workflow | Schedule | Purpose |
+|----------|----------|---------|
+| **Fetch Today's Schedule** | 8:00 AM UTC (3 AM EST) | Scrapes ESPN for today's NBA games |
+| **Daily Predictions** | 9:00 AM UTC (4 AM EST) | Generates predictions with feature engineering & model training |
+| **Update Scores** | 12:00 PM UTC (7 AM EST) | Updates completed game scores from ESPN |
+| **Email Predictions** | Auto-triggered | Sends formatted email with predictions after workflow completes |
 
 **See [ENHANCEMENTS.md](ENHANCEMENTS.md) for full details on improvements.**
 
@@ -83,10 +92,12 @@ This is an enhanced version of Chris Munch's NBA Game Prediction project. I disc
 ### 💡 **Development Process:**
 Using Cursor AI, I iteratively:
 - Added real Vegas betting lines (+1.17% AUC) from Kaggle
+- Integrated live odds via The Odds API for real-time betting data
 - Scraped live NBA injury data with Selenium (+0.14% AUC)
 - Tested 11 different ML models (HistGradientBoosting won)
 - Built ensemble models for robustness
 - Enhanced the Streamlit app with comparison tools and export features
+- Built fully automated GitHub Actions workflows for daily predictions and email notifications
 - Organized the codebase for production and collaboration
 
 ### 📊 **Results:**
@@ -106,15 +117,22 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements_updated.txt
+pip install -r requirements.txt
 
-# Run the Streamlit app
+# Run the Streamlit app locally
 streamlit run src/streamlit_app_enhanced.py
 ```
 
-**Models are pre-trained and ready to use!**
+**✨ Features:**
+- 🤖 **Automated daily predictions** via GitHub Actions (runs at 4 AM EST)
+- 📧 **Email notifications** with formatted predictions
+- 📊 **Local Streamlit app** for interactive exploration
+- 🎯 **240+ engineered features** including Vegas odds and injury data
+- 🏀 **Varied predictions** with confidence levels (High/Medium/Low)
 
-For retraining or data updates, see [docs/SCRIPTS_README.md](docs/SCRIPTS_README.md)
+**Note:** The app works perfectly locally. Streamlit Cloud deployment is not supported due to large dataset size (>100MB).
+
+For workflow details and manual predictions, see [docs/SCRIPTS_README.md](docs/SCRIPTS_README.md)
 
 ---
 
@@ -202,6 +220,7 @@ NOTE: As of October 2024, I am temporarily removing Hopsworks feature store and 
 
 **1. Vegas Betting Lines Integration (+1.17% AUC)**
 - Integrated 23,118 historical Vegas betting lines (2007-2024) from Kaggle
+- Live odds integration via The Odds API for real-time data
 - Features: spreads, totals, moneylines, implied probabilities
 - Major breakthrough in prediction accuracy
 
@@ -212,20 +231,30 @@ NOTE: As of October 2024, I am temporarily removing Hopsworks feature store and 
 
 **3. Multiple Model Testing**
 - Tested 11 different ML models
-- HistGradientBoosting emerged as the winner (70.20% AUC)
+- HistGradientBoosting emerged as the winner (70.20% AUC, ~63% accuracy)
 - Built Stacking and Weighted ensemble models
 
 **4. Enhanced Streamlit App**
 - Model comparison tool (compare up to 3 models side-by-side)
 - CSV export for Google Sheets integration
 - Confidence indicators (High/Medium/Low)
-- Historical performance tracking
+- Historical performance tracking with recent game results
+- Live odds display integration
+- Data freshness indicators
 
-**5. Production-Ready Codebase**
+**5. Fully Automated Production Workflows**
+- Daily schedule fetching from ESPN (8 AM UTC)
+- Automated predictions with feature engineering (9 AM UTC)
+- Completed score updates from ESPN (12 PM UTC)
+- Email notifications with formatted predictions
+- All workflows run via GitHub Actions
+
+**6. Production-Ready Codebase**
 - Organized `scripts/` directory structure
 - Data collection, model training, and analysis scripts separated
 - Comprehensive documentation in `docs/`
 - Contributing guidelines and enhancement summaries
+- 240+ engineered features with automated feature engineering
 
 ### 🔮 **Future Possibilities**
 
