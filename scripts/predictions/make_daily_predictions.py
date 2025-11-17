@@ -189,15 +189,32 @@ def load_model():
 
 
 def check_features_engineered(df):
-    """Check if dataset has engineered features"""
+    """
+    Check if ALL games (including newly added ones) have engineered features.
+    
+    CRITICAL FIX: If there are unplayed games (PTS_home == 0) with missing features,
+    we need to re-engineer the entire dataset to ensure those games get proper features.
+    """
     # Check for rolling average columns (key indicator of feature engineering)
     rolling_cols = [col for col in df.columns if 'AVG_LAST' in col or 'WIN_STREAK' in col]
     
     if not rolling_cols:
         return False
     
-    # Check if values are non-zero (not just column names)
-    for col in rolling_cols[:5]:
+    # Check unplayed games specifically (newly added games from schedule fetch)
+    unplayed_games = df[df['PTS_home'] == 0]
+    
+    if len(unplayed_games) > 0:
+        # If there are unplayed games, check if THEY have features
+        for col in rolling_cols[:3]:
+            if col in unplayed_games.columns:
+                # If unplayed games have all zero/NaN features, need to re-engineer
+                if unplayed_games[col].sum() == 0 or unplayed_games[col].isna().all():
+                    print(f"   🔍 Unplayed games missing features in column: {col}", flush=True)
+                    return False
+    
+    # Check historical games too
+    for col in rolling_cols[:3]:
         if col in df.columns and df[col].sum() != 0:
             return True
     
