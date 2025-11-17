@@ -362,12 +362,17 @@ def main():
         # Load data
         try:
             # Load data with ALL features (injuries + Vegas)
-            # Load workflow dataset (30k games, 215 features)
+            # Priority: workflow dataset > streamlit sample > old dataset
             workflow_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
-            if workflow_file.exists():
+            streamlit_sample = DATAPATH / 'games_streamlit_sample.csv'
+            
+            if workflow_file.exists() and workflow_file.stat().st_size > 1000:
                 df_current_season = pd.read_csv(workflow_file)
+            elif streamlit_sample.exists():
+                # Use smaller sample for Streamlit Cloud (500 recent games)
+                df_current_season = pd.read_csv(streamlit_sample)
             else:
-                # Fallback to old dataset
+                # Final fallback to old dataset
                 df_current_season = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
             
             # Get current season

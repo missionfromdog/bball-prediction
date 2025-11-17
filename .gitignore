@@ -59,6 +59,9 @@ data/original/games.csv
 data/original/ranking.csv
 data/original/teams.csv
 data/games_engineered.csv
+
+# Exclude large workflow dataset (93MB) - use streamlit sample instead
+data/games_with_real_vegas_workflow.csv
 data/games_with_real_vegas.csv
 
 # Ignore workflow-generated files
