@@ -4,8 +4,6 @@
 </div>
 <br />
 <div align="center">
-    <sub>Let's connect 🤗</sub>
-    <br />
     <a href="https://github.com/missionfromdog">GitHub</a> •
     <a href="https://www.linkedin.com/in/caseyhesschicago">LinkedIn</a> •
     <a href="https://twitter.com/caseyhess">Twitter</a> •
@@ -19,31 +17,31 @@
 
 ---
 
-## 🚀 What's New in This Enhanced Version
+## What's New in This Enhanced Version
 
 This project significantly improves upon the original NBA prediction model by **Casey Hess** using **Cursor AI** to iterate and enhance the application:
 
-### **Major Improvements:**
-- ✅ **+2.52% AUC improvement** (67.68% → 70.20%)
-- ✅ **Real Vegas betting lines integration** - 23,118 historical games (2007-2024) from Kaggle + live odds via The Odds API
-- ✅ **NBA injury data scraping** - Real-time injury tracking from Basketball-Reference with Selenium
-- ✅ **11 ML models tested** - Including XGBoost, LightGBM, HistGradientBoosting, CatBoost, RandomForest
-- ✅ **Ensemble models** - Stacking and Weighted voting classifiers
-- ✅ **Enhanced Streamlit app** - Model comparison, CSV export, confidence indicators, performance tracking
-- ✅ **Fully automated workflows** - Daily schedule fetch, predictions, score updates, and email notifications via GitHub Actions
-- ✅ **Organized codebase** - Professional structure with `scripts/` directory and comprehensive documentation
+### Major Improvements:
+- **+2.52% AUC improvement** (67.68% → 70.20%)
+- **Real Vegas betting lines integration** - 23,118 historical games (2007-2024) from Kaggle + live odds via The Odds API
+- **NBA injury data scraping** - Real-time injury tracking from Basketball-Reference with Selenium
+- **11 ML models tested** - Including XGBoost, LightGBM, HistGradientBoosting, CatBoost, RandomForest
+- **Ensemble models** - Stacking and Weighted voting classifiers
+- **Enhanced Streamlit app** - Model comparison, CSV export, confidence indicators, performance tracking
+- **Fully automated workflows** - Daily schedule fetch, predictions, score updates, and email notifications via GitHub Actions
+- **Organized codebase** - Professional structure with `scripts/` directory and comprehensive documentation
 
-### **Performance:**
+### Performance:
 | Model | AUC | Accuracy | Status |
 |-------|-----|----------|--------|
-| **HistGradientBoosting + Vegas** | **70.20%** | **~63%** | 🏆 **BEST** (In Production) |
-| Stacking Ensemble | 69.91% | ~62% | 🥈 |
-| Weighted Ensemble | 69.81% | ~62% | 🥉 |
-| RandomForest + Vegas | 69.37% | ~61% | ⭐ |
-| XGBoost + Vegas | 68.85% | ~60% | ⭐ |
-| Legacy XGBoost (baseline) | 67.68% | ~59% | 📊 |
+| **HistGradientBoosting + Vegas** | **70.20%** | **~63%** | **BEST** (In Production) |
+| Stacking Ensemble | 69.91% | ~62% | Strong |
+| Weighted Ensemble | 69.81% | ~62% | Strong |
+| RandomForest + Vegas | 69.37% | ~61% | Solid |
+| XGBoost + Vegas | 68.85% | ~60% | Solid |
+| Legacy XGBoost (baseline) | 67.68% | ~59% | Baseline |
 
-### **Automated Daily Workflows:**
+### Automated Daily Workflows:
 | Workflow | Schedule | Purpose |
 |----------|----------|---------|
 | **Fetch Today's Schedule** | 8:00 AM UTC (3 AM EST) | Scrapes ESPN for today's NBA games |
@@ -58,7 +56,7 @@ This project significantly improves upon the original NBA prediction model by **
 #### Table of contents
 - [About This Project](#about-this-project)
 - [Quick Start](#quick-start)
-- [System Architecture](#system-architecture) ⭐ **NEW**
+- [System Architecture](#system-architecture)
 - [Original Project](#original-project)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
@@ -69,13 +67,13 @@ This project significantly improves upon the original NBA prediction model by **
 
 This is an enhanced version of Chris Munch's NBA Game Prediction project. I discovered his excellent baseline Streamlit app and decided to push it further using **Cursor AI** as my development partner.
 
-### 🎯 **My Goals:**
+### My Goals:
 1. **Improve model accuracy** by integrating additional data sources
 2. **Test multiple ML models** to find the best performer
 3. **Build production-ready features** including CSV export and model comparison
 4. **Learn by doing** - hands-on iteration with real-world sports prediction
 
-### 💡 **Development Process:**
+### Development Process:
 Using Cursor AI, I iteratively:
 - Added real Vegas betting lines (+1.17% AUC) from Kaggle
 - Integrated live odds via The Odds API for real-time betting data
@@ -86,7 +84,7 @@ Using Cursor AI, I iteratively:
 - Built fully automated GitHub Actions workflows for daily predictions and email notifications
 - Organized the codebase for production and collaboration
 
-### 📊 **Results:**
+### Results:
 **+2.52% AUC improvement** over the baseline, achieving **70.20% AUC** with the best model.
 
 ---
@@ -109,12 +107,12 @@ pip install -r requirements.txt
 streamlit run src/streamlit_app_enhanced.py
 ```
 
-**✨ Features:**
-- 🤖 **Automated daily predictions** via GitHub Actions (runs at 4 AM EST)
-- 📧 **Email notifications** with formatted predictions
-- 📊 **Local Streamlit app** for interactive exploration
-- 🎯 **240+ engineered features** including Vegas odds and injury data
-- 🏀 **Varied predictions** with confidence levels (High/Medium/Low)
+**Features:**
+- **Automated daily predictions** via GitHub Actions (runs at 4 AM EST)
+- **Email notifications** with formatted predictions
+- **Local Streamlit app** for interactive exploration
+- **240+ engineered features** including Vegas odds and injury data
+- **Varied predictions** with confidence levels (High/Medium/Low)
 
 **Note:** The app works perfectly locally. Streamlit Cloud deployment is not supported due to large dataset size (>100MB).
 
@@ -124,24 +122,24 @@ For workflow details and manual predictions, see [docs/SCRIPTS_README.md](docs/S
 
 ## System Architecture
 
-### 📊 Visual Overview
+### Visual Overview
 
 View the complete system architecture with interactive diagrams:
 
-**📖 [Technical Architecture Documentation](docs/ARCHITECTURE.md)**
+**[Technical Architecture Documentation](docs/ARCHITECTURE.md)**
 - Mermaid diagram with data flow
 - Feature engineering pipeline (45 → 240 columns)
 - ML model architecture
 - Deployment details
 - Performance optimizations
 
-**🎨 [Visual System Diagrams](docs/SYSTEM_DIAGRAM.md)**
+**[Visual System Diagrams](docs/SYSTEM_DIAGRAM.md)**
 - ASCII art flowcharts
 - Phase-by-phase data flows
 - Automation schedule
 - Technology decision trees
 
-### 🔄 Automated Workflow Pipeline
+### Automated Workflow Pipeline
 
 ```
 8:00 AM UTC → Fetch Schedule (ESPN)
@@ -153,8 +151,8 @@ View the complete system architecture with interactive diagrams:
 Auto-trigger → Send Email Notification
 ```
 
-**Daily Runtime:** ~8-9 minutes total
-**Predictions:** 8-15 games with varied probabilities (27%-71%)
+**Daily Runtime:** ~8-9 minutes total  
+**Predictions:** 8-15 games with varied probabilities (27%-71%)  
 **Email:** HTML formatted with confidence levels
 
 ---
@@ -165,13 +163,13 @@ This enhanced version builds upon **Chris Munch's** excellent [NBA Prediction ba
 
 **For detailed information about the original methodology, data processing, and modeling approach, please visit:**
 
-📖 **[Chris Munch's Original README](https://github.com/cmunch1/nba-prediction/blob/main/README.md)**
+**[Chris Munch's Original README](https://github.com/cmunch1/nba-prediction/blob/main/README.md)**
 
 The original project established the foundation with:
-- ✅ Excellent feature engineering (rolling averages, streaks, matchups)
-- ✅ Production-ready pipeline (data scraping, model training, deployment)
-- ✅ Comprehensive EDA and documentation
-- ✅ XGBoost baseline model achieving 67.68% AUC
+- Excellent feature engineering (rolling averages, streaks, matchups)
+- Production-ready pipeline (data scraping, model training, deployment)
+- Comprehensive EDA and documentation
+- XGBoost baseline model achieving 67.68% AUC
 
 This enhanced version adds Vegas betting lines, injury data, automated workflows, and improved model performance (+2.52% AUC improvement).
 
@@ -191,11 +189,11 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 ## Contact
 
 **Casey Hess**
-- 🌐 Website: [www.missionfromdog.com](https://www.missionfromdog.com)
-- 💼 LinkedIn: [linkedin.com/in/caseyhesschicago](https://www.linkedin.com/in/caseyhesschicago)
-- 🐦 Twitter: [@caseyhess](https://twitter.com/caseyhess)
-- 📧 GitHub: [@missionfromdog](https://github.com/missionfromdog)
-- 📍 Location: Chicago, IL
+- Website: [www.missionfromdog.com](https://www.missionfromdog.com)
+- LinkedIn: [linkedin.com/in/caseyhesschicago](https://www.linkedin.com/in/caseyhesschicago)
+- Twitter: [@caseyhess](https://twitter.com/caseyhess)
+- GitHub: [@missionfromdog](https://github.com/missionfromdog)
+- Location: Chicago, IL
 
 Currently overseeing a team of data scientists, developers, and analysts as the product owner for a media management and prediction platform.
 
@@ -222,5 +220,5 @@ Currently overseeing a team of data scientists, developers, and analysts as the 
 ---
 
 <div align="center">
-<sub>Built with ❤️ and Cursor AI in Chicago</sub>
+<sub>Built with Cursor AI in Chicago</sub>
 </div>
