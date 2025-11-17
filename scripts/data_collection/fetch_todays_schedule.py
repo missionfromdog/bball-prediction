@@ -187,7 +187,9 @@ def create_game_rows(games, teams_df):
     sys.stdout.flush()
     
     rows = []
-    today = datetime.now().strftime('%Y-%m-%d')
+    # Format date to match existing dataset format: 'YYYY-MM-DD HH:MM:SS'
+    # This ensures pandas can parse it correctly when reloading
+    today = datetime.now().strftime('%Y-%m-%d 00:00:00')
     
     # Create team lookup
     team_lookup = {}
