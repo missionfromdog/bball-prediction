@@ -703,7 +703,9 @@ def main():
         print("[DEBUG] Last 10 rows of data file:")
         data_path = DATAPATH / 'games_with_real_vegas_workflow.csv'
         df_check = pd.read_csv(data_path)
-        print(df_check[['GAME_DATE_EST', 'HOME_TEAM_ABBREVIATION', 'VISITOR_TEAM_ABBREVIATION', 'PTS_home']].tail(10))
+        # Use columns that actually exist in the dataset
+        cols_to_show = ['GAME_DATE_EST', 'HOME_TEAM_ID', 'VISITOR_TEAM_ID', 'PTS_home']
+        print(df_check[cols_to_show].tail(10))
         return
     
     # Prepare features
