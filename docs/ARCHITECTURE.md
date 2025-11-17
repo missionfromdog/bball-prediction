@@ -59,14 +59,14 @@ graph TB
     C1 -->|Load data| E3
     E1 -->|Display| E3
 
-    style B1 fill:#e1f5ff
-    style B2 fill:#e1f5ff
-    style B3 fill:#e1f5ff
-    style B4 fill:#e1f5ff
-    style D2 fill:#90EE90
-    style E1 fill:#FFD700
-    style E2 fill:#FFD700
-    style E3 fill:#FFD700
+    style B1 fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#000
+    style B2 fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#000
+    style B3 fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#000
+    style B4 fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#000
+    style D2 fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#000
+    style E1 fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#000
+    style E2 fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#000
+    style E3 fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#000
 ```
 
 ## Data Flow Details
