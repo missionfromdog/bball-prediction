@@ -205,12 +205,18 @@ def check_features_engineered(df):
     unplayed_games = df[df['PTS_home'] == 0]
     
     if len(unplayed_games) > 0:
-        # If there are unplayed games, check if THEY have features
+        # Check if ANY unplayed game has zero/NaN features
+        # (new games from schedule fetch won't have engineered features)
         for col in rolling_cols[:3]:
             if col in unplayed_games.columns:
-                # If unplayed games have all zero/NaN features, need to re-engineer
-                if unplayed_games[col].sum() == 0 or unplayed_games[col].isna().all():
-                    print(f"   🔍 Unplayed games missing features in column: {col}", flush=True)
+                # Count how many unplayed games have zero or NaN for this feature
+                zero_count = (unplayed_games[col] == 0).sum()
+                nan_count = unplayed_games[col].isna().sum()
+                games_missing_features = zero_count + nan_count
+                
+                # If ANY unplayed game is missing this feature, need to re-engineer
+                if games_missing_features > 0:
+                    print(f"   🔍 {games_missing_features}/{len(unplayed_games)} unplayed games missing features in column: {col}", flush=True)
                     return False
     
     # Check historical games too
