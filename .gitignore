@@ -54,15 +54,18 @@ geckodriver
 # models/*.pkl
 
 # IGNORE LARGE DATA FILES - workflows generate their own
-# Keep only essential training data
-data/original/games.csv
-data/original/ranking.csv
-data/original/teams.csv
-data/games_engineered.csv
+# Original data files (100MB+ total)
+data/original/*.csv
 
-# Exclude large workflow dataset (93MB) - use streamlit sample instead
+# Large training/historical data
+data/games.csv
+data/games_engineered.csv
 data/games_with_real_vegas_workflow.csv
 data/games_with_real_vegas.csv
+
+# Large betting data
+data/betting/nba_betting_lines_historical.csv
+data/betting/kaggle/*.csv
 
 # Ignore workflow-generated files
 data/predictions/*.csv
