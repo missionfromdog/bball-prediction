@@ -58,6 +58,7 @@ This project significantly improves upon the original NBA prediction model by **
 #### Table of contents
 - [About This Project](#about-this-project)
 - [Quick Start](#quick-start)
+- [System Architecture](#system-architecture) ⭐ **NEW**
 - [Introduction (Original)](#introduction)
 - [Problem](#problem-increase-the-profitability-of-betting-on-nba-games)
 - [Initial step](#initial-step-predict-the-probability-that-the-home-team-will-win-each-game)
@@ -133,6 +134,43 @@ streamlit run src/streamlit_app_enhanced.py
 **Note:** The app works perfectly locally. Streamlit Cloud deployment is not supported due to large dataset size (>100MB).
 
 For workflow details and manual predictions, see [docs/SCRIPTS_README.md](docs/SCRIPTS_README.md)
+
+---
+
+## System Architecture
+
+### 📊 Visual Overview
+
+View the complete system architecture with interactive diagrams:
+
+**📖 [Technical Architecture Documentation](docs/ARCHITECTURE.md)**
+- Mermaid diagram with data flow
+- Feature engineering pipeline (45 → 240 columns)
+- ML model architecture
+- Deployment details
+- Performance optimizations
+
+**🎨 [Visual System Diagrams](docs/SYSTEM_DIAGRAM.md)**
+- ASCII art flowcharts
+- Phase-by-phase data flows
+- Automation schedule
+- Technology decision trees
+
+### 🔄 Automated Workflow Pipeline
+
+```
+8:00 AM UTC → Fetch Schedule (ESPN)
+    ↓
+9:00 AM UTC → Generate Predictions (Feature Engineering + ML)
+    ↓
+12:00 PM UTC → Update Scores (ESPN)
+    ↓
+Auto-trigger → Send Email Notification
+```
+
+**Daily Runtime:** ~8-9 minutes total
+**Predictions:** 8-15 games with varied probabilities (27%-71%)
+**Email:** HTML formatted with confidence levels
 
 ---
 
