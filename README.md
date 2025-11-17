@@ -13,8 +13,6 @@
 <br />
 </div>
 
-![image info](./images/basketball_money2.jpg)
-
 **Project Repository:** [https://github.com/missionfromdog/bball-prediction](https://github.com/missionfromdog/bball-prediction)
 
 **Built from:** Chris Munch's [NBA Prediction Base Project](https://github.com/cmunch1/nba-prediction)
