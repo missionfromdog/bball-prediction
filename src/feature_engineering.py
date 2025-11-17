@@ -534,8 +534,11 @@ def combine_new_features(df: pd.DataFrame, df_consecutive: pd.DataFrame)-> pd.Da
     df1 = df1.rename(columns={'TEAM1': 'HOME_TEAM_ID'})
     # Deduplicate before merge to prevent Cartesian product
     df1 = df1.drop_duplicates(subset=['GAME_ID', 'HOME_TEAM_ID'], keep='first')
-    # Explicitly set suffixes to avoid duplicate column errors
-    df = pd.merge(df, df1, how="left", on=["GAME_ID", "HOME_TEAM_ID"], suffixes=('', '_HOME_DUP'))
+    # Drop any columns from df1 that already exist in df (prevent duplicates)
+    df1_cols_to_drop = [col for col in df1.columns if col in df.columns and col not in ['GAME_ID', 'HOME_TEAM_ID']]
+    if df1_cols_to_drop:
+        df1 = df1.drop(df1_cols_to_drop, axis=1)
+    df = pd.merge(df, df1, how="left", on=["GAME_ID", "HOME_TEAM_ID"])
     
     #don't include matchup features for visitor team since they are equivalent for both home and visitor
     new_features = [x for x in new_features if x not in matchup_features]
@@ -552,8 +555,11 @@ def combine_new_features(df: pd.DataFrame, df_consecutive: pd.DataFrame)-> pd.Da
     df2 = df2.rename(columns={'TEAM1': 'VISITOR_TEAM_ID'})
     # Deduplicate before merge to prevent Cartesian product
     df2 = df2.drop_duplicates(subset=['GAME_ID', 'VISITOR_TEAM_ID'], keep='first')
-    # Explicitly set suffixes to avoid duplicate column errors
-    df = pd.merge(df, df2, how="left", on=["GAME_ID", "VISITOR_TEAM_ID"], suffixes=('', '_VISITOR_DUP'))
+    # Drop any columns from df2 that already exist in df (prevent duplicates)
+    df2_cols_to_drop = [col for col in df2.columns if col in df.columns and col not in ['GAME_ID', 'VISITOR_TEAM_ID']]
+    if df2_cols_to_drop:
+        df2 = df2.drop(df2_cols_to_drop, axis=1)
+    df = pd.merge(df, df2, how="left", on=["GAME_ID", "VISITOR_TEAM_ID"])
     
     return df
 
