@@ -53,19 +53,21 @@ geckodriver
 # Model files (if you want to exclude large models)
 # models/*.pkl
 
-# IGNORE LARGE DATA FILES - workflows generate their own
-# Original data files (100MB+ total)
-data/original/*.csv
+# IGNORE LARGE DATA FILES - keep only what workflows need
+# Original data files (not needed for workflows)
+data/original/games_details.csv
+data/original/ranking.csv
 
-# Large training/historical data
+# Old versions (not needed)
 data/games.csv
 data/games_engineered.csv
-data/games_with_real_vegas_workflow.csv
 data/games_with_real_vegas.csv
 
-# Large betting data
+# Large betting data (not needed - using real-time API)
 data/betting/nba_betting_lines_historical.csv
 data/betting/kaggle/*.csv
+
+# ✅ KEEP IN GIT: data/games_with_real_vegas_workflow.csv (needed by workflows)
 
 # Ignore workflow-generated files
 data/predictions/*.csv
