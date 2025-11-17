@@ -187,9 +187,10 @@ def create_game_rows(games, teams_df):
     sys.stdout.flush()
     
     rows = []
-    # Format date to match existing dataset format: 'YYYY-MM-DD HH:MM:SS'
-    # This ensures pandas can parse it correctly when reloading
-    today = datetime.now().strftime('%Y-%m-%d 00:00:00')
+    # Format date to match existing dataset format: 'YYYY-MM-DD HH:MM:SS+00:00'
+    # CRITICAL: Must include +00:00 timezone to match existing data format
+    # Otherwise pandas can't parse mixed timezone/non-timezone dates
+    today = datetime.now().strftime('%Y-%m-%d 00:00:00+00:00')
     
     # Create team lookup
     team_lookup = {}
