@@ -22,11 +22,11 @@ warnings.filterwarnings('ignore')
 
 # Try different import paths for compatibility
 try:
-    from feature_engineering import fix_datatypes, remove_non_rolling
+    from feature_engineering import fix_datatypes, remove_non_rolling, process_features
     from constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
     from live_odds_display import load_live_odds, match_game_to_odds, format_odds_display
 except:
-    from src.feature_engineering import fix_datatypes, remove_non_rolling
+    from src.feature_engineering import fix_datatypes, remove_non_rolling, process_features
     from src.constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
     try:
         from src.live_odds_display import load_live_odds, match_game_to_odds, format_odds_display
@@ -367,20 +367,30 @@ def main():
             streamlit_sample = DATAPATH / 'games_streamlit_sample.csv'
             
             if workflow_file.exists() and workflow_file.stat().st_size > 1000:
-                df_current_season = pd.read_csv(workflow_file)
+                df_full = pd.read_csv(workflow_file)
+                data_source = "workflow"
             elif streamlit_sample.exists():
                 # Use smaller sample for Streamlit Cloud (500 recent games)
-                df_current_season = pd.read_csv(streamlit_sample)
+                df_full = pd.read_csv(streamlit_sample)
+                data_source = "sample"
             else:
                 # Final fallback to old dataset
-                df_current_season = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
+                df_full = pd.read_csv(DATAPATH / 'games_with_real_vegas.csv')
+                data_source = "legacy"
+            
+            # Check if features are already engineered (240+ columns means engineered)
+            if len(df_full.columns) < 200:
+                with st.spinner(f"Engineering features from {data_source} dataset... (this may take a minute)"):
+                    # Features not present - need to engineer them
+                    df_full = process_features(df_full)
+                    st.success(f"✅ Engineered {len(df_full.columns)} features")
             
             # Get current season
             current_season = datetime.today().year
             if datetime.today().month < 10:
                 current_season = current_season - 1
             
-            df_current_season = df_current_season[df_current_season['SEASON'] == current_season]
+            df_current_season = df_full[df_full['SEASON'] == current_season]
             
             # Get today's games (unplayed + today's date only)
             today = pd.to_datetime(datetime.today().date())
@@ -396,6 +406,8 @@ def main():
         except Exception as e:
             st.error(f"❌ Error loading data: {str(e)}")
             st.info("Make sure data/games_with_real_vegas.csv exists and is up to date.")
+            import traceback
+            st.code(traceback.format_exc())
             return
         
         # Today's games section
