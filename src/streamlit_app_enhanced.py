@@ -758,12 +758,26 @@ def main():
         st.subheader("📊 Dataset Statistics")
         
         try:
-            # Load master dataset stats
-            master_file = DATAPATH / 'games_master_engineered.csv'
-            if master_file.exists():
-                df_stats = pd.read_csv(master_file, low_memory=False)
-                
-                col1, col2, col3 = st.columns(3)
+            # Load dataset stats - use same priority as predictions
+            workflow_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+            streamlit_sample = DATAPATH / 'games_streamlit_sample.csv'
+            legacy_file = DATAPATH / 'games_with_real_vegas.csv'
+            
+            df_stats = None
+            data_source_name = None
+            
+            if workflow_file.exists() and workflow_file.stat().st_size > 1000:
+                df_stats = pd.read_csv(workflow_file, low_memory=False)
+                data_source_name = "Workflow Dataset"
+            elif streamlit_sample.exists():
+                df_stats = pd.read_csv(streamlit_sample, low_memory=False)
+                data_source_name = "Sample Dataset"
+            elif legacy_file.exists():
+                df_stats = pd.read_csv(legacy_file, low_memory=False)
+                data_source_name = "Legacy Dataset"
+            
+            if df_stats is not None:
+                col1, col2, col3, col4 = st.columns(4)
                 with col1:
                     total_games = len(df_stats)
                     st.metric("Total Games", f"{total_games:,}")
@@ -773,20 +787,26 @@ def main():
                 with col3:
                     upcoming_games = len(df_stats[df_stats['PTS_home'] == 0])
                     st.metric("Upcoming Games", f"{upcoming_games}")
+                with col4:
+                    num_features = len(df_stats.columns)
+                    st.metric("Features", f"{num_features}")
                 
                 st.markdown("")
                 
                 # Date range
-                df_stats['GAME_DATE_EST'] = pd.to_datetime(df_stats['GAME_DATE_EST'])
+                df_stats['GAME_DATE_EST'] = pd.to_datetime(df_stats['GAME_DATE_EST'], errors='coerce')
                 min_date = df_stats['GAME_DATE_EST'].min().strftime('%B %d, %Y')
                 max_date = df_stats['GAME_DATE_EST'].max().strftime('%B %d, %Y')
                 
                 st.caption(f"📅 Date Range: {min_date} → {max_date}")
+                st.caption(f"📂 Source: {data_source_name}")
                 
             else:
-                st.warning("Master dataset not found")
+                st.warning("No dataset found. Please ensure data files exist in the data/ directory.")
         except Exception as e:
             st.error(f"Error loading dataset stats: {e}")
+            import traceback
+            st.code(traceback.format_exc())
     
     # ========================================================================
     # TAB 3: ABOUT
