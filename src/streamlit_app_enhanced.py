@@ -15,6 +15,7 @@ import joblib
 import pandas as pd
 import numpy as np
 import json
+import subprocess
 from datetime import datetime
 from pathlib import Path
 import warnings
@@ -62,6 +63,36 @@ def fancy_header(text, font_size=24, color="#ff5f27"):
         f'<span style="color:{color}; font-size: {font_size}px; font-weight: bold;">{text}</span>',
         unsafe_allow_html=True
     )
+
+
+def refresh_data_from_github():
+    """Pull latest data from GitHub repository"""
+    try:
+        # Get the project root directory
+        project_root = Path(__file__).parent.parent
+        
+        # Run git pull
+        result = subprocess.run(
+            ['git', 'pull', 'origin', 'main'],
+            cwd=project_root,
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        
+        if result.returncode == 0:
+            # Check if there were updates
+            if 'Already up to date' in result.stdout:
+                return 'up_to_date', result.stdout
+            else:
+                return 'updated', result.stdout
+        else:
+            return 'error', result.stderr
+            
+    except subprocess.TimeoutExpired:
+        return 'error', 'Git pull timed out after 30 seconds'
+    except Exception as e:
+        return 'error', str(e)
 
 
 def load_available_models():
@@ -299,6 +330,22 @@ def main():
             st.sidebar.metric("Test AUC", f"{metrics['test_auc']:.4f}")
         if 'test_accuracy' in metrics and metrics['test_accuracy'] > 0:
             st.sidebar.metric("Test Accuracy", f"{metrics['test_accuracy']:.2%}")
+    
+    # Data refresh button
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("**🔄 Data Management**")
+    
+    if st.sidebar.button("🔄 Refresh Data from GitHub", help="Pull latest games and predictions from GitHub"):
+        with st.spinner("Pulling latest data from GitHub..."):
+            status, message = refresh_data_from_github()
+            
+            if status == 'updated':
+                st.sidebar.success("✅ Data updated! Reloading app...")
+                st.rerun()
+            elif status == 'up_to_date':
+                st.sidebar.info("ℹ️ Already up to date")
+            else:
+                st.sidebar.error(f"❌ Update failed: {message}")
     
     # Auto-load all models for comparison (no checkbox needed)
     st.sidebar.markdown("---")
