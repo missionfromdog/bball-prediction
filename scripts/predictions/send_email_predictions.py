@@ -122,6 +122,22 @@ def format_html_email(df, filename):
     medium_conf = len(df[df['Confidence'] == 'Medium'])
     low_conf = len(df[df['Confidence'] == 'Low'])
     
+    # Count value bets
+    value_bet_col = None
+    for col in ['Value_Bet', 'value_bet', 'HAS_VALUE', 'has_value']:
+        if col in df.columns:
+            value_bet_col = col
+            break
+    
+    if value_bet_col:
+        # Handle boolean, string, or numeric values
+        value_bets = df[value_bet_col].apply(
+            lambda x: x == True or x == 'True' or x == 'true' or (isinstance(x, (int, float)) and x != 0)
+        )
+        num_value_bets = value_bets.sum()
+    else:
+        num_value_bets = 0
+    
     # Start HTML with improved styling
     html = f"""
     <html>
@@ -301,6 +317,60 @@ def format_html_email(df, filename):
                 color: #adb5bd;
                 font-style: italic;
             }}
+            .betting-metrics {{
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 2px solid #e9ecef;
+            }}
+            .betting-table {{
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                margin-top: 10px;
+            }}
+            .betting-table td {{
+                padding: 8px 10px;
+                text-align: center;
+                border-right: 1px solid #e9ecef;
+            }}
+            .betting-table td:last-child {{
+                border-right: none;
+            }}
+            .betting-label {{
+                font-size: 10px;
+                color: #6c757d;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                display: block;
+                margin-bottom: 3px;
+            }}
+            .betting-value {{
+                font-size: 16px;
+                font-weight: 700;
+                display: block;
+            }}
+            .betting-value.positive {{
+                color: #10b981;
+            }}
+            .betting-value.negative {{
+                color: #ef4444;
+            }}
+            .betting-value.neutral {{
+                color: #1a1a1a;
+            }}
+            .value-bet-badge {{
+                display: inline-block;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white;
+                padding: 6px 16px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-top: 10px;
+            }}
             .footer {{
                 text-align: center;
                 padding: 30px 20px;
@@ -343,6 +413,7 @@ def format_html_email(df, filename):
                     <span class="stat-value">{low_conf}</span>
                     <span class="stat-label">Low Confidence</span>
                 </div>
+                {f'<div class="stat"><span class="stat-value">{num_value_bets}</span><span class="stat-label">Value Bets</span></div>' if num_value_bets > 0 else ''}
             </div>
         </div>
     """
@@ -422,6 +493,82 @@ def format_html_email(df, filename):
                     </tr>
                 </table>
             """
+        
+        # Add betting metrics if available
+        has_edge = 'Edge' in row and pd.notna(row.get('Edge'))
+        has_ev = 'EV' in row and pd.notna(row.get('EV'))
+        has_kelly = 'Kelly' in row and pd.notna(row.get('Kelly'))
+        has_bet_size = 'Bet_Size' in row and pd.notna(row.get('Bet_Size'))
+        is_value_bet = row.get('Value_Bet', False) == True or row.get('Value_Bet', False) == 'True'
+        
+        if has_edge or has_ev or has_kelly or has_bet_size:
+            # Format betting metrics
+            edge_val = row.get('Edge', None)
+            ev_val = row.get('EV', None)
+            kelly_val = row.get('Kelly', None)
+            bet_size_val = row.get('Bet_Size', None)
+            
+            # Format edge
+            if pd.notna(edge_val):
+                edge_str = f"{float(edge_val):+.1%}"
+                edge_class = "positive" if float(edge_val) > 0.05 else "negative" if float(edge_val) < 0 else "neutral"
+            else:
+                edge_str = '<span class="no-odds">--</span>'
+                edge_class = "neutral"
+            
+            # Format EV
+            if pd.notna(ev_val):
+                ev_str = f"${float(ev_val):+.2f}"
+                ev_class = "positive" if float(ev_val) > 0 else "negative" if float(ev_val) < 0 else "neutral"
+            else:
+                ev_str = '<span class="no-odds">--</span>'
+                ev_class = "neutral"
+            
+            # Format Kelly
+            if pd.notna(kelly_val):
+                kelly_str = f"{float(kelly_val):.1%}"
+                kelly_class = "neutral"
+            else:
+                kelly_str = '<span class="no-odds">--</span>'
+                kelly_class = "neutral"
+            
+            # Format bet size
+            if pd.notna(bet_size_val):
+                bet_size_str = f"${float(bet_size_val):.2f}"
+                bet_size_class = "neutral"
+            else:
+                bet_size_str = '<span class="no-odds">--</span>'
+                bet_size_class = "neutral"
+            
+            html += f"""
+                <div class="betting-metrics">
+                    <table class="betting-table">
+                        <tr>
+                            <td>
+                                <span class="betting-label">Edge</span>
+                                <span class="betting-value {edge_class}">{edge_str}</span>
+                            </td>
+                            <td>
+                                <span class="betting-label">Expected Value</span>
+                                <span class="betting-value {ev_class}">{ev_str}</span>
+                            </td>
+                            <td>
+                                <span class="betting-label">Kelly %</span>
+                                <span class="betting-value {kelly_class}">{kelly_str}</span>
+                            </td>
+                            <td>
+                                <span class="betting-label">Bet Size</span>
+                                <span class="betting-value {bet_size_class}">{bet_size_str}</span>
+                            </td>
+                        </tr>
+                    </table>
+            """
+            
+            # Add value bet badge if applicable
+            if is_value_bet:
+                html += '<div style="text-align: center;"><span class="value-bet-badge">⭐ Value Bet</span></div>'
+            
+            html += "</div>"
         
         html += """
             </div>
