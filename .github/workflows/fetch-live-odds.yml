@@ -57,10 +57,20 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Reset to latest main first to avoid conflicts
+          # Save the odds files we just created (before resetting)
+          echo "💾 Saving newly created odds files..."
+          mkdir -p /tmp/odds_backup
+          cp -f data/betting/live_odds*.csv /tmp/odds_backup/ 2>/dev/null || true
+          cp -f data/betting/*bookmakers*.csv /tmp/odds_backup/ 2>/dev/null || true
+          
+          # Reset to latest main to get latest code
           echo "🔄 Syncing with latest main..."
           git fetch origin main
           git reset --hard origin/main
+          
+          # Restore the odds files we just created
+          echo "📥 Restoring odds files..."
+          cp -f /tmp/odds_backup/*.csv data/betting/ 2>/dev/null || true
           
           # Add odds files (including bookmaker comparison)
           # Use explicit path to ensure bookmaker comparison file is added
