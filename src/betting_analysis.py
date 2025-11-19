@@ -120,13 +120,21 @@ def calculate_ev(model_prob: float, american_odds: float) -> float:
     if pd.isna(model_prob) or pd.isna(american_odds):
         return np.nan
     
+    # Handle zero or invalid odds
+    if american_odds == 0 or abs(american_odds) < 1:
+        return np.nan
+    
     # Calculate profit per $1 bet
     if american_odds > 0:
         # Underdog: +150 means bet $1 to win $1.50
         profit = american_odds / 100
     else:
         # Favorite: -150 means bet $1.50 to win $1, so profit per $1 bet = 100/150
-        profit = 100 / abs(american_odds)
+        # Avoid division by zero
+        abs_odds = abs(american_odds)
+        if abs_odds == 0:
+            return np.nan
+        profit = 100 / abs_odds
     
     # Loss is always $1 (the bet amount)
     loss = 1.0
@@ -161,11 +169,19 @@ def calculate_kelly_fraction(model_prob: float, american_odds: float) -> float:
     if pd.isna(model_prob) or pd.isna(american_odds):
         return np.nan
     
+    # Handle zero or invalid odds
+    if american_odds == 0 or abs(american_odds) < 1:
+        return np.nan
+    
     # Convert American odds to decimal odds
     if american_odds > 0:
         decimal_odds = (american_odds / 100) + 1
     else:
-        decimal_odds = (100 / abs(american_odds)) + 1
+        # Avoid division by zero
+        abs_odds = abs(american_odds)
+        if abs_odds == 0:
+            return np.nan
+        decimal_odds = (100 / abs_odds) + 1
     
     # Net odds (b in Kelly formula)
     b = decimal_odds - 1
