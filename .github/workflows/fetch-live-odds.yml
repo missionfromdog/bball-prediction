@@ -63,7 +63,14 @@ jobs:
           git pull origin main --no-rebase || echo "⚠️ Pull had conflicts, continuing..."
           
           # Add odds files (including bookmaker comparison)
-          git add data/betting/live_odds*.csv data/betting/*bookmakers*.csv 2>/dev/null || true
+          # Use explicit path to ensure bookmaker comparison file is added
+          git add data/betting/live_odds*.csv 2>/dev/null || true
+          git add data/betting/live_odds_bookmakers_comparison.csv 2>/dev/null || true
+          git add data/betting/*bookmakers*.csv 2>/dev/null || true
+          
+          # Debug: Show what files are staged
+          echo "📋 Files staged for commit:"
+          git diff --staged --name-only || echo "No files staged"
           
           # Check if there are changes
           if git diff --staged --quiet; then
