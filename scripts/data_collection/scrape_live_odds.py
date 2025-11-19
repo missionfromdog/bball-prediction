@@ -16,16 +16,17 @@ DATAPATH = Path(__file__).resolve().parents[2] / 'data'
 BETTING_PATH = DATAPATH / 'betting'
 BETTING_PATH.mkdir(parents=True, exist_ok=True)
 
-def fetch_live_odds(api_key=None, sport='basketball_nba'):
+def fetch_live_odds(api_key=None, sport='basketball_nba', return_raw=False):
     """
     Fetch live NBA betting odds from The Odds API
     
     Args:
         api_key: API key from the-odds-api.com (or set ODDS_API_KEY env var)
         sport: Sport to fetch (default: basketball_nba)
+        return_raw: If True, return both processed DataFrame and raw JSON data
     
     Returns:
-        DataFrame with current betting lines
+        DataFrame with current betting lines (or tuple of (DataFrame, raw_data) if return_raw=True)
     """
     if api_key is None:
         api_key = os.environ.get('ODDS_API_KEY')
@@ -62,7 +63,7 @@ def fetch_live_odds(api_key=None, sport='basketball_nba'):
             print("⚠️ No upcoming games with odds available")
             return None
         
-        # Parse odds data
+        # Parse odds data - extract ALL bookmakers for comparison
         games = []
         for game in data:
             game_info = {
@@ -73,9 +74,9 @@ def fetch_live_odds(api_key=None, sport='basketball_nba'):
                 'away_team': game['away_team'],
             }
             
-            # Extract bookmaker data (use consensus or first available)
+            # Extract bookmaker data (use consensus or first available for backward compatibility)
             if game.get('bookmakers'):
-                bookmaker = game['bookmakers'][0]  # Use first bookmaker
+                bookmaker = game['bookmakers'][0]  # Use first bookmaker for main data
                 game_info['bookmaker'] = bookmaker['key']
                 
                 # Get markets
@@ -106,11 +107,128 @@ def fetch_live_odds(api_key=None, sport='basketball_nba'):
         df = pd.DataFrame(games)
         print(f"✅ Fetched odds for {len(df)} games")
         
-        return df
+        if return_raw:
+            return df, data  # Return both processed df and raw data for bookmaker comparison
+        else:
+            return df  # Backward compatible: return just DataFrame
     
     except requests.exceptions.RequestException as e:
         print(f"❌ Error fetching odds: {e}")
         return None
+
+
+def calculate_vig(home_ml, away_ml):
+    """
+    Calculate vig (bookmaker margin) from moneyline odds
+    
+    Vig = (sum of implied probabilities) - 1.0
+    
+    Returns:
+        Vig as percentage (e.g., 4.2 for 4.2%)
+    """
+    if pd.isna(home_ml) or pd.isna(away_ml):
+        return None
+    
+    # Convert American odds to implied probabilities
+    if home_ml > 0:
+        home_prob = 100 / (home_ml + 100)
+    else:
+        home_prob = abs(home_ml) / (abs(home_ml) + 100)
+    
+    if away_ml > 0:
+        away_prob = 100 / (away_ml + 100)
+    else:
+        away_prob = abs(away_ml) / (abs(away_ml) + 100)
+    
+    # Vig = sum of probabilities - 1.0
+    vig = (home_prob + away_prob - 1.0) * 100
+    return vig
+
+
+def extract_all_bookmakers(raw_data):
+    """
+    Extract all bookmakers for each game with vig calculations
+    
+    Returns:
+        DataFrame with one row per game-bookmaker combination
+    """
+    all_bookmakers = []
+    
+    # US bookmaker names (common ones)
+    us_bookmakers = [
+        'draftkings', 'fanduel', 'betmgm', 'caesars', 'pointsbet',
+        'wynnbet', 'betrivers', 'unibet_us', 'barstool', 'foxbet',
+        'bovada', 'mybookie', 'betonlineag', 'sportsbetting'
+    ]
+    
+    for game in raw_data:
+        game_id = game['id']
+        home_team = game['home_team']
+        away_team = game['away_team']
+        commence_time = game['commence_time']
+        
+        if not game.get('bookmakers'):
+            continue
+        
+        for bookmaker in game['bookmakers']:
+            bookmaker_key = bookmaker.get('key', '').lower()
+            
+            # Only include US bookmakers
+            if not any(us_name in bookmaker_key for us_name in us_bookmakers):
+                continue
+            
+            bookmaker_data = {
+                'game_id': game_id,
+                'home_team': home_team,
+                'away_team': away_team,
+                'commence_time': commence_time,
+                'bookmaker': bookmaker['title'],  # Display name
+                'bookmaker_key': bookmaker_key,
+            }
+            
+            # Extract markets
+            for market in bookmaker.get('markets', []):
+                if market['key'] == 'h2h':  # Moneyline
+                    home_ml = None
+                    away_ml = None
+                    for outcome in market['outcomes']:
+                        if outcome['name'] == home_team:
+                            home_ml = outcome['price']
+                        else:
+                            away_ml = outcome['price']
+                    
+                    bookmaker_data['home_ml'] = home_ml
+                    bookmaker_data['away_ml'] = away_ml
+                    bookmaker_data['ml_vig'] = calculate_vig(home_ml, away_ml) if home_ml and away_ml else None
+                
+                elif market['key'] == 'spreads':  # Point spreads
+                    for outcome in market['outcomes']:
+                        if outcome['name'] == home_team:
+                            bookmaker_data['home_spread'] = outcome['point']
+                            bookmaker_data['home_spread_odds'] = outcome['price']
+                        else:
+                            bookmaker_data['away_spread'] = outcome['point']
+                            bookmaker_data['away_spread_odds'] = outcome['price']
+                    
+                    # Calculate spread vig if we have both odds
+                    if 'home_spread_odds' in bookmaker_data and 'away_spread_odds' in bookmaker_data:
+                        bookmaker_data['spread_vig'] = calculate_vig(
+                            bookmaker_data['home_spread_odds'],
+                            bookmaker_data['away_spread_odds']
+                        )
+                
+                elif market['key'] == 'totals':  # Over/Under
+                    bookmaker_data['total'] = market['outcomes'][0]['point']
+                    over_odds = market['outcomes'][0]['price']
+                    under_odds = market['outcomes'][1]['price']
+                    bookmaker_data['over_odds'] = over_odds
+                    bookmaker_data['under_odds'] = under_odds
+                    bookmaker_data['total_vig'] = calculate_vig(over_odds, under_odds) if over_odds and under_odds else None
+            
+            all_bookmakers.append(bookmaker_data)
+    
+    df = pd.DataFrame(all_bookmakers)
+    return df
 
 
 def save_live_odds(df, filename=None):
@@ -195,12 +313,27 @@ def main():
     print("=" * 60)
     print()
     
-    # Fetch odds
-    df = fetch_live_odds()
+    # Fetch odds (with raw data for bookmaker comparison)
+    result = fetch_live_odds(return_raw=True)
     
-    if df is not None:
-        # Save raw data
+    if result is not None:
+        df, raw_data = result
+        
+        # Save raw data (backward compatible)
         raw_path = save_live_odds(df)
+        
+        # Extract all bookmakers for comparison
+        print("\n📊 Extracting all US bookmakers for comparison...")
+        bookmakers_df = extract_all_bookmakers(raw_data)
+        
+        if not bookmakers_df.empty:
+            # Save bookmaker comparison data
+            comparison_path = BETTING_PATH / 'live_odds_bookmakers_comparison.csv'
+            bookmakers_df.to_csv(comparison_path, index=False)
+            print(f"✅ Saved bookmaker comparison: {comparison_path}")
+            print(f"   Found {len(bookmakers_df)} bookmaker-game combinations")
+            print(f"   Unique bookmakers: {bookmakers_df['bookmaker'].nunique()}")
+            print(f"   Unique games: {bookmakers_df['game_id'].nunique()}")
         
         # Convert to Vegas format
         vegas_df = convert_to_vegas_format(df)

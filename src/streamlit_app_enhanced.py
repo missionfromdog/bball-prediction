@@ -390,7 +390,7 @@ def main():
     live_odds_df = load_live_odds()
     
     # Main content tabs
-    tab1, tab2, tab3 = st.tabs(['📊 Predictions', '📈 Performance', 'ℹ️ About'])
+    tab1, tab2, tab3, tab4 = st.tabs(['📊 Predictions', '💰 Odds Comparison', '📈 Performance', 'ℹ️ About'])
     
     # ========================================================================
     # TAB 1: PREDICTIONS
@@ -871,9 +871,9 @@ def main():
             st.info("No past games available for this season yet.")
     
     # ========================================================================
-    # TAB 2: PERFORMANCE
+    # TAB 3: PERFORMANCE
     # ========================================================================
-    with tab2:
+    with tab3:
         fancy_header('Model Performance Analysis', font_size=28)
         st.markdown("")
         
