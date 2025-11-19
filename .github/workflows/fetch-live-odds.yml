@@ -25,6 +25,14 @@ jobs:
           ref: main
           fetch-depth: 0
       
+      - name: Update to latest main
+        run: |
+          echo "🔄 Ensuring we're on latest main..."
+          git fetch origin main
+          git checkout main || git checkout -b main origin/main
+          git reset --hard origin/main
+          echo "✅ Now on latest main: $(git rev-parse HEAD)"
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
