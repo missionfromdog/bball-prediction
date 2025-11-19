@@ -769,6 +769,14 @@ def main():
             # Get predictions
             past_predictions, past_proba = predict_with_model(selected_model, X_past, selected_model_key)
             
+            # Sort and limit BEFORE adding predictions (to keep indices aligned)
+            df_past_display = df_past_display.sort_values('GAME_DATE_EST', ascending=False).head(25)
+            df_past_display = df_past_display.reset_index(drop=True)
+            
+            # Now get predictions for the sorted/limited dataframe
+            X_past_limited, _ = prepare_data_for_prediction(df_past_display)
+            past_predictions, past_proba = predict_with_model(selected_model, X_past_limited, selected_model_key)
+            
             df_past_display['HOME_WIN_PROB'] = past_proba
             df_past_display['PREDICTED_WINNER'] = past_predictions
             df_past_display['ACTUAL_WINNER'] = df_past_display['HOME_TEAM_WINS']
@@ -781,6 +789,7 @@ def main():
                 live_odds = match_game_to_odds(row['MATCHUP'], live_odds_df) if live_odds_df is not None else None
                 
                 # Determine if we're betting on home or away
+                # idx now matches the position in past_predictions since we reset_index
                 is_home_bet = past_predictions[idx] == 1
                 
                 # Extract moneylines
@@ -812,6 +821,7 @@ def main():
                         pass
                 
                 # Perform betting analysis
+                # idx now matches the position in past_proba since we reset_index
                 analysis = analyze_betting_value(
                     model_prob=past_proba[idx],
                     home_ml=home_ml,
@@ -824,12 +834,6 @@ def main():
             # Add betting columns to display dataframe
             df_past_display['EDGE'] = [a.get('edge', np.nan) for a in past_betting_analyses]
             df_past_display['HAS_VALUE'] = [a.get('has_value', False) for a in past_betting_analyses]
-            
-            # Sort and limit
-            df_past_display = df_past_display.sort_values('GAME_DATE_EST', ascending=False).head(25)
-            
-            # Reset index to avoid display issues
-            df_past_display = df_past_display.reset_index(drop=True)
             
             # Calculate accuracy
             accuracy = df_past_display['CORRECT'].mean()
