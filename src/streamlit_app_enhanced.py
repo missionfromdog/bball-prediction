@@ -774,6 +774,57 @@ def main():
             df_past_display['ACTUAL_WINNER'] = df_past_display['HOME_TEAM_WINS']
             df_past_display['CORRECT'] = df_past_display['PREDICTED_WINNER'] == df_past_display['ACTUAL_WINNER']
             
+            # Calculate betting analysis for past games
+            past_betting_analyses = []
+            for idx, row in df_past_display.iterrows():
+                # Get live odds for this game (may not be available for past games)
+                live_odds = match_game_to_odds(row['MATCHUP'], live_odds_df) if live_odds_df is not None else None
+                
+                # Determine if we're betting on home or away
+                is_home_bet = past_predictions[idx] == 1
+                
+                # Extract moneylines
+                home_ml = None
+                away_ml = None
+                if live_odds is not None:
+                    home_ml = live_odds.get('home_ml', None)
+                    away_ml = live_odds.get('away_ml', None)
+                    # Convert to float if they're strings
+                    try:
+                        if home_ml is not None:
+                            home_ml = float(home_ml)
+                        if away_ml is not None:
+                            away_ml = float(away_ml)
+                    except (ValueError, TypeError):
+                        home_ml = None
+                        away_ml = None
+                
+                # Also check if odds are in the dataset itself (historical odds)
+                if home_ml is None and 'moneyline_home' in row and pd.notna(row.get('moneyline_home')):
+                    try:
+                        home_ml = float(row['moneyline_home'])
+                    except (ValueError, TypeError):
+                        pass
+                if away_ml is None and 'moneyline_away' in row and pd.notna(row.get('moneyline_away')):
+                    try:
+                        away_ml = float(row['moneyline_away'])
+                    except (ValueError, TypeError):
+                        pass
+                
+                # Perform betting analysis
+                analysis = analyze_betting_value(
+                    model_prob=past_proba[idx],
+                    home_ml=home_ml,
+                    away_ml=away_ml,
+                    is_home_bet=is_home_bet
+                )
+                
+                past_betting_analyses.append(analysis)
+            
+            # Add betting columns to display dataframe
+            df_past_display['EDGE'] = [a.get('edge', np.nan) for a in past_betting_analyses]
+            df_past_display['HAS_VALUE'] = [a.get('has_value', False) for a in past_betting_analyses]
+            
             # Sort and limit
             df_past_display = df_past_display.sort_values('GAME_DATE_EST', ascending=False).head(25)
             
@@ -794,16 +845,26 @@ def main():
                 avg_confidence = (df_past_display['HOME_WIN_PROB'] - 0.5).abs().mean() * 2
                 st.metric("Avg Confidence", f"{avg_confidence:.1%}")
             
-            # Display table
+            # Display table with betting metrics
             display_df = df_past_display[[
                 'GAME_DATE_EST', 'MATCHUP', 'HOME_WIN_PROB', 
-                'ACTUAL_WINNER', 'CORRECT'
+                'ACTUAL_WINNER', 'CORRECT', 'EDGE', 'HAS_VALUE'
             ]].copy()
             
-            display_df.columns = ['Date', 'Matchup', 'Home Win Prob', 'Actual Winner', 'Correct']
+            display_df.columns = ['Date', 'Matchup', 'Home Win Prob', 'Actual Winner', 'Correct', 'Edge', 'Value Bet']
             display_df['Home Win Prob'] = display_df['Home Win Prob'].apply(lambda x: f"{x:.1%}")
             display_df['Actual Winner'] = display_df['Actual Winner'].apply(lambda x: 'Home' if x == 1 else 'Away')
             display_df['Correct'] = display_df['Correct'].apply(lambda x: '✅' if x else '❌')
+            
+            # Format Edge column
+            display_df['Edge'] = display_df['Edge'].apply(
+                lambda x: f"{x:+.1%}" if not pd.isna(x) else "N/A"
+            )
+            
+            # Format Value Bet column
+            display_df['Value Bet'] = display_df['Value Bet'].apply(
+                lambda x: '✅ Yes' if x else '❌ No' if not pd.isna(x) else 'N/A'
+            )
             
             st.dataframe(display_df, use_container_width=True, hide_index=True)
         else:
