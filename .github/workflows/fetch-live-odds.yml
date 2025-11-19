@@ -57,8 +57,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Pull latest changes first to avoid conflicts
-          git pull origin main --rebase || git pull origin main --no-rebase || echo "⚠️ Pull failed, continuing..."
+          # Fetch and pull latest changes BEFORE committing
+          echo "🔄 Fetching latest changes..."
+          git fetch origin main
+          git pull origin main --no-rebase || echo "⚠️ Pull had conflicts, continuing..."
           
           # Add odds files (including bookmaker comparison)
           git add data/betting/live_odds*.csv data/betting/*bookmakers*.csv 2>/dev/null || true
@@ -83,10 +85,15 @@ jobs:
             
             [skip ci]"
             
-            # Push with retry logic
+            # Push with retry logic - fetch again before pushing
+            echo "🚀 Pushing changes..."
+            git fetch origin main
+            git pull origin main --rebase --autostash || git pull origin main --no-rebase
             git push origin main || {
-              echo "⚠️ Push failed, trying to pull and push again..."
-              git pull origin main --rebase || git pull origin main --no-rebase
+              echo "⚠️ Push failed, trying one more time..."
+              sleep 2
+              git fetch origin main
+              git pull origin main --rebase --autostash || git pull origin main --no-rebase
               git push origin main
             }
             echo "✅ Live odds committed and pushed"
