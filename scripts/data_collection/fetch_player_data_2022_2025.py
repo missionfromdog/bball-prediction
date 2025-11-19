@@ -16,7 +16,7 @@ from tqdm import tqdm
 import sys
 
 # Add project root to path
-PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
+PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 try:
@@ -126,11 +126,15 @@ def get_game_ids_from_existing_data(start_date, end_date):
         print("⚠️  No games.csv found, will use API method")
         return None
     
-    # Parse dates
+    # Parse dates and remove timezone if present
     df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
+    # Remove timezone info if present (convert timezone-aware to naive)
+    if df['GAME_DATE_EST'].dt.tz is not None:
+        # Convert to UTC first, then remove timezone
+        df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_convert('UTC').dt.tz_localize(None)
     
-    # Filter by date range
-    mask = (df['GAME_DATE_EST'] >= start_date) & (df['GAME_DATE_EST'] <= end_date)
+    # Filter by date range (both sides are now naive datetime)
+    mask = (df['GAME_DATE_EST'] >= pd.Timestamp(start_date)) & (df['GAME_DATE_EST'] <= pd.Timestamp(end_date))
     filtered = df[mask]
     
     if 'GAME_ID' in filtered.columns:
@@ -382,10 +386,17 @@ def main():
     print("    Estimated time: 1-2 hours for full fetch")
     print("")
     
-    response = input("Continue? (y/n): ")
-    if response.lower() != 'y':
-        print("Cancelled.")
-        return
+    # Allow auto-confirm via environment variable
+    import os
+    auto_confirm = os.getenv('AUTO_CONFIRM', '').lower() == 'true'
+    
+    if not auto_confirm:
+        response = input("Continue? (y/n): ")
+        if response.lower() != 'y':
+            print("Cancelled.")
+            return
+    else:
+        print("Auto-confirmed (AUTO_CONFIRM=true)")
     
     print("")
     
@@ -404,6 +415,8 @@ def main():
     print("SAVING UPDATED DATASET")
     print("=" * 60)
     print("")
+    # Ensure directory exists
+    ORIGINAL_PATH.mkdir(parents=True, exist_ok=True)
     print(f"💾 Saving to {OUTPUT_FILE}...")
     merged_data.to_csv(OUTPUT_FILE, index=False)
     print(f"✅ Saved {len(merged_data):,} records")
