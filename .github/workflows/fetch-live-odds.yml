@@ -57,17 +57,25 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Add odds files
-          git add data/betting/live_odds*.csv 2>/dev/null || true
+          # Add odds files (including bookmaker comparison)
+          git add data/betting/live_odds*.csv data/betting/*bookmakers*.csv 2>/dev/null || true
           
           # Check if there are changes
           if git diff --staged --quiet; then
             echo "✅ No new odds data to commit"
           else
+            # Check if bookmaker comparison file exists
+            if [ -f "data/betting/live_odds_bookmakers_comparison.csv" ]; then
+              echo "✅ Bookmaker comparison file found and will be committed"
+            else
+              echo "⚠️ Bookmaker comparison file not found"
+            fi
+            
             git commit -m "🎲 Update live NBA betting odds: $(date +'%Y-%m-%d %H:%M UTC')
             
             Fetched from The Odds API
             - Live spreads, moneylines, totals
+            - Bookmaker comparison data (vig analysis)
             - Updated for upcoming games
             
             [skip ci]"

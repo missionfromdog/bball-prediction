@@ -154,11 +154,16 @@ def extract_all_bookmakers(raw_data):
     """
     all_bookmakers = []
     
-    # US bookmaker names (common ones)
+    # US bookmaker names (common ones) - expanded list
     us_bookmakers = [
         'draftkings', 'fanduel', 'betmgm', 'caesars', 'pointsbet',
         'wynnbet', 'betrivers', 'unibet_us', 'barstool', 'foxbet',
-        'bovada', 'mybookie', 'betonlineag', 'sportsbetting'
+        'bovada', 'mybookie', 'betonlineag', 'sportsbetting',
+        'draftkings', 'draftkings_sportsbook', 'fanduel', 'fanduel_sportsbook',
+        'betmgm', 'betmgm_sportsbook', 'caesars', 'caesars_sportsbook',
+        'pointsbet', 'pointsbet_us', 'wynnbet', 'wynnbet_sportsbook',
+        'betrivers', 'betrivers_sportsbook', 'unibet', 'unibet_us',
+        'barstool', 'barstool_sportsbook', 'foxbet', 'foxbet_sportsbook'
     ]
     
     for game in raw_data:
@@ -324,16 +329,37 @@ def main():
         
         # Extract all bookmakers for comparison
         print("\n📊 Extracting all US bookmakers for comparison...")
-        bookmakers_df = extract_all_bookmakers(raw_data)
-        
-        if not bookmakers_df.empty:
-            # Save bookmaker comparison data
-            comparison_path = BETTING_PATH / 'live_odds_bookmakers_comparison.csv'
-            bookmakers_df.to_csv(comparison_path, index=False)
-            print(f"✅ Saved bookmaker comparison: {comparison_path}")
-            print(f"   Found {len(bookmakers_df)} bookmaker-game combinations")
-            print(f"   Unique bookmakers: {bookmakers_df['bookmaker'].nunique()}")
-            print(f"   Unique games: {bookmakers_df['game_id'].nunique()}")
+        try:
+            bookmakers_df = extract_all_bookmakers(raw_data)
+            
+            if not bookmakers_df.empty:
+                # Save bookmaker comparison data
+                comparison_path = BETTING_PATH / 'live_odds_bookmakers_comparison.csv'
+                bookmakers_df.to_csv(comparison_path, index=False)
+                print(f"✅ Saved bookmaker comparison: {comparison_path}")
+                print(f"   Found {len(bookmakers_df)} bookmaker-game combinations")
+                print(f"   Unique bookmakers: {bookmakers_df['bookmaker'].nunique()}")
+                print(f"   Unique games: {bookmakers_df['game_id'].nunique()}")
+                print(f"   Sample bookmakers: {bookmakers_df['bookmaker'].unique()[:5].tolist()}")
+            else:
+                print("⚠️ No US bookmakers found in data")
+                print("   This might mean:")
+                print("   - No upcoming games with US bookmaker odds")
+                print("   - API returned different bookmaker keys")
+                print("   - All games are from non-US bookmakers")
+                
+                # Debug: Show what bookmakers are available
+                all_bookmaker_keys = set()
+                for game in raw_data:
+                    for bookmaker in game.get('bookmakers', []):
+                        all_bookmaker_keys.add(bookmaker.get('key', '').lower())
+                
+                if all_bookmaker_keys:
+                    print(f"   Available bookmaker keys: {sorted(list(all_bookmaker_keys))[:10]}")
+        except Exception as e:
+            print(f"❌ Error extracting bookmakers: {e}")
+            import traceback
+            traceback.print_exc()
         
         # Convert to Vegas format
         vegas_df = convert_to_vegas_format(df)
