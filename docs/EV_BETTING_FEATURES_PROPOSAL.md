@@ -288,8 +288,8 @@ Recommended Bet ($1000 bankroll): $125
 
 ## ❓ Questions for Clarification
 
-1. **Bankroll**: Should users input their bankroll, or use a default ($1000)?
-2. **Kelly Fraction**: Full Kelly or fractional (e.g., 0.5x Kelly)?
+1. **Bankroll**: ✅ Default $100 total (~$10/game), scalable for max games per day, user can override
+2. **Kelly Fraction**: ✅ Full Kelly (not fractional)
 3. **Calibration**: Should we implement automatic calibration, or just show metrics?
 4. **Edge Cases**: How to handle games without moneylines?
 5. **Historical Tracking**: Should we track EV performance over time?

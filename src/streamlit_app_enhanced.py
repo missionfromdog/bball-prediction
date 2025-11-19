@@ -26,6 +26,10 @@ try:
     from feature_engineering import fix_datatypes, remove_non_rolling, process_features
     from constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
     from live_odds_display import load_live_odds, match_game_to_odds, format_odds_display
+    from betting_analysis import (
+        analyze_betting_value, calculate_default_bankroll,
+        calculate_bet_size, calculate_ev, calculate_edge
+    )
 except:
     from src.feature_engineering import fix_datatypes, remove_non_rolling, process_features
     from src.constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
@@ -39,6 +43,23 @@ except:
             return None
         def format_odds_display(odds):
             return None
+    try:
+        from src.betting_analysis import (
+            analyze_betting_value, calculate_default_bankroll,
+            calculate_bet_size, calculate_ev, calculate_edge
+        )
+    except ImportError:
+        # Fallback if betting_analysis not available
+        def analyze_betting_value(*args, **kwargs):
+            return {}
+        def calculate_default_bankroll(*args, **kwargs):
+            return 100.0
+        def calculate_bet_size(*args, **kwargs):
+            return 0.0
+        def calculate_ev(*args, **kwargs):
+            return 0.0
+        def calculate_edge(*args, **kwargs):
+            return 0.0
 
 
 # Page configuration
@@ -360,6 +381,11 @@ def main():
         st.sidebar.caption("No other models available for comparison")
         st.sidebar.info("💡 Old models need retraining for new 102-feature dataset")
     
+    # Betting Analysis Settings (will be populated after loading games)
+    # Store bankroll in session state
+    if 'bankroll' not in st.session_state:
+        st.session_state.bankroll = 100.0
+    
     # Load live odds
     live_odds_df = load_live_odds()
     
@@ -489,6 +515,75 @@ def main():
             # Reset index to avoid indexing issues
             df_today_display = df_today_display.reset_index(drop=True)
             
+            # Calculate default bankroll and update sidebar
+            default_bankroll = calculate_default_bankroll(len(df_today_display))
+            if 'bankroll' not in st.session_state:
+                st.session_state.bankroll = default_bankroll
+            
+            # Bankroll input in sidebar (update the placeholder)
+            with st.sidebar:
+                st.markdown("**💰 Betting Analysis**")
+                user_bankroll = st.number_input(
+                    "Bankroll ($)",
+                    min_value=10.0,
+                    max_value=10000.0,
+                    value=float(st.session_state.bankroll),
+                    step=10.0,
+                    help=f"Default: ${default_bankroll:.0f} (~$10/game for {len(df_today_display)} games)"
+                )
+                st.session_state.bankroll = user_bankroll
+            
+            # Calculate betting analysis for each game
+            betting_analyses = []
+            for idx, row in df_today_display.iterrows():
+                # Get live odds for this game
+                live_odds = match_game_to_odds(row['MATCHUP'], live_odds_df) if live_odds_df is not None else None
+                
+                # Determine if we're betting on home or away
+                is_home_bet = predictions[idx] == 1
+                
+                # Extract moneylines
+                home_ml = None
+                away_ml = None
+                if live_odds is not None:
+                    home_ml = live_odds.get('home_ml', None)
+                    away_ml = live_odds.get('away_ml', None)
+                    # Convert to float if they're strings
+                    try:
+                        if home_ml is not None:
+                            home_ml = float(home_ml)
+                        if away_ml is not None:
+                            away_ml = float(away_ml)
+                    except (ValueError, TypeError):
+                        home_ml = None
+                        away_ml = None
+                
+                # Perform betting analysis
+                analysis = analyze_betting_value(
+                    model_prob=pred_proba[idx],
+                    home_ml=home_ml,
+                    away_ml=away_ml,
+                    is_home_bet=is_home_bet
+                )
+                
+                # Add bet size calculation
+                if not pd.isna(analysis.get('kelly_fraction', np.nan)):
+                    analysis['bet_size'] = calculate_bet_size(
+                        analysis['kelly_fraction'],
+                        st.session_state.bankroll
+                    )
+                else:
+                    analysis['bet_size'] = 0.0
+                
+                betting_analyses.append(analysis)
+            
+            # Add betting columns to display dataframe
+            df_today_display['EDGE'] = [a.get('edge', np.nan) for a in betting_analyses]
+            df_today_display['EV'] = [a.get('expected_value', np.nan) for a in betting_analyses]
+            df_today_display['KELLY'] = [a.get('kelly_fraction', np.nan) for a in betting_analyses]
+            df_today_display['BET_SIZE'] = [a.get('bet_size', 0.0) for a in betting_analyses]
+            df_today_display['HAS_VALUE'] = [a.get('has_value', False) for a in betting_analyses]
+            
             # Comparison predictions if enabled
             comparison_results = {}
             if compare_models:
@@ -502,20 +597,32 @@ def main():
                             'name': model_info[comp_key]['name']
                         }
             
-            # Create export DataFrame
+            # Create export DataFrame (include betting metrics)
             export_df = pd.DataFrame({
                 'Date': [datetime.now().strftime('%Y-%m-%d')] * len(df_today_display),
                 'Matchup': df_today_display['MATCHUP'],
                 'Home_Win_Probability': [f"{p:.1%}" for p in pred_proba],
                 'Predicted_Winner': df_today_display['PREDICTION'],
                 'Confidence': df_today_display['CONFIDENCE'],
+                'Edge_%': [f"{e:+.1%}" if not pd.isna(e) else "N/A" for e in df_today_display['EDGE']],
+                'Expected_Value': [f"${ev:.2f}" if not pd.isna(ev) else "N/A" for ev in df_today_display['EV']],
+                'Kelly_%': [f"{k:.1%}" if not pd.isna(k) else "N/A" for k in df_today_display['KELLY']],
+                'Bet_Size': [f"${bs:.2f}" if bs > 0 else "N/A" for bs in df_today_display['BET_SIZE']],
+                'Has_Value': df_today_display['HAS_VALUE'].apply(lambda x: "Yes" if x else "No"),
                 'Model': [selected_info['name']] * len(df_today_display)
             })
             
-            # Add download button
-            col_title, col_download = st.columns([3, 1])
+            # Add download button and value bets filter
+            col_title, col_value, col_download = st.columns([2, 1, 1])
             with col_title:
                 st.subheader("📊 Today's Predictions")
+            with col_value:
+                # Count value bets
+                value_bets_count = df_today_display['HAS_VALUE'].sum()
+                if value_bets_count > 0:
+                    st.success(f"🎯 {value_bets_count} Value Bet(s)")
+                else:
+                    st.info("🎯 No value bets")
             with col_download:
                 csv = export_df.to_csv(index=False)
                 st.download_button(
@@ -528,12 +635,37 @@ def main():
             
             st.markdown("")  # Spacing
             
+            # Value Bets Section (if any)
+            value_bets_df = df_today_display[df_today_display['HAS_VALUE'] == True]
+            if len(value_bets_df) > 0:
+                with st.expander(f"🎯 Value Bets ({len(value_bets_df)} games)", expanded=True):
+                    st.markdown("**Games with positive EV and edge:**")
+                    value_display = value_bets_df[['MATCHUP', 'HOME_WIN_PROB', 'EDGE', 'EV', 'KELLY', 'BET_SIZE']].copy()
+                    value_display['HOME_WIN_PROB'] = value_display['HOME_WIN_PROB'].apply(lambda x: f"{x:.1%}")
+                    value_display['EDGE'] = value_display['EDGE'].apply(lambda x: f"{x:+.1%}" if not pd.isna(x) else "N/A")
+                    value_display['EV'] = value_display['EV'].apply(lambda x: f"${x:.2f}" if not pd.isna(x) else "N/A")
+                    value_display['KELLY'] = value_display['KELLY'].apply(lambda x: f"{x:.1%}" if not pd.isna(x) else "N/A")
+                    value_display['BET_SIZE'] = value_display['BET_SIZE'].apply(lambda x: f"${x:.2f}" if x > 0 else "N/A")
+                    value_display.columns = ['Matchup', 'Win Prob', 'Edge', 'EV', 'Kelly %', 'Bet Size']
+                    st.dataframe(value_display, use_container_width=True, hide_index=True)
+                st.markdown("")  # Spacing
+            
             # Display predictions
             for idx, row in df_today_display.iterrows():
-                col1, col2, col3 = st.columns([2, 1, 1])
+                # Use different layout if betting metrics available
+                has_betting_data = not pd.isna(row.get('EDGE', np.nan))
+                
+                if has_betting_data:
+                    col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
+                else:
+                    col1, col2, col3 = st.columns([2, 1, 1])
                 
                 with col1:
-                    st.markdown(f"### {row['MATCHUP']}")
+                    # Highlight value bets
+                    if row.get('HAS_VALUE', False):
+                        st.markdown(f"### 🎯 {row['MATCHUP']} ⭐ VALUE BET")
+                    else:
+                        st.markdown(f"### {row['MATCHUP']}")
                     st.caption(f"{row['GAME_DATE_EST']}")
                     
                     # Display live odds if available
@@ -586,6 +718,30 @@ def main():
                     
                     st.markdown(f"**Winner:** {prediction}")
                     st.markdown(f"**Confidence:** :{conf_color}[{conf_text}]")
+                
+                # Add betting metrics column if available
+                if has_betting_data:
+                    with col4:
+                        st.markdown("**💰 Betting Analysis:**")
+                        edge = row.get('EDGE', np.nan)
+                        ev = row.get('EV', np.nan)
+                        kelly = row.get('KELLY', np.nan)
+                        bet_size = row.get('BET_SIZE', 0.0)
+                        
+                        if not pd.isna(edge):
+                            edge_color = "green" if edge > 0.05 else "orange" if edge > 0 else "red"
+                            st.markdown(f"**Edge:** :{edge_color}[{edge:+.1%}]")
+                        
+                        if not pd.isna(ev):
+                            ev_color = "green" if ev > 0 else "red"
+                            st.markdown(f"**EV:** :{ev_color}[${ev:.2f}]")
+                        
+                        if not pd.isna(kelly) and kelly > 0:
+                            st.markdown(f"**Kelly:** {kelly:.1%}")
+                            if bet_size > 0:
+                                st.markdown(f"**Bet:** ${bet_size:.2f}")
+                        else:
+                            st.caption("No bet recommended")
                 
                 # Always show comparison (expanded by default)
                 if comparison_results:
