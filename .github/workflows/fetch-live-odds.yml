@@ -105,14 +105,17 @@ jobs:
             
             # Push - use force-with-lease for odds files since they're generated data
             echo "🚀 Pushing changes..."
-            git push origin main || {
-              echo "⚠️ Push failed, trying force-with-lease (safe for generated data)..."
-              sleep 2
-              git fetch origin main
-              # Check if remote has moved ahead
-              if git rev-list HEAD..origin/main | grep -q .; then
-                echo "Remote moved ahead, resetting and re-applying commit..."
+            # Try normal push first
+            if git push origin main 2>&1 | grep -q "rejected\|failed"; then
+              echo "⚠️ Normal push failed, using force-with-lease (safe for generated data)..."
+              # Force push is safe here because odds files are generated data
+              # and we always want the latest version
+              git push origin main --force-with-lease || {
+                echo "⚠️ Force-with-lease failed, fetching and retrying..."
+                git fetch origin main
                 git reset --hard origin/main
+                # Restore our odds files
+                cp -f /tmp/odds_backup/*.csv data/betting/ 2>/dev/null || true
                 git add data/betting/live_odds*.csv data/betting/*bookmakers*.csv 2>/dev/null || true
                 git commit -m "🎲 Update live NBA betting odds: $(date +'%Y-%m-%d %H:%M UTC')
             
@@ -122,9 +125,9 @@ jobs:
             - Updated for upcoming games
             
             [skip ci]"
-              fi
-              git push origin main
-            }
+                git push origin main
+              }
+            fi
             echo "✅ Live odds committed and pushed"
           fi
       
