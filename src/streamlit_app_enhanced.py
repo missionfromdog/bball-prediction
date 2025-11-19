@@ -871,6 +871,182 @@ def main():
             st.info("No past games available for this season yet.")
     
     # ========================================================================
+    # TAB 2: ODDS COMPARISON
+    # ========================================================================
+    with tab2:
+        fancy_header('US Sportsbook Odds Comparison', font_size=28)
+        st.markdown("Compare vig (bookmaker margin) across US sportsbooks to find the best odds.")
+        st.markdown("---")
+        
+        # Load bookmaker comparison data
+        comparison_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
+        
+        if comparison_path.exists():
+            try:
+                df_comparison = pd.read_csv(comparison_path)
+                
+                if df_comparison.empty:
+                    st.warning("⚠️ No bookmaker comparison data available.")
+                else:
+                    # Create matchup column
+                    df_comparison['Matchup'] = df_comparison['away_team'] + ' @ ' + df_comparison['home_team']
+                    
+                    # Get unique games
+                    unique_games = df_comparison['Matchup'].unique()
+                    
+                    if len(unique_games) == 0:
+                        st.warning("⚠️ No games found in comparison data.")
+                    else:
+                        # Select game
+                        selected_game = st.selectbox(
+                            "Select Game:",
+                            options=unique_games,
+                            index=0
+                        )
+                        
+                        # Filter for selected game
+                        game_data = df_comparison[df_comparison['Matchup'] == selected_game].copy()
+                        
+                        if game_data.empty:
+                            st.warning(f"⚠️ No bookmaker data for {selected_game}")
+                        else:
+                            # Create comparison table
+                            comparison_rows = []
+                            
+                            for _, row in game_data.iterrows():
+                                bookmaker_name = row['bookmaker']
+                                
+                                # Format vig values
+                                ml_vig = f"{row['ml_vig']:.2f}%" if pd.notna(row.get('ml_vig')) else "N/A"
+                                spread_vig = f"{row['spread_vig']:.2f}%" if pd.notna(row.get('spread_vig')) else "N/A"
+                                total_vig = f"{row['total_vig']:.2f}%" if pd.notna(row.get('total_vig')) else "N/A"
+                                
+                                # Format odds
+                                home_ml = f"{row['home_ml']:+.0f}" if pd.notna(row.get('home_ml')) else "N/A"
+                                away_ml = f"{row['away_ml']:+.0f}" if pd.notna(row.get('away_ml')) else "N/A"
+                                spread = f"{row.get('home_spread', 0):+.1f}" if pd.notna(row.get('home_spread')) else "N/A"
+                                total = f"{row.get('total', 0):.1f}" if pd.notna(row.get('total')) else "N/A"
+                                
+                                comparison_rows.append({
+                                    'Sportsbook': bookmaker_name,
+                                    'Moneyline Vig': ml_vig,
+                                    'Home ML': home_ml,
+                                    'Away ML': away_ml,
+                                    'Spread Vig': spread_vig,
+                                    'Spread': spread,
+                                    'Total Vig': total_vig,
+                                    'O/U': total,
+                                })
+                            
+                            comparison_df = pd.DataFrame(comparison_rows)
+                            
+                            # Find best (lowest) vig for each market
+                            def format_row(row):
+                                """Format row with best vig highlighting"""
+                                ml_vig_val = row['Moneyline Vig']
+                                spread_vig_val = row['Spread Vig']
+                                total_vig_val = row['Total Vig']
+                                
+                                # Find best vigs
+                                ml_vigs = [float(v.replace('%', '')) for v in comparison_df['Moneyline Vig'] if v != "N/A"]
+                                spread_vigs = [float(v.replace('%', '')) for v in comparison_df['Spread Vig'] if v != "N/A"]
+                                total_vigs = [float(v.replace('%', '')) for v in comparison_df['Total Vig'] if v != "N/A"]
+                                
+                                best_ml = min(ml_vigs) if ml_vigs else None
+                                best_spread = min(spread_vigs) if spread_vigs else None
+                                best_total = min(total_vigs) if total_vigs else None
+                                
+                                # Format with star for best
+                                if ml_vig_val != "N/A" and best_ml:
+                                    if float(ml_vig_val.replace('%', '')) == best_ml:
+                                        row['Moneyline Vig'] = f"⭐ {ml_vig_val}"
+                                
+                                if spread_vig_val != "N/A" and best_spread:
+                                    if float(spread_vig_val.replace('%', '')) == best_spread:
+                                        row['Spread Vig'] = f"⭐ {spread_vig_val}"
+                                
+                                if total_vig_val != "N/A" and best_total:
+                                    if float(total_vig_val.replace('%', '')) == best_total:
+                                        row['Total Vig'] = f"⭐ {total_vig_val}"
+                                
+                                return row
+                            
+                            display_df = comparison_df.apply(format_row, axis=1)
+                            
+                            # Display table
+                            st.subheader(f"📊 {selected_game}")
+                            st.dataframe(
+                                display_df,
+                                use_container_width=True,
+                                hide_index=True
+                            )
+                            
+                            # Add legend
+                            st.caption("⭐ = Best (lowest) vig for that market")
+                            
+                            # Summary stats
+                            col1, col2, col3 = st.columns(3)
+                            
+                            with col1:
+                                ml_vigs = [float(v.replace('%', '')) for v in comparison_df['Moneyline Vig'] if v != "N/A"]
+                                if ml_vigs:
+                                    st.metric("Best ML Vig", f"{min(ml_vigs):.2f}%")
+                            
+                            with col2:
+                                spread_vigs = [float(v.replace('%', '')) for v in comparison_df['Spread Vig'] if v != "N/A"]
+                                if spread_vigs:
+                                    st.metric("Best Spread Vig", f"{min(spread_vigs):.2f}%")
+                            
+                            with col3:
+                                total_vigs = [float(v.replace('%', '')) for v in comparison_df['Total Vig'] if v != "N/A"]
+                                if total_vigs:
+                                    st.metric("Best Total Vig", f"{min(total_vigs):.2f}%")
+                            
+                            # Show all games summary
+                            st.markdown("---")
+                            st.subheader("📋 All Upcoming Games")
+                            
+                            # Create summary table for all games
+                            summary_rows = []
+                            for game in unique_games:
+                                game_df = df_comparison[df_comparison['Matchup'] == game]
+                                
+                                # Find best vigs
+                                ml_vigs = game_df['ml_vig'].dropna()
+                                spread_vigs = game_df['spread_vig'].dropna()
+                                total_vigs = game_df['total_vig'].dropna()
+                                
+                                best_ml_vig = ml_vigs.min() if not ml_vigs.empty else None
+                                best_spread_vig = spread_vigs.min() if not spread_vigs.empty else None
+                                best_total_vig = total_vigs.min() if not total_vigs.empty else None
+                                
+                                # Find which bookmaker has best vig
+                                best_ml_book = game_df.loc[game_df['ml_vig'].idxmin(), 'bookmaker'] if not ml_vigs.empty else "N/A"
+                                best_spread_book = game_df.loc[game_df['spread_vig'].idxmin(), 'bookmaker'] if not spread_vigs.empty else "N/A"
+                                best_total_book = game_df.loc[game_df['total_vig'].idxmin(), 'bookmaker'] if not total_vigs.empty else "N/A"
+                                
+                                summary_rows.append({
+                                    'Game': game,
+                                    'Best ML Vig': f"{best_ml_vig:.2f}%" if best_ml_vig else "N/A",
+                                    'Best ML Book': best_ml_book,
+                                    'Best Spread Vig': f"{best_spread_vig:.2f}%" if best_spread_vig else "N/A",
+                                    'Best Spread Book': best_spread_book,
+                                    'Best Total Vig': f"{best_total_vig:.2f}%" if best_total_vig else "N/A",
+                                    'Best Total Book': best_total_book,
+                                })
+                            
+                            summary_df = pd.DataFrame(summary_rows)
+                            st.dataframe(summary_df, use_container_width=True, hide_index=True)
+                            
+            except Exception as e:
+                st.error(f"❌ Error loading bookmaker comparison data: {e}")
+                import traceback
+                st.code(traceback.format_exc())
+        else:
+            st.warning("⚠️ Bookmaker comparison data not found.")
+            st.info("💡 Run the 'Fetch Live NBA Odds' workflow to generate comparison data.")
+    
+    # ========================================================================
     # TAB 3: PERFORMANCE
     # ========================================================================
     with tab3:
@@ -1073,9 +1249,9 @@ def main():
             st.code(traceback.format_exc())
     
     # ========================================================================
-    # TAB 3: ABOUT
+    # TAB 4: ABOUT
     # ========================================================================
-    with tab3:
+    with tab4:
         fancy_header('About This App', font_size=28)
         st.markdown("")
         
