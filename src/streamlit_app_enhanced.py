@@ -763,18 +763,14 @@ def main():
         st.markdown("### 📅 Recent Performance (Last 25 Games)")
         
         if len(df_past) > 0:
-            # Prepare past games data
-            X_past, df_past_display = prepare_data_for_prediction(df_past)
-            
-            # Get predictions
-            past_predictions, past_proba = predict_with_model(selected_model, X_past, selected_model_key)
-            
-            # Sort and limit BEFORE adding predictions (to keep indices aligned)
-            df_past_display = df_past_display.sort_values('GAME_DATE_EST', ascending=False).head(25)
+            # Sort and limit FIRST (before preparing data)
+            df_past_display = df_past.sort_values('GAME_DATE_EST', ascending=False).head(25).copy()
             df_past_display = df_past_display.reset_index(drop=True)
             
-            # Now get predictions for the sorted/limited dataframe
-            X_past_limited, _ = prepare_data_for_prediction(df_past_display)
+            # Prepare past games data for the sorted/limited dataframe
+            X_past_limited, df_past_display = prepare_data_for_prediction(df_past_display)
+            
+            # Get predictions for the sorted/limited dataframe
             past_predictions, past_proba = predict_with_model(selected_model, X_past_limited, selected_model_key)
             
             df_past_display['HOME_WIN_PROB'] = past_proba
