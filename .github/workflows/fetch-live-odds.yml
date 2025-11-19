@@ -65,10 +65,12 @@ jobs:
           cp -f data/betting/live_odds*.csv /tmp/odds_backup/ 2>/dev/null || true
           cp -f data/betting/*bookmakers*.csv /tmp/odds_backup/ 2>/dev/null || true
           
-          # Reset to latest main to get latest code
+          # Discard any uncommitted changes and reset to latest main
           echo "🔄 Syncing with latest main..."
           git fetch origin main
-          git reset --hard origin/main
+          git reset --hard HEAD  # Discard any local changes first
+          git clean -fd  # Remove untracked files
+          git reset --hard origin/main  # Reset to latest main
           
           # Restore the odds files we just created
           echo "📥 Restoring odds files..."
