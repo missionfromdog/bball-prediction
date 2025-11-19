@@ -57,10 +57,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Fetch and pull latest changes BEFORE committing
+          # Fetch latest changes first
           echo "🔄 Fetching latest changes..."
           git fetch origin main
-          git pull origin main --no-rebase || echo "⚠️ Pull had conflicts, continuing..."
           
           # Add odds files (including bookmaker comparison)
           # Use explicit path to ensure bookmaker comparison file is added
@@ -83,6 +82,7 @@ jobs:
               echo "⚠️ Bookmaker comparison file not found"
             fi
             
+            # Commit the odds files first
             git commit -m "🎲 Update live NBA betting odds: $(date +'%Y-%m-%d %H:%M UTC')
             
             Fetched from The Odds API
@@ -92,15 +92,28 @@ jobs:
             
             [skip ci]"
             
-            # Push with retry logic - fetch again before pushing
+            # Now pull and merge, resolving conflicts by keeping our version (latest odds)
+            echo "🔄 Pulling and merging with remote..."
+            git pull origin main --no-rebase --no-edit || {
+              echo "⚠️ Merge conflict detected, resolving by keeping our version (latest odds)..."
+              # For odds files, always keep our version (they're the latest)
+              git checkout --ours data/betting/live_odds*.csv 2>/dev/null || true
+              git checkout --ours data/betting/*bookmakers*.csv 2>/dev/null || true
+              git add data/betting/*.csv 2>/dev/null || true
+              git commit --no-edit || echo "Merge resolved"
+            }
+            
+            # Push
             echo "🚀 Pushing changes..."
-            git fetch origin main
-            git pull origin main --rebase --autostash || git pull origin main --no-rebase
             git push origin main || {
-              echo "⚠️ Push failed, trying one more time..."
+              echo "⚠️ Push failed, retrying..."
               sleep 2
               git fetch origin main
-              git pull origin main --rebase --autostash || git pull origin main --no-rebase
+              git pull origin main --no-rebase --no-edit || {
+                git checkout --ours data/betting/*.csv 2>/dev/null || true
+                git add data/betting/*.csv 2>/dev/null || true
+                git commit --no-edit || true
+              }
               git push origin main
             }
             echo "✅ Live odds committed and pushed"
