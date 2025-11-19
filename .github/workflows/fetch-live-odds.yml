@@ -57,9 +57,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Fetch latest changes first
-          echo "🔄 Fetching latest changes..."
+          # Reset to latest main first to avoid conflicts
+          echo "🔄 Syncing with latest main..."
           git fetch origin main
+          git reset --hard origin/main
           
           # Add odds files (including bookmaker comparison)
           # Use explicit path to ensure bookmaker comparison file is added
@@ -82,7 +83,7 @@ jobs:
               echo "⚠️ Bookmaker comparison file not found"
             fi
             
-            # Commit the odds files first
+            # Commit the odds files
             git commit -m "🎲 Update live NBA betting odds: $(date +'%Y-%m-%d %H:%M UTC')
             
             Fetched from The Odds API
@@ -92,28 +93,26 @@ jobs:
             
             [skip ci]"
             
-            # Now pull and merge, resolving conflicts by keeping our version (latest odds)
-            echo "🔄 Pulling and merging with remote..."
-            git pull origin main --no-rebase --no-edit || {
-              echo "⚠️ Merge conflict detected, resolving by keeping our version (latest odds)..."
-              # For odds files, always keep our version (they're the latest)
-              git checkout --ours data/betting/live_odds*.csv 2>/dev/null || true
-              git checkout --ours data/betting/*bookmakers*.csv 2>/dev/null || true
-              git add data/betting/*.csv 2>/dev/null || true
-              git commit --no-edit || echo "Merge resolved"
-            }
-            
-            # Push
+            # Push - use force-with-lease for odds files since they're generated data
             echo "🚀 Pushing changes..."
             git push origin main || {
-              echo "⚠️ Push failed, retrying..."
+              echo "⚠️ Push failed, trying force-with-lease (safe for generated data)..."
               sleep 2
               git fetch origin main
-              git pull origin main --no-rebase --no-edit || {
-                git checkout --ours data/betting/*.csv 2>/dev/null || true
-                git add data/betting/*.csv 2>/dev/null || true
-                git commit --no-edit || true
-              }
+              # Check if remote has moved ahead
+              if git rev-list HEAD..origin/main | grep -q .; then
+                echo "Remote moved ahead, resetting and re-applying commit..."
+                git reset --hard origin/main
+                git add data/betting/live_odds*.csv data/betting/*bookmakers*.csv 2>/dev/null || true
+                git commit -m "🎲 Update live NBA betting odds: $(date +'%Y-%m-%d %H:%M UTC')
+            
+            Fetched from The Odds API
+            - Live spreads, moneylines, totals
+            - Bookmaker comparison data (vig analysis)
+            - Updated for upcoming games
+            
+            [skip ci]"
+              fi
               git push origin main
             }
             echo "✅ Live odds committed and pushed"
