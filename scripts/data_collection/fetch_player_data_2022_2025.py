@@ -16,7 +16,7 @@ from tqdm import tqdm
 import sys
 
 # Add project root to path
-PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
+PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 try:
@@ -33,6 +33,11 @@ OUTPUT_FILE = ORIGINAL_PATH / 'games_details_updated.csv'
 BACKUP_FILE = ORIGINAL_PATH / 'games_details_backup.csv'
 
 # Date ranges
+# Full dataset: 2003-2025
+FULL_START = datetime(2003, 10, 1)  # Start of dataset
+FULL_END = datetime.now()            # Current date
+
+# V2/V3 periods (for reference)
 V2_START = datetime(2022, 3, 13)  # After existing data ends
 V2_END = datetime(2024, 6, 30)    # End of 2023-24 season
 V3_START = datetime(2024, 10, 1)  # Start of 2024-25 season
@@ -126,17 +131,39 @@ def get_game_ids_from_existing_data(start_date, end_date):
         print("⚠️  No games.csv found, will use API method")
         return None
     
-    # Parse dates
+    # Parse dates and remove timezone if present
     df['GAME_DATE_EST'] = pd.to_datetime(df['GAME_DATE_EST'], errors='coerce')
+    # Remove timezone info if present (convert timezone-aware to naive)
+    if df['GAME_DATE_EST'].dt.tz is not None:
+        # Convert to UTC first, then remove timezone
+        df['GAME_DATE_EST'] = df['GAME_DATE_EST'].dt.tz_convert('UTC').dt.tz_localize(None)
     
-    # Filter by date range
-    mask = (df['GAME_DATE_EST'] >= start_date) & (df['GAME_DATE_EST'] <= end_date)
+    # Filter by date range (both sides are now naive datetime)
+    mask = (df['GAME_DATE_EST'] >= pd.Timestamp(start_date)) & (df['GAME_DATE_EST'] <= pd.Timestamp(end_date))
     filtered = df[mask]
     
     if 'GAME_ID' in filtered.columns:
         game_ids = filtered['GAME_ID'].unique().tolist()
-        print(f"✅ Found {len(game_ids)} games in date range")
-        return sorted([str(gid) for gid in game_ids if pd.notna(gid)])
+        
+        # Validate game IDs - NBA game IDs should be 10-digit strings starting with '00'
+        # or at least positive integers > 1000
+        valid_game_ids = []
+        for gid in game_ids:
+            if pd.notna(gid):
+                gid_str = str(gid)
+                # Check if it looks like a valid NBA game ID
+                # Valid IDs are typically 10 digits (e.g., '0022400123') or at least > 1000
+                if (len(gid_str) == 10 and gid_str.startswith('00')) or \
+                   (gid_str.isdigit() and int(gid_str) > 1000):
+                    valid_game_ids.append(gid_str)
+        
+        if len(valid_game_ids) > 0:
+            print(f"✅ Found {len(valid_game_ids)} valid game IDs in date range")
+            return sorted(valid_game_ids)
+        else:
+            print(f"⚠️  Found {len(game_ids)} game IDs but none are valid (likely sequential numbers)")
+            print("   Will use API method instead")
+            return None
     else:
         print("⚠️  GAME_ID column not found, will use API method")
         return None
@@ -223,65 +250,69 @@ def fetch_box_score_v3(game_id):
         return None
 
 
-def fetch_all_player_data():
+def fetch_all_player_data(start_date=None, end_date=None, use_v3_after=None):
     """
-    Main function to fetch all player data from 2022-2025
+    Main function to fetch all player data for a date range
+    
+    Args:
+        start_date: Start date (default: V2_START)
+        end_date: End date (default: V3_END)
+        use_v3_after: Date to switch from V2 to V3 API (default: V3_START)
     """
+    if start_date is None:
+        start_date = FULL_START  # Full dataset: 2003-2025
+    if end_date is None:
+        end_date = FULL_END
+    if use_v3_after is None:
+        use_v3_after = V3_START  # Switch to V3 API for 2024-25 season
+    
     print("=" * 60)
-    print("FETCHING PLAYER-LEVEL DATA (2022-2025)")
+    print(f"FETCHING PLAYER-LEVEL DATA ({start_date.date()} to {end_date.date()})")
     print("=" * 60)
     print("")
     
     all_player_data = []
     
-    # Step 1: Get game IDs for V2 period (2022-2024)
-    print("📊 STEP 1: Getting game IDs for 2022-2024 (V2)...")
-    v2_game_ids = get_game_ids_for_date_range(V2_START, V2_END)
-    print(f"✅ Found {len(v2_game_ids)} games for V2 period")
+    # Step 1: Get all game IDs for the date range
+    print(f"📊 STEP 1: Getting game IDs from {start_date.date()} to {end_date.date()}...")
+    print("   (This will use NBA API - takes ~1 minute per 60 dates)")
+    all_game_ids = get_game_ids_for_date_range(start_date, end_date, use_existing=False)  # Force API lookup
+    print(f"✅ Found {len(all_game_ids)} total games")
     print("")
     
-    # Step 2: Fetch V2 box scores
-    print("📊 STEP 2: Fetching V2 box scores (2022-2024)...")
-    v2_success = 0
-    v2_failed = 0
+    if len(all_game_ids) == 0:
+        print("❌ No game IDs found. Exiting.")
+        return None
     
-    for game_id in tqdm(v2_game_ids, desc="V2 Box Scores"):
-        stats = fetch_box_score_v2(game_id)
+    # Step 2: Fetch box scores for all games
+    print("📊 STEP 2: Fetching box scores for all games...")
+    print(f"   (This will take ~{len(all_game_ids) * 0.6 / 60:.1f} minutes)")
+    print("")
+    
+    success_count = 0
+    failed_count = 0
+    
+    for game_id in tqdm(all_game_ids, desc="Box Scores"):
+        # Determine which API to use based on date
+        # Game IDs starting with '00224' are 2024-25 season (V3)
+        # Game IDs starting with '00223' or earlier are V2
+        if game_id.startswith('00224') or game_id.startswith('00225'):
+            # Use V3 API for 2024-25 season and later
+            stats = fetch_box_score_v3(game_id)
+        else:
+            # Use V2 API for earlier seasons
+            stats = fetch_box_score_v2(game_id)
+        
         if stats is not None and len(stats) > 0:
             all_player_data.append(stats)
-            v2_success += 1
+            success_count += 1
         else:
-            v2_failed += 1
+            failed_count += 1
         
         # Rate limiting
         time.sleep(0.6)
     
-    print(f"✅ V2: {v2_success} successful, {v2_failed} failed")
-    print("")
-    
-    # Step 3: Get game IDs for V3 period (2024-2025)
-    print("📊 STEP 3: Getting game IDs for 2024-2025 (V3)...")
-    v3_game_ids = get_game_ids_for_date_range(V3_START, V3_END)
-    print(f"✅ Found {len(v3_game_ids)} games for V3 period")
-    print("")
-    
-    # Step 4: Fetch V3 box scores
-    print("📊 STEP 4: Fetching V3 box scores (2024-2025)...")
-    v3_success = 0
-    v3_failed = 0
-    
-    for game_id in tqdm(v3_game_ids, desc="V3 Box Scores"):
-        stats = fetch_box_score_v3(game_id)
-        if stats is not None and len(stats) > 0:
-            all_player_data.append(stats)
-            v3_success += 1
-        else:
-            v3_failed += 1
-        
-        # Rate limiting
-        time.sleep(0.6)
-    
-    print(f"✅ V3: {v3_success} successful, {v3_failed} failed")
+    print(f"✅ Success: {success_count}, Failed: {failed_count}")
     print("")
     
     # Step 5: Combine all data
@@ -372,25 +403,39 @@ def main():
     print("=" * 60)
     print("")
     print("This script will:")
-    print("  1. Fetch player box scores from 2022-2025 using nba_api")
-    print("  2. Use V2 API for 2022-2024 (exact column match)")
-    print("  3. Use V3 API for 2024-2025 (with column mapping)")
-    print("  4. Merge with existing games_details.csv")
-    print("  5. Save updated dataset")
+    print("  1. Fetch ALL game IDs from NBA API (2003-2025)")
+    print("  2. Fetch ALL player box scores for all games")
+    print("  3. Use V2 API for 2003-2024 (exact column match)")
+    print("  4. Use V3 API for 2024-2025 (with column mapping)")
+    print("  5. Merge with existing games_details.csv")
+    print("  6. Save updated dataset")
     print("")
     print("⚠️  This will take a while (rate limited to ~60 requests/minute)")
-    print("    Estimated time: 1-2 hours for full fetch")
+    print("    Estimated time:")
+    print("    - Full dataset (2003-2025): ~5.8 hours")
+    print("    - Game IDs: ~49 minutes")
+    print("    - Box scores: ~5 hours")
     print("")
     
-    response = input("Continue? (y/n): ")
-    if response.lower() != 'y':
-        print("Cancelled.")
-        return
+    # Allow auto-confirm via environment variable
+    import os
+    auto_confirm = os.getenv('AUTO_CONFIRM', '').lower() == 'true'
+    
+    if not auto_confirm:
+        response = input("Continue? (y/n): ")
+        if response.lower() != 'y':
+            print("Cancelled.")
+            return
+    else:
+        print("Auto-confirmed (AUTO_CONFIRM=true)")
     
     print("")
     
-    # Fetch new data
-    new_data = fetch_all_player_data()
+    # Fetch new data for FULL DATASET (2003-2025)
+    print("🎯 Fetching data for FULL DATASET (2003-2025)")
+    print("   This will update game IDs and fetch all box scores")
+    print("")
+    new_data = fetch_all_player_data(start_date=FULL_START, end_date=FULL_END)
     
     if new_data is None or len(new_data) == 0:
         print("❌ No data fetched. Exiting.")
@@ -404,6 +449,8 @@ def main():
     print("SAVING UPDATED DATASET")
     print("=" * 60)
     print("")
+    # Ensure directory exists
+    ORIGINAL_PATH.mkdir(parents=True, exist_ok=True)
     print(f"💾 Saving to {OUTPUT_FILE}...")
     merged_data.to_csv(OUTPUT_FILE, index=False)
     print(f"✅ Saved {len(merged_data):,} records")

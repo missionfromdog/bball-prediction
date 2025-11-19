@@ -26,6 +26,10 @@ try:
     from feature_engineering import fix_datatypes, remove_non_rolling, process_features
     from constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
     from live_odds_display import load_live_odds, match_game_to_odds, format_odds_display
+    from betting_analysis import (
+        analyze_betting_value, calculate_default_bankroll,
+        calculate_bet_size, calculate_ev, calculate_edge
+    )
 except:
     from src.feature_engineering import fix_datatypes, remove_non_rolling, process_features
     from src.constants import LONG_INTEGER_FIELDS, SHORT_INTEGER_FIELDS, DATE_FIELDS, DROP_COLUMNS, NBA_TEAMS_NAMES
@@ -39,6 +43,23 @@ except:
             return None
         def format_odds_display(odds):
             return None
+    try:
+        from src.betting_analysis import (
+            analyze_betting_value, calculate_default_bankroll,
+            calculate_bet_size, calculate_ev, calculate_edge
+        )
+    except ImportError:
+        # Fallback if betting_analysis not available
+        def analyze_betting_value(*args, **kwargs):
+            return {}
+        def calculate_default_bankroll(*args, **kwargs):
+            return 100.0
+        def calculate_bet_size(*args, **kwargs):
+            return 0.0
+        def calculate_ev(*args, **kwargs):
+            return 0.0
+        def calculate_edge(*args, **kwargs):
+            return 0.0
 
 
 # Page configuration
@@ -360,11 +381,16 @@ def main():
         st.sidebar.caption("No other models available for comparison")
         st.sidebar.info("💡 Old models need retraining for new 102-feature dataset")
     
+    # Betting Analysis Settings (will be populated after loading games)
+    # Store bankroll in session state
+    if 'bankroll' not in st.session_state:
+        st.session_state.bankroll = 100.0
+    
     # Load live odds
     live_odds_df = load_live_odds()
     
     # Main content tabs
-    tab1, tab2, tab3 = st.tabs(['📊 Predictions', '📈 Performance', 'ℹ️ About'])
+    tab1, tab2, tab3, tab4 = st.tabs(['📊 Predictions', '💰 Odds Comparison', '📈 Performance', 'ℹ️ About'])
     
     # ========================================================================
     # TAB 1: PREDICTIONS
@@ -489,6 +515,75 @@ def main():
             # Reset index to avoid indexing issues
             df_today_display = df_today_display.reset_index(drop=True)
             
+            # Calculate default bankroll and update sidebar
+            default_bankroll = calculate_default_bankroll(len(df_today_display))
+            if 'bankroll' not in st.session_state:
+                st.session_state.bankroll = default_bankroll
+            
+            # Bankroll input in sidebar (update the placeholder)
+            with st.sidebar:
+                st.markdown("**💰 Betting Analysis**")
+                user_bankroll = st.number_input(
+                    "Bankroll ($)",
+                    min_value=10.0,
+                    max_value=10000.0,
+                    value=float(st.session_state.bankroll),
+                    step=10.0,
+                    help=f"Default: ${default_bankroll:.0f} (~$10/game for {len(df_today_display)} games)"
+                )
+                st.session_state.bankroll = user_bankroll
+            
+            # Calculate betting analysis for each game
+            betting_analyses = []
+            for idx, row in df_today_display.iterrows():
+                # Get live odds for this game
+                live_odds = match_game_to_odds(row['MATCHUP'], live_odds_df) if live_odds_df is not None else None
+                
+                # Determine if we're betting on home or away
+                is_home_bet = predictions[idx] == 1
+                
+                # Extract moneylines
+                home_ml = None
+                away_ml = None
+                if live_odds is not None:
+                    home_ml = live_odds.get('home_ml', None)
+                    away_ml = live_odds.get('away_ml', None)
+                    # Convert to float if they're strings
+                    try:
+                        if home_ml is not None:
+                            home_ml = float(home_ml)
+                        if away_ml is not None:
+                            away_ml = float(away_ml)
+                    except (ValueError, TypeError):
+                        home_ml = None
+                        away_ml = None
+                
+                # Perform betting analysis
+                analysis = analyze_betting_value(
+                    model_prob=pred_proba[idx],
+                    home_ml=home_ml,
+                    away_ml=away_ml,
+                    is_home_bet=is_home_bet
+                )
+                
+                # Add bet size calculation
+                if not pd.isna(analysis.get('kelly_fraction', np.nan)):
+                    analysis['bet_size'] = calculate_bet_size(
+                        analysis['kelly_fraction'],
+                        st.session_state.bankroll
+                    )
+                else:
+                    analysis['bet_size'] = 0.0
+                
+                betting_analyses.append(analysis)
+            
+            # Add betting columns to display dataframe
+            df_today_display['EDGE'] = [a.get('edge', np.nan) for a in betting_analyses]
+            df_today_display['EV'] = [a.get('expected_value', np.nan) for a in betting_analyses]
+            df_today_display['KELLY'] = [a.get('kelly_fraction', np.nan) for a in betting_analyses]
+            df_today_display['BET_SIZE'] = [a.get('bet_size', 0.0) for a in betting_analyses]
+            df_today_display['HAS_VALUE'] = [a.get('has_value', False) for a in betting_analyses]
+            
             # Comparison predictions if enabled
             comparison_results = {}
             if compare_models:
@@ -502,20 +597,32 @@ def main():
                             'name': model_info[comp_key]['name']
                         }
             
-            # Create export DataFrame
+            # Create export DataFrame (include betting metrics)
             export_df = pd.DataFrame({
                 'Date': [datetime.now().strftime('%Y-%m-%d')] * len(df_today_display),
                 'Matchup': df_today_display['MATCHUP'],
                 'Home_Win_Probability': [f"{p:.1%}" for p in pred_proba],
                 'Predicted_Winner': df_today_display['PREDICTION'],
                 'Confidence': df_today_display['CONFIDENCE'],
+                'Edge_%': [f"{e:+.1%}" if not pd.isna(e) else "N/A" for e in df_today_display['EDGE']],
+                'Expected_Value': [f"${ev:.2f}" if not pd.isna(ev) else "N/A" for ev in df_today_display['EV']],
+                'Kelly_%': [f"{k:.1%}" if not pd.isna(k) else "N/A" for k in df_today_display['KELLY']],
+                'Bet_Size': [f"${bs:.2f}" if bs > 0 else "N/A" for bs in df_today_display['BET_SIZE']],
+                'Has_Value': df_today_display['HAS_VALUE'].apply(lambda x: "Yes" if x else "No"),
                 'Model': [selected_info['name']] * len(df_today_display)
             })
             
-            # Add download button
-            col_title, col_download = st.columns([3, 1])
+            # Add download button and value bets filter
+            col_title, col_value, col_download = st.columns([2, 1, 1])
             with col_title:
                 st.subheader("📊 Today's Predictions")
+            with col_value:
+                # Count value bets
+                value_bets_count = df_today_display['HAS_VALUE'].sum()
+                if value_bets_count > 0:
+                    st.success(f"🎯 {value_bets_count} Value Bet(s)")
+                else:
+                    st.info("🎯 No value bets")
             with col_download:
                 csv = export_df.to_csv(index=False)
                 st.download_button(
@@ -528,12 +635,37 @@ def main():
             
             st.markdown("")  # Spacing
             
+            # Value Bets Section (if any)
+            value_bets_df = df_today_display[df_today_display['HAS_VALUE'] == True]
+            if len(value_bets_df) > 0:
+                with st.expander(f"🎯 Value Bets ({len(value_bets_df)} games)", expanded=True):
+                    st.markdown("**Games with positive EV and edge:**")
+                    value_display = value_bets_df[['MATCHUP', 'HOME_WIN_PROB', 'EDGE', 'EV', 'KELLY', 'BET_SIZE']].copy()
+                    value_display['HOME_WIN_PROB'] = value_display['HOME_WIN_PROB'].apply(lambda x: f"{x:.1%}")
+                    value_display['EDGE'] = value_display['EDGE'].apply(lambda x: f"{x:+.1%}" if not pd.isna(x) else "N/A")
+                    value_display['EV'] = value_display['EV'].apply(lambda x: f"${x:.2f}" if not pd.isna(x) else "N/A")
+                    value_display['KELLY'] = value_display['KELLY'].apply(lambda x: f"{x:.1%}" if not pd.isna(x) else "N/A")
+                    value_display['BET_SIZE'] = value_display['BET_SIZE'].apply(lambda x: f"${x:.2f}" if x > 0 else "N/A")
+                    value_display.columns = ['Matchup', 'Win Prob', 'Edge', 'EV', 'Kelly %', 'Bet Size']
+                    st.dataframe(value_display, use_container_width=True, hide_index=True)
+                st.markdown("")  # Spacing
+            
             # Display predictions
             for idx, row in df_today_display.iterrows():
-                col1, col2, col3 = st.columns([2, 1, 1])
+                # Use different layout if betting metrics available
+                has_betting_data = not pd.isna(row.get('EDGE', np.nan))
+                
+                if has_betting_data:
+                    col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
+                else:
+                    col1, col2, col3 = st.columns([2, 1, 1])
                 
                 with col1:
-                    st.markdown(f"### {row['MATCHUP']}")
+                    # Highlight value bets
+                    if row.get('HAS_VALUE', False):
+                        st.markdown(f"### 🎯 {row['MATCHUP']} ⭐ VALUE BET")
+                    else:
+                        st.markdown(f"### {row['MATCHUP']}")
                     st.caption(f"{row['GAME_DATE_EST']}")
                     
                     # Display live odds if available
@@ -587,6 +719,30 @@ def main():
                     st.markdown(f"**Winner:** {prediction}")
                     st.markdown(f"**Confidence:** :{conf_color}[{conf_text}]")
                 
+                # Add betting metrics column if available
+                if has_betting_data:
+                    with col4:
+                        st.markdown("**💰 Betting Analysis:**")
+                        edge = row.get('EDGE', np.nan)
+                        ev = row.get('EV', np.nan)
+                        kelly = row.get('KELLY', np.nan)
+                        bet_size = row.get('BET_SIZE', 0.0)
+                        
+                        if not pd.isna(edge):
+                            edge_color = "green" if edge > 0.05 else "orange" if edge > 0 else "red"
+                            st.markdown(f"**Edge:** :{edge_color}[{edge:+.1%}]")
+                        
+                        if not pd.isna(ev):
+                            ev_color = "green" if ev > 0 else "red"
+                            st.markdown(f"**EV:** :{ev_color}[${ev:.2f}]")
+                        
+                        if not pd.isna(kelly) and kelly > 0:
+                            st.markdown(f"**Kelly:** {kelly:.1%}")
+                            if bet_size > 0:
+                                st.markdown(f"**Bet:** ${bet_size:.2f}")
+                        else:
+                            st.caption("No bet recommended")
+                
                 # Always show comparison (expanded by default)
                 if comparison_results:
                     with st.expander(f"📊 Compare All Models for this game", expanded=True):
@@ -607,22 +763,73 @@ def main():
         st.markdown("### 📅 Recent Performance (Last 25 Games)")
         
         if len(df_past) > 0:
-            # Prepare past games data
-            X_past, df_past_display = prepare_data_for_prediction(df_past)
+            # Sort and limit FIRST (before preparing data)
+            df_past_display = df_past.sort_values('GAME_DATE_EST', ascending=False).head(25).copy()
+            df_past_display = df_past_display.reset_index(drop=True)
             
-            # Get predictions
-            past_predictions, past_proba = predict_with_model(selected_model, X_past, selected_model_key)
+            # Prepare past games data for the sorted/limited dataframe
+            X_past_limited, df_past_display = prepare_data_for_prediction(df_past_display)
+            
+            # Get predictions for the sorted/limited dataframe
+            past_predictions, past_proba = predict_with_model(selected_model, X_past_limited, selected_model_key)
             
             df_past_display['HOME_WIN_PROB'] = past_proba
             df_past_display['PREDICTED_WINNER'] = past_predictions
             df_past_display['ACTUAL_WINNER'] = df_past_display['HOME_TEAM_WINS']
             df_past_display['CORRECT'] = df_past_display['PREDICTED_WINNER'] == df_past_display['ACTUAL_WINNER']
             
-            # Sort and limit
-            df_past_display = df_past_display.sort_values('GAME_DATE_EST', ascending=False).head(25)
+            # Calculate betting analysis for past games
+            past_betting_analyses = []
+            for idx, row in df_past_display.iterrows():
+                # Get live odds for this game (may not be available for past games)
+                live_odds = match_game_to_odds(row['MATCHUP'], live_odds_df) if live_odds_df is not None else None
+                
+                # Determine if we're betting on home or away
+                # idx now matches the position in past_predictions since we reset_index
+                is_home_bet = past_predictions[idx] == 1
+                
+                # Extract moneylines
+                home_ml = None
+                away_ml = None
+                if live_odds is not None:
+                    home_ml = live_odds.get('home_ml', None)
+                    away_ml = live_odds.get('away_ml', None)
+                    # Convert to float if they're strings
+                    try:
+                        if home_ml is not None:
+                            home_ml = float(home_ml)
+                        if away_ml is not None:
+                            away_ml = float(away_ml)
+                    except (ValueError, TypeError):
+                        home_ml = None
+                        away_ml = None
+                
+                # Also check if odds are in the dataset itself (historical odds)
+                if home_ml is None and 'moneyline_home' in row and pd.notna(row.get('moneyline_home')):
+                    try:
+                        home_ml = float(row['moneyline_home'])
+                    except (ValueError, TypeError):
+                        pass
+                if away_ml is None and 'moneyline_away' in row and pd.notna(row.get('moneyline_away')):
+                    try:
+                        away_ml = float(row['moneyline_away'])
+                    except (ValueError, TypeError):
+                        pass
+                
+                # Perform betting analysis
+                # idx now matches the position in past_proba since we reset_index
+                analysis = analyze_betting_value(
+                    model_prob=past_proba[idx],
+                    home_ml=home_ml,
+                    away_ml=away_ml,
+                    is_home_bet=is_home_bet
+                )
+                
+                past_betting_analyses.append(analysis)
             
-            # Reset index to avoid display issues
-            df_past_display = df_past_display.reset_index(drop=True)
+            # Add betting columns to display dataframe
+            df_past_display['EDGE'] = [a.get('edge', np.nan) for a in past_betting_analyses]
+            df_past_display['HAS_VALUE'] = [a.get('has_value', False) for a in past_betting_analyses]
             
             # Calculate accuracy
             accuracy = df_past_display['CORRECT'].mean()
@@ -638,25 +845,211 @@ def main():
                 avg_confidence = (df_past_display['HOME_WIN_PROB'] - 0.5).abs().mean() * 2
                 st.metric("Avg Confidence", f"{avg_confidence:.1%}")
             
-            # Display table
+            # Display table with betting metrics
             display_df = df_past_display[[
                 'GAME_DATE_EST', 'MATCHUP', 'HOME_WIN_PROB', 
-                'ACTUAL_WINNER', 'CORRECT'
+                'ACTUAL_WINNER', 'CORRECT', 'EDGE', 'HAS_VALUE'
             ]].copy()
             
-            display_df.columns = ['Date', 'Matchup', 'Home Win Prob', 'Actual Winner', 'Correct']
+            display_df.columns = ['Date', 'Matchup', 'Home Win Prob', 'Actual Winner', 'Correct', 'Edge', 'Value Bet']
             display_df['Home Win Prob'] = display_df['Home Win Prob'].apply(lambda x: f"{x:.1%}")
             display_df['Actual Winner'] = display_df['Actual Winner'].apply(lambda x: 'Home' if x == 1 else 'Away')
             display_df['Correct'] = display_df['Correct'].apply(lambda x: '✅' if x else '❌')
+            
+            # Format Edge column
+            display_df['Edge'] = display_df['Edge'].apply(
+                lambda x: f"{x:+.1%}" if not pd.isna(x) else "N/A"
+            )
+            
+            # Format Value Bet column
+            display_df['Value Bet'] = display_df['Value Bet'].apply(
+                lambda x: '✅ Yes' if x else '❌ No' if not pd.isna(x) else 'N/A'
+            )
             
             st.dataframe(display_df, use_container_width=True, hide_index=True)
         else:
             st.info("No past games available for this season yet.")
     
     # ========================================================================
-    # TAB 2: PERFORMANCE
+    # TAB 2: ODDS COMPARISON
     # ========================================================================
     with tab2:
+        fancy_header('US Sportsbook Odds Comparison', font_size=28)
+        st.markdown("Compare vig (bookmaker margin) across US sportsbooks to find the best odds.")
+        st.markdown("---")
+        
+        # Load bookmaker comparison data
+        comparison_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
+        
+        if comparison_path.exists():
+            try:
+                df_comparison = pd.read_csv(comparison_path)
+                
+                if df_comparison.empty:
+                    st.warning("⚠️ No bookmaker comparison data available.")
+                else:
+                    # Create matchup column
+                    df_comparison['Matchup'] = df_comparison['away_team'] + ' @ ' + df_comparison['home_team']
+                    
+                    # Get unique games
+                    unique_games = df_comparison['Matchup'].unique()
+                    
+                    if len(unique_games) == 0:
+                        st.warning("⚠️ No games found in comparison data.")
+                    else:
+                        # Select game
+                        selected_game = st.selectbox(
+                            "Select Game:",
+                            options=unique_games,
+                            index=0
+                        )
+                        
+                        # Filter for selected game
+                        game_data = df_comparison[df_comparison['Matchup'] == selected_game].copy()
+                        
+                        if game_data.empty:
+                            st.warning(f"⚠️ No bookmaker data for {selected_game}")
+                        else:
+                            # Create comparison table
+                            comparison_rows = []
+                            
+                            for _, row in game_data.iterrows():
+                                bookmaker_name = row['bookmaker']
+                                
+                                # Format vig values
+                                ml_vig = f"{row['ml_vig']:.2f}%" if pd.notna(row.get('ml_vig')) else "N/A"
+                                spread_vig = f"{row['spread_vig']:.2f}%" if pd.notna(row.get('spread_vig')) else "N/A"
+                                total_vig = f"{row['total_vig']:.2f}%" if pd.notna(row.get('total_vig')) else "N/A"
+                                
+                                # Format odds
+                                home_ml = f"{row['home_ml']:+.0f}" if pd.notna(row.get('home_ml')) else "N/A"
+                                away_ml = f"{row['away_ml']:+.0f}" if pd.notna(row.get('away_ml')) else "N/A"
+                                spread = f"{row.get('home_spread', 0):+.1f}" if pd.notna(row.get('home_spread')) else "N/A"
+                                total = f"{row.get('total', 0):.1f}" if pd.notna(row.get('total')) else "N/A"
+                                
+                                comparison_rows.append({
+                                    'Sportsbook': bookmaker_name,
+                                    'Moneyline Vig': ml_vig,
+                                    'Home ML': home_ml,
+                                    'Away ML': away_ml,
+                                    'Spread Vig': spread_vig,
+                                    'Spread': spread,
+                                    'Total Vig': total_vig,
+                                    'O/U': total,
+                                })
+                            
+                            comparison_df = pd.DataFrame(comparison_rows)
+                            
+                            # Find best (lowest) vig for each market
+                            def format_row(row):
+                                """Format row with best vig highlighting"""
+                                ml_vig_val = row['Moneyline Vig']
+                                spread_vig_val = row['Spread Vig']
+                                total_vig_val = row['Total Vig']
+                                
+                                # Find best vigs
+                                ml_vigs = [float(v.replace('%', '')) for v in comparison_df['Moneyline Vig'] if v != "N/A"]
+                                spread_vigs = [float(v.replace('%', '')) for v in comparison_df['Spread Vig'] if v != "N/A"]
+                                total_vigs = [float(v.replace('%', '')) for v in comparison_df['Total Vig'] if v != "N/A"]
+                                
+                                best_ml = min(ml_vigs) if ml_vigs else None
+                                best_spread = min(spread_vigs) if spread_vigs else None
+                                best_total = min(total_vigs) if total_vigs else None
+                                
+                                # Format with star for best
+                                if ml_vig_val != "N/A" and best_ml:
+                                    if float(ml_vig_val.replace('%', '')) == best_ml:
+                                        row['Moneyline Vig'] = f"⭐ {ml_vig_val}"
+                                
+                                if spread_vig_val != "N/A" and best_spread:
+                                    if float(spread_vig_val.replace('%', '')) == best_spread:
+                                        row['Spread Vig'] = f"⭐ {spread_vig_val}"
+                                
+                                if total_vig_val != "N/A" and best_total:
+                                    if float(total_vig_val.replace('%', '')) == best_total:
+                                        row['Total Vig'] = f"⭐ {total_vig_val}"
+                                
+                                return row
+                            
+                            display_df = comparison_df.apply(format_row, axis=1)
+                            
+                            # Display table
+                            st.subheader(f"📊 {selected_game}")
+                            st.dataframe(
+                                display_df,
+                                use_container_width=True,
+                                hide_index=True
+                            )
+                            
+                            # Add legend
+                            st.caption("⭐ = Best (lowest) vig for that market")
+                            
+                            # Summary stats
+                            col1, col2, col3 = st.columns(3)
+                            
+                            with col1:
+                                ml_vigs = [float(v.replace('%', '')) for v in comparison_df['Moneyline Vig'] if v != "N/A"]
+                                if ml_vigs:
+                                    st.metric("Best ML Vig", f"{min(ml_vigs):.2f}%")
+                            
+                            with col2:
+                                spread_vigs = [float(v.replace('%', '')) for v in comparison_df['Spread Vig'] if v != "N/A"]
+                                if spread_vigs:
+                                    st.metric("Best Spread Vig", f"{min(spread_vigs):.2f}%")
+                            
+                            with col3:
+                                total_vigs = [float(v.replace('%', '')) for v in comparison_df['Total Vig'] if v != "N/A"]
+                                if total_vigs:
+                                    st.metric("Best Total Vig", f"{min(total_vigs):.2f}%")
+                            
+                            # Show all games summary
+                            st.markdown("---")
+                            st.subheader("📋 All Upcoming Games")
+                            
+                            # Create summary table for all games
+                            summary_rows = []
+                            for game in unique_games:
+                                game_df = df_comparison[df_comparison['Matchup'] == game]
+                                
+                                # Find best vigs
+                                ml_vigs = game_df['ml_vig'].dropna()
+                                spread_vigs = game_df['spread_vig'].dropna()
+                                total_vigs = game_df['total_vig'].dropna()
+                                
+                                best_ml_vig = ml_vigs.min() if not ml_vigs.empty else None
+                                best_spread_vig = spread_vigs.min() if not spread_vigs.empty else None
+                                best_total_vig = total_vigs.min() if not total_vigs.empty else None
+                                
+                                # Find which bookmaker has best vig
+                                best_ml_book = game_df.loc[game_df['ml_vig'].idxmin(), 'bookmaker'] if not ml_vigs.empty else "N/A"
+                                best_spread_book = game_df.loc[game_df['spread_vig'].idxmin(), 'bookmaker'] if not spread_vigs.empty else "N/A"
+                                best_total_book = game_df.loc[game_df['total_vig'].idxmin(), 'bookmaker'] if not total_vigs.empty else "N/A"
+                                
+                                summary_rows.append({
+                                    'Game': game,
+                                    'Best ML Vig': f"{best_ml_vig:.2f}%" if best_ml_vig else "N/A",
+                                    'Best ML Book': best_ml_book,
+                                    'Best Spread Vig': f"{best_spread_vig:.2f}%" if best_spread_vig else "N/A",
+                                    'Best Spread Book': best_spread_book,
+                                    'Best Total Vig': f"{best_total_vig:.2f}%" if best_total_vig else "N/A",
+                                    'Best Total Book': best_total_book,
+                                })
+                            
+                            summary_df = pd.DataFrame(summary_rows)
+                            st.dataframe(summary_df, use_container_width=True, hide_index=True)
+                            
+            except Exception as e:
+                st.error(f"❌ Error loading bookmaker comparison data: {e}")
+                import traceback
+                st.code(traceback.format_exc())
+        else:
+            st.warning("⚠️ Bookmaker comparison data not found.")
+            st.info("💡 Run the 'Fetch Live NBA Odds' workflow to generate comparison data.")
+    
+    # ========================================================================
+    # TAB 3: PERFORMANCE
+    # ========================================================================
+    with tab3:
         fancy_header('Model Performance Analysis', font_size=28)
         st.markdown("")
         
@@ -856,9 +1249,9 @@ def main():
             st.code(traceback.format_exc())
     
     # ========================================================================
-    # TAB 3: ABOUT
+    # TAB 4: ABOUT
     # ========================================================================
-    with tab3:
+    with tab4:
         fancy_header('About This App', font_size=28)
         st.markdown("")
         

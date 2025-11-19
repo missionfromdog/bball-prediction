@@ -556,7 +556,18 @@ def match_live_odds(metadata, live_odds_df):
 
 def create_predictions_df(metadata, predictions, probabilities, live_odds_matches):
     """Create a DataFrame with predictions and analysis"""
+    # Import betting analysis functions
+    import sys
+    from pathlib import Path
+    project_root = Path(__file__).resolve().parents[2]
+    sys.path.insert(0, str(project_root / 'src'))
+    from betting_analysis import analyze_betting_value, calculate_bet_size
+    
     results = []
+    
+    # Calculate bankroll based on $10/game
+    num_games = len(predictions)
+    bankroll = max(100.0, num_games * 10.0)  # $10 per game, minimum $100
     
     for idx, (pred, prob) in enumerate(zip(predictions, probabilities)):
         row_data = {
@@ -570,21 +581,67 @@ def create_predictions_df(metadata, predictions, probabilities, live_odds_matche
         
         # Add live odds if available
         live_odds = live_odds_matches[idx]
+        home_ml = None
+        away_ml = None
+        
         if live_odds is not None:
             row_data['Vegas_Spread'] = live_odds.get('home_spread', None)
             row_data['Vegas_Total'] = live_odds.get('total', None)
             row_data['Vegas_ML_Home'] = live_odds.get('home_ml', None)
             row_data['Vegas_ML_Away'] = live_odds.get('away_ml', None)
             
+            # Get moneylines for betting analysis
+            home_ml = live_odds.get('home_ml', None)
+            away_ml = live_odds.get('away_ml', None)
+            
+            # Ensure moneylines are float
+            try:
+                if home_ml is not None:
+                    home_ml = float(home_ml)
+                if away_ml is not None:
+                    away_ml = float(away_ml)
+            except (ValueError, TypeError):
+                home_ml = None
+                away_ml = None
+            
             # Calculate implied probability from moneyline
-            if pd.notna(live_odds.get('home_ml')):
-                ml = live_odds['home_ml']
-                if ml > 0:
-                    vegas_prob = 100 / (ml + 100)
+            if pd.notna(home_ml):
+                if home_ml > 0:
+                    vegas_prob = 100 / (home_ml + 100)
                 else:
-                    vegas_prob = abs(ml) / (abs(ml) + 100)
+                    vegas_prob = abs(home_ml) / (abs(home_ml) + 100)
                 row_data['Vegas_Implied_Home_Win_Prob'] = vegas_prob
                 row_data['Edge_vs_Vegas'] = prob - vegas_prob
+        
+        # Calculate betting analysis if moneylines are available
+        if home_ml is not None and away_ml is not None:
+            is_home_bet = pred == 1  # True if predicting home win
+            
+            betting_analysis = analyze_betting_value(
+                model_prob=prob,
+                home_ml=home_ml,
+                away_ml=away_ml,
+                is_home_bet=is_home_bet
+            )
+            
+            # Calculate bet size from Kelly fraction and bankroll
+            kelly_fraction = betting_analysis['kelly_fraction']
+            if pd.notna(kelly_fraction):
+                bet_size = calculate_bet_size(kelly_fraction, bankroll)
+            else:
+                bet_size = 0.0
+            
+            row_data['Edge'] = betting_analysis['edge']
+            row_data['EV'] = betting_analysis['expected_value']
+            row_data['Kelly'] = betting_analysis['kelly_fraction']
+            row_data['Bet_Size'] = bet_size
+            row_data['Value_Bet'] = betting_analysis['has_value']
+        else:
+            row_data['Edge'] = None
+            row_data['EV'] = None
+            row_data['Kelly'] = None
+            row_data['Bet_Size'] = None
+            row_data['Value_Bet'] = False
         
         results.append(row_data)
     
