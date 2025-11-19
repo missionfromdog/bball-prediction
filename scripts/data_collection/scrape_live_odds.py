@@ -350,12 +350,21 @@ def main():
                 
                 # Debug: Show what bookmakers are available
                 all_bookmaker_keys = set()
+                all_bookmaker_titles = set()
                 for game in raw_data:
                     for bookmaker in game.get('bookmakers', []):
                         all_bookmaker_keys.add(bookmaker.get('key', '').lower())
+                        all_bookmaker_titles.add(bookmaker.get('title', ''))
                 
                 if all_bookmaker_keys:
-                    print(f"   Available bookmaker keys: {sorted(list(all_bookmaker_keys))[:10]}")
+                    print(f"   Available bookmaker keys: {sorted(list(all_bookmaker_keys))}")
+                    print(f"   Available bookmaker titles: {sorted(list(all_bookmaker_titles))[:10]}")
+                
+                # Create empty file so Streamlit doesn't error
+                comparison_path = BETTING_PATH / 'live_odds_bookmakers_comparison.csv'
+                empty_df = pd.DataFrame(columns=['game_id', 'home_team', 'away_team', 'bookmaker', 'ml_vig', 'spread_vig', 'total_vig'])
+                empty_df.to_csv(comparison_path, index=False)
+                print(f"   Created empty comparison file: {comparison_path}")
         except Exception as e:
             print(f"❌ Error extracting bookmakers: {e}")
             import traceback
