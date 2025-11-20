@@ -1454,7 +1454,7 @@ def main():
                                         live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
                                         
                                         # Convert team names to abbreviations for matching
-                                    TEAM_NAME_TO_ABBREV = {
+                                        TEAM_NAME_TO_ABBREV = {
                                         "Atlanta Hawks": "ATL", "Boston Celtics": "BOS", "Brooklyn Nets": "BKN",
                                         "Charlotte Hornets": "CHA", "Chicago Bulls": "CHI", "Cleveland Cavaliers": "CLE",
                                         "Dallas Mavericks": "DAL", "Denver Nuggets": "DEN", "Detroit Pistons": "DET",
@@ -1466,11 +1466,11 @@ def main():
                                         "Phoenix Suns": "PHX", "Portland Trail Blazers": "POR", "Sacramento Kings": "SAC",
                                         "San Antonio Spurs": "SAS", "Toronto Raptors": "TOR", "Utah Jazz": "UTA",
                                         "Washington Wizards": "WAS"
-                                    }
-                                    
-                                    # Create matchup column in odds df if team names exist
-                                    if 'home_team' in live_odds_df.columns and 'away_team' in live_odds_df.columns:
-                                        live_odds_df['home_abbrev'] = live_odds_df['home_team'].map(TEAM_NAME_TO_ABBREV)
+                                        }
+                                        
+                                        # Create matchup column in odds df if team names exist
+                                        if 'home_team' in live_odds_df.columns and 'away_team' in live_odds_df.columns:
+                                            live_odds_df['home_abbrev'] = live_odds_df['home_team'].map(TEAM_NAME_TO_ABBREV)
                                         live_odds_df['away_abbrev'] = live_odds_df['away_team'].map(TEAM_NAME_TO_ABBREV)
                                         live_odds_df['odds_matchup'] = live_odds_df['away_abbrev'] + ' @ ' + live_odds_df['home_abbrev']
                                         live_odds_df['odds_date'] = live_odds_df['commence_time'].dt.date
