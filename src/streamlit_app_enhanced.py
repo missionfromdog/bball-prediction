@@ -1338,9 +1338,17 @@ def main():
                 predictions_df['Match_Key'] = predictions_df['Date'].dt.strftime('%Y-%m-%d') + '|' + predictions_df['Matchup']
                 results_df['Match_Key'] = results_df['GAME_DATE_EST'].dt.strftime('%Y-%m-%d') + '|' + results_df['MATCHUP']
                 
-                # Debug: Show date ranges
+                # Debug: Show date ranges and sample match keys
                 pred_dates = predictions_df['Date'].dt.date.unique()
                 result_dates = results_df['GAME_DATE_EST'].dt.date.unique()
+                
+                # Filter results to only dates that have predictions
+                pred_date_set = set(pred_dates)
+                results_df_filtered = results_df[results_df['GAME_DATE_EST'].dt.date.isin(pred_date_set)].copy()
+                
+                # Sample match keys for debugging
+                sample_pred_keys = predictions_df['Match_Key'].head(3).tolist()
+                sample_result_keys = results_df_filtered['Match_Key'].head(3).tolist() if len(results_df_filtered) > 0 else []
                 
                 # Merge
                 matched_df = predictions_df.merge(
@@ -1361,9 +1369,12 @@ def main():
                 matched_df.attrs['debug_info'] = {
                     'total_predictions': len(predictions_df),
                     'total_results': len(results_df),
+                    'results_in_pred_date_range': len(results_df_filtered),
                     'matched_count': matched_df['Has_Result'].sum(),
                     'pred_date_range': (min(pred_dates), max(pred_dates)) if len(pred_dates) > 0 else None,
                     'result_date_range': (min(result_dates), max(result_dates)) if len(result_dates) > 0 else None,
+                    'sample_pred_keys': sample_pred_keys,
+                    'sample_result_keys': sample_result_keys,
                 }
                 
                 return matched_df, predictions_df
@@ -1391,11 +1402,22 @@ def main():
                 with st.expander("🔍 Debug Information", expanded=False):
                     st.write(f"**Total Predictions:** {debug['total_predictions']}")
                     st.write(f"**Total Completed Games in Dataset:** {debug['total_results']}")
+                    st.write(f"**Results in Prediction Date Range:** {debug.get('results_in_pred_date_range', 'N/A')}")
                     st.write(f"**Matched Predictions:** {debug['matched_count']}")
                     if debug['pred_date_range']:
                         st.write(f"**Prediction Date Range:** {debug['pred_date_range'][0]} to {debug['pred_date_range'][1]}")
                     if debug['result_date_range']:
                         st.write(f"**Results Date Range:** {debug['result_date_range'][0]} to {debug['result_date_range'][1]}")
+                    if debug.get('sample_pred_keys'):
+                        st.write("**Sample Prediction Match Keys:**")
+                        for key in debug['sample_pred_keys']:
+                            st.code(key)
+                    if debug.get('sample_result_keys'):
+                        st.write("**Sample Result Match Keys (in pred date range):**")
+                        for key in debug['sample_result_keys']:
+                            st.code(key)
+                    else:
+                        st.warning("⚠️ No results found in prediction date range. Games may not be completed yet.")
             
             # Filter to only games with results
             completed_df = matched_df[matched_df['Has_Result']].copy()
