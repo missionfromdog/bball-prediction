@@ -1314,14 +1314,31 @@ def main():
                     results_df = results_df[results_df['PTS_home'] > 0].copy()
                     results_df['Actual_Winner'] = results_df['HOME_TEAM_WINS'].apply(lambda x: 'Home' if x == 1 else 'Away')
                     
-                    # Create MATCHUP from team IDs (convert to abbreviations)
+                    # Create MATCHUP from team IDs (convert to abbreviations to match predictions)
+                    # Map full team names to abbreviations
+                    TEAM_NAME_TO_ABBREV = {
+                        "Atlanta Hawks": "ATL", "Boston Celtics": "BOS", "Brooklyn Nets": "BKN",
+                        "Charlotte Hornets": "CHA", "Chicago Bulls": "CHI", "Cleveland Cavaliers": "CLE",
+                        "Dallas Mavericks": "DAL", "Denver Nuggets": "DEN", "Detroit Pistons": "DET",
+                        "Golden State Warriors": "GSW", "Houston Rockets": "HOU", "Indiana Pacers": "IND",
+                        "LA Clippers": "LAC", "Los Angeles Clippers": "LAC", "Los Angeles Lakers": "LAL",
+                        "Memphis Grizzlies": "MEM", "Miami Heat": "MIA", "Milwaukee Bucks": "MIL",
+                        "Minnesota Timberwolves": "MIN", "New Orleans Pelicans": "NOP", "New York Knicks": "NYK",
+                        "Oklahoma City Thunder": "OKC", "Orlando Magic": "ORL", "Philadelphia 76ers": "PHI",
+                        "Phoenix Suns": "PHX", "Portland Trail Blazers": "POR", "Sacramento Kings": "SAC",
+                        "San Antonio Spurs": "SAS", "Toronto Raptors": "TOR", "Utah Jazz": "UTA",
+                        "Washington Wizards": "WAS"
+                    }
+                    
                     # Check if we have abbreviation columns, otherwise use ID mapping
                     if 'VISITOR_TEAM_ABBREVIATION' in results_df.columns and 'HOME_TEAM_ABBREVIATION' in results_df.columns:
                         results_df['MATCHUP'] = results_df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + results_df['HOME_TEAM_ABBREVIATION']
                     elif 'VISITOR_TEAM_ID' in results_df.columns and 'HOME_TEAM_ID' in results_df.columns:
-                        # Use NBA_TEAMS_NAMES mapping to convert IDs to abbreviations
-                        results_df['VISITOR_TEAM_ABBREVIATION'] = results_df['VISITOR_TEAM_ID'].map(NBA_TEAMS_NAMES)
-                        results_df['HOME_TEAM_ABBREVIATION'] = results_df['HOME_TEAM_ID'].map(NBA_TEAMS_NAMES)
+                        # Convert IDs to full names, then to abbreviations
+                        visitor_names = results_df['VISITOR_TEAM_ID'].map(NBA_TEAMS_NAMES)
+                        home_names = results_df['HOME_TEAM_ID'].map(NBA_TEAMS_NAMES)
+                        results_df['VISITOR_TEAM_ABBREVIATION'] = visitor_names.map(TEAM_NAME_TO_ABBREV)
+                        results_df['HOME_TEAM_ABBREVIATION'] = home_names.map(TEAM_NAME_TO_ABBREV)
                         results_df['MATCHUP'] = results_df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + results_df['HOME_TEAM_ABBREVIATION']
                     else:
                         st.warning("⚠️ Could not find team columns in results dataset")
