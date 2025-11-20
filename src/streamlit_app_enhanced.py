@@ -1338,6 +1338,10 @@ def main():
                 predictions_df['Match_Key'] = predictions_df['Date'].dt.strftime('%Y-%m-%d') + '|' + predictions_df['Matchup']
                 results_df['Match_Key'] = results_df['GAME_DATE_EST'].dt.strftime('%Y-%m-%d') + '|' + results_df['MATCHUP']
                 
+                # Debug: Show date ranges
+                pred_dates = predictions_df['Date'].dt.date.unique()
+                result_dates = results_df['GAME_DATE_EST'].dt.date.unique()
+                
                 # Merge
                 matched_df = predictions_df.merge(
                     results_df[['Match_Key', 'Actual_Winner', 'HOME_TEAM_WINS', 'PTS_home', 'PTS_away']],
@@ -1352,6 +1356,15 @@ def main():
                     matched_df.loc[matched_df['Has_Result'], 'Predicted_Winner'] == 
                     matched_df.loc[matched_df['Has_Result'], 'Actual_Winner']
                 )
+                
+                # Store debug info
+                matched_df.attrs['debug_info'] = {
+                    'total_predictions': len(predictions_df),
+                    'total_results': len(results_df),
+                    'matched_count': matched_df['Has_Result'].sum(),
+                    'pred_date_range': (min(pred_dates), max(pred_dates)) if len(pred_dates) > 0 else None,
+                    'result_date_range': (min(result_dates), max(result_dates)) if len(result_dates) > 0 else None,
+                }
                 
                 return matched_df, predictions_df
                 
@@ -1372,11 +1385,32 @@ def main():
             st.warning("⚠️ Could not match predictions with game results. Check that game results are available.")
             st.info("💡 This may happen if predictions and game results use different date/matchup formats.")
         else:
+            # Show debug info if available
+            if hasattr(matched_df, 'attrs') and 'debug_info' in matched_df.attrs:
+                debug = matched_df.attrs['debug_info']
+                with st.expander("🔍 Debug Information", expanded=False):
+                    st.write(f"**Total Predictions:** {debug['total_predictions']}")
+                    st.write(f"**Total Completed Games in Dataset:** {debug['total_results']}")
+                    st.write(f"**Matched Predictions:** {debug['matched_count']}")
+                    if debug['pred_date_range']:
+                        st.write(f"**Prediction Date Range:** {debug['pred_date_range'][0]} to {debug['pred_date_range'][1]}")
+                    if debug['result_date_range']:
+                        st.write(f"**Results Date Range:** {debug['result_date_range'][0]} to {debug['result_date_range'][1]}")
+            
             # Filter to only games with results
             completed_df = matched_df[matched_df['Has_Result']].copy()
+            pending_df = matched_df[~matched_df['Has_Result']].copy()
             
             if len(completed_df) == 0:
                 st.warning("⚠️ No completed games found in predictions yet. Check back after games finish!")
+                
+                # Show pending predictions
+                if len(pending_df) > 0:
+                    st.info(f"📅 You have {len(pending_df)} prediction(s) waiting for results:")
+                    pending_display = pending_df[['Date', 'Matchup', 'Predicted_Winner', 'Home_Win_Probability', 'Confidence']].copy()
+                    pending_display['Home_Win_Probability'] = pending_display['Home_Win_Probability'].apply(lambda x: f"{x:.1%}")
+                    pending_display = pending_display.sort_values('Date', ascending=False)
+                    st.dataframe(pending_display, use_container_width=True, hide_index=True)
             else:
                 # ========================================================================
                 # MAIN KPIs
