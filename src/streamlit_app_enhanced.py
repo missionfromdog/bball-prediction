@@ -1398,7 +1398,7 @@ def main():
                             matched_df[col] = None
                 
                 # Try to recalculate betting metrics for rows that don't have them
-                # Use historical odds from results dataset if available
+                # First try results dataset, then try live odds files
                 if 'moneyline_home' in matched_df.columns and 'moneyline_away' in matched_df.columns:
                     # For rows missing Edge/EV, try to calculate from historical odds
                     # Only use rows where moneylines are valid (not 0 or NaN)
@@ -1409,6 +1409,48 @@ def main():
                         (matched_df['moneyline_home'] != 0) &
                         (matched_df['moneyline_away'] != 0)
                     ]
+                    
+                    # If no valid odds in results, try loading from live odds files
+                    if len(missing_betting) == 0:
+                        try:
+                            # Try to load live odds for the prediction dates
+                            live_odds_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
+                            if live_odds_path.exists():
+                                live_odds_df = pd.read_csv(live_odds_path)
+                                if 'commence_time' in live_odds_df.columns and 'home_ml' in live_odds_df.columns:
+                                    live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
+                                    
+                                    # Try to match predictions with live odds by date and matchup
+                                    for idx in matched_df[matched_df['Edge'].isna()].index:
+                                        row = matched_df.loc[idx]
+                                        pred_date = row['Date'].date()
+                                        pred_matchup = row['Matchup']
+                                        
+                                        # Find matching odds
+                                        date_odds = live_odds_df[
+                                            live_odds_df['commence_time'].dt.date == pred_date
+                                        ]
+                                        
+                                        # Try to match by team names in matchup
+                                        # This is a simple approach - could be improved
+                                        if len(date_odds) > 0:
+                                            # Use first bookmaker's odds for simplicity
+                                            sample_odds = date_odds.iloc[0]
+                                            if pd.notna(sample_odds.get('home_ml')) and pd.notna(sample_odds.get('away_ml')):
+                                                matched_df.loc[idx, 'moneyline_home'] = sample_odds['home_ml']
+                                                matched_df.loc[idx, 'moneyline_away'] = sample_odds['away_ml']
+                                    
+                                    # Re-check for missing betting after adding odds
+                                    missing_betting = matched_df[
+                                        (matched_df['Edge'].isna() | (matched_df['Edge'] == 0)) &
+                                        (matched_df['moneyline_home'].notna()) &
+                                        (matched_df['moneyline_away'].notna()) &
+                                        (matched_df['moneyline_home'] != 0) &
+                                        (matched_df['moneyline_away'] != 0)
+                                    ]
+                        except Exception:
+                            # If live odds lookup fails, continue without it
+                            pass
                     
                     if len(missing_betting) > 0:
                         # Calculate bankroll
