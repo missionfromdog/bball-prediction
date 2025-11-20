@@ -1871,7 +1871,15 @@ def main():
                     display_df['EV'] = display_df['EV'].apply(lambda x: f"${x:.2f}" if pd.notna(x) else "N/A")
                 display_df['Correct'] = display_df['Correct'].apply(lambda x: "✅" if x else "❌")
                 if 'Value_Bet' in display_df.columns:
-                    display_df['Value_Bet'] = display_df['Value_Bet'].apply(lambda x: "⭐" if x else "")
+                    # Only show ⭐ if Value_Bet is True AND Edge/EV are available
+                    def format_value_bet(row):
+                        if pd.isna(row.get('Value_Bet')) or row.get('Value_Bet') == False:
+                            return ""
+                        # Only show if we have Edge/EV data
+                        if pd.notna(row.get('Edge')) and pd.notna(row.get('EV')):
+                            return "⭐"
+                        return ""
+                    display_df['Value_Bet'] = display_df.apply(format_value_bet, axis=1)
                 
                 display_df = display_df.sort_values('Date', ascending=False)
                 
