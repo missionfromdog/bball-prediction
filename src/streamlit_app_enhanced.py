@@ -1547,6 +1547,14 @@ def main():
                 # ========================================================================
                 st.subheader("📈 Performance by Confidence Level")
                 
+                # Add explanation of confidence levels
+                st.markdown("""
+                **Confidence Level Definitions:**
+                - **High**: Win probability > 65% or < 35% (more than 15% away from 50/50)
+                - **Medium**: Win probability 55-65% or 35-45% (5-15% away from 50/50)
+                - **Low**: Win probability 45-55% (within 5% of 50/50)
+                """)
+                
                 confidence_breakdown = completed_df.groupby('Confidence').agg({
                     'Correct': ['count', 'sum', 'mean'],
                     'Confidence_Score': 'mean'
