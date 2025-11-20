@@ -73,6 +73,8 @@ data/betting/kaggle/*.csv
 # Ignore workflow-generated files
 data/predictions/*.csv
 data/betting/live_*.csv
+# Exception: Keep bookmaker comparison file (needed by Streamlit app)
+!data/betting/live_odds_bookmakers_comparison.csv
 data/injuries/*.csv
 data/performance/*.csv
 
