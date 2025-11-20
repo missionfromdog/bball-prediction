@@ -1313,10 +1313,24 @@ def main():
                     # Keep only completed games
                     results_df = results_df[results_df['PTS_home'] > 0].copy()
                     results_df['Actual_Winner'] = results_df['HOME_TEAM_WINS'].apply(lambda x: 'Home' if x == 1 else 'Away')
-                    results_df['MATCHUP'] = results_df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + results_df['HOME_TEAM_ABBREVIATION']
+                    
+                    # Create MATCHUP from team IDs (convert to abbreviations)
+                    # Check if we have abbreviation columns, otherwise use ID mapping
+                    if 'VISITOR_TEAM_ABBREVIATION' in results_df.columns and 'HOME_TEAM_ABBREVIATION' in results_df.columns:
+                        results_df['MATCHUP'] = results_df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + results_df['HOME_TEAM_ABBREVIATION']
+                    elif 'VISITOR_TEAM_ID' in results_df.columns and 'HOME_TEAM_ID' in results_df.columns:
+                        # Use NBA_TEAMS_NAMES mapping to convert IDs to abbreviations
+                        results_df['VISITOR_TEAM_ABBREVIATION'] = results_df['VISITOR_TEAM_ID'].map(NBA_TEAMS_NAMES)
+                        results_df['HOME_TEAM_ABBREVIATION'] = results_df['HOME_TEAM_ID'].map(NBA_TEAMS_NAMES)
+                        results_df['MATCHUP'] = results_df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + results_df['HOME_TEAM_ABBREVIATION']
+                    else:
+                        st.warning("⚠️ Could not find team columns in results dataset")
+                        return predictions_df, None
                     
                 except Exception as e:
                     st.error(f"Error loading game results: {e}")
+                    import traceback
+                    st.code(traceback.format_exc())
                     return predictions_df, None
                 
                 # Match predictions with results
@@ -1331,9 +1345,13 @@ def main():
                     how='left'
                 )
                 
-                # Calculate correctness
-                matched_df['Correct'] = matched_df['Predicted_Winner'] == matched_df['Actual_Winner']
+                # Calculate correctness (only for rows that have results)
                 matched_df['Has_Result'] = matched_df['Actual_Winner'].notna()
+                matched_df['Correct'] = None
+                matched_df.loc[matched_df['Has_Result'], 'Correct'] = (
+                    matched_df.loc[matched_df['Has_Result'], 'Predicted_Winner'] == 
+                    matched_df.loc[matched_df['Has_Result'], 'Actual_Winner']
+                )
                 
                 return matched_df, predictions_df
                 
@@ -1350,6 +1368,9 @@ def main():
         if matched_df is None or len(matched_df) == 0:
             st.warning("⚠️ No historical predictions found. Predictions will appear here once you start making daily predictions.")
             st.info("💡 Run the 'Daily NBA Predictions' workflow to generate predictions.")
+        elif 'Has_Result' not in matched_df.columns:
+            st.warning("⚠️ Could not match predictions with game results. Check that game results are available.")
+            st.info("💡 This may happen if predictions and game results use different date/matchup formats.")
         else:
             # Filter to only games with results
             completed_df = matched_df[matched_df['Has_Result']].copy()
