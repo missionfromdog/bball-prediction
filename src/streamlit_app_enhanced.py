@@ -1723,9 +1723,9 @@ def main():
                         st.markdown("**Average Vig by Sportsbook (Lower is Better)**")
                         st.dataframe(
                             bookmaker_stats.style.format({
-                                'Avg ML Vig': '{:.2%}',
-                                'Avg Spread Vig': '{:.2%}',
-                                'Avg Total Vig': '{:.2%}'
+                                'Avg ML Vig': '{:.2f}%',
+                                'Avg Spread Vig': '{:.2f}%',
+                                'Avg Total Vig': '{:.2f}%'
                             }).highlight_min(axis=0, subset=['Avg ML Vig', 'Avg Spread Vig', 'Avg Total Vig']),
                             use_container_width=True
                         )
@@ -1739,7 +1739,7 @@ def main():
                         best_platform = bookmaker_stats['Overall_Avg_Vig'].idxmin()
                         best_vig = bookmaker_stats.loc[best_platform, 'Overall_Avg_Vig']
                         
-                        st.success(f"🏆 **Best Overall Platform**: {best_platform} (Avg Vig: {best_vig:.2%})")
+                        st.success(f"🏆 **Best Overall Platform**: {best_platform} (Avg Vig: {best_vig:.2f}%)")
                         
                     except Exception as e:
                         st.warning(f"⚠️ Could not load bookmaker comparison data: {e}")
