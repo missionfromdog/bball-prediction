@@ -1732,16 +1732,22 @@ def main():
                 # ========================================================================
                 st.subheader("📋 All Historical Predictions")
                 
-                # Create display dataframe
-                display_cols = ['Date', 'Matchup', 'Predicted_Winner', 'Actual_Winner', 
-                              'Correct', 'Home_Win_Probability', 'Confidence', 
-                              'Edge', 'EV', 'Value_Bet']
+                # Create display dataframe - only include columns that exist
+                base_cols = ['Date', 'Matchup', 'Predicted_Winner', 'Actual_Winner', 
+                            'Correct', 'Home_Win_Probability', 'Confidence']
+                betting_cols = ['Edge', 'EV', 'Value_Bet']
+                
+                display_cols = base_cols + [col for col in betting_cols if col in completed_df.columns]
                 display_df = completed_df[display_cols].copy()
+                
                 display_df['Home_Win_Probability'] = display_df['Home_Win_Probability'].apply(lambda x: f"{x:.1%}")
-                display_df['Edge'] = display_df['Edge'].apply(lambda x: f"{x:.2%}" if pd.notna(x) else "N/A")
-                display_df['EV'] = display_df['EV'].apply(lambda x: f"${x:.2f}" if pd.notna(x) else "N/A")
+                if 'Edge' in display_df.columns:
+                    display_df['Edge'] = display_df['Edge'].apply(lambda x: f"{x:.2%}" if pd.notna(x) else "N/A")
+                if 'EV' in display_df.columns:
+                    display_df['EV'] = display_df['EV'].apply(lambda x: f"${x:.2f}" if pd.notna(x) else "N/A")
                 display_df['Correct'] = display_df['Correct'].apply(lambda x: "✅" if x else "❌")
-                display_df['Value_Bet'] = display_df['Value_Bet'].apply(lambda x: "⭐" if x else "")
+                if 'Value_Bet' in display_df.columns:
+                    display_df['Value_Bet'] = display_df['Value_Bet'].apply(lambda x: "⭐" if x else "")
                 
                 display_df = display_df.sort_values('Date', ascending=False)
                 
