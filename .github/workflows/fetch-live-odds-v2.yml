@@ -1,0 +1,129 @@
+name: Fetch Live NBA Odds V2
+
+on:
+  # Run every 6 hours during NBA season
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Grant write permissions
+permissions:
+  contents: write
+
+jobs:
+  fetch-odds:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: false
+          ref: main
+          fetch-depth: 0
+      
+      - name: Update to latest main
+        run: |
+          echo "🔄 Ensuring we're on latest main..."
+          git fetch origin main
+          git checkout main || git checkout -b main origin/main
+          git reset --hard origin/main
+          echo "✅ Now on latest main: $(git rev-parse HEAD)"
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+      
+      - name: Fetch Live Odds from The Odds API
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          echo "🎲 Fetching live NBA odds from The Odds API..."
+          python scripts/data_collection/scrape_live_odds.py
+        continue-on-error: false
+      
+      - name: Display Odds Summary
+        run: |
+          if [ -f "data/betting/live_odds_latest.csv" ]; then
+            echo "✅ Live odds fetched successfully"
+            echo ""
+            echo "📊 Preview:"
+            head -10 data/betting/live_odds_latest.csv
+          else
+            echo "❌ No odds data found"
+          fi
+      
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Add odds files (including bookmaker comparison)
+          git add data/betting/live_odds*.csv 2>/dev/null || true
+          git add data/betting/live_odds_bookmakers_comparison.csv 2>/dev/null || true
+          git add data/betting/*bookmakers*.csv 2>/dev/null || true
+          
+          # Debug: Show what files are staged
+          echo "📋 Files staged for commit:"
+          git diff --staged --name-only || echo "No files staged"
+          
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "✅ No new odds data to commit"
+          else
+            # Check if bookmaker comparison file exists
+            if [ -f "data/betting/live_odds_bookmakers_comparison.csv" ]; then
+              echo "✅ Bookmaker comparison file found and will be committed"
+            else
+              echo "⚠️ Bookmaker comparison file not found"
+            fi
+            
+            # Commit the odds files
+            git commit -m "🎲 Update live NBA betting odds: $(date +'%Y-%m-%d %H:%M UTC')
+            
+            Fetched from The Odds API
+            - Live spreads, moneylines, totals
+            - Bookmaker comparison data (vig analysis)
+            - Updated for upcoming games
+            
+            [skip ci]"
+            
+            # Push - use force push for odds files since they're generated data
+            echo "🚀 Pushing changes..."
+            git push origin main --force
+            echo "✅ Live odds committed and pushed"
+          fi
+      
+      - name: Create Summary
+        if: always()
+        run: |
+          echo "## 🎲 Live Odds Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "data/betting/live_odds_latest.csv" ]; then
+            GAMES_COUNT=$(tail -n +2 data/betting/live_odds_latest.csv | wc -l)
+            echo "### ✅ Success" >> $GITHUB_STEP_SUMMARY
+            echo "- Fetched odds for **${GAMES_COUNT}** upcoming NBA games" >> $GITHUB_STEP_SUMMARY
+            echo "- Source: The Odds API" >> $GITHUB_STEP_SUMMARY
+            echo "- Data saved to: \`data/betting/live_odds_latest.csv\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ❌ Failed" >> $GITHUB_STEP_SUMMARY
+            echo "- Could not fetch live odds" >> $GITHUB_STEP_SUMMARY
+            echo "- Check API key and credits" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔄 Next Update" >> $GITHUB_STEP_SUMMARY
+          echo "Scheduled in 6 hours" >> $GITHUB_STEP_SUMMARY
+
