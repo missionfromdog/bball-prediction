@@ -1274,9 +1274,10 @@ def main():
         def load_all_historical_predictions():
             """Load all historical prediction files and match with actual results"""
             try:
-                # Load all prediction files
+                # Load all prediction files (including latest, but deduplicate)
                 pred_files = list(PREDICTIONS_PATH.glob('predictions_*.csv'))
-                pred_files = [f for f in pred_files if 'latest' not in f.name]  # Skip latest file
+                # Include latest file as it may have the most recent predictions
+                # We'll deduplicate by date+matchup later
                 
                 if not pred_files:
                     return None, None
@@ -1297,6 +1298,11 @@ def main():
                 
                 predictions_df = pd.concat(all_preds, ignore_index=True)
                 predictions_df['Date'] = pd.to_datetime(predictions_df['Date'])
+                
+                # Deduplicate by Date + Matchup (keep most recent if duplicates)
+                # This handles cases where predictions_latest.csv overlaps with dated files
+                predictions_df = predictions_df.sort_values('Date', ascending=False)
+                predictions_df = predictions_df.drop_duplicates(subset=['Date', 'Matchup'], keep='first')
                 
                 # Load actual game results
                 try:
