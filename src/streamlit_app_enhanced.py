@@ -1270,7 +1270,7 @@ def main():
         st.markdown("Comprehensive performance metrics across all predictions since tracking began.")
         st.markdown("---")
         
-        @st.cache_data(ttl=3600)  # Cache for 1 hour
+        @st.cache_data(ttl=300)  # Cache for 5 minutes (shorter to pick up new files faster)
         def load_all_historical_predictions():
             """Load all historical prediction files and match with actual results"""
             try:
@@ -1413,6 +1413,13 @@ def main():
                 import traceback
                 st.code(traceback.format_exc())
                 return None, None
+        
+        # Cache clear button
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            if st.button("🔄 Refresh Data", help="Clear cache and reload predictions"):
+                load_all_historical_predictions.clear()
+                st.rerun()
         
         # Load historical data
         with st.spinner('Loading historical predictions...'):
