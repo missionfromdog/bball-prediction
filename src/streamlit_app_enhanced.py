@@ -1004,19 +1004,16 @@ def main():
                             col1, col2, col3 = st.columns(3)
                             
                             with col1:
-                                ml_vigs = [float(v.replace('%', '')) for v in comparison_df['Moneyline Vig'] if v != "N/A"]
-                                if ml_vigs:
-                                    st.metric("Best ML Vig", f"{min(ml_vigs):.2f}%")
+                                if best_ml is not None:
+                                    st.metric("Best ML Vig", f"{best_ml:.2f}%")
                             
                             with col2:
-                                spread_vigs = [float(v.replace('%', '')) for v in comparison_df['Spread Vig'] if v != "N/A"]
-                                if spread_vigs:
-                                    st.metric("Best Spread Vig", f"{min(spread_vigs):.2f}%")
+                                if best_spread is not None:
+                                    st.metric("Best Spread Vig", f"{best_spread:.2f}%")
                             
                             with col3:
-                                total_vigs = [float(v.replace('%', '')) for v in comparison_df['Total Vig'] if v != "N/A"]
-                                if total_vigs:
-                                    st.metric("Best Total Vig", f"{min(total_vigs):.2f}%")
+                                if best_total is not None:
+                                    st.metric("Best Total Vig", f"{best_total:.2f}%")
                             
                             # Show all games summary
                             st.markdown("---")
