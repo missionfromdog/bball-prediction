@@ -127,7 +127,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          git add data/predictions/*.csv 2>/dev/null || true
+          # Force add prediction files (they may be ignored by .gitignore)
+          git add -f data/predictions/predictions_*.csv 2>/dev/null || true
+          git add data/predictions/predictions_latest.csv 2>/dev/null || true
           
           if git diff --staged --quiet; then
             echo "✅ No games to predict today (or predictions unchanged)"
