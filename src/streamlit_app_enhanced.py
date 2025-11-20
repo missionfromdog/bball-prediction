@@ -72,6 +72,7 @@ st.set_page_config(
 
 DATAPATH = Path('data')
 MODELSPATH = Path('models')
+PREDICTIONS_PATH = DATAPATH / 'predictions'
 
 
 # ============================================================================
@@ -390,7 +391,7 @@ def main():
     live_odds_df = load_live_odds()
     
     # Main content tabs
-    tab1, tab2, tab3, tab4 = st.tabs(['📊 Predictions', '💰 Odds Comparison', '📈 Performance', 'ℹ️ About'])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(['📊 Predictions', '💰 Odds Comparison', '📈 Performance', '📜 History', 'ℹ️ About'])
     
     # ========================================================================
     # TAB 1: PREDICTIONS
@@ -1262,9 +1263,367 @@ def main():
             st.code(traceback.format_exc())
     
     # ========================================================================
-    # TAB 4: ABOUT
+    # TAB 4: HISTORY
     # ========================================================================
     with tab4:
+        fancy_header('Historical Performance', font_size=28)
+        st.markdown("Comprehensive performance metrics across all predictions since tracking began.")
+        st.markdown("---")
+        
+        @st.cache_data(ttl=3600)  # Cache for 1 hour
+        def load_all_historical_predictions():
+            """Load all historical prediction files and match with actual results"""
+            try:
+                # Load all prediction files
+                pred_files = list(PREDICTIONS_PATH.glob('predictions_*.csv'))
+                pred_files = [f for f in pred_files if 'latest' not in f.name]  # Skip latest file
+                
+                if not pred_files:
+                    return None, None
+                
+                # Load and combine all predictions
+                all_preds = []
+                for file in pred_files:
+                    try:
+                        df = pd.read_csv(file)
+                        df['Prediction_File'] = file.name
+                        all_preds.append(df)
+                    except Exception as e:
+                        st.warning(f"⚠️ Could not load {file.name}: {e}")
+                        continue
+                
+                if not all_preds:
+                    return None, None
+                
+                predictions_df = pd.concat(all_preds, ignore_index=True)
+                predictions_df['Date'] = pd.to_datetime(predictions_df['Date'])
+                
+                # Load actual game results
+                try:
+                    # Try workflow dataset first (has latest games)
+                    results_file = DATAPATH / 'games_with_real_vegas_workflow.csv'
+                    if not results_file.exists():
+                        results_file = DATAPATH / 'games_master_engineered.csv'
+                    if not results_file.exists():
+                        results_file = DATAPATH / 'games_with_real_vegas.csv'
+                    
+                    results_df = pd.read_csv(results_file)
+                    results_df['GAME_DATE_EST'] = pd.to_datetime(results_df['GAME_DATE_EST'])
+                    
+                    # Keep only completed games
+                    results_df = results_df[results_df['PTS_home'] > 0].copy()
+                    results_df['Actual_Winner'] = results_df['HOME_TEAM_WINS'].apply(lambda x: 'Home' if x == 1 else 'Away')
+                    results_df['MATCHUP'] = results_df['VISITOR_TEAM_ABBREVIATION'] + ' @ ' + results_df['HOME_TEAM_ABBREVIATION']
+                    
+                except Exception as e:
+                    st.error(f"Error loading game results: {e}")
+                    return predictions_df, None
+                
+                # Match predictions with results
+                # Create a matching key from date and matchup
+                predictions_df['Match_Key'] = predictions_df['Date'].dt.strftime('%Y-%m-%d') + '|' + predictions_df['Matchup']
+                results_df['Match_Key'] = results_df['GAME_DATE_EST'].dt.strftime('%Y-%m-%d') + '|' + results_df['MATCHUP']
+                
+                # Merge
+                matched_df = predictions_df.merge(
+                    results_df[['Match_Key', 'Actual_Winner', 'HOME_TEAM_WINS', 'PTS_home', 'PTS_away']],
+                    on='Match_Key',
+                    how='left'
+                )
+                
+                # Calculate correctness
+                matched_df['Correct'] = matched_df['Predicted_Winner'] == matched_df['Actual_Winner']
+                matched_df['Has_Result'] = matched_df['Actual_Winner'].notna()
+                
+                return matched_df, predictions_df
+                
+            except Exception as e:
+                st.error(f"Error loading historical predictions: {e}")
+                import traceback
+                st.code(traceback.format_exc())
+                return None, None
+        
+        # Load historical data
+        with st.spinner('Loading historical predictions...'):
+            matched_df, all_predictions_df = load_all_historical_predictions()
+        
+        if matched_df is None or len(matched_df) == 0:
+            st.warning("⚠️ No historical predictions found. Predictions will appear here once you start making daily predictions.")
+            st.info("💡 Run the 'Daily NBA Predictions' workflow to generate predictions.")
+        else:
+            # Filter to only games with results
+            completed_df = matched_df[matched_df['Has_Result']].copy()
+            
+            if len(completed_df) == 0:
+                st.warning("⚠️ No completed games found in predictions yet. Check back after games finish!")
+            else:
+                # ========================================================================
+                # MAIN KPIs
+                # ========================================================================
+                st.subheader("📊 Overall Performance Metrics")
+                
+                total_games = len(completed_df)
+                correct_predictions = completed_df['Correct'].sum()
+                accuracy = completed_df['Correct'].mean()
+                avg_confidence = completed_df['Home_Win_Probability'].apply(lambda x: abs(x - 0.5) * 2).mean()
+                
+                # Calculate confidence from probability
+                completed_df['Confidence_Score'] = completed_df['Home_Win_Probability'].apply(
+                    lambda x: abs(x - 0.5) * 2
+                )
+                
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    st.metric("Total Games Predicted", f"{total_games:,}")
+                with col2:
+                    st.metric("Accuracy", f"{accuracy:.1%}", 
+                             delta=f"{correct_predictions:,} / {total_games:,}")
+                with col3:
+                    st.metric("Correct Predictions", f"{correct_predictions:,}", 
+                             delta=f"{total_games - correct_predictions:,} incorrect")
+                with col4:
+                    st.metric("Avg Confidence", f"{avg_confidence:.1%}")
+                
+                st.markdown("---")
+                
+                # ========================================================================
+                # BETTING METRICS
+                # ========================================================================
+                st.subheader("💰 Betting Performance")
+                
+                # Filter to games with betting data
+                betting_df = completed_df[
+                    (completed_df['Edge'].notna()) & 
+                    (completed_df['EV'].notna()) &
+                    (completed_df['Value_Bet'].notna())
+                ].copy()
+                
+                if len(betting_df) > 0:
+                    # Calculate betting metrics
+                    total_value_bets = betting_df['Value_Bet'].sum()
+                    value_bet_accuracy = betting_df[betting_df['Value_Bet']]['Correct'].mean() if total_value_bets > 0 else 0
+                    avg_edge = betting_df['Edge'].mean()
+                    avg_ev = betting_df['EV'].mean()
+                    total_ev = betting_df['EV'].sum()
+                    avg_kelly = betting_df['Kelly'].mean()
+                    total_bet_size = betting_df['Bet_Size'].sum()
+                    
+                    # Calculate ROI (simplified - assumes $10 per bet)
+                    total_wagered = len(betting_df) * 10  # $10 per bet
+                    roi = (total_ev / total_wagered * 100) if total_wagered > 0 else 0
+                    
+                    col1, col2, col3, col4 = st.columns(4)
+                    with col1:
+                        st.metric("Value Bets", f"{total_value_bets:,}", 
+                                 delta=f"{value_bet_accuracy:.1%} accuracy" if total_value_bets > 0 else None)
+                    with col2:
+                        st.metric("Avg Edge", f"{avg_edge:.2%}", 
+                                 delta="vs Vegas" if avg_edge > 0 else None)
+                    with col3:
+                        st.metric("Total EV", f"${total_ev:.2f}", 
+                                 delta=f"{roi:.1f}% ROI" if roi > 0 else None)
+                    with col4:
+                        st.metric("Avg Kelly Fraction", f"{avg_kelly:.2%}")
+                    
+                    # Additional betting metrics
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Avg Expected Value", f"${avg_ev:.2f}")
+                    with col2:
+                        st.metric("Total Bet Size (Kelly)", f"${total_bet_size:.2f}")
+                else:
+                    st.info("💡 Betting metrics will appear once predictions include odds data.")
+                
+                st.markdown("---")
+                
+                # ========================================================================
+                # PERFORMANCE BY CONFIDENCE LEVEL
+                # ========================================================================
+                st.subheader("📈 Performance by Confidence Level")
+                
+                confidence_breakdown = completed_df.groupby('Confidence').agg({
+                    'Correct': ['count', 'sum', 'mean'],
+                    'Confidence_Score': 'mean'
+                }).round(3)
+                confidence_breakdown.columns = ['Total', 'Correct', 'Accuracy', 'Avg_Confidence_Score']
+                confidence_breakdown = confidence_breakdown.sort_values('Accuracy', ascending=False)
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.dataframe(
+                        confidence_breakdown.style.format({
+                            'Total': '{:.0f}',
+                            'Correct': '{:.0f}',
+                            'Accuracy': '{:.1%}',
+                            'Avg_Confidence_Score': '{:.1%}'
+                        }),
+                        use_container_width=True
+                    )
+                
+                with col2:
+                    # Accuracy by confidence chart
+                    try:
+                        import plotly.express as px
+                        fig = px.bar(
+                            confidence_breakdown.reset_index(),
+                            x='Confidence',
+                            y='Accuracy',
+                            title='Accuracy by Confidence Level',
+                            labels={'Accuracy': 'Accuracy (%)', 'Confidence': 'Confidence Level'},
+                            color='Accuracy',
+                            color_continuous_scale='RdYlGn'
+                        )
+                        fig.update_layout(yaxis_tickformat='.1%', showlegend=False)
+                        st.plotly_chart(fig, use_container_width=True)
+                    except ImportError:
+                        st.info("Install plotly for charts: `pip install plotly`")
+                
+                st.markdown("---")
+                
+                # ========================================================================
+                # TIME SERIES ANALYSIS
+                # ========================================================================
+                st.subheader("📅 Performance Over Time")
+                
+                # Calculate rolling accuracy
+                completed_df_sorted = completed_df.sort_values('Date')
+                completed_df_sorted['Rolling_Accuracy'] = completed_df_sorted['Correct'].expanding().mean()
+                
+                # Group by date for daily metrics
+                daily_metrics = completed_df_sorted.groupby(completed_df_sorted['Date'].dt.date).agg({
+                    'Correct': ['count', 'sum', 'mean'],
+                    'Confidence_Score': 'mean',
+                    'Edge': 'mean',
+                    'EV': 'sum'
+                }).round(3)
+                daily_metrics.columns = ['Games', 'Correct', 'Accuracy', 'Avg_Confidence', 'Avg_Edge', 'Total_EV']
+                daily_metrics = daily_metrics.reset_index()
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    # Accuracy over time
+                    try:
+                        import plotly.express as px
+                        fig1 = px.line(
+                            daily_metrics,
+                            x='Date',
+                            y='Accuracy',
+                            title='Daily Accuracy Over Time',
+                            labels={'Accuracy': 'Accuracy (%)', 'Date': 'Date'},
+                            markers=True
+                        )
+                        fig1.add_hline(y=0.5, line_dash="dash", line_color="gray", 
+                                      annotation_text="50% Baseline")
+                        fig1.update_layout(yaxis_tickformat='.1%')
+                        st.plotly_chart(fig1, use_container_width=True)
+                    except ImportError:
+                        st.info("Install plotly for charts")
+                
+                with col2:
+                    # Rolling accuracy
+                    try:
+                        import plotly.express as px
+                        fig2 = px.line(
+                            completed_df_sorted,
+                            x='Date',
+                            y='Rolling_Accuracy',
+                            title='Cumulative Rolling Accuracy',
+                            labels={'Rolling_Accuracy': 'Cumulative Accuracy (%)', 'Date': 'Date'},
+                        )
+                        fig2.add_hline(y=0.5, line_dash="dash", line_color="gray", 
+                                      annotation_text="50% Baseline")
+                        fig2.update_layout(yaxis_tickformat='.1%')
+                        st.plotly_chart(fig2, use_container_width=True)
+                    except ImportError:
+                        st.info("Install plotly for charts")
+                
+                st.markdown("---")
+                
+                # ========================================================================
+                # BEST VIG PLATFORM ANALYSIS
+                # ========================================================================
+                st.subheader("🎲 Best Vig Platform Analysis")
+                
+                # Load bookmaker comparison data if available
+                comparison_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
+                if comparison_path.exists():
+                    try:
+                        bookmaker_df = pd.read_csv(comparison_path)
+                        
+                        # Calculate average vig by bookmaker
+                        bookmaker_stats = bookmaker_df.groupby('bookmaker').agg({
+                            'ml_vig': 'mean',
+                            'spread_vig': 'mean',
+                            'total_vig': 'mean'
+                        }).round(4)
+                        bookmaker_stats.columns = ['Avg ML Vig', 'Avg Spread Vig', 'Avg Total Vig']
+                        bookmaker_stats = bookmaker_stats.sort_values('Avg Total Vig')
+                        
+                        st.markdown("**Average Vig by Sportsbook (Lower is Better)**")
+                        st.dataframe(
+                            bookmaker_stats.style.format({
+                                'Avg ML Vig': '{:.2%}',
+                                'Avg Spread Vig': '{:.2%}',
+                                'Avg Total Vig': '{:.2%}'
+                            }).highlight_min(axis=0, subset=['Avg ML Vig', 'Avg Spread Vig', 'Avg Total Vig']),
+                            use_container_width=True
+                        )
+                        
+                        # Best overall platform
+                        bookmaker_stats['Overall_Avg_Vig'] = (
+                            bookmaker_stats['Avg ML Vig'] + 
+                            bookmaker_stats['Avg Spread Vig'] + 
+                            bookmaker_stats['Avg Total Vig']
+                        ) / 3
+                        best_platform = bookmaker_stats['Overall_Avg_Vig'].idxmin()
+                        best_vig = bookmaker_stats.loc[best_platform, 'Overall_Avg_Vig']
+                        
+                        st.success(f"🏆 **Best Overall Platform**: {best_platform} (Avg Vig: {best_vig:.2%})")
+                        
+                    except Exception as e:
+                        st.warning(f"⚠️ Could not load bookmaker comparison data: {e}")
+                else:
+                    st.info("💡 Bookmaker comparison data will appear once the 'Fetch Live NBA Odds' workflow runs.")
+                
+                st.markdown("---")
+                
+                # ========================================================================
+                # DETAILED TABLE
+                # ========================================================================
+                st.subheader("📋 All Historical Predictions")
+                
+                # Create display dataframe
+                display_cols = ['Date', 'Matchup', 'Predicted_Winner', 'Actual_Winner', 
+                              'Correct', 'Home_Win_Probability', 'Confidence', 
+                              'Edge', 'EV', 'Value_Bet']
+                display_df = completed_df[display_cols].copy()
+                display_df['Home_Win_Probability'] = display_df['Home_Win_Probability'].apply(lambda x: f"{x:.1%}")
+                display_df['Edge'] = display_df['Edge'].apply(lambda x: f"{x:.2%}" if pd.notna(x) else "N/A")
+                display_df['EV'] = display_df['EV'].apply(lambda x: f"${x:.2f}" if pd.notna(x) else "N/A")
+                display_df['Correct'] = display_df['Correct'].apply(lambda x: "✅" if x else "❌")
+                display_df['Value_Bet'] = display_df['Value_Bet'].apply(lambda x: "⭐" if x else "")
+                
+                display_df = display_df.sort_values('Date', ascending=False)
+                
+                st.dataframe(
+                    display_df,
+                    use_container_width=True,
+                    hide_index=True
+                )
+                
+                # Download button
+                csv = completed_df.to_csv(index=False)
+                st.download_button(
+                    label="📥 Download Full History (CSV)",
+                    data=csv,
+                    file_name=f"prediction_history_{datetime.now().strftime('%Y%m%d')}.csv",
+                    mime="text/csv"
+                )
+    
+    # ========================================================================
+    # TAB 5: ABOUT
+    # ========================================================================
+    with tab5:
         fancy_header('About This App', font_size=28)
         st.markdown("")
         
