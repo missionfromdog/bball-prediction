@@ -1390,25 +1390,21 @@ def main():
                 # Ensure all prediction columns are preserved (Edge, EV, Kelly, Bet_Size, Value_Bet, etc.)
                 # The merge should preserve them, but let's verify they exist
                 for col in ['Edge', 'EV', 'Kelly', 'Bet_Size', 'Value_Bet']:
-                    if col not in matched_df.columns and col in predictions_df.columns:
-                        matched_df[col] = predictions_df[col]
+                    if col not in matched_df.columns:
+                        if col in predictions_df.columns:
+                            matched_df[col] = predictions_df[col]
+                        else:
+                            # Initialize with None if column doesn't exist
+                            matched_df[col] = None
                 
                 # Try to recalculate betting metrics for rows that don't have them
-                # Check if results dataset has moneyline data
-                if 'moneyline_home' in results_df.columns and 'moneyline_away' in results_df.columns:
-                    # Merge moneyline data
-                    matched_df = matched_df.merge(
-                        results_df[['Match_Key', 'moneyline_home', 'moneyline_away']],
-                        on='Match_Key',
-                        how='left',
-                        suffixes=('', '_from_results')
-                    )
-                    
+                # Use historical odds from results dataset if available
+                if 'moneyline_home' in matched_df.columns and 'moneyline_away' in matched_df.columns:
                     # For rows missing Edge/EV, try to calculate from historical odds
                     missing_betting = matched_df[
-                        (matched_df['Edge'].isna() | matched_df['EV'].isna()) &
-                        (matched_df['moneyline_home_from_results'].notna()) &
-                        (matched_df['moneyline_away_from_results'].notna())
+                        (matched_df['Edge'].isna() | (matched_df['Edge'] == 0)) &
+                        (matched_df['moneyline_home'].notna()) &
+                        (matched_df['moneyline_away'].notna())
                     ]
                     
                     if len(missing_betting) > 0:
@@ -1418,18 +1414,21 @@ def main():
                         
                         for idx in missing_betting.index:
                             row = matched_df.loc[idx]
-                            home_ml = row.get('moneyline_home_from_results')
-                            away_ml = row.get('moneyline_away_from_results')
+                            home_ml = row.get('moneyline_home')
+                            away_ml = row.get('moneyline_away')
                             prob = row['Home_Win_Probability']
                             pred = row['Predicted_Winner']
                             is_home_bet = (pred == 'Home')
                             
                             if pd.notna(home_ml) and pd.notna(away_ml):
                                 try:
+                                    home_ml_float = float(home_ml)
+                                    away_ml_float = float(away_ml)
+                                    
                                     betting_analysis = analyze_betting_value(
                                         model_prob=prob,
-                                        home_ml=float(home_ml),
-                                        away_ml=float(away_ml),
+                                        home_ml=home_ml_float,
+                                        away_ml=away_ml_float,
                                         is_home_bet=is_home_bet
                                     )
                                     
@@ -1441,8 +1440,8 @@ def main():
                                     matched_df.loc[idx, 'Kelly'] = kelly_fraction
                                     matched_df.loc[idx, 'Bet_Size'] = bet_size
                                     matched_df.loc[idx, 'Value_Bet'] = betting_analysis.get('has_value', False)
-                                except Exception:
-                                    # Skip if calculation fails
+                                except (ValueError, TypeError, Exception) as e:
+                                    # Skip if calculation fails (invalid odds, etc.)
                                     pass
                 
                 # Calculate correctness (only for rows that have results)
