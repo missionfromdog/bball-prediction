@@ -1596,13 +1596,37 @@ def main():
                 completed_df_sorted['Rolling_Accuracy'] = completed_df_sorted['Correct'].expanding().mean()
                 
                 # Group by date for daily metrics
-                daily_metrics = completed_df_sorted.groupby(completed_df_sorted['Date'].dt.date).agg({
+                # Build aggregation dict based on available columns
+                agg_dict = {
                     'Correct': ['count', 'sum', 'mean'],
-                    'Confidence_Score': 'mean',
-                    'Edge': 'mean',
-                    'EV': 'sum'
-                }).round(3)
-                daily_metrics.columns = ['Games', 'Correct', 'Accuracy', 'Avg_Confidence', 'Avg_Edge', 'Total_EV']
+                    'Confidence_Score': 'mean'
+                }
+                
+                # Add betting columns if they exist
+                if 'Edge' in completed_df_sorted.columns:
+                    agg_dict['Edge'] = 'mean'
+                if 'EV' in completed_df_sorted.columns:
+                    agg_dict['EV'] = 'sum'
+                
+                daily_metrics = completed_df_sorted.groupby(completed_df_sorted['Date'].dt.date).agg(agg_dict).round(3)
+                
+                # Flatten column names
+                if isinstance(daily_metrics.columns, pd.MultiIndex):
+                    daily_metrics.columns = ['_'.join(col).strip() if col[1] else col[0] for col in daily_metrics.columns.values]
+                
+                # Rename columns to standard names
+                column_mapping = {
+                    'Correct_count': 'Games',
+                    'Correct_sum': 'Correct',
+                    'Correct_mean': 'Accuracy',
+                    'Confidence_Score_mean': 'Avg_Confidence'
+                }
+                if 'Edge_mean' in daily_metrics.columns:
+                    column_mapping['Edge_mean'] = 'Avg_Edge'
+                if 'EV_sum' in daily_metrics.columns:
+                    column_mapping['EV_sum'] = 'Total_EV'
+                
+                daily_metrics = daily_metrics.rename(columns=column_mapping)
                 daily_metrics = daily_metrics.reset_index()
                 
                 col1, col2 = st.columns(2)
@@ -1610,38 +1634,48 @@ def main():
                     # Accuracy over time
                     try:
                         import plotly.express as px
-                        fig1 = px.line(
-                            daily_metrics,
-                            x='Date',
-                            y='Accuracy',
-                            title='Daily Accuracy Over Time',
-                            labels={'Accuracy': 'Accuracy (%)', 'Date': 'Date'},
-                            markers=True
-                        )
-                        fig1.add_hline(y=0.5, line_dash="dash", line_color="gray", 
-                                      annotation_text="50% Baseline")
-                        fig1.update_layout(yaxis_tickformat='.1%')
-                        st.plotly_chart(fig1, use_container_width=True)
+                        if 'Accuracy' in daily_metrics.columns:
+                            fig1 = px.line(
+                                daily_metrics,
+                                x='Date',
+                                y='Accuracy',
+                                title='Daily Accuracy Over Time',
+                                labels={'Accuracy': 'Accuracy (%)', 'Date': 'Date'},
+                                markers=True
+                            )
+                            fig1.add_hline(y=0.5, line_dash="dash", line_color="gray", 
+                                          annotation_text="50% Baseline")
+                            fig1.update_layout(yaxis_tickformat='.1%')
+                            st.plotly_chart(fig1, use_container_width=True)
+                        else:
+                            st.info("Accuracy data not available")
                     except ImportError:
                         st.info("Install plotly for charts")
+                    except Exception as e:
+                        st.warning(f"Could not create accuracy chart: {e}")
                 
                 with col2:
                     # Rolling accuracy
                     try:
                         import plotly.express as px
-                        fig2 = px.line(
-                            completed_df_sorted,
-                            x='Date',
-                            y='Rolling_Accuracy',
-                            title='Cumulative Rolling Accuracy',
-                            labels={'Rolling_Accuracy': 'Cumulative Accuracy (%)', 'Date': 'Date'},
-                        )
-                        fig2.add_hline(y=0.5, line_dash="dash", line_color="gray", 
-                                      annotation_text="50% Baseline")
-                        fig2.update_layout(yaxis_tickformat='.1%')
-                        st.plotly_chart(fig2, use_container_width=True)
+                        if 'Rolling_Accuracy' in completed_df_sorted.columns:
+                            fig2 = px.line(
+                                completed_df_sorted,
+                                x='Date',
+                                y='Rolling_Accuracy',
+                                title='Cumulative Rolling Accuracy',
+                                labels={'Rolling_Accuracy': 'Cumulative Accuracy (%)', 'Date': 'Date'},
+                            )
+                            fig2.add_hline(y=0.5, line_dash="dash", line_color="gray", 
+                                          annotation_text="50% Baseline")
+                            fig2.update_layout(yaxis_tickformat='.1%')
+                            st.plotly_chart(fig2, use_container_width=True)
+                        else:
+                            st.info("Rolling accuracy data not available")
                     except ImportError:
                         st.info("Install plotly for charts")
+                    except Exception as e:
+                        st.warning(f"Could not create rolling accuracy chart: {e}")
                 
                 st.markdown("---")
                 
