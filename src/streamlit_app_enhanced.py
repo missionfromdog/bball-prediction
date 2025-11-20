@@ -1367,12 +1367,18 @@ def main():
                 sample_pred_keys = predictions_df['Match_Key'].head(3).tolist()
                 sample_result_keys = results_df_filtered['Match_Key'].head(3).tolist() if len(results_df_filtered) > 0 else []
                 
-                # Merge
+                # Merge - preserve all prediction columns and add result columns
                 matched_df = predictions_df.merge(
                     results_df[['Match_Key', 'Actual_Winner', 'HOME_TEAM_WINS', 'PTS_home', 'PTS_away']],
                     on='Match_Key',
                     how='left'
                 )
+                
+                # Ensure all prediction columns are preserved (Edge, EV, Kelly, Bet_Size, Value_Bet, etc.)
+                # The merge should preserve them, but let's verify they exist
+                for col in ['Edge', 'EV', 'Kelly', 'Bet_Size', 'Value_Bet']:
+                    if col not in matched_df.columns and col in predictions_df.columns:
+                        matched_df[col] = predictions_df[col]
                 
                 # Calculate correctness (only for rows that have results)
                 matched_df['Has_Result'] = matched_df['Actual_Winner'].notna()
@@ -1485,12 +1491,18 @@ def main():
                 # ========================================================================
                 st.subheader("💰 Betting Performance")
                 
-                # Filter to games with betting data
-                betting_df = completed_df[
-                    (completed_df['Edge'].notna()) & 
-                    (completed_df['EV'].notna()) &
-                    (completed_df['Value_Bet'].notna())
-                ].copy()
+                # Filter to games with betting data (check if columns exist first)
+                betting_cols = ['Edge', 'EV', 'Value_Bet']
+                has_betting_data = all(col in completed_df.columns for col in betting_cols)
+                
+                if has_betting_data:
+                    betting_df = completed_df[
+                        (completed_df['Edge'].notna()) & 
+                        (completed_df['EV'].notna()) &
+                        (completed_df['Value_Bet'].notna())
+                    ].copy()
+                else:
+                    betting_df = pd.DataFrame()  # Empty dataframe if columns don't exist
                 
                 if len(betting_df) > 0:
                     # Calculate betting metrics
