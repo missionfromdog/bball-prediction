@@ -940,34 +940,50 @@ def main():
                             
                             comparison_df = pd.DataFrame(comparison_rows)
                             
-                            # Find best (lowest) vig for each market
+                            # Helper function to extract numeric value from vig string
+                            def extract_vig_value(vig_str):
+                                """Extract numeric value from vig string, handling emojis and %"""
+                                if vig_str == "N/A" or pd.isna(vig_str):
+                                    return None
+                                # Remove emojis, stars, and % signs, then convert to float
+                                cleaned = str(vig_str).replace('⭐', '').replace('%', '').strip()
+                                try:
+                                    return float(cleaned)
+                                except (ValueError, TypeError):
+                                    return None
+                            
+                            # Find best (lowest) vig for each market from original values
+                            ml_vigs = [extract_vig_value(v) for v in comparison_df['Moneyline Vig']]
+                            spread_vigs = [extract_vig_value(v) for v in comparison_df['Spread Vig']]
+                            total_vigs = [extract_vig_value(v) for v in comparison_df['Total Vig']]
+                            
+                            # Filter out None values and find minimums
+                            best_ml = min([v for v in ml_vigs if v is not None]) if any(v is not None for v in ml_vigs) else None
+                            best_spread = min([v for v in spread_vigs if v is not None]) if any(v is not None for v in spread_vigs) else None
+                            best_total = min([v for v in total_vigs if v is not None]) if any(v is not None for v in total_vigs) else None
+                            
+                            # Format rows with star for best vig
                             def format_row(row):
                                 """Format row with best vig highlighting"""
                                 ml_vig_val = row['Moneyline Vig']
                                 spread_vig_val = row['Spread Vig']
                                 total_vig_val = row['Total Vig']
                                 
-                                # Find best vigs
-                                ml_vigs = [float(v.replace('%', '')) for v in comparison_df['Moneyline Vig'] if v != "N/A"]
-                                spread_vigs = [float(v.replace('%', '')) for v in comparison_df['Spread Vig'] if v != "N/A"]
-                                total_vigs = [float(v.replace('%', '')) for v in comparison_df['Total Vig'] if v != "N/A"]
+                                # Format with star for best (compare numeric values)
+                                if ml_vig_val != "N/A" and best_ml is not None:
+                                    ml_num = extract_vig_value(ml_vig_val)
+                                    if ml_num is not None and abs(ml_num - best_ml) < 0.001:  # Use small epsilon for float comparison
+                                        row['Moneyline Vig'] = f"⭐ {ml_vig_val.replace('⭐', '').strip()}"
                                 
-                                best_ml = min(ml_vigs) if ml_vigs else None
-                                best_spread = min(spread_vigs) if spread_vigs else None
-                                best_total = min(total_vigs) if total_vigs else None
+                                if spread_vig_val != "N/A" and best_spread is not None:
+                                    spread_num = extract_vig_value(spread_vig_val)
+                                    if spread_num is not None and abs(spread_num - best_spread) < 0.001:
+                                        row['Spread Vig'] = f"⭐ {spread_vig_val.replace('⭐', '').strip()}"
                                 
-                                # Format with star for best
-                                if ml_vig_val != "N/A" and best_ml:
-                                    if float(ml_vig_val.replace('%', '')) == best_ml:
-                                        row['Moneyline Vig'] = f"⭐ {ml_vig_val}"
-                                
-                                if spread_vig_val != "N/A" and best_spread:
-                                    if float(spread_vig_val.replace('%', '')) == best_spread:
-                                        row['Spread Vig'] = f"⭐ {spread_vig_val}"
-                                
-                                if total_vig_val != "N/A" and best_total:
-                                    if float(total_vig_val.replace('%', '')) == best_total:
-                                        row['Total Vig'] = f"⭐ {total_vig_val}"
+                                if total_vig_val != "N/A" and best_total is not None:
+                                    total_num = extract_vig_value(total_vig_val)
+                                    if total_num is not None and abs(total_num - best_total) < 0.001:
+                                        row['Total Vig'] = f"⭐ {total_vig_val.replace('⭐', '').strip()}"
                                 
                                 return row
                             
