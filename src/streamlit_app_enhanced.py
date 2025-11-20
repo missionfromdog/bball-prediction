@@ -1449,8 +1449,8 @@ def main():
                             if len(missing_betting) == 0:
                                 live_odds_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
                                 if live_odds_path.exists():
-                                live_odds_df = pd.read_csv(live_odds_path)
-                                if 'commence_time' in live_odds_df.columns and 'home_ml' in live_odds_df.columns:
+                                    live_odds_df = pd.read_csv(live_odds_path)
+                                    if 'commence_time' in live_odds_df.columns and 'home_ml' in live_odds_df.columns:
                                     live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
                                     
                                     # Convert team names to abbreviations for matching
