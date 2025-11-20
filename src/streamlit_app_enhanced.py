@@ -1451,9 +1451,9 @@ def main():
                                 if live_odds_path.exists():
                                     live_odds_df = pd.read_csv(live_odds_path)
                                     if 'commence_time' in live_odds_df.columns and 'home_ml' in live_odds_df.columns:
-                                    live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
-                                    
-                                    # Convert team names to abbreviations for matching
+                                        live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
+                                        
+                                        # Convert team names to abbreviations for matching
                                     TEAM_NAME_TO_ABBREV = {
                                         "Atlanta Hawks": "ATL", "Boston Celtics": "BOS", "Brooklyn Nets": "BKN",
                                         "Charlotte Hornets": "CHA", "Chicago Bulls": "CHI", "Cleveland Cavaliers": "CLE",
