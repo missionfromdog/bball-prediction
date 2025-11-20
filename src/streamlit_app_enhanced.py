@@ -1401,10 +1401,13 @@ def main():
                 # Use historical odds from results dataset if available
                 if 'moneyline_home' in matched_df.columns and 'moneyline_away' in matched_df.columns:
                     # For rows missing Edge/EV, try to calculate from historical odds
+                    # Only use rows where moneylines are valid (not 0 or NaN)
                     missing_betting = matched_df[
                         (matched_df['Edge'].isna() | (matched_df['Edge'] == 0)) &
                         (matched_df['moneyline_home'].notna()) &
-                        (matched_df['moneyline_away'].notna())
+                        (matched_df['moneyline_away'].notna()) &
+                        (matched_df['moneyline_home'] != 0) &
+                        (matched_df['moneyline_away'] != 0)
                     ]
                     
                     if len(missing_betting) > 0:
