@@ -1374,8 +1374,15 @@ def main():
                 sample_result_keys = results_df_filtered['Match_Key'].head(3).tolist() if len(results_df_filtered) > 0 else []
                 
                 # Merge - preserve all prediction columns and add result columns
+                # Include moneyline columns for recalculating betting metrics
+                merge_cols = ['Match_Key', 'Actual_Winner', 'HOME_TEAM_WINS', 'PTS_home', 'PTS_away']
+                if 'moneyline_home' in results_df.columns:
+                    merge_cols.append('moneyline_home')
+                if 'moneyline_away' in results_df.columns:
+                    merge_cols.append('moneyline_away')
+                
                 matched_df = predictions_df.merge(
-                    results_df[['Match_Key', 'Actual_Winner', 'HOME_TEAM_WINS', 'PTS_home', 'PTS_away']],
+                    results_df[merge_cols],
                     on='Match_Key',
                     how='left'
                 )
@@ -1385,6 +1392,58 @@ def main():
                 for col in ['Edge', 'EV', 'Kelly', 'Bet_Size', 'Value_Bet']:
                     if col not in matched_df.columns and col in predictions_df.columns:
                         matched_df[col] = predictions_df[col]
+                
+                # Try to recalculate betting metrics for rows that don't have them
+                # Check if results dataset has moneyline data
+                if 'moneyline_home' in results_df.columns and 'moneyline_away' in results_df.columns:
+                    # Merge moneyline data
+                    matched_df = matched_df.merge(
+                        results_df[['Match_Key', 'moneyline_home', 'moneyline_away']],
+                        on='Match_Key',
+                        how='left',
+                        suffixes=('', '_from_results')
+                    )
+                    
+                    # For rows missing Edge/EV, try to calculate from historical odds
+                    missing_betting = matched_df[
+                        (matched_df['Edge'].isna() | matched_df['EV'].isna()) &
+                        (matched_df['moneyline_home_from_results'].notna()) &
+                        (matched_df['moneyline_away_from_results'].notna())
+                    ]
+                    
+                    if len(missing_betting) > 0:
+                        # Calculate bankroll
+                        num_games = len(missing_betting)
+                        bankroll = max(100.0, num_games * 10.0)
+                        
+                        for idx in missing_betting.index:
+                            row = matched_df.loc[idx]
+                            home_ml = row.get('moneyline_home_from_results')
+                            away_ml = row.get('moneyline_away_from_results')
+                            prob = row['Home_Win_Probability']
+                            pred = row['Predicted_Winner']
+                            is_home_bet = (pred == 'Home')
+                            
+                            if pd.notna(home_ml) and pd.notna(away_ml):
+                                try:
+                                    betting_analysis = analyze_betting_value(
+                                        model_prob=prob,
+                                        home_ml=float(home_ml),
+                                        away_ml=float(away_ml),
+                                        is_home_bet=is_home_bet
+                                    )
+                                    
+                                    kelly_fraction = betting_analysis.get('kelly_fraction', 0)
+                                    bet_size = calculate_bet_size(kelly_fraction, bankroll) if pd.notna(kelly_fraction) else 0.0
+                                    
+                                    matched_df.loc[idx, 'Edge'] = betting_analysis.get('edge')
+                                    matched_df.loc[idx, 'EV'] = betting_analysis.get('expected_value')
+                                    matched_df.loc[idx, 'Kelly'] = kelly_fraction
+                                    matched_df.loc[idx, 'Bet_Size'] = bet_size
+                                    matched_df.loc[idx, 'Value_Bet'] = betting_analysis.get('has_value', False)
+                                except Exception:
+                                    # Skip if calculation fails
+                                    pass
                 
                 # Calculate correctness (only for rows that have results)
                 matched_df['Has_Result'] = matched_df['Actual_Winner'].notna()
