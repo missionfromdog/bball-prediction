@@ -1420,25 +1420,51 @@ def main():
                                 if 'commence_time' in live_odds_df.columns and 'home_ml' in live_odds_df.columns:
                                     live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
                                     
-                                    # Try to match predictions with live odds by date and matchup
-                                    for idx in matched_df[matched_df['Edge'].isna()].index:
-                                        row = matched_df.loc[idx]
-                                        pred_date = row['Date'].date()
-                                        pred_matchup = row['Matchup']
+                                    # Convert team names to abbreviations for matching
+                                    TEAM_NAME_TO_ABBREV = {
+                                        "Atlanta Hawks": "ATL", "Boston Celtics": "BOS", "Brooklyn Nets": "BKN",
+                                        "Charlotte Hornets": "CHA", "Chicago Bulls": "CHI", "Cleveland Cavaliers": "CLE",
+                                        "Dallas Mavericks": "DAL", "Denver Nuggets": "DEN", "Detroit Pistons": "DET",
+                                        "Golden State Warriors": "GSW", "Houston Rockets": "HOU", "Indiana Pacers": "IND",
+                                        "LA Clippers": "LAC", "Los Angeles Clippers": "LAC", "Los Angeles Lakers": "LAL",
+                                        "Memphis Grizzlies": "MEM", "Miami Heat": "MIA", "Milwaukee Bucks": "MIL",
+                                        "Minnesota Timberwolves": "MIN", "New Orleans Pelicans": "NOP", "New York Knicks": "NYK",
+                                        "Oklahoma City Thunder": "OKC", "Orlando Magic": "ORL", "Philadelphia 76ers": "PHI",
+                                        "Phoenix Suns": "PHX", "Portland Trail Blazers": "POR", "Sacramento Kings": "SAC",
+                                        "San Antonio Spurs": "SAS", "Toronto Raptors": "TOR", "Utah Jazz": "UTA",
+                                        "Washington Wizards": "WAS"
+                                    }
+                                    
+                                    # Create matchup column in odds df if team names exist
+                                    if 'home_team' in live_odds_df.columns and 'away_team' in live_odds_df.columns:
+                                        live_odds_df['home_abbrev'] = live_odds_df['home_team'].map(TEAM_NAME_TO_ABBREV)
+                                        live_odds_df['away_abbrev'] = live_odds_df['away_team'].map(TEAM_NAME_TO_ABBREV)
+                                        live_odds_df['odds_matchup'] = live_odds_df['away_abbrev'] + ' @ ' + live_odds_df['home_abbrev']
+                                        live_odds_df['odds_date'] = live_odds_df['commence_time'].dt.date
                                         
-                                        # Find matching odds
-                                        date_odds = live_odds_df[
-                                            live_odds_df['commence_time'].dt.date == pred_date
-                                        ]
+                                        # Group by date and matchup, take first bookmaker's odds
+                                        odds_summary = live_odds_df.groupby(['odds_date', 'odds_matchup']).agg({
+                                            'home_ml': 'first',
+                                            'away_ml': 'first'
+                                        }).reset_index()
                                         
-                                        # Try to match by team names in matchup
-                                        # This is a simple approach - could be improved
-                                        if len(date_odds) > 0:
-                                            # Use first bookmaker's odds for simplicity
-                                            sample_odds = date_odds.iloc[0]
-                                            if pd.notna(sample_odds.get('home_ml')) and pd.notna(sample_odds.get('away_ml')):
-                                                matched_df.loc[idx, 'moneyline_home'] = sample_odds['home_ml']
-                                                matched_df.loc[idx, 'moneyline_away'] = sample_odds['away_ml']
+                                        # Try to match predictions with live odds by date and matchup
+                                        for idx in matched_df[matched_df['Edge'].isna()].index:
+                                            row = matched_df.loc[idx]
+                                            pred_date = row['Date'].date()
+                                            pred_matchup = row['Matchup']
+                                            
+                                            # Find matching odds
+                                            match_odds = odds_summary[
+                                                (odds_summary['odds_date'] == pred_date) &
+                                                (odds_summary['odds_matchup'] == pred_matchup)
+                                            ]
+                                            
+                                            if len(match_odds) > 0:
+                                                sample_odds = match_odds.iloc[0]
+                                                if pd.notna(sample_odds.get('home_ml')) and pd.notna(sample_odds.get('away_ml')):
+                                                    matched_df.loc[idx, 'moneyline_home'] = sample_odds['home_ml']
+                                                    matched_df.loc[idx, 'moneyline_away'] = sample_odds['away_ml']
                                     
                                     # Re-check for missing betting after adding odds
                                     missing_betting = matched_df[
