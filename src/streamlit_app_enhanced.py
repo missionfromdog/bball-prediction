@@ -1413,9 +1413,42 @@ def main():
                     # If no valid odds in results, try loading from live odds files
                     if len(missing_betting) == 0:
                         try:
-                            # Try to load live odds for the prediction dates
-                            live_odds_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
-                            if live_odds_path.exists():
+                            # First try historical odds file (Nov 18-19)
+                            historical_odds_path = DATAPATH / 'betting' / 'historical_odds_nov_18_19.csv'
+                            if historical_odds_path.exists():
+                                historical_odds_df = pd.read_csv(historical_odds_path)
+                                historical_odds_df['date'] = pd.to_datetime(historical_odds_df['date']).dt.date
+                                
+                                # Match predictions to historical odds
+                                for idx in matched_df[matched_df['Edge'].isna()].index:
+                                    row = matched_df.loc[idx]
+                                    pred_date = row['Date'].date()
+                                    pred_matchup = row['Matchup']
+                                    
+                                    match_odds = historical_odds_df[
+                                        (historical_odds_df['date'] == pred_date) &
+                                        (historical_odds_df['matchup'] == pred_matchup)
+                                    ]
+                                    
+                                    if len(match_odds) > 0:
+                                        sample_odds = match_odds.iloc[0]
+                                        if pd.notna(sample_odds.get('home_ml')) and pd.notna(sample_odds.get('away_ml')):
+                                            matched_df.loc[idx, 'moneyline_home'] = sample_odds['home_ml']
+                                            matched_df.loc[idx, 'moneyline_away'] = sample_odds['away_ml']
+                                
+                                # Re-check for missing betting after adding historical odds
+                                missing_betting = matched_df[
+                                    (matched_df['Edge'].isna() | (matched_df['Edge'] == 0)) &
+                                    (matched_df['moneyline_home'].notna()) &
+                                    (matched_df['moneyline_away'].notna()) &
+                                    (matched_df['moneyline_home'] != 0) &
+                                    (matched_df['moneyline_away'] != 0)
+                                ]
+                            
+                            # Then try current live odds file
+                            if len(missing_betting) == 0:
+                                live_odds_path = DATAPATH / 'betting' / 'live_odds_bookmakers_comparison.csv'
+                                if live_odds_path.exists():
                                 live_odds_df = pd.read_csv(live_odds_path)
                                 if 'commence_time' in live_odds_df.columns and 'home_ml' in live_odds_df.columns:
                                     live_odds_df['commence_time'] = pd.to_datetime(live_odds_df['commence_time'])
