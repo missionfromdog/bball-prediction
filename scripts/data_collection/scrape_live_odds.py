@@ -154,16 +154,29 @@ def extract_all_bookmakers(raw_data):
     """
     all_bookmakers = []
     
-    # US bookmaker names (common ones) - expanded list
+    # Major US sportsbooks (licensed and regulated)
+    # Includes: All major US books + Bet365, Hard Rock Bet, ESPN BET
+    # Excludes: Offshore books (BetOnline, Bovada, MyBookie, SportsBetting)
     us_bookmakers = [
-        'draftkings', 'fanduel', 'betmgm', 'caesars', 'pointsbet',
-        'wynnbet', 'betrivers', 'unibet_us', 'barstool', 'foxbet',
-        'bovada', 'mybookie', 'betonlineag', 'sportsbetting',
-        'draftkings', 'draftkings_sportsbook', 'fanduel', 'fanduel_sportsbook',
-        'betmgm', 'betmgm_sportsbook', 'caesars', 'caesars_sportsbook',
-        'pointsbet', 'pointsbet_us', 'wynnbet', 'wynnbet_sportsbook',
-        'betrivers', 'betrivers_sportsbook', 'unibet', 'unibet_us',
-        'barstool', 'barstool_sportsbook', 'foxbet', 'foxbet_sportsbook'
+        # Top Major US Sportsbooks
+        'draftkings', 'draftkings_sportsbook',
+        'fanduel', 'fanduel_sportsbook',
+        'betmgm', 'betmgm_sportsbook',
+        'caesars', 'caesars_sportsbook',
+        'betrivers', 'betrivers_sportsbook',
+        'pointsbet', 'pointsbet_us',
+        'wynnbet', 'wynnbet_sportsbook',
+        'barstool', 'barstool_sportsbook',
+        'foxbet', 'foxbet_sportsbook',
+        'unibet', 'unibet_us',
+        # Additional Major Books
+        'bet365',
+        'hardrockbet',
+        'espnbet',
+        # Regional (optional - include if available)
+        'circasports',
+        'superbook',
+        'betway'
     ]
     
     for game in raw_data:
@@ -178,8 +191,15 @@ def extract_all_bookmakers(raw_data):
         for bookmaker in game['bookmakers']:
             bookmaker_key = bookmaker.get('key', '').lower()
             
-            # Only include US bookmakers
-            if not any(us_name in bookmaker_key for us_name in us_bookmakers):
+            # Only include major US sportsbooks (exclude offshore)
+            # Check if bookmaker key matches any in our approved list
+            is_approved = any(
+                us_name in bookmaker_key or bookmaker_key == us_name 
+                for us_name in us_bookmakers
+            )
+            
+            if not is_approved:
+                # Skip offshore and non-approved bookmakers
                 continue
             
             bookmaker_data = {
