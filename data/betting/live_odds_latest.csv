@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-ff24293a6e10588cf0464c3b15faec80,basketball_nba,2025-11-21T00:10:00Z,Orlando Magic,Los Angeles Clippers,fanduel,188,-225,5.5,-106,-5.5,-114,218.5,-110,-110
-79339c63d557efe85f89187c10bd15c4,basketball_nba,2025-11-21T01:10:00Z,San Antonio Spurs,Atlanta Hawks,fanduel,-112,-104,1.0,-114,-1.0,-106,231.5,-110,-110
-088f5bc93c60e40ff3b46827e155d74a,basketball_nba,2025-11-21T01:10:00Z,Memphis Grizzlies,Sacramento Kings,fanduel,124,-146,2.5,-110,-2.5,-110,234.5,-110,-110
-613d151e38c4eba00ae07b8a72960d12,basketball_nba,2025-11-21T01:10:00Z,Milwaukee Bucks,Philadelphia 76ers,fanduel,-134,114,-2.5,-108,2.5,-112,224.5,-110,-110
-8162993fb172c214bf7e7338079a0e79,basketball_nba,2025-11-22T02:40:00Z,Houston Rockets,Denver Nuggets,draftkings,114,-135,2.5,-110,-2.5,-110,234.5,-112,-108
+ff24293a6e10588cf0464c3b15faec80,basketball_nba,2025-11-21T00:10:00Z,Orlando Magic,Los Angeles Clippers,fanduel,180,-215,5.5,-106,-5.5,-114,218.5,-110,-110
+79339c63d557efe85f89187c10bd15c4,basketball_nba,2025-11-21T01:10:00Z,San Antonio Spurs,Atlanta Hawks,fanduel,-106,-110,1.0,-114,-1.0,-106,231.5,-110,-110
+088f5bc93c60e40ff3b46827e155d74a,basketball_nba,2025-11-21T01:10:00Z,Memphis Grizzlies,Sacramento Kings,fanduel,126,-148,2.5,-110,-2.5,-110,234.5,-110,-110
+613d151e38c4eba00ae07b8a72960d12,basketball_nba,2025-11-21T01:10:00Z,Milwaukee Bucks,Philadelphia 76ers,fanduel,-138,118,-2.5,-108,2.5,-112,224.5,-110,-110
+8162993fb172c214bf7e7338079a0e79,basketball_nba,2025-11-22T02:40:00Z,Houston Rockets,Denver Nuggets,draftkings,120,-142,2.5,-102,-2.5,-118,233.5,-110,-110
 460ca5da65548d349cb007bdceb84163,basketball_nba,2025-11-22T03:10:00Z,Golden State Warriors,Portland Trail Blazers,fanduel,210,-255,6.5,-106,-6.5,-114,237.5,-110,-110
