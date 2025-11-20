@@ -1,0 +1,7 @@
+Date,Matchup,Home_Win_Probability,Predicted_Winner,Confidence,Model
+2025-11-18,TOR @ LAL,0.5854984031156222,Home,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-18,GSW @ WAS,0.3842680781029982,Away,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-18,PHX @ POR,0.5936544453676776,Home,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-18,DET @ ATL,0.4442371822253688,Away,Medium,HistGradient + Vegas (70.20% AUC)
+2025-11-18,MEM @ SAS,0.6834516976889867,Home,High,HistGradient + Vegas (70.20% AUC)
+2025-11-18,BOS @ BKN,0.2180650037792895,Away,High,HistGradient + Vegas (70.20% AUC)
