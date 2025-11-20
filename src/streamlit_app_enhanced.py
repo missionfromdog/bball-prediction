@@ -1420,15 +1420,23 @@ def main():
                                 historical_odds_df['date'] = pd.to_datetime(historical_odds_df['date']).dt.date
                                 
                                 # Match predictions to historical odds
+                                # First try exact date + matchup match, then try matchup only (dates may differ)
                                 for idx in matched_df[matched_df['Edge'].isna()].index:
                                     row = matched_df.loc[idx]
                                     pred_date = row['Date'].date()
                                     pred_matchup = row['Matchup']
                                     
+                                    # Try exact date + matchup match first
                                     match_odds = historical_odds_df[
                                         (historical_odds_df['date'] == pred_date) &
                                         (historical_odds_df['matchup'] == pred_matchup)
                                     ]
+                                    
+                                    # If no exact match, try matchup only (dates may differ due to rescheduling)
+                                    if len(match_odds) == 0:
+                                        match_odds = historical_odds_df[
+                                            historical_odds_df['matchup'] == pred_matchup
+                                        ]
                                     
                                     if len(match_odds) > 0:
                                         sample_odds = match_odds.iloc[0]
