@@ -67,9 +67,20 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
+          # Debug: Show what files exist
+          echo "📋 Files in data/betting/:"
+          ls -la data/betting/*.csv 2>/dev/null || echo "No CSV files found"
+          
           # Add odds files (including bookmaker comparison)
+          # Use explicit paths to ensure bookmaker comparison file is added
+          if [ -f "data/betting/live_odds_bookmakers_comparison.csv" ]; then
+            echo "✅ Found bookmaker comparison file, adding it..."
+            git add data/betting/live_odds_bookmakers_comparison.csv
+          else
+            echo "⚠️ Bookmaker comparison file not found at expected path"
+          fi
+          
           git add data/betting/live_odds*.csv 2>/dev/null || true
-          git add data/betting/live_odds_bookmakers_comparison.csv 2>/dev/null || true
           git add data/betting/*bookmakers*.csv 2>/dev/null || true
           
           # Debug: Show what files are staged
