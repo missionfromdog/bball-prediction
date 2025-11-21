@@ -877,6 +877,44 @@ def main():
     with tab2:
         fancy_header('US Sportsbook Odds Comparison', font_size=28)
         st.markdown("Compare vig (bookmaker margin) across US sportsbooks to find the best odds.")
+        
+        # Add expandable explainer
+        with st.expander("ℹ️ **Click to learn what each metric means**", expanded=False):
+            st.markdown("""
+            ### 📊 Understanding the Odds Table Metrics
+            
+            **ML Vig (Moneyline Vig):**
+            - The bookmaker's margin on moneyline bets (percentage)
+            - **Lower is better** - Typical range: 2-5%
+            - Example: 4.2% vig means the book takes a 4.2% margin
+            
+            **Home ML / Away ML:**
+            - American odds for each team to win
+            - **Negative** (e.g., -150) = Favorite - Bet $150 to win $100
+            - **Positive** (e.g., +130) = Underdog - Bet $100 to win $130
+            
+            **Spread Vig:**
+            - The bookmaker's margin on point spread bets
+            - **Lower is better** - Typical range: 4-5%
+            - Spread odds are usually -110 on both sides
+            
+            **Home Spread:**
+            - Point spread for the home team
+            - **Negative** (e.g., -5.5) = Home must win by 6+ points
+            - **Positive** (e.g., +5.5) = Home can lose by 5 or less and still cover
+            
+            **Total Vig:**
+            - The bookmaker's margin on over/under bets
+            - **Lower is better** - Typical range: 4-5%
+            
+            **Total O/U:**
+            - Total combined points expected (e.g., 225.5)
+            - **Over** = Bet wins if total > 225.5
+            - **Under** = Bet wins if total < 225.5
+            
+            **💡 Tip:** Look for the ⭐ symbol - it indicates the best (lowest) vig for that market, meaning the best value for bettors.
+            """)
+        
         st.markdown("---")
         
         # Load bookmaker comparison data
