@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-ff24293a6e10588cf0464c3b15faec80,basketball_nba,2025-11-21T00:12:00Z,Orlando Magic,Los Angeles Clippers,fanduel,420,-650,9.5,100,-9.5,-132,217.5,-108,-122
+ff24293a6e10588cf0464c3b15faec80,basketball_nba,2025-11-21T00:12:00Z,Orlando Magic,Los Angeles Clippers,fanduel,560,-1000,11.5,-108,-11.5,-122,221.5,-114,-114
 088f5bc93c60e40ff3b46827e155d74a,basketball_nba,2025-11-21T01:10:00Z,Memphis Grizzlies,Sacramento Kings,fanduel,126,-148,3.0,-110,-3.0,-110,234.5,-110,-110
 613d151e38c4eba00ae07b8a72960d12,basketball_nba,2025-11-21T01:10:00Z,Milwaukee Bucks,Philadelphia 76ers,fanduel,-130,110,-1.5,-114,1.5,-106,223.5,-110,-110
 79339c63d557efe85f89187c10bd15c4,basketball_nba,2025-11-21T01:11:00Z,San Antonio Spurs,Atlanta Hawks,fanduel,-112,-104,-1.0,-108,1.0,-112,233.5,-110,-110
