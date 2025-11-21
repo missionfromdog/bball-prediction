@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-58c5d4f9449efc54b2a2ceb71ca6878b,basketball_nba,2025-11-22T00:00:00Z,Cleveland Cavaliers,Indiana Pacers,draftkings,-950,625,-13.5,-115,13.5,-105,238.5,-112,-108
+58c5d4f9449efc54b2a2ceb71ca6878b,basketball_nba,2025-11-22T00:00:00Z,Cleveland Cavaliers,Indiana Pacers,draftkings,-950,625,-13.5,-115,13.5,-105,237.5,-110,-110
 58e766fa4c1a69247703beea18def6cf,basketball_nba,2025-11-22T00:40:00Z,Boston Celtics,Brooklyn Nets,fanduel,-1100,700,-15.5,-106,15.5,-114,222.5,-106,-114
 731fa66351071a1e5cd387fd7087aa8f,basketball_nba,2025-11-22T00:40:00Z,Toronto Raptors,Washington Wizards,fanduel,-820,570,-13.5,-110,13.5,-110,240.5,-108,-112
 76c06946a763643d09655bdcad0ccd33,basketball_nba,2025-11-22T01:10:00Z,Chicago Bulls,Miami Heat,fanduel,-142,120,-2.0,-112,2.0,-108,249.5,-110,-110
