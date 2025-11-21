@@ -158,7 +158,7 @@ def extract_all_bookmakers(raw_data):
     # Includes: All major US books + Bet365, Hard Rock Bet, ESPN BET
     # Excludes: Offshore books (BetOnline, Bovada, MyBookie, SportsBetting)
     us_bookmakers = [
-        # Top Major US Sportsbooks
+        # Top Major US Sportsbooks (include all variations)
         'draftkings', 'draftkings_sportsbook',
         'fanduel', 'fanduel_sportsbook',
         'betmgm', 'betmgm_sportsbook',
@@ -169,13 +169,13 @@ def extract_all_bookmakers(raw_data):
         'barstool', 'barstool_sportsbook',
         'foxbet', 'foxbet_sportsbook',
         'unibet', 'unibet_us',
-        # Additional Major Books
+        # Additional Major Books (include variations)
         'bet365',
-        'hardrockbet',
-        'espnbet',
-        # Regional (optional - include if available)
-        'circasports',
-        'superbook',
+        'hardrockbet', 'hard_rock_bet',
+        'espnbet', 'espn_bet',
+        # Regional (optional - include if available, with variations)
+        'circasports', 'circa_sports',
+        'superbook', 'superbook_sports',
         'betway'
     ]
     
@@ -193,10 +193,16 @@ def extract_all_bookmakers(raw_data):
             
             # Only include major US sportsbooks (exclude offshore)
             # Check if bookmaker key matches any in our approved list
-            is_approved = any(
-                us_name in bookmaker_key or bookmaker_key == us_name 
-                for us_name in us_bookmakers
-            )
+            # Use flexible matching to catch variations (e.g., "draftkings" matches "draftkings_sportsbook")
+            is_approved = False
+            for us_name in us_bookmakers:
+                # Check if the bookmaker key contains our approved name, or vice versa
+                # This handles variations like "draftkings" vs "draftkings_sportsbook"
+                if (us_name in bookmaker_key or 
+                    bookmaker_key in us_name or 
+                    bookmaker_key == us_name):
+                    is_approved = True
+                    break
             
             if not is_approved:
                 # Skip offshore and non-approved bookmakers
