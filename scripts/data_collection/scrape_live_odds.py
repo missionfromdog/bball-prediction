@@ -366,7 +366,39 @@ def main():
                 print(f"   Found {len(bookmakers_df)} bookmaker-game combinations")
                 print(f"   Unique bookmakers: {bookmakers_df['bookmaker'].nunique()}")
                 print(f"   Unique games: {bookmakers_df['game_id'].nunique()}")
-                print(f"   Sample bookmakers: {bookmakers_df['bookmaker'].unique()[:5].tolist()}")
+                print(f"   Bookmakers included: {sorted(bookmakers_df['bookmaker'].unique().tolist())}")
+                
+                # Also show what the API returned (for debugging)
+                all_bookmaker_keys = set()
+                all_bookmaker_titles = set()
+                for game in raw_data:
+                    for bookmaker in game.get('bookmakers', []):
+                        all_bookmaker_keys.add(bookmaker.get('key', '').lower())
+                        all_bookmaker_titles.add(bookmaker.get('title', ''))
+                
+                if all_bookmaker_keys:
+                    print(f"\n   📋 All bookmakers returned by API:")
+                    print(f"   Keys: {sorted(list(all_bookmaker_keys))}")
+                    print(f"   Titles: {sorted(list(all_bookmaker_titles))}")
+                    
+                    # Show which ones we matched vs didn't match
+                    approved_keys = [
+                        'draftkings', 'fanduel', 'betmgm', 'caesars', 'betrivers',
+                        'pointsbet', 'wynnbet', 'barstool', 'foxbet', 'unibet',
+                        'bet365', 'hardrockbet', 'espnbet', 'circasports', 'superbook', 'betway'
+                    ]
+                    matched_keys = []
+                    unmatched_keys = []
+                    for api_key in all_bookmaker_keys:
+                        matched = any(approved in api_key or api_key in approved for approved in approved_keys)
+                        if matched:
+                            matched_keys.append(api_key)
+                        else:
+                            unmatched_keys.append(api_key)
+                    
+                    print(f"   ✅ Matched (included): {sorted(matched_keys)}")
+                    if unmatched_keys:
+                        print(f"   ⚠️ Unmatched (excluded): {sorted(unmatched_keys)}")
             else:
                 print("⚠️ No US bookmakers found in data")
                 print("   This might mean:")
