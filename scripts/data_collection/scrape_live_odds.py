@@ -385,6 +385,18 @@ def main():
                 if all_bookmaker_keys:
                     print(f"   Available bookmaker keys: {sorted(list(all_bookmaker_keys))}")
                     print(f"   Available bookmaker titles: {sorted(list(all_bookmaker_titles))[:10]}")
+                    
+                    # Show which ones match our approved list
+                    approved_keys = [
+                        'draftkings', 'fanduel', 'betmgm', 'caesars', 'betrivers',
+                        'pointsbet', 'wynnbet', 'barstool', 'foxbet', 'unibet',
+                        'bet365', 'hardrockbet', 'espnbet', 'circasports', 'superbook', 'betway'
+                    ]
+                    matched_keys = [k for k in all_bookmaker_keys if any(approved in k for approved in approved_keys)]
+                    unmatched_keys = [k for k in all_bookmaker_keys if k not in matched_keys]
+                    print(f"   ✅ Matched approved bookmakers: {sorted(matched_keys)}")
+                    if unmatched_keys:
+                        print(f"   ⚠️ Unmatched bookmaker keys (not in approved list): {sorted(unmatched_keys)}")
                 
                 # Create empty file so Streamlit doesn't error
                 comparison_path = BETTING_PATH / 'live_odds_bookmakers_comparison.csv'
