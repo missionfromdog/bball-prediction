@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 078f0883a88c1fb2deaf8a47b59c671f,basketball_nba,2025-11-22T18:10:00Z,Charlotte Hornets,Los Angeles Clippers,fanduel,110,-130,2.0,-110,-2.0,-110,228.5,-108,-112
-99eadf1bba6ca10f585edb7d3c4a3e6c,basketball_nba,2025-11-22T22:10:00Z,Orlando Magic,New York Knicks,fanduel,104,-122,1.5,-110,-1.5,-110,229.5,-110,-110
+99eadf1bba6ca10f585edb7d3c4a3e6c,basketball_nba,2025-11-22T22:10:00Z,Orlando Magic,New York Knicks,fanduel,102,-120,1.5,-110,-1.5,-110,229.5,-110,-110
 0fdd095e3e0689aede516def5ccb891f,basketball_nba,2025-11-23T00:10:00Z,New Orleans Pelicans,Atlanta Hawks,fanduel,290,-360,9.0,-110,-9.0,-110,231.5,-110,-110
 f4044c89efb759cfdc3bf2545ffcf0bc,basketball_nba,2025-11-23T01:10:00Z,Chicago Bulls,Washington Wizards,fanduel,-670,490,-12.5,-110,12.5,-110,244.5,-110,-110
 46118acd6bad6d91e3a202453d0f8f50,basketball_nba,2025-11-23T01:10:00Z,Milwaukee Bucks,Detroit Pistons,fanduel,270,-335,9.0,-114,-9.0,-106,224.5,-110,-110
 38c536954f1b21020fbae78711a00d28,basketball_nba,2025-11-23T01:40:00Z,Dallas Mavericks,Memphis Grizzlies,fanduel,-142,118,-2.5,-110,2.5,-110,226.5,-110,-110
-9e0e2a7be4f8871e4a4d2ae25ed7d6f1,basketball_nba,2025-11-23T03:10:00Z,Denver Nuggets,Sacramento Kings,fanduel,-590,440,-12.5,-108,12.5,-112,236.5,-110,-110
+9e0e2a7be4f8871e4a4d2ae25ed7d6f1,basketball_nba,2025-11-23T03:10:00Z,Denver Nuggets,Sacramento Kings,fanduel,-520,400,-11.5,-112,11.5,-108,236.5,-110,-110
