@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-078f0883a88c1fb2deaf8a47b59c671f,basketball_nba,2025-11-22T18:10:00Z,Charlotte Hornets,Los Angeles Clippers,fanduel,108,-126,2.0,-114,-2.0,-106,227.5,-108,-112
+078f0883a88c1fb2deaf8a47b59c671f,basketball_nba,2025-11-22T18:10:00Z,Charlotte Hornets,Los Angeles Clippers,fanduel,106,-124,1.5,-110,-1.5,-110,227.5,-108,-112
 99eadf1bba6ca10f585edb7d3c4a3e6c,basketball_nba,2025-11-22T22:10:00Z,Orlando Magic,New York Knicks,fanduel,-102,-116,1.5,-110,-1.5,-110,228.5,-110,-110
 0fdd095e3e0689aede516def5ccb891f,basketball_nba,2025-11-23T00:10:00Z,New Orleans Pelicans,Atlanta Hawks,fanduel,265,-320,7.5,-108,-7.5,-112,230.5,-110,-110
 f4044c89efb759cfdc3bf2545ffcf0bc,basketball_nba,2025-11-23T01:10:00Z,Chicago Bulls,Washington Wizards,fanduel,-670,490,-12.5,-110,12.5,-110,243.5,-110,-110
