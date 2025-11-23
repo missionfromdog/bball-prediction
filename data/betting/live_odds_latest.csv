@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-afc47a0aae772c23a3c9b8a75f743291,basketball_nba,2025-11-23T18:10:00Z,Philadelphia 76ers,Miami Heat,fanduel,-186,144,-3.5,-130,3.5,-102,245.5,-110,-120
-9221d7f71811f8a52214c26e5991a294,basketball_nba,2025-11-23T23:10:00Z,Atlanta Hawks,Charlotte Hornets,fanduel,265,-330,8.0,-110,-8.0,-110,228.5,-110,-110
+afc47a0aae772c23a3c9b8a75f743291,basketball_nba,2025-11-23T18:10:00Z,Philadelphia 76ers,Miami Heat,fanduel,-194,150,-3.5,-132,3.5,100,241.5,-120,-110
+9221d7f71811f8a52214c26e5991a294,basketball_nba,2025-11-23T23:10:00Z,Atlanta Hawks,Charlotte Hornets,fanduel,245,-300,8.0,-114,-8.0,-106,228.5,-110,-110
 202da3ad3e50703f37e61852b31c139e,basketball_nba,2025-11-23T23:10:00Z,Boston Celtics,Orlando Magic,fanduel,160,-190,5.0,-114,-5.0,-106,222.5,-114,-106
-6164a6e8d6c9ed4af78103e929e2dddd,basketball_nba,2025-11-23T23:10:00Z,Toronto Raptors,Brooklyn Nets,fanduel,530,-750,13.0,-114,-13.0,-106,228.5,-112,-108
+6164a6e8d6c9ed4af78103e929e2dddd,basketball_nba,2025-11-23T23:10:00Z,Toronto Raptors,Brooklyn Nets,fanduel,540,-770,13.0,-114,-13.0,-106,228.5,-112,-108
 38be9cf3227ca4d2ff10639d21d2db4a,basketball_nba,2025-11-23T23:10:00Z,Cleveland Cavaliers,Los Angeles Clippers,fanduel,295,-370,8.5,-110,-8.5,-110,229.5,-106,-114
 5c7ba711cc75765ee4a291d1ac6642d0,basketball_nba,2025-11-24T00:10:00Z,Oklahoma City Thunder,Portland Trail Blazers,fanduel,830,-1400,16.0,-110,-16.0,-110,233.5,-110,-110
 31f8f03b475171fb3f3e77385f1e7699,basketball_nba,2025-11-24T01:10:00Z,Utah Jazz,Los Angeles Lakers,fanduel,-420,330,-9.5,-112,9.5,-108,245.5,-110,-110
