@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 9ad9826a5e6c2de97a7596b87f1e3c76,basketball_nba,2025-11-26T00:10:00Z,Washington Wizards,Atlanta Hawks,fanduel,-450,350,-10.5,-106,10.5,-114,236.5,-110,-110
 a43d5e85ccdf728d56f44bfda12b9d06,basketball_nba,2025-11-26T01:10:00Z,Philadelphia 76ers,Orlando Magic,draftkings,-122,102,-2.5,-105,2.5,-115,227.5,-110,-110
-b7209d3aae71bb2dc1ca8f9412a95a4a,basketball_nba,2025-11-26T04:10:00Z,Los Angeles Lakers,Los Angeles Clippers,draftkings,185,-225,5.5,-105,-5.5,-115,228.5,-108,-112
+b7209d3aae71bb2dc1ca8f9412a95a4a,basketball_nba,2025-11-26T04:10:00Z,Los Angeles Lakers,Los Angeles Clippers,draftkings,195,-238,5.5,-105,-5.5,-115,228.5,-108,-112
 63748218430054c9c947b1beeab351c9,basketball_nba,2025-11-27T00:40:00Z,Oklahoma City Thunder,Minnesota Timberwolves,fanduel,350,-450,10.5,-110,-10.5,-110,229.5,-110,-110
 c728773fb406fb68e411f28e838ef9ed,basketball_nba,2025-11-27T03:10:00Z,Golden State Warriors,Houston Rockets,fanduel,-102,-116,1.0,-110,-1.0,-110,225.5,-110,-110
