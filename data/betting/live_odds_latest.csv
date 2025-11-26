@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 e69335f9f4054ca683c7219dabdeac53,basketball_nba,2025-11-26T22:10:00Z,Boston Celtics,Detroit Pistons,draftkings,124,-148,2.5,-108,-2.5,-112,231.5,-112,-108
 b054e05bbd0dadc5f4947032a332045e,basketball_nba,2025-11-27T00:10:00Z,Charlotte Hornets,New York Knicks,fanduel,215,-260,6.5,-106,-6.5,-114,241.5,-108,-112
-54ab67c4d54079c2044f6de8397ad072,basketball_nba,2025-11-27T00:40:00Z,Toronto Raptors,Indiana Pacers,fanduel,-480,370,-10.5,-110,10.5,-110,234.5,-110,-110
+54ab67c4d54079c2044f6de8397ad072,basketball_nba,2025-11-27T00:40:00Z,Toronto Raptors,Indiana Pacers,fanduel,-460,360,-10.5,-110,10.5,-110,234.5,-110,-110
 932a6b46c8f41cd9df4a23db7aaf9988,basketball_nba,2025-11-27T00:40:00Z,Miami Heat,Milwaukee Bucks,fanduel,-335,270,-8.5,-114,8.5,-106,237.5,-114,-106
-63748218430054c9c947b1beeab351c9,basketball_nba,2025-11-27T00:40:00Z,Oklahoma City Thunder,Minnesota Timberwolves,draftkings,-455,350,-10.5,-108,10.5,-112,229.5,-108,-112
+63748218430054c9c947b1beeab351c9,basketball_nba,2025-11-27T00:40:00Z,Oklahoma City Thunder,Minnesota Timberwolves,draftkings,-375,295,-8.5,-115,8.5,-105,227.5,-112,-108
 7a866eae268b30cd60aacad8fd8f3786,basketball_nba,2025-11-27T01:10:00Z,New Orleans Pelicans,Memphis Grizzlies,fanduel,136,-162,3.5,-110,-3.5,-110,235.5,-110,-110
 c728773fb406fb68e411f28e838ef9ed,basketball_nba,2025-11-27T03:10:00Z,Golden State Warriors,Houston Rockets,draftkings,-142,120,-2.5,-108,2.5,-112,224.5,-112,-108
 640a3b0d618c26bd0e462da74aad454f,basketball_nba,2025-11-27T03:10:00Z,Sacramento Kings,Phoenix Suns,fanduel,148,-176,4.5,-114,-4.5,-106,233.5,-110,-110
-9d56baa432e13e1879c5a7e08ac23e79,basketball_nba,2025-11-27T03:10:00Z,Portland Trail Blazers,San Antonio Spurs,fanduel,-116,-102,-1.0,-110,1.0,-110,239.5,-110,-110
+9d56baa432e13e1879c5a7e08ac23e79,basketball_nba,2025-11-27T03:10:00Z,Portland Trail Blazers,San Antonio Spurs,fanduel,-112,-104,-1.0,-110,1.0,-110,239.5,-110,-110
