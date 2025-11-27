@@ -1,12 +1,12 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 1af096075324c24f402566517cb35f91,basketball_nba,2025-11-29T00:40:00Z,Atlanta Hawks,Cleveland Cavaliers,fanduel,184,-220,5.5,-106,-5.5,-114,238.5,-112,-108
-40e1962291b5902145ba33c2b8918fbf,basketball_nba,2025-11-29T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,fanduel,200,-245,6.0,-110,-6.0,-110,228.5,-110,-110
+40e1962291b5902145ba33c2b8918fbf,basketball_nba,2025-11-29T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,fanduel,198,-240,6.0,-110,-6.0,-110,228.5,-110,-110
 589f752da246a95b470aa39b60870dd7,basketball_nba,2025-11-29T00:40:00Z,Charlotte Hornets,Chicago Bulls,fanduel,130,-154,3.5,-114,-3.5,-106,247.5,-108,-112
 3681b95ecf2caed53d8d976c17ad4464,basketball_nba,2025-11-29T00:40:00Z,Detroit Pistons,Orlando Magic,fanduel,-190,162,-5.5,-108,5.5,-112,232.5,-106,-114
-72d83440ea3e88d46514dd3eed0deddb,basketball_nba,2025-11-29T00:40:00Z,Indiana Pacers,Washington Wizards,fanduel,-220,184,-6.5,-106,6.5,-114,238.5,-112,-108
+72d83440ea3e88d46514dd3eed0deddb,basketball_nba,2025-11-29T00:40:00Z,Indiana Pacers,Washington Wizards,fanduel,-225,188,-6.5,-106,6.5,-114,238.5,-112,-108
 7352c74ba8dbdb543d750f378fc002d5,basketball_nba,2025-11-29T00:40:00Z,New York Knicks,Milwaukee Bucks,draftkings,-250,205,-6.5,-115,6.5,-105,234.5,-110,-110
 e18835b33478d76175aa301ace433fd3,basketball_nba,2025-11-29T02:40:00Z,Denver Nuggets,San Antonio Spurs,fanduel,-460,360,-10.5,-112,10.5,-108,235.5,-114,-106
-a06a55ea3f9818bd67a44c118b03bb31,basketball_nba,2025-11-29T02:40:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-800,560,-14.5,-106,14.5,-114,227.5,-110,-110
+a06a55ea3f9818bd67a44c118b03bb31,basketball_nba,2025-11-29T02:40:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-770,540,-14.5,-106,14.5,-114,227.5,-110,-110
 05b9527e25f5994ecbf5a9323a489a33,basketball_nba,2025-11-29T02:40:00Z,Utah Jazz,Sacramento Kings,fanduel,-116,-102,-1.0,-110,1.0,-110,240.5,-110,-110
-78aabf080c02d6b74d6d5a15ae2d2a81,basketball_nba,2025-11-29T03:10:00Z,Los Angeles Lakers,Dallas Mavericks,draftkings,-440,340,-10.5,-110,10.5,-110,231.5,-110,-110
+78aabf080c02d6b74d6d5a15ae2d2a81,basketball_nba,2025-11-29T03:10:00Z,Los Angeles Lakers,Dallas Mavericks,draftkings,-455,350,-10.5,-110,10.5,-110,231.5,-110,-110
 835535f997beb1f330c480429f5fd48b,basketball_nba,2025-11-29T03:10:00Z,Los Angeles Clippers,Memphis Grizzlies,fanduel,-240,198,-7.0,-106,7.0,-114,227.5,-110,-110
