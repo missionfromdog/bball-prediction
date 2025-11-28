@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 1af096075324c24f402566517cb35f91,basketball_nba,2025-11-29T00:40:00Z,Atlanta Hawks,Cleveland Cavaliers,fanduel,205,-250,6.5,-108,-6.5,-112,236.5,-108,-112
-40e1962291b5902145ba33c2b8918fbf,basketball_nba,2025-11-29T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,fanduel,225,-275,7.5,-112,-7.5,-108,222.5,-108,-112
+40e1962291b5902145ba33c2b8918fbf,basketball_nba,2025-11-29T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,fanduel,220,-270,7.5,-112,-7.5,-108,222.5,-108,-112
 589f752da246a95b470aa39b60870dd7,basketball_nba,2025-11-29T00:40:00Z,Charlotte Hornets,Chicago Bulls,fanduel,114,-134,2.5,-110,-2.5,-110,248.5,-110,-110
 3681b95ecf2caed53d8d976c17ad4464,basketball_nba,2025-11-29T00:40:00Z,Detroit Pistons,Orlando Magic,fanduel,-156,132,-3.5,-108,3.5,-112,232.5,-108,-112
 72d83440ea3e88d46514dd3eed0deddb,basketball_nba,2025-11-29T00:40:00Z,Indiana Pacers,Washington Wizards,fanduel,-260,215,-6.5,-110,6.5,-110,240.5,-106,-114
-7352c74ba8dbdb543d750f378fc002d5,basketball_nba,2025-11-29T00:40:00Z,New York Knicks,Milwaukee Bucks,draftkings,-340,270,-8.5,-112,8.5,-108,233.5,-110,-110
+7352c74ba8dbdb543d750f378fc002d5,basketball_nba,2025-11-29T00:40:00Z,New York Knicks,Milwaukee Bucks,draftkings,-340,270,-8.5,-112,8.5,-108,232.5,-112,-108
 e18835b33478d76175aa301ace433fd3,basketball_nba,2025-11-29T02:40:00Z,Denver Nuggets,San Antonio Spurs,fanduel,-300,245,-7.5,-110,7.5,-110,238.5,-110,-110
 a06a55ea3f9818bd67a44c118b03bb31,basketball_nba,2025-11-29T02:40:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1100,700,-15.0,-110,15.0,-110,224.5,-106,-114
 05b9527e25f5994ecbf5a9323a489a33,basketball_nba,2025-11-29T02:40:00Z,Utah Jazz,Sacramento Kings,fanduel,-132,112,-2.0,-110,2.0,-110,242.5,-108,-112
