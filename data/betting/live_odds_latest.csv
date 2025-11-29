@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 39e465c2052d07aab9762ed395f51fa5,basketball_nba,2025-11-29T22:10:00Z,Minnesota Timberwolves,Boston Celtics,fanduel,205,-250,7.0,-108,-7.0,-112,226.5,-110,-110
 696e82430b8051b843f9549230e468dd,basketball_nba,2025-11-29T23:10:00Z,Charlotte Hornets,Toronto Raptors,fanduel,-350,280,-8.5,-110,8.5,-110,230.5,-110,-110
-a2d896d787150b3b68cf4e3ad6424180,basketball_nba,2025-11-30T00:40:00Z,Indiana Pacers,Chicago Bulls,fanduel,-180,152,-4.0,-110,4.0,-110,243.5,-110,-110
+a2d896d787150b3b68cf4e3ad6424180,basketball_nba,2025-11-30T00:40:00Z,Indiana Pacers,Chicago Bulls,fanduel,-176,148,-4.0,-110,4.0,-110,243.5,-110,-110
 784f94820715274309e16d3de4928361,basketball_nba,2025-11-30T01:10:00Z,Milwaukee Bucks,Brooklyn Nets,fanduel,380,-480,10.5,-108,-10.5,-112,224.5,-110,-110
 f374f371daee659611ed1afec06ab85a,basketball_nba,2025-11-30T01:10:00Z,Miami Heat,Detroit Pistons,fanduel,132,-156,3.5,-112,-3.5,-108,238.5,-110,-110
 98a8aa8f24faf2bb72c27a045952a513,basketball_nba,2025-11-30T01:40:00Z,Golden State Warriors,New Orleans Pelicans,fanduel,260,-320,8.0,-108,-8.0,-112,223.5,-110,-110
