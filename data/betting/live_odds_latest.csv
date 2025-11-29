@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-39e465c2052d07aab9762ed395f51fa5,basketball_nba,2025-11-29T22:10:00Z,Minnesota Timberwolves,Boston Celtics,fanduel,240,-300,7.5,-112,-7.5,-108,227.5,-114,-106
-696e82430b8051b843f9549230e468dd,basketball_nba,2025-11-29T23:10:00Z,Charlotte Hornets,Toronto Raptors,fanduel,-335,270,-8.0,-110,8.0,-110,232.5,-110,-110
+39e465c2052d07aab9762ed395f51fa5,basketball_nba,2025-11-29T22:10:00Z,Minnesota Timberwolves,Boston Celtics,fanduel,245,-300,7.5,-112,-7.5,-108,227.5,-114,-106
+696e82430b8051b843f9549230e468dd,basketball_nba,2025-11-29T23:10:00Z,Charlotte Hornets,Toronto Raptors,fanduel,-340,275,-8.0,-110,8.0,-110,232.5,-110,-110
 a2d896d787150b3b68cf4e3ad6424180,basketball_nba,2025-11-30T00:40:00Z,Indiana Pacers,Chicago Bulls,fanduel,-174,146,-4.0,-108,4.0,-112,241.5,-110,-110
 784f94820715274309e16d3de4928361,basketball_nba,2025-11-30T01:10:00Z,Milwaukee Bucks,Brooklyn Nets,fanduel,385,-500,11.0,-110,-11.0,-110,220.5,-110,-110
 f374f371daee659611ed1afec06ab85a,basketball_nba,2025-11-30T01:10:00Z,Miami Heat,Detroit Pistons,fanduel,138,-164,3.5,-106,-3.5,-114,238.5,-112,-108
