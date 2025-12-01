@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 a2fb7d9b25c10290c0ddfe4ed08d9911,basketball_nba,2025-12-02T00:00:00Z,Washington Wizards,Milwaukee Bucks,draftkings,-425,330,-9.5,-110,9.5,-110,233.5,-112,-108
 3cc5570a4f110817f256cde8b347c425,basketball_nba,2025-12-02T00:10:00Z,Detroit Pistons,Atlanta Hawks,fanduel,300,-375,9.5,-112,-9.5,-108,232.5,-105,-115
-969003b40369abe44b5c2f79f8a491b7,basketball_nba,2025-12-02T00:10:00Z,Indiana Pacers,Cleveland Cavaliers,fanduel,-210,176,-5.5,-110,5.5,-110,233.5,-110,-110
+969003b40369abe44b5c2f79f8a491b7,basketball_nba,2025-12-02T00:10:00Z,Indiana Pacers,Cleveland Cavaliers,fanduel,-205,172,-5.5,-110,5.5,-110,233.5,-110,-110
 59b66cf57192dae1adc997adf46ee380,basketball_nba,2025-12-02T00:30:00Z,Miami Heat,Los Angeles Clippers,draftkings,200,-245,6.5,-115,-6.5,-105,234.5,-115,-105
 2fbd8dae83eea6fb5c167c2fa81056ae,basketball_nba,2025-12-02T00:40:00Z,Brooklyn Nets,Charlotte Hornets,fanduel,-194,162,-4.5,-110,4.5,-110,227.5,-108,-112
 b7f1b155997ec1b2844758bf4f5f3445,basketball_nba,2025-12-02T00:40:00Z,Orlando Magic,Chicago Bulls,fanduel,290,-360,8.5,-110,-8.5,-110,238.5,-114,-106
