@@ -1,17 +1,17 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-3cc5570a4f110817f256cde8b347c425,basketball_nba,2025-12-02T00:10:00Z,Detroit Pistons,Atlanta Hawks,fanduel,240,-330,6.5,-114,-6.5,-114,211.5,100,-132
-969003b40369abe44b5c2f79f8a491b7,basketball_nba,2025-12-02T00:10:00Z,Indiana Pacers,Cleveland Cavaliers,fanduel,-1000,560,-12.5,-112,12.5,-118,236.5,-108,-122
-a2fb7d9b25c10290c0ddfe4ed08d9911,basketball_nba,2025-12-02T00:10:47Z,Washington Wizards,Milwaukee Bucks,draftkings,-1300,700,-11.5,-120,11.5,-110,236.5,-120,-110
-2fbd8dae83eea6fb5c167c2fa81056ae,basketball_nba,2025-12-02T00:40:00Z,Brooklyn Nets,Charlotte Hornets,fanduel,-205,158,-4.5,-118,4.5,-112,225.5,-120,-110
-59b66cf57192dae1adc997adf46ee380,basketball_nba,2025-12-02T00:41:13Z,Miami Heat,Los Angeles Clippers,draftkings,420,-660,10.5,-110,-10.5,-120,236.5,-110,-120
-b7f1b155997ec1b2844758bf4f5f3445,basketball_nba,2025-12-02T00:43:00Z,Orlando Magic,Chicago Bulls,fanduel,320,-460,9.5,-114,-9.5,-114,239.5,112,-148
-7a8ec1de3f6698cb4266f8acbc124561,basketball_nba,2025-12-02T02:10:00Z,Denver Nuggets,Dallas Mavericks,fanduel,420,-560,11.5,-108,-11.5,-112,235.5,-110,-110
+3cc5570a4f110817f256cde8b347c425,basketball_nba,2025-12-02T00:10:00Z,Detroit Pistons,Atlanta Hawks,fanduel,-102,-125,2.5,-152,-2.5,114,208.5,102,-136
+969003b40369abe44b5c2f79f8a491b7,basketball_nba,2025-12-02T00:10:00Z,Indiana Pacers,Cleveland Cavaliers,fanduel,-800,480,-12.5,112,12.5,-148,239.5,102,-136
+a2fb7d9b25c10290c0ddfe4ed08d9911,basketball_nba,2025-12-02T00:10:47Z,Washington Wizards,Milwaukee Bucks,draftkings,-4000,1500,-16.5,-110,16.5,-120,240.5,-115,-115
+2fbd8dae83eea6fb5c167c2fa81056ae,basketball_nba,2025-12-02T00:40:00Z,Brooklyn Nets,Charlotte Hornets,fanduel,-310,230,-6.5,-130,6.5,-102,230.5,-102,-130
+59b66cf57192dae1adc997adf46ee380,basketball_nba,2025-12-02T00:41:13Z,Miami Heat,Los Angeles Clippers,draftkings,175,-230,5.5,-115,-5.5,-115,243.5,-120,-110
+b7f1b155997ec1b2844758bf4f5f3445,basketball_nba,2025-12-02T00:43:00Z,Orlando Magic,Chicago Bulls,fanduel,420,-650,9.5,106,-9.5,-140,236.5,-128,-104
+7a8ec1de3f6698cb4266f8acbc124561,basketball_nba,2025-12-02T02:10:00Z,Denver Nuggets,Dallas Mavericks,fanduel,420,-560,11.5,-108,-11.5,-112,236.5,-106,-114
 1eb6fa928977c91a8de9a270964c7503,basketball_nba,2025-12-02T02:10:00Z,Utah Jazz,Houston Rockets,fanduel,-560,420,-11.5,-110,11.5,-110,234.5,-108,-112
 5cc0919657cd7dabe2c7b24c5ecf0373,basketball_nba,2025-12-02T03:10:00Z,Los Angeles Lakers,Phoenix Suns,fanduel,172,-205,5.0,-110,-5.0,-110,235.5,-108,-112
 82945fcefbdab5eff92ea10d50b8b9ed,basketball_nba,2025-12-03T00:10:00Z,Philadelphia 76ers,Washington Wizards,fanduel,520,-720,13.5,-110,-13.5,-110,236.5,-110,-110
-ff9201c6fd745a1a31bee1cbc13dd384,basketball_nba,2025-12-03T00:40:00Z,Toronto Raptors,Portland Trail Blazers,fanduel,180,-215,5.5,-108,-5.5,-112,232.5,-106,-114
+ff9201c6fd745a1a31bee1cbc13dd384,basketball_nba,2025-12-03T00:40:00Z,Toronto Raptors,Portland Trail Blazers,fanduel,188,-225,5.5,-108,-5.5,-112,232.5,-106,-114
 a96eb37cc51deec2f9e98a274c081b4e,basketball_nba,2025-12-03T01:10:00Z,Boston Celtics,New York Knicks,fanduel,-126,108,-1.5,-114,1.5,-106,229.5,-110,-110
-c8fb3e3641461ee52981c6d8c8ee12f8,basketball_nba,2025-12-03T01:10:00Z,San Antonio Spurs,Memphis Grizzlies,fanduel,176,-210,5.5,-110,-5.5,-110,231.5,-110,-110
+c8fb3e3641461ee52981c6d8c8ee12f8,basketball_nba,2025-12-03T01:10:00Z,San Antonio Spurs,Memphis Grizzlies,fanduel,176,-210,5.5,-114,-5.5,-106,231.5,-110,-110
 a9330ca996e7fd641237adcfa998259f,basketball_nba,2025-12-03T01:10:00Z,New Orleans Pelicans,Minnesota Timberwolves,fanduel,-375,300,-9.5,-112,9.5,-108,232.5,-110,-110
 4372c5c8b6de02e12518da9a10ae76c3,basketball_nba,2025-12-03T04:10:00Z,Golden State Warriors,Oklahoma City Thunder,fanduel,-650,480,-12.0,-110,12.0,-110,220.5,-114,-106
 099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:00:00Z,Orlando Magic,Miami Heat,draftkings,170,-205,5.5,-115,-5.5,-105,238.5,-110,-110
