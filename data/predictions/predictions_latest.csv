@@ -1,7 +1,7 @@
 Date,Matchup,Home_Win_Probability,Predicted_Winner,Confidence,Model,Edge,EV,Kelly,Bet_Size,Value_Bet
-2025-12-02,POR @ OKC,0.33312312641661185,Away,High,HistGradient + Vegas (70.20% AUC),,,,,False
-2025-12-02,MEM @ SAS,0.5146902693826068,Home,Low,HistGradient + Vegas (70.20% AUC),,,,,False
-2025-12-02,NYK @ BOS,0.35195463968203144,Away,Medium,HistGradient + Vegas (70.20% AUC),,,,,False
-2025-12-02,ORL @ GSW,0.43822454406625094,Away,Medium,HistGradient + Vegas (70.20% AUC),,,,,False
-2025-12-02,UTA @ PHI,0.24516016345364888,Away,High,HistGradient + Vegas (70.20% AUC),,,,,False
-2025-12-02,MIN @ NOP,0.3122897930832785,Away,High,HistGradient + Vegas (70.20% AUC),,,,,False
+2025-12-02,POR @ OKC,0.3743227798586557,Away,Medium,HistGradient + Vegas (70.20% AUC),,,,,False
+2025-12-02,MEM @ SAS,0.5317939276571528,Home,Low,HistGradient + Vegas (70.20% AUC),,,,,False
+2025-12-02,NYK @ BOS,0.4619683033208101,Away,Low,HistGradient + Vegas (70.20% AUC),,,,,False
+2025-12-02,ORL @ GSW,0.5591281454384215,Home,Medium,HistGradient + Vegas (70.20% AUC),,,,,False
+2025-12-02,UTA @ PHI,0.3393135495695912,Away,High,HistGradient + Vegas (70.20% AUC),,,,,False
+2025-12-02,MIN @ NOP,0.3895145956101815,Away,Medium,HistGradient + Vegas (70.20% AUC),,,,,False
