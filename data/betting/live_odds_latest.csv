@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-82945fcefbdab5eff92ea10d50b8b9ed,basketball_nba,2025-12-03T00:10:00Z,Philadelphia 76ers,Washington Wizards,fanduel,-600,450,-12.5,-114,12.5,-106,234.5,-106,-114
-ff9201c6fd745a1a31bee1cbc13dd384,basketball_nba,2025-12-03T00:40:00Z,Toronto Raptors,Portland Trail Blazers,fanduel,-205,172,-5.0,-110,5.0,-110,232.5,-106,-114
-a96eb37cc51deec2f9e98a274c081b4e,basketball_nba,2025-12-03T01:10:00Z,Boston Celtics,New York Knicks,fanduel,-110,-108,-1.0,-106,1.0,-114,230.5,-110,-110
-c8fb3e3641461ee52981c6d8c8ee12f8,basketball_nba,2025-12-03T01:10:00Z,San Antonio Spurs,Memphis Grizzlies,fanduel,-210,176,-5.0,-110,5.0,-110,231.5,-106,-114
-a9330ca996e7fd641237adcfa998259f,basketball_nba,2025-12-03T01:10:00Z,New Orleans Pelicans,Minnesota Timberwolves,fanduel,300,-375,9.5,-108,-9.5,-112,234.5,-110,-110
-4372c5c8b6de02e12518da9a10ae76c3,basketball_nba,2025-12-03T04:10:00Z,Golden State Warriors,Oklahoma City Thunder,fanduel,460,-620,12.0,-110,-12.0,-110,220.5,-114,-106
+82945fcefbdab5eff92ea10d50b8b9ed,basketball_nba,2025-12-03T00:10:00Z,Philadelphia 76ers,Washington Wizards,fanduel,-720,520,-12.5,-114,12.5,-106,234.5,-114,-106
+ff9201c6fd745a1a31bee1cbc13dd384,basketball_nba,2025-12-03T00:40:00Z,Toronto Raptors,Portland Trail Blazers,fanduel,-210,176,-5.0,-110,5.0,-110,232.5,-106,-114
+a96eb37cc51deec2f9e98a274c081b4e,basketball_nba,2025-12-03T01:10:00Z,Boston Celtics,New York Knicks,fanduel,-110,-106,-1.0,-106,1.0,-114,230.5,-110,-110
+c8fb3e3641461ee52981c6d8c8ee12f8,basketball_nba,2025-12-03T01:10:00Z,San Antonio Spurs,Memphis Grizzlies,fanduel,-215,180,-5.0,-110,5.0,-110,231.5,-106,-114
+a9330ca996e7fd641237adcfa998259f,basketball_nba,2025-12-03T01:10:00Z,New Orleans Pelicans,Minnesota Timberwolves,fanduel,360,-460,10.0,-110,-10.0,-110,235.5,-108,-112
+4372c5c8b6de02e12518da9a10ae76c3,basketball_nba,2025-12-03T04:10:00Z,Golden State Warriors,Oklahoma City Thunder,fanduel,430,-590,12.0,-114,-12.0,-106,221.5,-112,-108
 099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:00:00Z,Orlando Magic,Miami Heat,draftkings,-205,170,-5.5,-105,5.5,-115,238.5,-110,-110
 582a77bcdc5401a29e263ffed5d26609,basketball_nba,2025-12-10T01:30:00Z,Toronto Raptors,New York Knicks,draftkings,110,-130,2.5,-115,-2.5,-105,232.5,-110,-110
 9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-950,640,-14.5,-110,14.5,-110,224.5,-110,-110
