@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-61feabe0b59a9dba9be076c59ecd125d,basketball_nba,2025-12-06T00:10:00Z,Boston Celtics,Los Angeles Lakers,fanduel,-295,240,-8.0,-112,8.0,-108,226.5,-110,-110
+61feabe0b59a9dba9be076c59ecd125d,basketball_nba,2025-12-06T00:10:00Z,Boston Celtics,Los Angeles Lakers,fanduel,-300,245,-8.0,-112,8.0,-108,226.5,-106,-114
 aeb6990f23d3e646900b2ec784699724,basketball_nba,2025-12-06T00:10:00Z,Orlando Magic,Miami Heat,fanduel,-205,172,-5.5,-108,5.5,-112,241.5,-112,-108
-ffa09b2ad58a00b66f7d0aa16322155c,basketball_nba,2025-12-06T00:40:00Z,Atlanta Hawks,Denver Nuggets,fanduel,156,-188,4.5,-112,-4.5,-108,239.5,-105,-115
+ffa09b2ad58a00b66f7d0aa16322155c,basketball_nba,2025-12-06T00:40:00Z,Atlanta Hawks,Denver Nuggets,fanduel,160,-190,4.5,-112,-4.5,-108,239.5,-105,-115
 3dbed56c1ac1346d2a640d9eaec4ef31,basketball_nba,2025-12-06T00:40:00Z,Toronto Raptors,Charlotte Hornets,fanduel,-270,220,-7.5,-106,7.5,-114,228.5,-110,-110
 f9c82c36144a08ddd0c7a4f041dae9e8,basketball_nba,2025-12-06T00:40:00Z,Cleveland Cavaliers,San Antonio Spurs,fanduel,-158,134,-3.5,-110,3.5,-110,238.5,-110,-110
-19703e305f3608fac5c658043d7d6d13,basketball_nba,2025-12-06T00:40:00Z,Detroit Pistons,Portland Trail Blazers,fanduel,-295,240,-7.5,-108,7.5,-112,235.5,-110,-110
+19703e305f3608fac5c658043d7d6d13,basketball_nba,2025-12-06T00:40:00Z,Detroit Pistons,Portland Trail Blazers,fanduel,-300,245,-7.5,-108,7.5,-112,235.5,-110,-110
 7356d0e5e6178ea403706b3d0d668731,basketball_nba,2025-12-06T00:40:00Z,New York Knicks,Utah Jazz,fanduel,-1400,830,-16.0,-106,16.0,-114,240.5,-110,-110
 091237ab322a19a025b7954a6b5fb248,basketball_nba,2025-12-06T01:10:00Z,Chicago Bulls,Indiana Pacers,fanduel,-178,150,-4.5,-110,4.5,-110,237.5,-110,-110
 7b907d2230835c551697af3a8e160d99,basketball_nba,2025-12-06T01:10:00Z,Houston Rockets,Phoenix Suns,fanduel,-500,385,-11.5,-112,11.5,-108,220.5,-108,-112
