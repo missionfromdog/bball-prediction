@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-223ec223d9ac0172d28afb1c26f4b8ae,basketball_nba,2025-12-06T22:10:00Z,Brooklyn Nets,New Orleans Pelicans,fanduel,-136,116,-2.5,-108,2.5,-112,227.5,-110,-110
+223ec223d9ac0172d28afb1c26f4b8ae,basketball_nba,2025-12-06T22:10:00Z,Brooklyn Nets,New Orleans Pelicans,fanduel,-134,114,-2.5,-108,2.5,-112,227.5,-110,-110
 50bba5f55019436fa6145be51c60a174,basketball_nba,2025-12-07T00:10:00Z,Washington Wizards,Atlanta Hawks,fanduel,300,-375,9.0,-110,-9.0,-110,235.5,-108,-112
-ddfe1830cd36ca5a0d614297cef168de,basketball_nba,2025-12-07T00:40:00Z,Cleveland Cavaliers,Golden State Warriors,fanduel,-300,245,-8.0,-110,8.0,-110,227.5,-114,-106
+ddfe1830cd36ca5a0d614297cef168de,basketball_nba,2025-12-07T00:40:00Z,Cleveland Cavaliers,Golden State Warriors,fanduel,-310,250,-8.0,-110,8.0,-110,227.5,-114,-106
 77f737d32c12f24c9aa802751b7164cf,basketball_nba,2025-12-07T00:40:00Z,Detroit Pistons,Milwaukee Bucks,fanduel,-560,420,-12.5,-108,12.5,-112,222.5,-110,-110
 571e505133f8b2d20c101c45437cffb9,basketball_nba,2025-12-07T01:10:00Z,Minnesota Timberwolves,Los Angeles Clippers,fanduel,-450,350,-10.5,-114,10.5,-106,225.5,-110,-110
 a49179ca5fedd30b13d93c7566b23670,basketball_nba,2025-12-07T01:10:00Z,Miami Heat,Sacramento Kings,fanduel,-310,250,-8.0,-114,8.0,-106,240.5,-112,-108
