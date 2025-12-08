@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-fe5ab84f0f63d8819da2233645bc68d5,basketball_nba,2025-12-09T00:10:00Z,Indiana Pacers,Sacramento Kings,fanduel,-168,142,-3.5,-114,3.5,-106,234.5,-114,-106
-fa9c13de1b6188669ed5766355bc2d17,basketball_nba,2025-12-09T00:40:00Z,Minnesota Timberwolves,Phoenix Suns,fanduel,-405,320,-9.5,-112,9.5,-108,224.5,-110,-110
-67f638076c2d1263eaa0b9b5689ac18e,basketball_nba,2025-12-09T01:10:00Z,New Orleans Pelicans,San Antonio Spurs,fanduel,385,-500,10.5,-110,-10.5,-110,236.5,-108,-112
-099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:10:00Z,Orlando Magic,Miami Heat,draftkings,-105,-115,1.5,-115,-1.5,-105,238.5,-105,-115
-582a77bcdc5401a29e263ffed5d26609,basketball_nba,2025-12-10T01:30:00Z,Toronto Raptors,New York Knicks,draftkings,140,-166,4.5,-115,-4.5,-105,231.5,-110,-110
-9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1100,700,-15.5,-108,15.5,-112,224.5,-110,-110
+fe5ab84f0f63d8819da2233645bc68d5,basketball_nba,2025-12-09T00:10:00Z,Indiana Pacers,Sacramento Kings,fanduel,-168,142,-4.0,-110,4.0,-110,234.5,-106,-114
+fa9c13de1b6188669ed5766355bc2d17,basketball_nba,2025-12-09T00:40:00Z,Minnesota Timberwolves,Phoenix Suns,fanduel,-340,275,-8.0,-112,8.0,-108,222.5,-110,-110
+67f638076c2d1263eaa0b9b5689ac18e,basketball_nba,2025-12-09T01:10:00Z,New Orleans Pelicans,San Antonio Spurs,fanduel,330,-420,9.5,-110,-9.5,-110,236.5,-112,-108
+099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:10:00Z,Orlando Magic,Miami Heat,draftkings,-102,-118,1.5,-112,-1.5,-108,237.5,-110,-110
+582a77bcdc5401a29e263ffed5d26609,basketball_nba,2025-12-10T01:30:00Z,Toronto Raptors,New York Knicks,draftkings,154,-185,4.5,-105,-4.5,-115,231.5,-105,-115
+9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1500,870,-15.5,-114,15.5,-106,224.5,-110,-110
 2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,-186,156,-4.5,-114,4.5,-106,235.5,-112,-108
