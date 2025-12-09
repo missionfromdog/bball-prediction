@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:10:00Z,Orlando Magic,Miami Heat,draftkings,-118,-102,-1.5,-105,1.5,-115,233.5,-110,-110
+099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:10:00Z,Orlando Magic,Miami Heat,draftkings,-118,-102,-1.5,-105,1.5,-115,233.5,-115,-105
 582a77bcdc5401a29e263ffed5d26609,basketball_nba,2025-12-10T01:30:00Z,Toronto Raptors,New York Knicks,draftkings,-192,160,-4.5,-112,4.5,-108,226.5,-110,-110
 9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,870,-1500,15.5,-106,-15.5,-114,224.5,-110,-110
 2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,150,-178,4.5,-110,-4.5,-110,234.5,-114,-106
