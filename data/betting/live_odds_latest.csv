@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1000,660,-14.5,-106,14.5,-114,226.5,-108,-112
-2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,-230,190,-6.0,-110,6.0,-110,237.5,-112,-108
+9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1100,700,-14.5,-106,14.5,-114,225.5,-108,-112
+2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,-230,190,-6.0,-110,6.0,-110,238.0,-110,-110
 bdf65fa4c7fe0494ecb1de606a22a96c,basketball_nba,2025-12-12T01:10:00Z,Milwaukee Bucks,Boston Celtics,fanduel,220,-270,7.5,-110,-7.5,-110,226.5,-110,-110
 44417db5735da55048ecf34f53030b57,basketball_nba,2025-12-12T01:10:00Z,Houston Rockets,Los Angeles Clippers,fanduel,-350,280,-9.0,-110,9.0,-110,220.5,-110,-110
 3c6fdfc4cdc52040e342f68bae9a58ae,basketball_nba,2025-12-12T01:10:00Z,New Orleans Pelicans,Portland Trail Blazers,fanduel,172,-205,5.5,-112,-5.5,-108,237.5,-112,-108
