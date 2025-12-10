@@ -1,5 +1,8 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-099fbdb7f4738db6e1f5b7889ab3d707,basketball_nba,2025-12-09T23:12:00Z,Orlando Magic,Miami Heat,draftkings,900,-1850,9.5,-130,-9.5,100,227.5,-110,-120
-582a77bcdc5401a29e263ffed5d26609,basketball_nba,2025-12-10T01:30:00Z,Toronto Raptors,New York Knicks,draftkings,-258,210,-6.5,-115,6.5,-105,226.5,-108,-112
-9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,700,-1100,14.5,-115,-14.5,-105,227.5,-108,-112
-2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,180,-215,6.0,-112,-6.0,-108,236.5,-110,-110
+game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
+9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1100,700,-14.5,-106,14.5,-114,225.5,-110,-110
+2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,-220,184,-5.5,-112,5.5,-108,236.5,-110,-110
+bdf65fa4c7fe0494ecb1de606a22a96c,basketball_nba,2025-12-12T01:10:00Z,Milwaukee Bucks,Boston Celtics,fanduel,220,-270,7.5,-110,-7.5,-110,226.5,-110,-110
+44417db5735da55048ecf34f53030b57,basketball_nba,2025-12-12T01:10:00Z,Houston Rockets,Los Angeles Clippers,fanduel,-350,280,-9.0,-110,9.0,-110,220.5,-110,-110
+3c6fdfc4cdc52040e342f68bae9a58ae,basketball_nba,2025-12-12T01:10:00Z,New Orleans Pelicans,Portland Trail Blazers,fanduel,176,-210,5.5,-112,-5.5,-108,237.5,-112,-108
+7d1a8b194b41e9acf8acb167ada36745,basketball_nba,2025-12-12T03:10:00Z,Sacramento Kings,Denver Nuggets,fanduel,280,-350,9.0,-110,-9.0,-110,239.5,-110,-110
+a5415e46c5fcbe0d07e9354d57ac89f5,basketball_nba,2025-12-13T22:30:00Z,Orlando Magic,New York Knicks,fanduel,152,-180,4.0,-108,-4.0,-112,223.5,-114,-106
