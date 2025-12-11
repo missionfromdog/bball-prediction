@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:30:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-1150,730,-14.5,-112,14.5,-108,224.5,-106,-114
-2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,-270,220,-7.0,-114,7.0,-106,239.5,-114,-106
-bdf65fa4c7fe0494ecb1de606a22a96c,basketball_nba,2025-12-12T01:10:00Z,Milwaukee Bucks,Boston Celtics,fanduel,260,-320,8.0,-106,-8.0,-114,226.5,-110,-110
-44417db5735da55048ecf34f53030b57,basketball_nba,2025-12-12T01:10:00Z,Houston Rockets,Los Angeles Clippers,fanduel,-360,290,-9.0,-110,9.0,-110,220.5,-110,-110
-3c6fdfc4cdc52040e342f68bae9a58ae,basketball_nba,2025-12-12T01:10:00Z,New Orleans Pelicans,Portland Trail Blazers,fanduel,180,-215,5.5,-112,-5.5,-108,237.5,-112,-108
-7d1a8b194b41e9acf8acb167ada36745,basketball_nba,2025-12-12T03:10:00Z,Sacramento Kings,Denver Nuggets,fanduel,295,-370,9.0,-110,-9.0,-110,238.5,-110,-110
+9373b84d11358f66f18562222dbf5f42,basketball_nba,2025-12-11T00:42:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,-7000,1500,-21.5,-114,21.5,-114,222.5,-132,100
+2031f79c4dd229576855fb346449a8d4,basketball_nba,2025-12-11T03:00:00Z,Los Angeles Lakers,San Antonio Spurs,fanduel,-270,220,-7.0,-114,7.0,-106,241.5,-106,-114
+bdf65fa4c7fe0494ecb1de606a22a96c,basketball_nba,2025-12-12T01:10:00Z,Milwaukee Bucks,Boston Celtics,fanduel,275,-340,8.5,-110,-8.5,-110,226.5,-110,-110
+44417db5735da55048ecf34f53030b57,basketball_nba,2025-12-12T01:10:00Z,Houston Rockets,Los Angeles Clippers,fanduel,-375,310,-9.5,-110,9.5,-110,220.5,-114,-106
+3c6fdfc4cdc52040e342f68bae9a58ae,basketball_nba,2025-12-12T01:10:00Z,New Orleans Pelicans,Portland Trail Blazers,fanduel,160,-190,4.5,-110,-4.5,-110,237.5,-110,-110
+7d1a8b194b41e9acf8acb167ada36745,basketball_nba,2025-12-12T03:10:00Z,Sacramento Kings,Denver Nuggets,fanduel,360,-460,10.0,-108,-10.0,-112,238.5,-108,-112
 a5415e46c5fcbe0d07e9354d57ac89f5,basketball_nba,2025-12-13T22:30:00Z,Orlando Magic,New York Knicks,fanduel,152,-180,4.0,-108,-4.0,-112,223.5,-114,-106
