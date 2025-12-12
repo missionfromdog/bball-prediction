@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-ed94a98c5965c7f5edaf8e956db10d63,basketball_nba,2025-12-13T00:10:00Z,Detroit Pistons,Atlanta Hawks,fanduel,235,-290,7.5,-110,-7.5,-110,234.5,-112,-108
-1718bd83d0e967f099a883a4df92d7a5,basketball_nba,2025-12-13T00:10:00Z,Charlotte Hornets,Chicago Bulls,fanduel,-138,118,-2.5,-112,2.5,-108,231.5,-110,-110
+ed94a98c5965c7f5edaf8e956db10d63,basketball_nba,2025-12-13T00:10:00Z,Detroit Pistons,Atlanta Hawks,fanduel,230,-280,7.5,-110,-7.5,-110,234.5,-112,-108
+1718bd83d0e967f099a883a4df92d7a5,basketball_nba,2025-12-13T00:10:00Z,Charlotte Hornets,Chicago Bulls,fanduel,-134,116,-2.5,-112,2.5,-108,229.5,-114,-106
 a365ef6ee881da6cbcbb41b19a203942,basketball_nba,2025-12-13T00:10:00Z,Washington Wizards,Cleveland Cavaliers,fanduel,-1100,700,-15.0,-106,15.0,-114,243.5,-110,-110
 3b851b37fe204032efa750f6e6cde66e,basketball_nba,2025-12-13T00:10:00Z,Philadelphia 76ers,Indiana Pacers,fanduel,260,-320,7.5,-110,-7.5,-110,227.5,-106,-114
 0bc4679b4f3eed7ea44f40f68984214c,basketball_nba,2025-12-13T01:10:00Z,Memphis Grizzlies,Utah Jazz,fanduel,220,-270,7.0,-110,-7.0,-110,240.5,-108,-112
