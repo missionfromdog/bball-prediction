@@ -1,5 +1,5 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-a5415e46c5fcbe0d07e9354d57ac89f5,Orlando Magic,New York Knicks,2025-12-13T22:30:00Z,FanDuel,fanduel,180,-215,3.9682539682539764,-5.5,-106,5.5,-114,4.727338716994822,223.5,-110,-110,4.761904761904767
+a5415e46c5fcbe0d07e9354d57ac89f5,Orlando Magic,New York Knicks,2025-12-13T22:30:00Z,FanDuel,fanduel,176,-210,3.973819541841972,-5.5,-104,5.5,-118,5.108832523835227,223.5,-110,-110,4.761904761904767
 a5415e46c5fcbe0d07e9354d57ac89f5,Orlando Magic,New York Knicks,2025-12-13T22:30:00Z,DraftKings,draftkings,170,-205,4.2501517911353925,-5.5,-110,5.5,-110,4.761904761904767,223.5,-110,-110,4.761904761904767
 a5415e46c5fcbe0d07e9354d57ac89f5,Orlando Magic,New York Knicks,2025-12-13T22:30:00Z,BetRivers,betrivers,180,-230,5.411255411255422,-5.5,-115,5.5,-110,5.8693244739756345,223.0,-115,-110,5.8693244739756345
 2bb4fb503eee5d6ccee6f70bb183ba0f,Oklahoma City Thunder,San Antonio Spurs,2025-12-14T02:00:00Z,FanDuel,fanduel,-480,370,4.03521643433602,10.5,-114,-10.5,-106,4.727338716994822,229.5,-110,-110,4.761904761904767
