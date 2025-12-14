@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-c4e08dc18ebcb540203efc3b261b0f12,basketball_nba,2025-12-14T20:10:00Z,Indiana Pacers,Washington Wizards,fanduel,-430,340,-9.5,-112,9.5,-108,233.5,-112,-108
+c4e08dc18ebcb540203efc3b261b0f12,basketball_nba,2025-12-14T20:10:00Z,Indiana Pacers,Washington Wizards,fanduel,-480,370,-10.0,-112,10.0,-108,234.5,-110,-110
 3a7d3279d992ce5c56534a4b42a7bdf8,basketball_nba,2025-12-14T20:40:00Z,Cleveland Cavaliers,Charlotte Hornets,fanduel,-560,430,-11.5,-114,11.5,-106,231.5,-112,-108
 b26645968edf7bf48d50c748e4107fb3,basketball_nba,2025-12-14T23:10:00Z,Atlanta Hawks,Philadelphia 76ers,fanduel,-190,160,-5.0,-106,5.0,-114,224.5,-112,-108
 9d716f72748acc7e1841a6526baebf20,basketball_nba,2025-12-14T23:10:00Z,Brooklyn Nets,Milwaukee Bucks,fanduel,104,-122,1.5,-112,-1.5,-108,216.5,-114,-106
