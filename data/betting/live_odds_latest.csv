@@ -2,6 +2,6 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_s
 122e4dc2b42cc3f47263cb1589333b79,basketball_nba,2025-12-16T00:10:00Z,Boston Celtics,Detroit Pistons,fanduel,-122,104,-1.5,-110,1.5,-110,230.5,-110,-110
 90b0a6bec1f7e52132fa1fbfbdd9c432,basketball_nba,2025-12-16T00:40:00Z,Miami Heat,Toronto Raptors,fanduel,-240,198,-6.0,-110,6.0,-110,237.5,-110,-110
 21aa1ed8a0bb40eb9edb2d5f94ff5457,basketball_nba,2025-12-16T02:10:00Z,Utah Jazz,Dallas Mavericks,fanduel,114,-134,2.0,-110,-2.0,-110,239.5,-114,-106
-28162f3e97b5e5cf014e7ea0f6958f63,basketball_nba,2025-12-16T02:40:00Z,Denver Nuggets,Houston Rockets,fanduel,-116,-102,-1.5,-108,1.5,-112,235.5,-110,-110
+28162f3e97b5e5cf014e7ea0f6958f63,basketball_nba,2025-12-16T02:40:00Z,Denver Nuggets,Houston Rockets,fanduel,-110,-108,-1.5,-106,1.5,-114,236.5,-110,-110
 258fbfcfd104d515372cebe0a5e42234,basketball_nba,2025-12-16T03:40:00Z,Los Angeles Clippers,Memphis Grizzlies,fanduel,-162,136,-3.5,-108,3.5,-112,228.5,-106,-114
 42db7e7ed193f516e561773b04b56eca,basketball_nba,2025-12-17T01:40:00Z,New York Knicks,San Antonio Spurs,draftkings,-130,110,-2.5,-110,2.5,-110,228.5,-108,-112
