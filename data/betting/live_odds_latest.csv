@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-122e4dc2b42cc3f47263cb1589333b79,basketball_nba,2025-12-16T00:13:00Z,Boston Celtics,Detroit Pistons,fanduel,108,-138,0.5,104,-0.5,-138,221.5,-136,102
-90b0a6bec1f7e52132fa1fbfbdd9c432,basketball_nba,2025-12-16T00:44:00Z,Miami Heat,Toronto Raptors,fanduel,-170,132,-3.5,-108,3.5,-122,219.5,-120,-110
+122e4dc2b42cc3f47263cb1589333b79,basketball_nba,2025-12-16T00:13:00Z,Boston Celtics,Detroit Pistons,fanduel,-146,114,-2.5,-112,2.5,-118,223.5,-106,-125
+90b0a6bec1f7e52132fa1fbfbdd9c432,basketball_nba,2025-12-16T00:44:00Z,Miami Heat,Toronto Raptors,fanduel,-235,180,-6.5,108,6.5,-144,227.5,108,-144
 21aa1ed8a0bb40eb9edb2d5f94ff5457,basketball_nba,2025-12-16T02:10:00Z,Utah Jazz,Dallas Mavericks,fanduel,-104,-112,1.0,-110,-1.0,-110,240.5,-110,-110
-28162f3e97b5e5cf014e7ea0f6958f63,basketball_nba,2025-12-16T02:40:00Z,Denver Nuggets,Houston Rockets,fanduel,-104,-112,1.0,-112,-1.0,-108,237.5,-106,-114
-258fbfcfd104d515372cebe0a5e42234,basketball_nba,2025-12-16T03:40:00Z,Los Angeles Clippers,Memphis Grizzlies,fanduel,-174,146,-4.5,-108,4.5,-112,228.5,-108,-112
+28162f3e97b5e5cf014e7ea0f6958f63,basketball_nba,2025-12-16T02:40:00Z,Denver Nuggets,Houston Rockets,fanduel,-102,-116,1.0,-112,-1.0,-108,237.5,-106,-114
+258fbfcfd104d515372cebe0a5e42234,basketball_nba,2025-12-16T03:40:00Z,Los Angeles Clippers,Memphis Grizzlies,fanduel,-176,148,-4.5,-108,4.5,-112,228.5,-108,-112
 42db7e7ed193f516e561773b04b56eca,basketball_nba,2025-12-17T01:40:00Z,New York Knicks,San Antonio Spurs,draftkings,-142,120,-2.5,-115,2.5,-105,230.5,-105,-115
