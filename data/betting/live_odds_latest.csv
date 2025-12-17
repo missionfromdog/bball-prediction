@@ -1,4 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-42db7e7ed193f516e561773b04b56eca,basketball_nba,2025-12-17T01:40:00Z,New York Knicks,San Antonio Spurs,draftkings,-142,120,-2.5,-110,2.5,-110,233.5,-110,-110
-a9cbe798da439bd9d012976f7738591b,basketball_nba,2025-12-18T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,172,-205,5.0,-110,-5.0,-110,243.5,-108,-112
-3dfcf87c4c788368e199e9d23b2c1831,basketball_nba,2025-12-18T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,-270,220,-7.5,-110,7.5,-110,232.5,-112,-108
+a9cbe798da439bd9d012976f7738591b,basketball_nba,2025-12-18T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,176,-210,5.5,-110,-5.5,-110,243.5,-105,-115
+3dfcf87c4c788368e199e9d23b2c1831,basketball_nba,2025-12-18T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,-295,240,-7.5,-110,7.5,-110,232.5,-112,-108
+ec6d61cb03f048a8ced4fa2bb3bb7b03,basketball_nba,2025-12-19T00:40:00Z,Brooklyn Nets,Miami Heat,fanduel,245,-300,7.5,-106,-7.5,-114,226.5,-115,-105
+4cece5fd2474ad97c387333029d56ccf,basketball_nba,2025-12-19T01:10:00Z,New Orleans Pelicans,Houston Rockets,fanduel,350,-450,10.5,-112,-10.5,-108,235.5,-110,-110
+4ea922e941f71ff0b977d5cb44ede892,basketball_nba,2025-12-19T01:10:00Z,Oklahoma City Thunder,Los Angeles Clippers,fanduel,-950,640,-15.5,-110,15.5,-110,223.5,-112,-108
+ef7b2498e8f96dce4acb89d95f814d37,basketball_nba,2025-12-19T01:40:00Z,Dallas Mavericks,Detroit Pistons,fanduel,190,-225,5.5,-108,-5.5,-112,231.5,-110,-110
+37b74473b276a5a724ac4c141c04ce23,basketball_nba,2025-12-19T02:10:00Z,Denver Nuggets,Orlando Magic,fanduel,-280,230,-7.5,-110,7.5,-110,232.5,-112,-108
+ba3c8b74f7cc686d0346a5234bd5e11a,basketball_nba,2025-12-19T02:10:00Z,Phoenix Suns,Golden State Warriors,fanduel,-102,-118,1.0,-110,-1.0,-110,229.5,-112,-108
+e910fe9181a947bc12d92330014fa0b8,basketball_nba,2025-12-19T02:10:00Z,Utah Jazz,Los Angeles Lakers,fanduel,194,-235,6.5,-110,-6.5,-110,241.5,-115,-105
+a63b0286fa16c7c257217fe694835392,basketball_nba,2025-12-19T03:10:00Z,Portland Trail Blazers,Sacramento Kings,fanduel,-290,235,-7.5,-110,7.5,-110,236.5,-112,-108
