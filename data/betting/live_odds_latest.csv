@@ -1,4 +1,4 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-42db7e7ed193f516e561773b04b56eca,basketball_nba,2025-12-17T01:40:00Z,New York Knicks,San Antonio Spurs,draftkings,-142,120,-2.5,-115,2.5,-105,233.5,-115,-105
-a9cbe798da439bd9d012976f7738591b,basketball_nba,2025-12-18T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,164,-196,5.0,-114,-5.0,-106,240.5,-114,-106
-3dfcf87c4c788368e199e9d23b2c1831,basketball_nba,2025-12-18T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,-295,240,-8.0,-112,8.0,-108,235.5,-110,-110
+42db7e7ed193f516e561773b04b56eca,basketball_nba,2025-12-17T01:40:00Z,New York Knicks,San Antonio Spurs,draftkings,-142,120,-2.5,-108,2.5,-112,233.5,-110,-110
+a9cbe798da439bd9d012976f7738591b,basketball_nba,2025-12-18T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,172,-205,5.0,-110,-5.0,-110,243.5,-108,-112
+3dfcf87c4c788368e199e9d23b2c1831,basketball_nba,2025-12-18T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,-270,220,-7.5,-110,7.5,-110,232.5,-112,-108
