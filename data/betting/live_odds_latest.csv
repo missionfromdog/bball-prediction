@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-a9cbe798da439bd9d012976f7738591b,basketball_nba,2025-12-18T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,176,-210,5.5,-110,-5.5,-110,243.5,-105,-115
+a9cbe798da439bd9d012976f7738591b,basketball_nba,2025-12-18T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,172,-205,5.5,-110,-5.5,-110,243.5,-105,-115
 3dfcf87c4c788368e199e9d23b2c1831,basketball_nba,2025-12-18T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,-300,245,-7.5,-110,7.5,-110,232.5,-112,-108
 ccd70223755e6c12d9d884e48b5f8ba8,basketball_nba,2025-12-19T00:10:00Z,Charlotte Hornets,Atlanta Hawks,fanduel,156,-186,4.5,-110,-4.5,-110,231.5,-108,-112
 ec6d61cb03f048a8ced4fa2bb3bb7b03,basketball_nba,2025-12-19T00:40:00Z,Brooklyn Nets,Miami Heat,fanduel,240,-295,7.5,-106,-7.5,-114,226.5,-115,-105
