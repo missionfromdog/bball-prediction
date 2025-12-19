@@ -1,14 +1,14 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-2bb8bd2a1fb11a18c2b3fa2b3aac1834,basketball_nba,2025-12-19T00:11:00Z,Indiana Pacers,New York Knicks,fanduel,-104,-122,1.5,-130,-1.5,-102,230.5,-125,-106
-ccd70223755e6c12d9d884e48b5f8ba8,basketball_nba,2025-12-19T00:12:00Z,Charlotte Hornets,Atlanta Hawks,fanduel,-250,190,-5.5,-106,5.5,-125,266.5,-104,-128
-ec6d61cb03f048a8ced4fa2bb3bb7b03,basketball_nba,2025-12-19T00:41:00Z,Brooklyn Nets,Miami Heat,fanduel,260,-360,8.5,-132,-8.5,100,224.5,-122,-108
-4cece5fd2474ad97c387333029d56ccf,basketball_nba,2025-12-19T01:10:00Z,New Orleans Pelicans,Houston Rockets,fanduel,315,-400,9.5,-106,-9.5,-114,235.5,-110,-110
-4ea922e941f71ff0b977d5cb44ede892,basketball_nba,2025-12-19T01:11:00Z,Oklahoma City Thunder,Los Angeles Clippers,fanduel,-1400,830,-16.5,-112,16.5,-108,222.5,-110,-110
-6fd5c149ef554d9a2a30108f9937927c,basketball_nba,2025-12-19T01:11:00Z,San Antonio Spurs,Washington Wizards,fanduel,-1350,810,-15.5,-114,15.5,-106,240.5,-110,-110
-2eab746d00beb04428e0014d976ee174,basketball_nba,2025-12-19T01:12:00Z,Milwaukee Bucks,Toronto Raptors,fanduel,156,-186,4.5,-106,-4.5,-114,218.5,-106,-114
-ef7b2498e8f96dce4acb89d95f814d37,basketball_nba,2025-12-19T01:40:00Z,Dallas Mavericks,Detroit Pistons,fanduel,180,-215,5.5,-108,-5.5,-112,230.5,-110,-110
-37b74473b276a5a724ac4c141c04ce23,basketball_nba,2025-12-19T02:10:00Z,Denver Nuggets,Orlando Magic,fanduel,-260,215,-6.5,-106,6.5,-114,235.5,-110,-110
-ba3c8b74f7cc686d0346a5234bd5e11a,basketball_nba,2025-12-19T02:10:00Z,Phoenix Suns,Golden State Warriors,fanduel,118,-138,2.0,-108,-2.0,-112,229.5,-106,-114
+2bb8bd2a1fb11a18c2b3fa2b3aac1834,basketball_nba,2025-12-19T00:11:00Z,Indiana Pacers,New York Knicks,fanduel,-104,-122,1.5,-128,-1.5,-104,230.5,-130,-102
+ccd70223755e6c12d9d884e48b5f8ba8,basketball_nba,2025-12-19T00:12:00Z,Charlotte Hornets,Atlanta Hawks,fanduel,-430,300,-6.5,-138,6.5,104,266.5,104,-138
+ec6d61cb03f048a8ced4fa2bb3bb7b03,basketball_nba,2025-12-19T00:41:00Z,Brooklyn Nets,Miami Heat,fanduel,186,-245,4.5,-106,-4.5,-125,221.5,108,-144
+4cece5fd2474ad97c387333029d56ccf,basketball_nba,2025-12-19T01:10:00Z,New Orleans Pelicans,Houston Rockets,fanduel,360,-530,10.5,-114,-10.5,-114,240.5,-140,106
+4ea922e941f71ff0b977d5cb44ede892,basketball_nba,2025-12-19T01:11:00Z,Oklahoma City Thunder,Los Angeles Clippers,fanduel,-400,285,-9.5,-106,9.5,-125,227.5,-120,-110
+2eab746d00beb04428e0014d976ee174,basketball_nba,2025-12-19T01:11:00Z,Milwaukee Bucks,Toronto Raptors,fanduel,210,-280,5.5,104,-5.5,-138,214.5,-110,-120
+6fd5c149ef554d9a2a30108f9937927c,basketball_nba,2025-12-19T01:12:00Z,San Antonio Spurs,Washington Wizards,fanduel,-1450,700,-15.5,-110,15.5,-120,240.5,-138,104
+ef7b2498e8f96dce4acb89d95f814d37,basketball_nba,2025-12-19T01:40:00Z,Dallas Mavericks,Detroit Pistons,fanduel,184,-220,5.5,-108,-5.5,-112,230.5,-110,-110
+37b74473b276a5a724ac4c141c04ce23,basketball_nba,2025-12-19T02:10:00Z,Denver Nuggets,Orlando Magic,fanduel,-260,220,-6.5,-110,6.5,-110,236.5,-112,-108
+ba3c8b74f7cc686d0346a5234bd5e11a,basketball_nba,2025-12-19T02:10:00Z,Phoenix Suns,Golden State Warriors,fanduel,120,-142,2.0,-108,-2.0,-112,229.5,-106,-114
 e910fe9181a947bc12d92330014fa0b8,basketball_nba,2025-12-19T02:10:00Z,Utah Jazz,Los Angeles Lakers,fanduel,310,-390,9.0,-110,-9.0,-110,242.5,-114,-106
 a63b0286fa16c7c257217fe694835392,basketball_nba,2025-12-19T03:10:00Z,Portland Trail Blazers,Sacramento Kings,fanduel,-340,275,-9.0,-108,9.0,-112,238.5,-110,-110
 5a11d709921a7ea69f44ff8926649124,basketball_nba,2025-12-20T00:40:00Z,Cleveland Cavaliers,Chicago Bulls,fanduel,-255,210,-6.5,-112,6.5,-108,239.5,-112,-108
