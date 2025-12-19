@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-5a2571e0e849552421fe262e0d7a1525,basketball_nba,2025-12-20T00:10:00Z,Boston Celtics,Miami Heat,fanduel,-245,200,-6.5,-110,6.5,-110,233.5,-114,-106
-6461c2ab1b0d98ae1c7308e6423279fa,basketball_nba,2025-12-20T00:10:00Z,New York Knicks,Philadelphia 76ers,fanduel,-225,188,-5.5,-114,5.5,-106,229.5,-108,-112
-9dc4b5098ecd66f37fb8120b8d7b658d,basketball_nba,2025-12-20T00:40:00Z,Atlanta Hawks,San Antonio Spurs,fanduel,116,-136,2.0,-108,-2.0,-112,241.5,-108,-112
-5a11d709921a7ea69f44ff8926649124,basketball_nba,2025-12-20T00:40:00Z,Cleveland Cavaliers,Chicago Bulls,fanduel,-275,225,-7.5,-106,7.5,-114,240.5,-106,-114
-0debd2b337fd9efac1d39123e66f74d0,basketball_nba,2025-12-20T02:40:00Z,Minnesota Timberwolves,Oklahoma City Thunder,fanduel,300,-375,8.5,-110,-8.5,-110,227.5,-106,-114
+5a2571e0e849552421fe262e0d7a1525,basketball_nba,2025-12-20T00:10:00Z,Boston Celtics,Miami Heat,fanduel,-255,210,-6.5,-110,6.5,-110,233.5,-114,-106
+6461c2ab1b0d98ae1c7308e6423279fa,basketball_nba,2025-12-20T00:10:00Z,New York Knicks,Philadelphia 76ers,fanduel,-188,158,-5.0,-110,5.0,-110,229.5,-106,-114
+9dc4b5098ecd66f37fb8120b8d7b658d,basketball_nba,2025-12-20T00:40:00Z,Atlanta Hawks,San Antonio Spurs,fanduel,114,-134,2.0,-108,-2.0,-112,241.5,-108,-112
+5a11d709921a7ea69f44ff8926649124,basketball_nba,2025-12-20T00:40:00Z,Cleveland Cavaliers,Chicago Bulls,fanduel,-280,230,-7.5,-106,7.5,-114,240.5,-110,-110
+0debd2b337fd9efac1d39123e66f74d0,basketball_nba,2025-12-20T02:40:00Z,Minnesota Timberwolves,Oklahoma City Thunder,fanduel,265,-330,8.0,-110,-8.0,-110,230.5,-112,-108
