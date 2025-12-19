@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 5a2571e0e849552421fe262e0d7a1525,basketball_nba,2025-12-20T00:10:00Z,Boston Celtics,Miami Heat,fanduel,-270,220,-6.5,-110,6.5,-110,230.5,-106,-114
 6461c2ab1b0d98ae1c7308e6423279fa,basketball_nba,2025-12-20T00:10:00Z,New York Knicks,Philadelphia 76ers,fanduel,-168,140,-4.5,-106,4.5,-114,228.5,-110,-110
-9dc4b5098ecd66f37fb8120b8d7b658d,basketball_nba,2025-12-20T00:40:00Z,Atlanta Hawks,San Antonio Spurs,fanduel,142,-168,3.5,-108,-3.5,-112,237.5,-114,-106
+9dc4b5098ecd66f37fb8120b8d7b658d,basketball_nba,2025-12-20T00:40:00Z,Atlanta Hawks,San Antonio Spurs,fanduel,138,-164,3.5,-108,-3.5,-112,237.5,-114,-106
 5a11d709921a7ea69f44ff8926649124,basketball_nba,2025-12-20T00:40:00Z,Cleveland Cavaliers,Chicago Bulls,fanduel,-290,235,-7.0,-114,7.0,-106,240.5,-110,-110
-0debd2b337fd9efac1d39123e66f74d0,basketball_nba,2025-12-20T02:40:00Z,Minnesota Timberwolves,Oklahoma City Thunder,fanduel,245,-300,7.0,-106,-7.0,-114,233.5,-106,-114
+0debd2b337fd9efac1d39123e66f74d0,basketball_nba,2025-12-20T02:40:00Z,Minnesota Timberwolves,Oklahoma City Thunder,fanduel,240,-295,7.0,-106,-7.0,-114,233.5,-106,-114
