@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-14bc31e6584046b79f90aa3d42877f07,basketball_nba,2026-01-03T00:10:00Z,Washington Wizards,Brooklyn Nets,fanduel,-118,100,-1.5,-108,1.5,-112,225.5,-110,-110
-260d8a4037ed37bae3a5ad3725c11906,basketball_nba,2026-01-03T00:10:00Z,Indiana Pacers,San Antonio Spurs,fanduel,-240,198,-6.0,-110,6.0,-110,236.5,-110,-110
+14bc31e6584046b79f90aa3d42877f07,basketball_nba,2026-01-03T00:10:00Z,Washington Wizards,Brooklyn Nets,fanduel,-116,-102,-1.5,-108,1.5,-112,225.5,-110,-110
+260d8a4037ed37bae3a5ad3725c11906,basketball_nba,2026-01-03T00:10:00Z,Indiana Pacers,San Antonio Spurs,fanduel,-245,200,-6.0,-110,6.0,-110,236.5,-110,-110
 8169427a266bd81487b2136378509cac,basketball_nba,2026-01-03T00:40:00Z,New York Knicks,Atlanta Hawks,fanduel,240,-295,7.5,-110,-7.5,-110,245.5,-115,-105
 283f17b8fb6ac7f514f74eba96db03ac,basketball_nba,2026-01-03T00:40:00Z,Cleveland Cavaliers,Denver Nuggets,fanduel,540,-770,13.5,-110,-13.5,-110,236.5,-112,-108
 8471751b12ee2bd1516db17adb92e246,basketball_nba,2026-01-03T01:10:00Z,Milwaukee Bucks,Charlotte Hornets,fanduel,190,-230,6.0,-110,-6.0,-110,232.5,-112,-108
