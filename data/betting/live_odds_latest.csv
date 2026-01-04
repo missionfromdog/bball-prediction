@@ -1,9 +1,9 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 a76401e257d96726afaa18aeaccf0751,basketball_nba,2026-01-04T19:10:00Z,Cleveland Cavaliers,Detroit Pistons,fanduel,-205,172,-5.0,-110,5.0,-110,235.5,-112,-108
 31898558a940481030b3a9edb15c7752,basketball_nba,2026-01-04T20:10:00Z,Orlando Magic,Indiana Pacers,fanduel,-250,205,-6.5,-110,6.5,-110,226.5,-108,-112
-8d6b4abe3aab876f8c65565e13ba3e88,basketball_nba,2026-01-04T20:40:00Z,Brooklyn Nets,Denver Nuggets,fanduel,120,-142,2.5,-108,-2.5,-112,221.5,-112,-108
+8d6b4abe3aab876f8c65565e13ba3e88,basketball_nba,2026-01-04T20:40:00Z,Brooklyn Nets,Denver Nuggets,fanduel,122,-144,2.5,-108,-2.5,-112,222.5,-110,-110
 e565e947367f2a97276b2b942efec009,basketball_nba,2026-01-04T23:10:00Z,Miami Heat,New Orleans Pelicans,fanduel,-310,250,-7.5,-114,7.5,-106,242.5,-114,-106
 202bec44cb17b3fe31e1d47a35bb4311,basketball_nba,2026-01-04T23:10:00Z,Washington Wizards,Minnesota Timberwolves,fanduel,350,-450,10.5,-112,-10.5,-108,235.5,-112,-108
 608ad59d278d1266aefcb70a1e1bcfea,basketball_nba,2026-01-05T01:10:00Z,Phoenix Suns,Oklahoma City Thunder,fanduel,290,-360,8.0,-110,-8.0,-110,227.5,-112,-108
-649a52d549fd66b3f04c0eb6a5bceea0,basketball_nba,2026-01-05T02:10:00Z,Sacramento Kings,Milwaukee Bucks,fanduel,198,-240,6.0,-108,-6.0,-112,228.5,-110,-110
+649a52d549fd66b3f04c0eb6a5bceea0,basketball_nba,2026-01-05T02:10:00Z,Sacramento Kings,Milwaukee Bucks,fanduel,205,-250,6.0,-108,-6.0,-112,228.5,-110,-110
 85525b53f1abd7179f60a447bad2579b,basketball_nba,2026-01-05T02:40:00Z,Los Angeles Lakers,Memphis Grizzlies,fanduel,-230,190,-6.5,-106,6.5,-114,238.5,-106,-114
