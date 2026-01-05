@@ -1,14 +1,12 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds,away_ml,home_ml
-202bec44cb17b3fe31e1d47a35bb4311,basketball_nba,2026-01-04T23:10:00Z,Washington Wizards,Minnesota Timberwolves,fanduel,-29.5,116,29.5,-152,254.5,116,-154,,
-e565e947367f2a97276b2b942efec009,basketball_nba,2026-01-04T23:13:00Z,Miami Heat,New Orleans Pelicans,fanduel,19.5,-108,-19.5,-122,233.5,100,-132,,
-608ad59d278d1266aefcb70a1e1bcfea,basketball_nba,2026-01-05T01:10:00Z,Phoenix Suns,Oklahoma City Thunder,fanduel,-12.5,-128,12.5,-104,228.5,-112,-118,-900.0,520.0
-649a52d549fd66b3f04c0eb6a5bceea0,basketball_nba,2026-01-05T02:10:00Z,Sacramento Kings,Milwaukee Bucks,fanduel,-6.0,-112,6.0,-108,227.5,-108,-112,-245.0,200.0
-85525b53f1abd7179f60a447bad2579b,basketball_nba,2026-01-05T02:40:00Z,Los Angeles Lakers,Memphis Grizzlies,fanduel,6.0,-110,-6.0,-110,239.5,-108,-112,190.0,-230.0
-07c210d30cdf1a467ae466394c9c7d2c,basketball_nba,2026-01-06T00:10:00Z,Detroit Pistons,New York Knicks,fanduel,-2.5,-110,2.5,-110,235.5,-110,-110,-142.0,120.0
-a4735b19c22f9709d23974fe5d264665,basketball_nba,2026-01-06T00:40:00Z,Toronto Raptors,Atlanta Hawks,fanduel,3.5,-106,-3.5,-114,236.5,-110,-110,138.0,-164.0
-f464229b0fe5abe7e94b312d75639617,basketball_nba,2026-01-06T00:40:00Z,Boston Celtics,Chicago Bulls,fanduel,10.5,-110,-10.5,-110,236.5,-114,-106,380.0,-490.0
-5e38fbb5e0a6277859816fe58cf76a1e,basketball_nba,2026-01-06T01:10:00Z,Oklahoma City Thunder,Charlotte Hornets,fanduel,16.5,-108,-16.5,-112,233.5,-106,-114,810.0,-1350.0
-2b779d0954e1c4a13083ebecc0fe65b2,basketball_nba,2026-01-06T01:10:00Z,Houston Rockets,Phoenix Suns,fanduel,7.5,-110,-7.5,-110,221.5,-110,-110,225.0,-275.0
-8e0209fcea74087227f0a490e9277381,basketball_nba,2026-01-06T01:40:00Z,Philadelphia 76ers,Denver Nuggets,fanduel,10.5,-110,-10.5,-110,228.5,-110,-110,380.0,-490.0
-078a4d38068bc82683be486a54fc6995,basketball_nba,2026-01-06T03:10:00Z,Los Angeles Clippers,Golden State Warriors,betonlineag,1.0,-105,-1.0,-115,224.5,-110,-110,,
-45d0b580462adaf7e3969a7c2b566771,basketball_nba,2026-01-06T03:10:00Z,Portland Trail Blazers,Utah Jazz,fanduel,5.5,-110,-5.5,-110,243.5,-110,-110,180.0,-215.0
+game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
+608ad59d278d1266aefcb70a1e1bcfea,basketball_nba,2026-01-05T01:10:00Z,Phoenix Suns,Oklahoma City Thunder,fanduel,-2200.0,870.0,-15.5,100,15.5,-132,214.5,-114,-114
+649a52d549fd66b3f04c0eb6a5bceea0,basketball_nba,2026-01-05T02:10:00Z,Sacramento Kings,Milwaukee Bucks,fanduel,-250.0,205.0,-6.5,-110,6.5,-110,227.5,-108,-112
+85525b53f1abd7179f60a447bad2579b,basketball_nba,2026-01-05T02:40:00Z,Los Angeles Lakers,Memphis Grizzlies,fanduel,194.0,-240.0,6.5,-112,-6.5,-108,239.5,-108,-112
+07c210d30cdf1a467ae466394c9c7d2c,basketball_nba,2026-01-06T00:10:00Z,Detroit Pistons,New York Knicks,fanduel,-142.0,120.0,-2.5,-110,2.5,-110,235.5,-110,-110
+a4735b19c22f9709d23974fe5d264665,basketball_nba,2026-01-06T00:40:00Z,Toronto Raptors,Atlanta Hawks,fanduel,134.0,-158.0,3.5,-106,-3.5,-114,236.5,-110,-110
+f464229b0fe5abe7e94b312d75639617,basketball_nba,2026-01-06T00:40:00Z,Boston Celtics,Chicago Bulls,fanduel,380.0,-490.0,10.5,-110,-10.5,-110,236.5,-114,-106
+5e38fbb5e0a6277859816fe58cf76a1e,basketball_nba,2026-01-06T01:10:00Z,Oklahoma City Thunder,Charlotte Hornets,fanduel,750.0,-1200.0,16.5,-112,-16.5,-108,233.5,-106,-114
+2b779d0954e1c4a13083ebecc0fe65b2,basketball_nba,2026-01-06T01:10:00Z,Houston Rockets,Phoenix Suns,fanduel,240.0,-295.0,7.5,-106,-7.5,-114,221.5,-110,-110
+8e0209fcea74087227f0a490e9277381,basketball_nba,2026-01-06T01:40:00Z,Philadelphia 76ers,Denver Nuggets,fanduel,380.0,-490.0,10.5,-110,-10.5,-110,228.5,-110,-110
+078a4d38068bc82683be486a54fc6995,basketball_nba,2026-01-06T03:10:00Z,Los Angeles Clippers,Golden State Warriors,betonlineag,,,1.0,-105,-1.0,-115,224.5,-110,-110
+45d0b580462adaf7e3969a7c2b566771,basketball_nba,2026-01-06T03:10:00Z,Portland Trail Blazers,Utah Jazz,fanduel,180.0,-215.0,5.5,-110,-5.5,-110,243.5,-110,-110
