@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-9da408ed494fc627f41cf7879dad7b28,basketball_nba,2026-01-07T00:10:00Z,Indiana Pacers,Cleveland Cavaliers,fanduel,-210,176,-5.5,-110,5.5,-110,234.5,-112,-108
-a9f11838181d24890b76e4bdb90e6ccb,basketball_nba,2026-01-07T00:10:00Z,Washington Wizards,Orlando Magic,fanduel,-275,225,-7.0,-110,7.0,-110,234.5,-110,-110
-7815366be2e0e1fe687f6561567a30c4,basketball_nba,2026-01-07T01:10:00Z,New Orleans Pelicans,Los Angeles Lakers,fanduel,-200,168,-5.0,-110,5.0,-110,240.5,-114,-106
-5c919391903d2ab585c76df3e74cfa7a,basketball_nba,2026-01-07T01:10:00Z,Memphis Grizzlies,San Antonio Spurs,fanduel,-225,188,-5.5,-114,5.5,-106,238.5,-110,-110
-4b318916815b4f4d69521c5170424a11,basketball_nba,2026-01-07T01:10:00Z,Minnesota Timberwolves,Miami Heat,fanduel,188,-225,5.5,-106,-5.5,-114,238.5,-110,-110
-7b063c79884ac212df7bc7e9bcae2021,basketball_nba,2026-01-07T04:10:00Z,Sacramento Kings,Dallas Mavericks,fanduel,-210,176,-5.5,-108,5.5,-112,231.5,-110,-110
+9da408ed494fc627f41cf7879dad7b28,basketball_nba,2026-01-07T00:10:00Z,Indiana Pacers,Cleveland Cavaliers,fanduel,-210,176,-5.5,-110,5.5,-110,236.5,-112,-108
+a9f11838181d24890b76e4bdb90e6ccb,basketball_nba,2026-01-07T00:10:00Z,Washington Wizards,Orlando Magic,fanduel,-270,220,-7.0,-110,7.0,-110,234.5,-110,-110
+7815366be2e0e1fe687f6561567a30c4,basketball_nba,2026-01-07T01:10:00Z,New Orleans Pelicans,Los Angeles Lakers,fanduel,-225,188,-5.5,-110,5.5,-110,242.5,-110,-110
+5c919391903d2ab585c76df3e74cfa7a,basketball_nba,2026-01-07T01:10:00Z,Memphis Grizzlies,San Antonio Spurs,fanduel,-240,194,-5.5,-114,5.5,-106,239.5,-108,-112
+4b318916815b4f4d69521c5170424a11,basketball_nba,2026-01-07T01:10:00Z,Minnesota Timberwolves,Miami Heat,fanduel,180,-215,5.5,-110,-5.5,-110,237.5,-112,-108
+7b063c79884ac212df7bc7e9bcae2021,basketball_nba,2026-01-07T04:10:00Z,Sacramento Kings,Dallas Mavericks,fanduel,-215,180,-5.5,-108,5.5,-112,231.5,-110,-110
