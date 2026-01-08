@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-16c6e536fd0f3a251ee2b6e8807832e6,basketball_nba,2026-01-09T00:10:00Z,Charlotte Hornets,Indiana Pacers,fanduel,-164,138,-4.0,-108,4.0,-112,233.5,-112,-108
-7bcad05d6ff7247eaa8fd694ffe827b3,basketball_nba,2026-01-09T01:10:00Z,Chicago Bulls,Miami Heat,fanduel,215,-260,7.0,-110,-7.0,-110,241.5,-106,-114
-fdd3ebdae1beac4dfc09061dcb7ce0e9,basketball_nba,2026-01-09T01:10:00Z,Minnesota Timberwolves,Cleveland Cavaliers,fanduel,-146,124,-3.0,-110,3.0,-110,240.5,-110,-110
-93750e3dac26e8d8a90b95acd35b7cc1,basketball_nba,2026-01-09T02:10:00Z,Utah Jazz,Dallas Mavericks,fanduel,215,-260,8.0,-114,-8.0,-106,240.5,-106,-114
+16c6e536fd0f3a251ee2b6e8807832e6,basketball_nba,2026-01-09T00:10:00Z,Charlotte Hornets,Indiana Pacers,fanduel,-164,138,-4.0,-108,4.0,-112,231.5,-108,-112
+7bcad05d6ff7247eaa8fd694ffe827b3,basketball_nba,2026-01-09T01:10:00Z,Chicago Bulls,Miami Heat,fanduel,220,-270,7.0,-110,-7.0,-110,239.0,-114,-106
+fdd3ebdae1beac4dfc09061dcb7ce0e9,basketball_nba,2026-01-09T01:10:00Z,Minnesota Timberwolves,Cleveland Cavaliers,fanduel,-138,118,-2.5,-110,2.5,-110,240.5,-110,-110
+93750e3dac26e8d8a90b95acd35b7cc1,basketball_nba,2026-01-09T02:10:00Z,Utah Jazz,Dallas Mavericks,fanduel,200,-245,7.5,-114,-7.5,-106,241.5,-110,-110
