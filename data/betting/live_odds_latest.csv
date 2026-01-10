@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 5c1f4cbd4744f39236ce846ba75eaa57,basketball_nba,2026-01-10T18:10:00Z,Cleveland Cavaliers,Minnesota Timberwolves,fanduel,-164,138,-3.5,-114,3.5,-106,238.5,-112,-108
-d78a7f53cae6e1e90ac824798a731dc0,basketball_nba,2026-01-11T00:10:00Z,Indiana Pacers,Miami Heat,fanduel,245,-300,7.5,-108,-7.5,-112,235.5,-106,-114
+d78a7f53cae6e1e90ac824798a731dc0,basketball_nba,2026-01-11T00:10:00Z,Indiana Pacers,Miami Heat,fanduel,240,-295,7.5,-112,-7.5,-108,235.5,-106,-114
 dcf995525932e342bb6e393a4a14d3bc,basketball_nba,2026-01-11T00:40:00Z,Detroit Pistons,Los Angeles Clippers,fanduel,-215,180,-5.5,-110,5.5,-110,216.5,-110,-110
 740d5ef3c31a3948f4a431b936f33533,basketball_nba,2026-01-11T01:10:00Z,Boston Celtics,San Antonio Spurs,fanduel,-110,-106,-1.0,-106,1.0,-114,230.5,-110,-110
 abe4989954febfba84fb2bdcdd545df7,basketball_nba,2026-01-11T01:10:00Z,Chicago Bulls,Dallas Mavericks,fanduel,-154,130,-3.0,-110,3.0,-110,233.5,-110,-110
