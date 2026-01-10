@@ -1,11 +1,16 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-a3c377edabf29f3f3c05c1cd03c2701c,basketball_nba,2026-01-10T00:10:00Z,Boston Celtics,Toronto Raptors,fanduel,-375,300,-10.0,-108,10.0,-112,223.5,-112,-108
-fd952e8cdfea032fd925806405cfaec3,basketball_nba,2026-01-10T00:10:00Z,Washington Wizards,New Orleans Pelicans,fanduel,124,-146,2.5,-106,-2.5,-114,242.5,-108,-112
-9d66f595028bcd5407209c1aebd94b47,basketball_nba,2026-01-10T00:10:00Z,Orlando Magic,Philadelphia 76ers,fanduel,142,-168,3.5,-110,-3.5,-110,226.5,-110,-110
-05bfb1a6d7e7db4c0e42dbbc1dc676c1,basketball_nba,2026-01-10T00:40:00Z,Brooklyn Nets,Los Angeles Clippers,fanduel,164,-196,4.5,-106,-4.5,-114,215.5,-110,-110
-1840ebef9d0886493c98e78806d93860,basketball_nba,2026-01-10T01:10:00Z,Memphis Grizzlies,Oklahoma City Thunder,fanduel,166,-198,5.5,-114,-5.5,-106,230.5,-108,-112
-7d75d96495d567163d01fdfe8e63cd04,basketball_nba,2026-01-10T02:10:00Z,Denver Nuggets,Atlanta Hawks,fanduel,-110,-108,-1.0,-106,1.0,-114,233.5,-114,-106
-f07172e17d482fc11918839f228a1b32,basketball_nba,2026-01-10T02:10:00Z,Phoenix Suns,New York Knicks,fanduel,104,-122,1.0,-106,-1.0,-114,228.5,-106,-114
-c61c079ee29eb667d4e178455338ea6f,basketball_nba,2026-01-10T03:10:00Z,Golden State Warriors,Sacramento Kings,fanduel,-820,570,-14.5,-106,14.5,-114,230.5,-114,-106
-8a5088f34ae01a11b3711cbdc527e1b2,basketball_nba,2026-01-10T03:10:00Z,Portland Trail Blazers,Houston Rockets,fanduel,220,-270,6.5,-108,-6.5,-112,220.5,-112,-108
-a9857db3ddf26169b1e7cccd8e789eb0,basketball_nba,2026-01-10T03:40:00Z,Los Angeles Lakers,Milwaukee Bucks,fanduel,-158,134,-3.0,-110,3.0,-110,229.5,-112,-108
+a3c377edabf29f3f3c05c1cd03c2701c,basketball_nba,2026-01-10T00:11:00Z,Boston Celtics,Toronto Raptors,fanduel,-850,500,-10.5,-128,10.5,-104,241.5,-130,-102
+9d66f595028bcd5407209c1aebd94b47,basketball_nba,2026-01-10T00:11:00Z,Orlando Magic,Philadelphia 76ers,fanduel,106,-136,2.5,-138,-2.5,104,216.5,-118,-112
+fd952e8cdfea032fd925806405cfaec3,basketball_nba,2026-01-10T00:12:00Z,Washington Wizards,New Orleans Pelicans,fanduel,310,-440,8.5,-125,-8.5,-106,228.5,-114,-114
+05bfb1a6d7e7db4c0e42dbbc1dc676c1,basketball_nba,2026-01-10T00:41:00Z,Brooklyn Nets,Los Angeles Clippers,fanduel,560,-1000,13.5,-125,-13.5,-106,222.5,-112,-118
+1840ebef9d0886493c98e78806d93860,basketball_nba,2026-01-10T01:11:00Z,Memphis Grizzlies,Oklahoma City Thunder,fanduel,184,-220,5.5,-106,-5.5,-114,229.5,-108,-112
+7d75d96495d567163d01fdfe8e63cd04,basketball_nba,2026-01-10T02:10:00Z,Denver Nuggets,Atlanta Hawks,fanduel,142,-168,3.5,-106,-3.5,-114,229.5,-114,-106
+f07172e17d482fc11918839f228a1b32,basketball_nba,2026-01-10T02:10:00Z,Phoenix Suns,New York Knicks,fanduel,-102,-118,1.0,-108,-1.0,-112,227.5,-114,-106
+c61c079ee29eb667d4e178455338ea6f,basketball_nba,2026-01-10T03:10:00Z,Golden State Warriors,Sacramento Kings,fanduel,-850,590,-14.5,-110,14.5,-110,230.5,-114,-106
+8a5088f34ae01a11b3711cbdc527e1b2,basketball_nba,2026-01-10T03:10:00Z,Portland Trail Blazers,Houston Rockets,fanduel,200,-245,6.5,-106,-6.5,-114,221.5,-108,-112
+a9857db3ddf26169b1e7cccd8e789eb0,basketball_nba,2026-01-10T03:40:00Z,Los Angeles Lakers,Milwaukee Bucks,fanduel,-162,136,-3.0,-110,3.0,-110,228.5,-114,-106
+5c1f4cbd4744f39236ce846ba75eaa57,basketball_nba,2026-01-10T18:10:00Z,Cleveland Cavaliers,Minnesota Timberwolves,fanduel,-158,134,-3.5,-108,3.5,-112,239.5,-108,-112
+d78a7f53cae6e1e90ac824798a731dc0,basketball_nba,2026-01-11T00:10:00Z,Indiana Pacers,Miami Heat,fanduel,215,-260,7.0,-110,-7.0,-110,237.5,-106,-114
+740d5ef3c31a3948f4a431b936f33533,basketball_nba,2026-01-11T01:10:00Z,Boston Celtics,San Antonio Spurs,fanduel,-108,-108,-1.0,-106,1.0,-114,229.5,-110,-110
+abe4989954febfba84fb2bdcdd545df7,basketball_nba,2026-01-11T01:10:00Z,Chicago Bulls,Dallas Mavericks,fanduel,-134,114,-2.0,-114,2.0,-106,230.5,-108,-112
+01a2040061104221c5e77ce703c4fe5f,basketball_nba,2026-01-11T02:40:00Z,Utah Jazz,Charlotte Hornets,fanduel,138,-164,3.5,-110,-3.5,-110,240.5,-110,-110
