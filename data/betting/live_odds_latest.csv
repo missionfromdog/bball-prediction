@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-5c1f4cbd4744f39236ce846ba75eaa57,basketball_nba,2026-01-10T18:10:00Z,Cleveland Cavaliers,Minnesota Timberwolves,fanduel,-122,-104,-0.5,-125,0.5,-106,241.5,-108,-122
+5c1f4cbd4744f39236ce846ba75eaa57,basketball_nba,2026-01-10T18:10:00Z,Cleveland Cavaliers,Minnesota Timberwolves,fanduel,-138,108,-2.5,-104,2.5,-128,241.5,108,-144
 d78a7f53cae6e1e90ac824798a731dc0,basketball_nba,2026-01-11T00:10:00Z,Indiana Pacers,Miami Heat,fanduel,220,-270,6.5,-106,-6.5,-114,235.5,-110,-110
-dcf995525932e342bb6e393a4a14d3bc,basketball_nba,2026-01-11T00:40:00Z,Detroit Pistons,Los Angeles Clippers,fanduel,-176,148,-4.5,-110,4.5,-110,214.5,-110,-110
+dcf995525932e342bb6e393a4a14d3bc,basketball_nba,2026-01-11T00:40:00Z,Detroit Pistons,Los Angeles Clippers,fanduel,-178,150,-4.5,-110,4.5,-110,214.5,-110,-110
 740d5ef3c31a3948f4a431b936f33533,basketball_nba,2026-01-11T01:10:00Z,Boston Celtics,San Antonio Spurs,fanduel,-110,-106,-1.0,-106,1.0,-114,230.5,-114,-106
 abe4989954febfba84fb2bdcdd545df7,basketball_nba,2026-01-11T01:10:00Z,Chicago Bulls,Dallas Mavericks,fanduel,-142,120,-2.5,-106,2.5,-114,233.5,-112,-108
 01a2040061104221c5e77ce703c4fe5f,basketball_nba,2026-01-11T02:40:00Z,Utah Jazz,Charlotte Hornets,fanduel,164,-196,5.0,-110,-5.0,-110,239.5,-108,-112
