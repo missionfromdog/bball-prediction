@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-37ad3adb35ed4728a96f52ce3ef3be12,basketball_nba,2026-01-13T00:10:00Z,Cleveland Cavaliers,Utah Jazz,fanduel,-750,530,-13.5,-110,13.5,-110,251.5,-110,-110
-dbad91dbabd7e090fe6d6ad58912cd58,basketball_nba,2026-01-13T00:40:00Z,Indiana Pacers,Boston Celtics,fanduel,180,-215,6.0,-114,-6.0,-106,224.5,-106,-114
-da3e1c4e31d6ac7036e05f00a60ad5f2,basketball_nba,2026-01-13T00:40:00Z,Toronto Raptors,Philadelphia 76ers,fanduel,126,-148,3.5,-114,-3.5,-106,220.5,-110,-110
-f0e102ee7c0722665cde7d3a4a4dfe1c,basketball_nba,2026-01-13T01:40:00Z,Dallas Mavericks,Brooklyn Nets,fanduel,-164,138,-3.5,-114,3.5,-106,221.5,-108,-112
+37ad3adb35ed4728a96f52ce3ef3be12,basketball_nba,2026-01-13T00:10:00Z,Cleveland Cavaliers,Utah Jazz,fanduel,-700,490,-13.0,-110,13.0,-110,250.5,-110,-110
+dbad91dbabd7e090fe6d6ad58912cd58,basketball_nba,2026-01-13T00:40:00Z,Indiana Pacers,Boston Celtics,fanduel,190,-230,6.0,-114,-6.0,-106,224.5,-106,-114
+da3e1c4e31d6ac7036e05f00a60ad5f2,basketball_nba,2026-01-13T00:40:00Z,Toronto Raptors,Philadelphia 76ers,fanduel,130,-154,3.5,-112,-3.5,-108,220.5,-110,-110
+f0e102ee7c0722665cde7d3a4a4dfe1c,basketball_nba,2026-01-13T01:40:00Z,Dallas Mavericks,Brooklyn Nets,fanduel,-164,138,-3.5,-114,3.5,-106,221.5,-112,-108
 09fb007ac62ac7d2e08db4357be2417c,basketball_nba,2026-01-13T03:10:00Z,Sacramento Kings,Los Angeles Lakers,fanduel,310,-390,9.5,-112,-9.5,-108,227.5,-110,-110
-2532e809417a1fed704519de12ef68c0,basketball_nba,2026-01-13T03:40:00Z,Los Angeles Clippers,Charlotte Hornets,fanduel,-188,158,-4.5,-110,4.5,-110,223.5,-106,-114
+2532e809417a1fed704519de12ef68c0,basketball_nba,2026-01-13T03:40:00Z,Los Angeles Clippers,Charlotte Hornets,fanduel,-188,158,-4.5,-110,4.5,-110,223.5,-110,-110
