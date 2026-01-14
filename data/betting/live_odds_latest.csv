@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 6f6b6d68a82da7d2596969eccc9d8fc0,basketball_nba,2026-01-15T00:10:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,-106,-110,1.0,-112,-1.0,-108,237.5,-110,-110
 d998966ee14effe144f827ea24f55596,basketball_nba,2026-01-15T00:10:00Z,Indiana Pacers,Toronto Raptors,fanduel,-142,120,-2.5,-110,2.5,-110,222.5,-114,-106
-f05432db83b26af2b2bc075aa368d6c7,basketball_nba,2026-01-15T01:10:00Z,New Orleans Pelicans,Brooklyn Nets,fanduel,-126,108,-2.0,-110,2.0,-110,228.5,-110,-110
+f05432db83b26af2b2bc075aa368d6c7,basketball_nba,2026-01-15T01:10:00Z,New Orleans Pelicans,Brooklyn Nets,fanduel,-126,108,-2.0,-110,2.0,-110,228.5,-108,-112
 f61d079e95dd2353146f2388afc9745c,basketball_nba,2026-01-15T01:10:00Z,Chicago Bulls,Utah Jazz,fanduel,116,-136,2.5,-110,-2.5,-110,244.5,-114,-106
 e344ae8d5874f424db7ff884ff5c7d4c,basketball_nba,2026-01-15T02:40:00Z,Dallas Mavericks,Denver Nuggets,fanduel,-110,-106,-1.0,-106,1.0,-114,225.5,-110,-110
 d60e679b1c41fee318471829ca33d591,basketball_nba,2026-01-15T03:10:00Z,Sacramento Kings,New York Knicks,fanduel,-520,400,-11.5,-106,11.5,-114,230.5,-112,-108
-670fc53d8277a283b49dcc1809a7c6a0,basketball_nba,2026-01-15T03:40:00Z,Los Angeles Clippers,Washington Wizards,fanduel,460,-620,12.5,-110,-12.5,-110,225.5,-110,-110
+670fc53d8277a283b49dcc1809a7c6a0,basketball_nba,2026-01-15T03:40:00Z,Los Angeles Clippers,Washington Wizards,fanduel,480,-650,12.5,-110,-12.5,-110,225.5,-110,-110
