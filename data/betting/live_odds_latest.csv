@@ -1,9 +1,9 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-61fc2e0519808b7939ffa4b246abdc06,basketball_nba,2026-01-14T00:42:00Z,Miami Heat,Phoenix Suns,fanduel,-590,390,-9.5,-132,9.5,100,236.5,-122,-108
-bed2aa3c325290237960f892f5a097a6,basketball_nba,2026-01-14T01:11:00Z,Houston Rockets,Chicago Bulls,fanduel,-770,470,-12.5,-122,12.5,-110,221.5,-138,104
-a13039a9d53bb199d840fbfcf12288e3,basketball_nba,2026-01-14T01:11:00Z,New Orleans Pelicans,Denver Nuggets,fanduel,130,-166,2.5,-108,-2.5,-122,236.5,-108,-122
-e7bdcaa4eb0827e34ee88b6f7f4cfbf7,basketball_nba,2026-01-14T01:13:00Z,Milwaukee Bucks,Minnesota Timberwolves,fanduel,-130,102,-1.5,-114,1.5,-114,226.5,108,-144
-a7a281e6b58fc8dcb4460426708635f0,basketball_nba,2026-01-14T01:13:00Z,Oklahoma City Thunder,San Antonio Spurs,fanduel,-290,215,-8.5,106,8.5,-140,229.5,-118,-112
+61fc2e0519808b7939ffa4b246abdc06,basketball_nba,2026-01-14T00:42:00Z,Miami Heat,Phoenix Suns,fanduel,-1000,560,-11.5,-118,11.5,-112,240.5,112,-148
+bed2aa3c325290237960f892f5a097a6,basketball_nba,2026-01-14T01:11:00Z,Houston Rockets,Chicago Bulls,fanduel,-520,350,-10.5,-106,10.5,-125,225.5,-125,-106
+a13039a9d53bb199d840fbfcf12288e3,basketball_nba,2026-01-14T01:11:00Z,New Orleans Pelicans,Denver Nuggets,fanduel,-113,-113,0.5,-114,-0.5,-114,242.5,-148,112
+e7bdcaa4eb0827e34ee88b6f7f4cfbf7,basketball_nba,2026-01-14T01:13:00Z,Milwaukee Bucks,Minnesota Timberwolves,fanduel,340,-500,9.5,-102,-9.5,-130,235.5,-144,108
+a7a281e6b58fc8dcb4460426708635f0,basketball_nba,2026-01-14T01:13:00Z,Oklahoma City Thunder,San Antonio Spurs,fanduel,-560,370,-10.5,-120,10.5,-110,227.5,-122,-108
 c7c297ef2929312f940160908cc98da1,basketball_nba,2026-01-14T03:40:00Z,Los Angeles Lakers,Atlanta Hawks,fanduel,128,-152,3.0,-106,-3.0,-114,231.5,-108,-112
 8a94b39d3b7b34471f2dc96fa6f46b59,basketball_nba,2026-01-14T04:10:00Z,Golden State Warriors,Portland Trail Blazers,fanduel,-460,360,-10.5,-112,10.5,-108,226.5,-106,-114
 6f6b6d68a82da7d2596969eccc9d8fc0,basketball_nba,2026-01-15T00:10:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,-120,102,-1.5,-108,1.5,-112,238.5,-110,-110
