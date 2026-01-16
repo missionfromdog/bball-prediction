@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-7cde35496195f0d6f99ee352fa0bba65,basketball_nba,2026-01-17T00:10:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,118,-138,2.5,-110,-2.5,-110,233.5,-110,-110
+7cde35496195f0d6f99ee352fa0bba65,basketball_nba,2026-01-17T00:10:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,120,-142,2.5,-110,-2.5,-110,233.5,-110,-110
 7e6506c4bcd0439f38393b5c1efac771,basketball_nba,2026-01-17T00:10:00Z,Indiana Pacers,New Orleans Pelicans,fanduel,144,-172,4.0,-110,-4.0,-110,241.5,-114,-106
 0faca6073061c0d2d76f628039823a00,basketball_nba,2026-01-17T00:40:00Z,Brooklyn Nets,Chicago Bulls,fanduel,108,-126,2.0,-110,-2.0,-110,225.5,-108,-112
-51d7a3906f3d85a499b459c4ab5fdee3,basketball_nba,2026-01-17T00:40:00Z,Toronto Raptors,Los Angeles Clippers,fanduel,104,-122,1.5,-112,-1.5,-108,212.5,-108,-112
+51d7a3906f3d85a499b459c4ab5fdee3,basketball_nba,2026-01-17T00:40:00Z,Toronto Raptors,Los Angeles Clippers,fanduel,104,-122,1.5,-112,-1.5,-108,212.5,-114,-106
 1a69e04063ab1bafaaa377b3e0ac5993,basketball_nba,2026-01-17T02:40:00Z,Houston Rockets,Minnesota Timberwolves,fanduel,152,-180,4.5,-110,-4.5,-110,221.5,-112,-108
 d393058e77e5e64075b0c6ff97a8ac1f,basketball_nba,2026-01-17T03:10:00Z,Sacramento Kings,Washington Wizards,fanduel,215,-260,7.0,-112,-7.0,-108,233.5,-110,-110
 d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:10:00Z,Memphis Grizzlies,Orlando Magic,fanduel,-205,172,-5.5,-106,5.5,-114,227.5,-105,-115
