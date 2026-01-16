@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-7cde35496195f0d6f99ee352fa0bba65,basketball_nba,2026-01-17T00:10:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,106,-124,1.5,-108,-1.5,-112,235.5,-112,-108
-7e6506c4bcd0439f38393b5c1efac771,basketball_nba,2026-01-17T00:10:00Z,Indiana Pacers,New Orleans Pelicans,fanduel,132,-158,3.5,-112,-3.5,-108,238.5,-112,-108
-0faca6073061c0d2d76f628039823a00,basketball_nba,2026-01-17T00:40:00Z,Brooklyn Nets,Chicago Bulls,fanduel,100,-118,1.0,-105,-1.0,-115,226.5,-115,-105
-51d7a3906f3d85a499b459c4ab5fdee3,basketball_nba,2026-01-17T00:40:00Z,Toronto Raptors,Los Angeles Clippers,fanduel,-134,114,-2.0,-115,2.0,-105,216.5,-106,-114
-1a69e04063ab1bafaaa377b3e0ac5993,basketball_nba,2026-01-17T02:40:00Z,Houston Rockets,Minnesota Timberwolves,fanduel,140,-166,3.5,-108,-3.5,-112,222.5,-108,-112
-d393058e77e5e64075b0c6ff97a8ac1f,basketball_nba,2026-01-17T03:10:00Z,Sacramento Kings,Washington Wizards,fanduel,220,-270,7.0,-110,-7.0,-110,231.5,-110,-110
-d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:00:00Z,Memphis Grizzlies,Orlando Magic,fanduel,-205,172,-5.5,-106,5.5,-114,227.5,-105,-115
+7cde35496195f0d6f99ee352fa0bba65,basketball_nba,2026-01-17T00:10:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,108,-126,1.5,-108,-1.5,-112,234.5,-108,-112
+7e6506c4bcd0439f38393b5c1efac771,basketball_nba,2026-01-17T00:10:00Z,Indiana Pacers,New Orleans Pelicans,fanduel,134,-158,3.5,-112,-3.5,-108,238.5,-112,-108
+0faca6073061c0d2d76f628039823a00,basketball_nba,2026-01-17T00:40:00Z,Brooklyn Nets,Chicago Bulls,fanduel,108,-126,2.0,-110,-2.0,-110,226.5,-108,-112
+51d7a3906f3d85a499b459c4ab5fdee3,basketball_nba,2026-01-17T00:40:00Z,Toronto Raptors,Los Angeles Clippers,fanduel,-130,110,-2.0,-114,2.0,-106,215.5,-114,-106
+1a69e04063ab1bafaaa377b3e0ac5993,basketball_nba,2026-01-17T02:40:00Z,Houston Rockets,Minnesota Timberwolves,fanduel,140,-166,3.5,-106,-3.5,-114,222.5,-108,-112
+d393058e77e5e64075b0c6ff97a8ac1f,basketball_nba,2026-01-17T03:10:00Z,Sacramento Kings,Washington Wizards,fanduel,235,-290,7.0,-110,-7.0,-110,232.5,-114,-106
+d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:10:00Z,Memphis Grizzlies,Orlando Magic,fanduel,-205,172,-5.5,-106,5.5,-114,227.5,-105,-115
