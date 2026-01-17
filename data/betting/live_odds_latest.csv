@@ -1,16 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-7e6506c4bcd0439f38393b5c1efac771,basketball_nba,2026-01-17T00:10:00Z,Indiana Pacers,New Orleans Pelicans,fanduel,-900,520,-9.5,-136,9.5,102,251.5,-132,100
-7cde35496195f0d6f99ee352fa0bba65,basketball_nba,2026-01-17T00:13:00Z,Philadelphia 76ers,Cleveland Cavaliers,fanduel,-290,215,-6.5,-102,6.5,-130,235.5,-130,-102
-0faca6073061c0d2d76f628039823a00,basketball_nba,2026-01-17T00:41:00Z,Brooklyn Nets,Chicago Bulls,fanduel,-280,210,-6.5,-106,6.5,-125,213.5,-125,-106
-51d7a3906f3d85a499b459c4ab5fdee3,basketball_nba,2026-01-17T00:42:00Z,Toronto Raptors,Los Angeles Clippers,fanduel,-235,182,-5.5,-114,5.5,-114,218.5,108,-144
-1a69e04063ab1bafaaa377b3e0ac5993,basketball_nba,2026-01-17T02:40:00Z,Houston Rockets,Minnesota Timberwolves,fanduel,-174,146,-4.5,-108,4.5,-112,221.5,-112,-108
-d393058e77e5e64075b0c6ff97a8ac1f,basketball_nba,2026-01-17T03:10:00Z,Sacramento Kings,Washington Wizards,fanduel,-255,210,-7.0,-110,7.0,-110,233.5,-106,-114
-74a2ce699a67094d664e6f11f876fd8b,basketball_nba,2026-01-17T22:10:00Z,Dallas Mavericks,Utah Jazz,fanduel,-168,142,-4.0,-110,4.0,-110,241.5,-110,-110
-ee33d9e84247204b91f88df26df1db6f,basketball_nba,2026-01-18T00:40:00Z,Atlanta Hawks,Boston Celtics,fanduel,138,-164,3.5,-110,-3.5,-110,229.5,-110,-110
-53948b32ee634b31967dd050d56eef8a,basketball_nba,2026-01-18T00:40:00Z,Detroit Pistons,Indiana Pacers,fanduel,-720,520,-13.0,-110,13.0,-110,225.5,-115,-105
-a21e077af636c4ec9627a98ea87abea6,basketball_nba,2026-01-18T01:10:00Z,Miami Heat,Oklahoma City Thunder,fanduel,265,-330,8.5,-108,-8.5,-112,235.5,-108,-112
-ec4374304055d759d9e735b24be94cdb,basketball_nba,2026-01-18T01:10:00Z,San Antonio Spurs,Minnesota Timberwolves,fanduel,-260,215,-7.0,-110,7.0,-110,229.5,-108,-112
-1b253261c5a0c36cc77a7e3f3ec0813f,basketball_nba,2026-01-18T01:40:00Z,Golden State Warriors,Charlotte Hornets,fanduel,-245,198,-6.5,-112,6.5,-108,233.5,-112,-108
+74a2ce699a67094d664e6f11f876fd8b,basketball_nba,2026-01-17T22:10:00Z,Dallas Mavericks,Utah Jazz,fanduel,-172,144,-4.5,-106,4.5,-114,241.5,-110,-110
+ee33d9e84247204b91f88df26df1db6f,basketball_nba,2026-01-18T00:40:00Z,Atlanta Hawks,Boston Celtics,fanduel,136,-162,3.5,-108,-3.5,-112,229.5,-110,-110
+53948b32ee634b31967dd050d56eef8a,basketball_nba,2026-01-18T00:40:00Z,Detroit Pistons,Indiana Pacers,fanduel,-670,490,-13.0,-108,13.0,-112,225.5,-114,-106
+5dd9d109817aa5065517eda2d22abd47,basketball_nba,2026-01-18T00:40:00Z,New York Knicks,Phoenix Suns,fanduel,-154,130,-3.5,-108,3.5,-112,224.5,-110,-110
+a21e077af636c4ec9627a98ea87abea6,basketball_nba,2026-01-18T01:10:00Z,Miami Heat,Oklahoma City Thunder,fanduel,275,-340,8.5,-106,-8.5,-114,234.5,-110,-110
+ec4374304055d759d9e735b24be94cdb,basketball_nba,2026-01-18T01:10:00Z,San Antonio Spurs,Minnesota Timberwolves,fanduel,-255,210,-7.0,-110,7.0,-110,228.5,-106,-114
+1b253261c5a0c36cc77a7e3f3ec0813f,basketball_nba,2026-01-18T01:40:00Z,Golden State Warriors,Charlotte Hornets,fanduel,-230,190,-6.0,-112,6.0,-108,233.5,-106,-114
 dfe75b541b9fdfe1d8b2e6208a62b89f,basketball_nba,2026-01-18T02:10:00Z,Denver Nuggets,Washington Wizards,fanduel,-600,450,-13.0,-110,13.0,-110,232.5,-106,-114
-c40f627c22f80050fd8efec135704313,basketball_nba,2026-01-18T03:10:00Z,Portland Trail Blazers,Los Angeles Lakers,fanduel,-136,116,-2.5,-108,2.5,-112,224.5,-110,-110
-d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:10:00Z,Memphis Grizzlies,Orlando Magic,fanduel,172,-205,5.5,-114,-5.5,-106,227.5,-105,-115
+c40f627c22f80050fd8efec135704313,basketball_nba,2026-01-18T03:10:00Z,Portland Trail Blazers,Los Angeles Lakers,fanduel,-162,136,-3.5,-108,3.5,-112,223.5,-112,-108
+d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:10:00Z,Memphis Grizzlies,Orlando Magic,fanduel,168,-200,5.0,-112,-5.0,-108,227.5,-105,-115
