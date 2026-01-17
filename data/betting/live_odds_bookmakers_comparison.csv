@@ -1,5 +1,5 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,home_spread,home_spread_odds,away_spread,away_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-74a2ce699a67094d664e6f11f876fd8b,Dallas Mavericks,Utah Jazz,2026-01-17T22:10:00Z,FanDuel,fanduel,-172,144,4.2189006750241065,-4.5,-106,4.5,-114,4.727338716994822,241.5,-110.0,-110.0,4.761904761904767
+74a2ce699a67094d664e6f11f876fd8b,Dallas Mavericks,Utah Jazz,2026-01-17T22:10:00Z,FanDuel,fanduel,-168,142,4.00888121376588,-4.5,-106,4.5,-114,4.727338716994822,241.5,-110.0,-110.0,4.761904761904767
 74a2ce699a67094d664e6f11f876fd8b,Dallas Mavericks,Utah Jazz,2026-01-17T22:10:00Z,BetRivers,betrivers,-180,143,5.437977660199889,-4.5,-112,4.5,-113,5.881831871733545,,,,
 74a2ce699a67094d664e6f11f876fd8b,Dallas Mavericks,Utah Jazz,2026-01-17T22:10:00Z,DraftKings,draftkings,-185,154,4.282359441911865,-4.5,-105,4.5,-115,4.707884288145214,242.5,-105.0,-115.0,4.707884288145214
 74a2ce699a67094d664e6f11f876fd8b,Dallas Mavericks,Utah Jazz,2026-01-17T22:10:00Z,BetMGM,betmgm,-190,155,4.73292765382014,-4.5,-110,4.5,-110,4.761904761904767,241.5,-115.0,-105.0,4.707884288145214

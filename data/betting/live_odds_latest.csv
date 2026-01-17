@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-74a2ce699a67094d664e6f11f876fd8b,basketball_nba,2026-01-17T22:10:00Z,Dallas Mavericks,Utah Jazz,fanduel,-172,144,-4.5,-106,4.5,-114,241.5,-110,-110
+74a2ce699a67094d664e6f11f876fd8b,basketball_nba,2026-01-17T22:10:00Z,Dallas Mavericks,Utah Jazz,fanduel,-168,142,-4.5,-106,4.5,-114,241.5,-110,-110
 ee33d9e84247204b91f88df26df1db6f,basketball_nba,2026-01-18T00:40:00Z,Atlanta Hawks,Boston Celtics,fanduel,136,-162,3.5,-108,-3.5,-112,229.5,-110,-110
 53948b32ee634b31967dd050d56eef8a,basketball_nba,2026-01-18T00:40:00Z,Detroit Pistons,Indiana Pacers,fanduel,-670,490,-13.0,-108,13.0,-112,225.5,-114,-106
 5dd9d109817aa5065517eda2d22abd47,basketball_nba,2026-01-18T00:40:00Z,New York Knicks,Phoenix Suns,fanduel,-154,130,-3.5,-108,3.5,-112,224.5,-110,-110
