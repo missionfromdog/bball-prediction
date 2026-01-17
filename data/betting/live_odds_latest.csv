@@ -1,11 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 74a2ce699a67094d664e6f11f876fd8b,basketball_nba,2026-01-17T22:10:00Z,Dallas Mavericks,Utah Jazz,fanduel,-156,132,-4.0,-106,4.0,-114,241.5,-110,-110
 ee33d9e84247204b91f88df26df1db6f,basketball_nba,2026-01-18T00:40:00Z,Atlanta Hawks,Boston Celtics,fanduel,130,-154,3.5,-112,-3.5,-108,229.5,-110,-110
-53948b32ee634b31967dd050d56eef8a,basketball_nba,2026-01-18T00:40:00Z,Detroit Pistons,Indiana Pacers,fanduel,-650,480,-12.5,-112,12.5,-108,226.5,-110,-110
-5dd9d109817aa5065517eda2d22abd47,basketball_nba,2026-01-18T00:40:00Z,New York Knicks,Phoenix Suns,fanduel,-154,130,-3.5,-108,3.5,-112,224.5,-110,-110
+53948b32ee634b31967dd050d56eef8a,basketball_nba,2026-01-18T00:40:00Z,Detroit Pistons,Indiana Pacers,fanduel,-720,520,-12.5,-112,12.5,-108,226.5,-110,-110
+5dd9d109817aa5065517eda2d22abd47,basketball_nba,2026-01-18T00:40:00Z,New York Knicks,Phoenix Suns,fanduel,-158,134,-3.5,-108,3.5,-112,224.5,-110,-110
 a21e077af636c4ec9627a98ea87abea6,basketball_nba,2026-01-18T01:10:00Z,Miami Heat,Oklahoma City Thunder,fanduel,330,-420,9.5,-106,-9.5,-114,234.5,-110,-110
 ec4374304055d759d9e735b24be94cdb,basketball_nba,2026-01-18T01:10:00Z,San Antonio Spurs,Minnesota Timberwolves,fanduel,-235,194,-6.5,-110,6.5,-110,228.5,-106,-114
 1b253261c5a0c36cc77a7e3f3ec0813f,basketball_nba,2026-01-18T01:40:00Z,Golden State Warriors,Charlotte Hornets,fanduel,-240,198,-6.0,-112,6.0,-108,233.5,-106,-114
-dfe75b541b9fdfe1d8b2e6208a62b89f,basketball_nba,2026-01-18T02:10:00Z,Denver Nuggets,Washington Wizards,fanduel,-700,500,-13.0,-110,13.0,-110,232.5,-106,-114
+dfe75b541b9fdfe1d8b2e6208a62b89f,basketball_nba,2026-01-18T02:10:00Z,Denver Nuggets,Washington Wizards,fanduel,-650,480,-13.0,-110,13.0,-110,232.5,-106,-114
 c40f627c22f80050fd8efec135704313,basketball_nba,2026-01-18T03:10:00Z,Portland Trail Blazers,Los Angeles Lakers,fanduel,-156,132,-3.5,-108,3.5,-112,223.5,-112,-108
 d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:10:00Z,Memphis Grizzlies,Orlando Magic,fanduel,166,-198,5.0,-112,-5.0,-108,227.5,-105,-115
