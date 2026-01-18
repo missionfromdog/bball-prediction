@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:14:00Z,Memphis Grizzlies,Orlando Magic,fanduel,-1100,600,-13.5,110,13.5,-146,235.5,-102,-130
+d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:14:00Z,Memphis Grizzlies,Orlando Magic,fanduel,-1200,630,-13.5,110,13.5,-146,235.5,-102,-130
 aaf6ee6cd6b915e0e0adac8f761f6ffc,basketball_nba,2026-01-19T00:10:00Z,Chicago Bulls,Brooklyn Nets,fanduel,-245,200,-6.5,-110,6.5,-110,222.5,-108,-112
 7f20e5e1b5325512f08e4973e36d08e5,basketball_nba,2026-01-19T00:10:00Z,Houston Rockets,New Orleans Pelicans,fanduel,-900,610,-13.5,-110,13.5,-110,231.5,-110,-110
 ce1d230f9bfe9f2902f1f7c58ab1baf8,basketball_nba,2026-01-19T01:10:00Z,Denver Nuggets,Charlotte Hornets,fanduel,-116,-102,-1.5,-106,1.5,-114,228.5,-110,-110
