@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 d149b0e5ad9dd363c76d6308dea81c74,basketball_nba,2026-01-18T17:10:00Z,Memphis Grizzlies,Orlando Magic,fanduel,142,-168,4.0,-112,-4.0,-108,230.5,-110,-110
 aaf6ee6cd6b915e0e0adac8f761f6ffc,basketball_nba,2026-01-19T00:10:00Z,Chicago Bulls,Brooklyn Nets,fanduel,-240,198,-6.0,-115,6.0,-105,221.5,-110,-110
-7f20e5e1b5325512f08e4973e36d08e5,basketball_nba,2026-01-19T00:10:00Z,Houston Rockets,New Orleans Pelicans,fanduel,-650,480,-13.0,-110,13.0,-110,230.5,-108,-112
+7f20e5e1b5325512f08e4973e36d08e5,basketball_nba,2026-01-19T00:10:00Z,Houston Rockets,New Orleans Pelicans,fanduel,-670,490,-13.0,-110,13.0,-110,230.5,-108,-112
 ce1d230f9bfe9f2902f1f7c58ab1baf8,basketball_nba,2026-01-19T01:10:00Z,Denver Nuggets,Charlotte Hornets,fanduel,-142,120,-2.5,-112,2.5,-108,231.5,-110,-110
-e6912002f8fd69349b2425510251c7ad,basketball_nba,2026-01-19T02:10:00Z,Sacramento Kings,Portland Trail Blazers,fanduel,-134,114,-2.5,-105,2.5,-115,228.5,-110,-110
+e6912002f8fd69349b2425510251c7ad,basketball_nba,2026-01-19T02:10:00Z,Sacramento Kings,Portland Trail Blazers,fanduel,-136,116,-2.5,-105,2.5,-115,228.5,-110,-110
 58a64738a04be2c7c6d1be7d69051e09,basketball_nba,2026-01-19T02:40:00Z,Los Angeles Lakers,Toronto Raptors,fanduel,-136,116,-1.5,-114,1.5,-106,226.5,-110,-110
