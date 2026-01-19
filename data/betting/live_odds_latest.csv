@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 60b04efecd19028a2eb20c81649abaf1,basketball_nba,2026-01-19T18:10:00Z,Atlanta Hawks,Milwaukee Bucks,draftkings,-135,114,-2.5,-110,2.5,-110,231.5,-110,-110
 d9b1ce3cf25e2645fdb24e89d4f1a38e,basketball_nba,2026-01-19T19:40:00Z,Cleveland Cavaliers,Oklahoma City Thunder,draftkings,200,-245,6.5,-115,-6.5,-105,234.5,-110,-110
-d83e3a6de719f872d8af6632781718c1,basketball_nba,2026-01-19T20:10:00Z,Washington Wizards,Los Angeles Clippers,fanduel,220,-270,7.0,-110,-7.0,-110,224.5,-110,-110
+d83e3a6de719f872d8af6632781718c1,basketball_nba,2026-01-19T20:10:00Z,Washington Wizards,Los Angeles Clippers,fanduel,220,-275,7.0,-110,-7.0,-110,224.5,-110,-110
 e7f04ed48f026208a6d078b5b3bc118b,basketball_nba,2026-01-19T22:10:00Z,New York Knicks,Dallas Mavericks,draftkings,-410,320,-9.5,-115,9.5,-105,230.5,-105,-115
 0ff8277cb58ea65a441ebef0f658a566,basketball_nba,2026-01-19T22:10:00Z,San Antonio Spurs,Utah Jazz,fanduel,-1100,700,-16.5,-112,16.5,-108,242.5,-114,-106
 b68ce56ffffc7b2cb21f03e660422899,basketball_nba,2026-01-20T00:10:00Z,Philadelphia 76ers,Indiana Pacers,fanduel,-335,270,-8.0,-114,8.0,-106,228.5,-105,-115
