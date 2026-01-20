@@ -2,7 +2,7 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_s
 8b31228a946c10f7e851d0948dd174f0,basketball_nba,2026-01-21T00:10:00Z,Philadelphia 76ers,Phoenix Suns,fanduel,-118,100,-1.0,-112,1.0,-108,223.5,-110,-110
 bdf057298ab4506eb53fa02b5bfd2282,basketball_nba,2026-01-21T01:10:00Z,Chicago Bulls,Los Angeles Clippers,fanduel,-164,138,-4.0,-108,4.0,-112,226.5,-108,-112
 fb399b86d88c46a22fa7c2e3d981fdda,basketball_nba,2026-01-21T01:10:00Z,Houston Rockets,San Antonio Spurs,fanduel,-174,146,-4.0,-110,4.0,-110,220.5,-110,-110
-c7cfdbd441d15e50974a13da155b37a6,basketball_nba,2026-01-21T02:10:00Z,Utah Jazz,Minnesota Timberwolves,fanduel,410,-520,11.5,-112,-11.5,-108,244.5,-110,-110
+c7cfdbd441d15e50974a13da155b37a6,basketball_nba,2026-01-21T02:10:00Z,Utah Jazz,Minnesota Timberwolves,fanduel,420,-560,11.5,-108,-11.5,-112,244.5,-110,-110
 6d59de25cc37129df0fa325e40dce844,basketball_nba,2026-01-21T03:10:00Z,Denver Nuggets,Los Angeles Lakers,fanduel,124,-146,2.5,-106,-2.5,-114,228.5,-114,-106
 874e9cbd808fbf58aab0cda4e49c9236,basketball_nba,2026-01-21T03:10:00Z,Golden State Warriors,Toronto Raptors,fanduel,-162,136,-3.5,-110,3.5,-110,225.5,-110,-110
 744682a08f6d81babca7d2dd1b301458,basketball_nba,2026-01-21T03:10:00Z,Sacramento Kings,Miami Heat,fanduel,120,-142,2.5,-106,-2.5,-114,236.5,-110,-110
