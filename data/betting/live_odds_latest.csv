@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 8b31228a946c10f7e851d0948dd174f0,basketball_nba,2026-01-21T00:10:00Z,Philadelphia 76ers,Phoenix Suns,fanduel,-118,100,-1.0,-112,1.0,-108,224.5,-110,-110
-bdf057298ab4506eb53fa02b5bfd2282,basketball_nba,2026-01-21T01:10:00Z,Chicago Bulls,Los Angeles Clippers,fanduel,-154,130,-3.5,-108,3.5,-112,226.5,-114,-106
+bdf057298ab4506eb53fa02b5bfd2282,basketball_nba,2026-01-21T01:10:00Z,Chicago Bulls,Los Angeles Clippers,fanduel,-154,130,-3.5,-108,3.5,-112,226.5,-108,-112
 fb399b86d88c46a22fa7c2e3d981fdda,basketball_nba,2026-01-21T01:10:00Z,Houston Rockets,San Antonio Spurs,fanduel,-176,148,-4.5,-106,4.5,-114,222.5,-106,-114
 c7cfdbd441d15e50974a13da155b37a6,basketball_nba,2026-01-21T02:10:00Z,Utah Jazz,Minnesota Timberwolves,fanduel,420,-560,11.5,-110,-11.5,-110,243.5,-112,-108
 6d59de25cc37129df0fa325e40dce844,basketball_nba,2026-01-21T03:10:00Z,Denver Nuggets,Los Angeles Lakers,fanduel,114,-134,2.5,-114,-2.5,-106,228.5,-110,-110
