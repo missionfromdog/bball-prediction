@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-8b117d6a4ca702734c4a2745c137f9a8,basketball_nba,2026-01-23T00:10:00Z,Orlando Magic,Charlotte Hornets,fanduel,205,-250,6.5,-110,-6.5,-110,229.5,-110,-110
+8b117d6a4ca702734c4a2745c137f9a8,basketball_nba,2026-01-23T00:10:00Z,Orlando Magic,Charlotte Hornets,fanduel,200,-245,6.5,-110,-6.5,-110,229.5,-110,-110
 d6dd40aee50c08c81569e3e0395faf1f,basketball_nba,2026-01-23T00:10:00Z,Washington Wizards,Denver Nuggets,fanduel,-215,180,-5.5,-110,5.5,-110,232.5,-108,-112
 aea90af9346ed0988c2145ac95b064c4,basketball_nba,2026-01-23T00:10:00Z,Philadelphia 76ers,Houston Rockets,fanduel,-134,114,-2.0,-112,2.0,-108,221.5,-110,-110
 bcde79b389208a240652cc4011c9bb6f,basketball_nba,2026-01-23T00:40:00Z,Dallas Mavericks,Golden State Warriors,fanduel,-174,146,-4.5,-106,4.5,-114,232.5,-106,-114
