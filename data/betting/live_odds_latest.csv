@@ -1,8 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-78825d24fa81f64509d9f720f7f1c2bf,basketball_nba,2026-01-22T00:10:00Z,Charlotte Hornets,Cleveland Cavaliers,fanduel,124,-146,3.0,-110,-3.0,-110,236.5,-110,-110
-abfb5e607faa42b472bd17ec495475d2,basketball_nba,2026-01-22T00:40:00Z,Boston Celtics,Indiana Pacers,fanduel,-500,385,-11.0,-112,11.0,-108,226.5,-108,-112
-2fff26d23c77372d82f9d5b1f3fc6d96,basketball_nba,2026-01-22T00:40:00Z,New York Knicks,Brooklyn Nets,fanduel,-620,460,-11.5,-114,11.5,-106,220.5,-112,-108
-7903c7ddc480ddb5283a60ccbff4c31d,basketball_nba,2026-01-22T01:10:00Z,Memphis Grizzlies,Atlanta Hawks,fanduel,-122,104,-1.5,-110,1.5,-110,238.5,-114,-106
-7a6dce2087cb5ed530983a64686714ea,basketball_nba,2026-01-22T01:10:00Z,New Orleans Pelicans,Detroit Pistons,fanduel,310,-390,9.0,-110,-9.0,-110,230.5,-114,-106
-5a7446000e1739b011c606a7e4e2f4ec,basketball_nba,2026-01-22T02:40:00Z,Milwaukee Bucks,Oklahoma City Thunder,fanduel,320,-405,9.5,-110,-9.5,-110,227.5,-108,-112
-98c3423f08777d4b20922a767ac9d848,basketball_nba,2026-01-22T03:10:00Z,Sacramento Kings,Toronto Raptors,fanduel,180,-215,6.0,-114,-6.0,-106,226.5,-108,-112
+78825d24fa81f64509d9f720f7f1c2bf,basketball_nba,2026-01-22T00:12:00Z,Charlotte Hornets,Cleveland Cavaliers,fanduel,1400,-6000,19.5,-114,-19.5,-114,220.5,110,-146
+abfb5e607faa42b472bd17ec495475d2,basketball_nba,2026-01-22T00:41:00Z,Boston Celtics,Indiana Pacers,fanduel,-1800,800,-15.5,-112,15.5,-118,215.5,-136,102
+2fff26d23c77372d82f9d5b1f3fc6d96,basketball_nba,2026-01-22T00:42:00Z,New York Knicks,Brooklyn Nets,fanduel,-10000,1800,-22.5,-120,22.5,-110,219.5,-138,104
+7a6dce2087cb5ed530983a64686714ea,basketball_nba,2026-01-22T01:10:00Z,New Orleans Pelicans,Detroit Pistons,fanduel,560,-1000,13.5,-112,-13.5,-118,230.5,-140,106
+7903c7ddc480ddb5283a60ccbff4c31d,basketball_nba,2026-01-22T01:11:00Z,Memphis Grizzlies,Atlanta Hawks,fanduel,-184,142,-2.5,-144,2.5,108,233.5,-130,-102
+5a7446000e1739b011c606a7e4e2f4ec,basketball_nba,2026-01-22T02:40:00Z,Milwaukee Bucks,Oklahoma City Thunder,fanduel,420,-560,12.0,-110,-12.0,-110,223.5,-110,-110
+98c3423f08777d4b20922a767ac9d848,basketball_nba,2026-01-22T03:10:00Z,Sacramento Kings,Toronto Raptors,fanduel,162,-194,5.5,-114,-5.5,-106,227.5,-106,-114
+d6dd40aee50c08c81569e3e0395faf1f,basketball_nba,2026-01-23T00:10:00Z,Washington Wizards,Denver Nuggets,fanduel,194,-235,6.0,-108,-6.0,-112,231.5,-112,-108
+aea90af9346ed0988c2145ac95b064c4,basketball_nba,2026-01-23T00:10:00Z,Philadelphia 76ers,Houston Rockets,fanduel,120,-142,2.5,-108,-2.5,-112,220.5,-110,-110
