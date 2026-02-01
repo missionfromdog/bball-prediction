@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-5c0746ce9061a650f053a42e255e9c56,basketball_nba,2026-02-01T20:40:00Z,Boston Celtics,Milwaukee Bucks,fanduel,-750,530,-13.5,-110,13.5,-110,217.5,-112,-108
+5c0746ce9061a650f053a42e255e9c56,basketball_nba,2026-02-01T20:40:00Z,Boston Celtics,Milwaukee Bucks,fanduel,-800,560,-13.5,-110,13.5,-110,217.5,-112,-108
 d2cc88f351d8b29d40d8a8cfbe724ad1,basketball_nba,2026-02-01T23:10:00Z,Detroit Pistons,Brooklyn Nets,fanduel,-750,530,-13.5,-110,13.5,-110,215.5,-114,-106
 dbc4aeceedac7c3d49e0d34601e550c4,basketball_nba,2026-02-01T23:10:00Z,Miami Heat,Chicago Bulls,fanduel,-158,134,-3.5,-108,3.5,-112,235.5,-110,-110
 0210ab755a18ffa716e3e74460b0600d,basketball_nba,2026-02-01T23:10:00Z,Washington Wizards,Sacramento Kings,fanduel,120,-142,2.5,-110,-2.5,-110,229.5,-108,-112
@@ -8,4 +8,4 @@ dbc4aeceedac7c3d49e0d34601e550c4,basketball_nba,2026-02-01T23:10:00Z,Miami Heat,
 642a194513f0ec5b24011af9806a397c,basketball_nba,2026-02-02T00:10:00Z,San Antonio Spurs,Orlando Magic,fanduel,-210,176,-5.5,-114,5.5,-106,225.5,-110,-110
 234f77cf5691a918e9951eccf534878a,basketball_nba,2026-02-02T01:10:00Z,Phoenix Suns,Los Angeles Clippers,fanduel,108,-126,2.0,-110,-2.0,-110,214.5,-110,-110
 b4985acd1a9b9f1b6530bed611bfce81,basketball_nba,2026-02-02T02:10:00Z,Portland Trail Blazers,Cleveland Cavaliers,fanduel,124,-144,3.0,-110,-3.0,-110,229.5,-112,-108
-1c9f0b84a617632c33b94135b8101897,basketball_nba,2026-02-02T02:40:00Z,Denver Nuggets,Oklahoma City Thunder,fanduel,172,-205,5.0,-105,-5.0,-115,227.5,-114,-106
+1c9f0b84a617632c33b94135b8101897,basketball_nba,2026-02-02T02:40:00Z,Denver Nuggets,Oklahoma City Thunder,fanduel,176,-210,5.0,-105,-5.0,-115,227.5,-106,-114
