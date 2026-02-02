@@ -1,6 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-88e3150f66c24dc03c1ef472077b7103,basketball_nba,2026-02-02T20:10:00Z,Charlotte Hornets,New Orleans Pelicans,fanduel,-270,220,-6.5,-114,6.5,-106,231.5,-112,-108
-57d17c73bf1c976a13a1c66247513cf7,basketball_nba,2026-02-03T00:10:00Z,Indiana Pacers,Houston Rockets,fanduel,190,-230,5.5,-108,-5.5,-112,218.5,-112,-108
-31a26b08d3d28e056418f330c82bf472,basketball_nba,2026-02-03T02:40:00Z,Memphis Grizzlies,Minnesota Timberwolves,fanduel,245,-300,7.5,-106,-7.5,-114,229.5,-110,-110
-93838984e2cd0b0796d8bab2c603ae55,basketball_nba,2026-02-03T03:40:00Z,Los Angeles Clippers,Philadelphia 76ers,fanduel,-134,114,-2.5,-106,2.5,-114,220.5,-112,-108
+88e3150f66c24dc03c1ef472077b7103,basketball_nba,2026-02-02T20:10:00Z,Charlotte Hornets,New Orleans Pelicans,fanduel,-270,220,-7.0,-108,7.0,-112,230.5,-114,-106
+57d17c73bf1c976a13a1c66247513cf7,basketball_nba,2026-02-03T00:10:00Z,Indiana Pacers,Houston Rockets,fanduel,205,-250,6.0,-110,-6.0,-110,218.5,-110,-110
+31a26b08d3d28e056418f330c82bf472,basketball_nba,2026-02-03T02:40:00Z,Memphis Grizzlies,Minnesota Timberwolves,fanduel,235,-290,7.5,-108,-7.5,-112,230.5,-110,-110
+93838984e2cd0b0796d8bab2c603ae55,basketball_nba,2026-02-03T03:40:00Z,Los Angeles Clippers,Philadelphia 76ers,fanduel,-132,112,-2.0,-110,2.0,-110,220.5,-112,-108
 19a5443c8ea8f228498d950cb51a24a4,basketball_nba,2026-02-04T00:10:00Z,Detroit Pistons,Denver Nuggets,fanduel,-230,190,-6.0,-110,6.0,-110,224.5,-110,-110
+e0d51f970fc760f66ccb9b94f0d7527a,basketball_nba,2026-02-04T01:10:00Z,Dallas Mavericks,Boston Celtics,fanduel,235,-290,7.5,-110,-7.5,-110,223.5,-110,-110
