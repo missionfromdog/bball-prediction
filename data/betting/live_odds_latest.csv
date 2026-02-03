@@ -1,11 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-19a5443c8ea8f228498d950cb51a24a4,basketball_nba,2026-02-04T00:10:00Z,Detroit Pistons,Denver Nuggets,fanduel,188,-225,5.0,-106,-5.0,-114,228.5,-108,-112
+19a5443c8ea8f228498d950cb51a24a4,basketball_nba,2026-02-04T00:10:00Z,Detroit Pistons,Denver Nuggets,fanduel,180,-215,5.0,-106,-5.0,-114,228.5,-108,-112
 635e88c2f951b24786768df6799cea86,basketball_nba,2026-02-04T00:10:00Z,Indiana Pacers,Utah Jazz,fanduel,-126,108,-1.5,-112,1.5,-108,232.5,-114,-106
 b115535fb5004176720bf3e256b127db,basketball_nba,2026-02-04T00:10:00Z,Washington Wizards,New York Knicks,fanduel,-650,480,-13.0,-106,13.0,-114,227.5,-110,-110
 01033031be4b2306531dce32f69191b5,basketball_nba,2026-02-04T00:40:00Z,Miami Heat,Atlanta Hawks,fanduel,106,-124,1.5,-110,-1.5,-110,238.5,-108,-112
 4cc413ea9714a3e472033030eac2adb7,basketball_nba,2026-02-04T00:40:00Z,Brooklyn Nets,Los Angeles Lakers,fanduel,-370,295,-8.5,-112,8.5,-108,222.5,-110,-110
-e0d51f970fc760f66ccb9b94f0d7527a,basketball_nba,2026-02-04T01:10:00Z,Dallas Mavericks,Boston Celtics,fanduel,-260,215,-7.0,-112,7.0,-108,223.5,-112,-108
+e0d51f970fc760f66ccb9b94f0d7527a,basketball_nba,2026-02-04T01:10:00Z,Dallas Mavericks,Boston Celtics,fanduel,-270,220,-7.0,-112,7.0,-108,223.5,-112,-108
 6e77a178712aabf4adad2f5c2761833a,basketball_nba,2026-02-04T01:10:00Z,Milwaukee Bucks,Chicago Bulls,fanduel,-138,118,-2.5,-108,2.5,-112,223.5,-110,-110
 cbd809d5c1bf7515e3baa1882f0356ad,basketball_nba,2026-02-04T01:10:00Z,Oklahoma City Thunder,Orlando Magic,fanduel,250,-310,8.5,-110,-8.5,-110,220.5,-112,-108
-b3edd94288c50752fc0b9bd809fd69cc,basketball_nba,2026-02-04T03:10:00Z,Golden State Warriors,Philadelphia 76ers,fanduel,130,-154,3.0,-110,-3.0,-110,221.5,-108,-112
+b3edd94288c50752fc0b9bd809fd69cc,basketball_nba,2026-02-04T03:10:00Z,Golden State Warriors,Philadelphia 76ers,fanduel,128,-152,3.0,-110,-3.0,-110,221.5,-108,-112
 6d3f4f581df87818646720ba857a14cb,basketball_nba,2026-02-04T04:10:00Z,Portland Trail Blazers,Phoenix Suns,fanduel,-134,114,-2.5,-108,2.5,-112,218.5,-106,-114
