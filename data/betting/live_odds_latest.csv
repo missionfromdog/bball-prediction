@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 9c5539dbfdce420a92a829805150949a,basketball_nba,2026-02-05T00:10:00Z,New York Knicks,Denver Nuggets,fanduel,184,-220,5.5,-108,-5.5,-112,226.5,-115,-105
 09a1c85451c2450418f5bcba90e220b9,basketball_nba,2026-02-05T00:40:00Z,Toronto Raptors,Minnesota Timberwolves,fanduel,-130,110,-1.5,-112,1.5,-108,226.5,-114,-106
-8b816f6d79780a1772852263e815b070,basketball_nba,2026-02-05T01:10:00Z,Houston Rockets,Boston Celtics,fanduel,220,-270,7.0,-108,-7.0,-112,212.5,-110,-110
-720fb0aa5ec9b76d0ba6782d87da5d6e,basketball_nba,2026-02-05T01:10:00Z,Milwaukee Bucks,New Orleans Pelicans,fanduel,-205,172,-5.5,-110,5.5,-110,222.5,-106,-114
-7eb233edb6e9e03622d300ca7dd2c1df,basketball_nba,2026-02-05T02:40:00Z,San Antonio Spurs,Oklahoma City Thunder,fanduel,-132,112,-1.5,-114,1.5,-106,223.5,-106,-114
+8b816f6d79780a1772852263e815b070,basketball_nba,2026-02-05T01:10:00Z,Houston Rockets,Boston Celtics,fanduel,225,-275,7.0,-108,-7.0,-112,211.5,-110,-110
+720fb0aa5ec9b76d0ba6782d87da5d6e,basketball_nba,2026-02-05T01:10:00Z,Milwaukee Bucks,New Orleans Pelicans,fanduel,-200,168,-5.5,-110,5.5,-110,222.5,-106,-114
+7eb233edb6e9e03622d300ca7dd2c1df,basketball_nba,2026-02-05T02:40:00Z,San Antonio Spurs,Oklahoma City Thunder,fanduel,-130,110,-1.5,-114,1.5,-106,223.5,-106,-114
 4336bce3a2a2e0e4ab7b6bd8f79693d8,basketball_nba,2026-02-05T03:10:00Z,Sacramento Kings,Memphis Grizzlies,fanduel,-104,-112,1.5,-115,-1.5,-105,231.5,-110,-110
-1fabd57d36993380babdef3c224d2992,basketball_nba,2026-02-05T03:40:00Z,Los Angeles Clippers,Cleveland Cavaliers,fanduel,-132,112,-2.0,-110,2.0,-110,222.5,-110,-110
+1fabd57d36993380babdef3c224d2992,basketball_nba,2026-02-05T03:40:00Z,Los Angeles Clippers,Cleveland Cavaliers,fanduel,-134,114,-2.0,-110,2.0,-110,222.5,-110,-110
