@@ -1,8 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-9c5539dbfdce420a92a829805150949a,basketball_nba,2026-02-05T00:10:00Z,New York Knicks,Denver Nuggets,fanduel,184,-220,5.5,-108,-5.5,-112,226.5,-115,-105
-09a1c85451c2450418f5bcba90e220b9,basketball_nba,2026-02-05T00:40:00Z,Toronto Raptors,Minnesota Timberwolves,fanduel,-130,110,-1.5,-112,1.5,-108,226.5,-114,-106
-8b816f6d79780a1772852263e815b070,basketball_nba,2026-02-05T01:10:00Z,Houston Rockets,Boston Celtics,fanduel,225,-275,7.0,-108,-7.0,-112,211.5,-110,-110
-720fb0aa5ec9b76d0ba6782d87da5d6e,basketball_nba,2026-02-05T01:10:00Z,Milwaukee Bucks,New Orleans Pelicans,fanduel,-200,168,-5.5,-110,5.5,-110,222.5,-106,-114
-7eb233edb6e9e03622d300ca7dd2c1df,basketball_nba,2026-02-05T02:40:00Z,San Antonio Spurs,Oklahoma City Thunder,fanduel,-130,110,-1.5,-114,1.5,-106,223.5,-106,-114
-4336bce3a2a2e0e4ab7b6bd8f79693d8,basketball_nba,2026-02-05T03:10:00Z,Sacramento Kings,Memphis Grizzlies,fanduel,-104,-112,1.5,-115,-1.5,-105,231.5,-110,-110
-1fabd57d36993380babdef3c224d2992,basketball_nba,2026-02-05T03:40:00Z,Los Angeles Clippers,Cleveland Cavaliers,fanduel,-134,114,-2.0,-110,2.0,-110,222.5,-110,-110
+9c5539dbfdce420a92a829805150949a,basketball_nba,2026-02-05T00:13:00Z,New York Knicks,Denver Nuggets,fanduel,154.0,-200.0,3.5,-112,-3.5,-118,224.5,-120,-110
+09a1c85451c2450418f5bcba90e220b9,basketball_nba,2026-02-05T00:42:00Z,Toronto Raptors,Minnesota Timberwolves,fanduel,186.0,-245.0,5.5,-118,-5.5,-112,244.5,-148,112
+720fb0aa5ec9b76d0ba6782d87da5d6e,basketball_nba,2026-02-05T01:11:00Z,Milwaukee Bucks,New Orleans Pelicans,fanduel,-320.0,235.0,-6.5,-136,6.5,102,222.5,-122,-108
+8b816f6d79780a1772852263e815b070,basketball_nba,2026-02-05T01:12:00Z,Houston Rockets,Boston Celtics,fanduel,310.0,-440.0,9.5,102,-9.5,-136,205.5,100,-132
+7eb233edb6e9e03622d300ca7dd2c1df,basketball_nba,2026-02-05T02:40:00Z,San Antonio Spurs,Oklahoma City Thunder,fanduel,340.0,-430.0,10.0,-110,-10.0,-110,220.5,-114,-106
+4336bce3a2a2e0e4ab7b6bd8f79693d8,basketball_nba,2026-02-05T03:10:00Z,Sacramento Kings,Memphis Grizzlies,fanduel,100.0,-118.0,1.0,-108,-1.0,-112,232.5,-110,-110
+1fabd57d36993380babdef3c224d2992,basketball_nba,2026-02-05T03:40:00Z,Los Angeles Clippers,Cleveland Cavaliers,fanduel,-146.0,124.0,-2.5,-112,2.5,-108,221.5,-112,-108
+ca876dc309b1f0e80aeb0eaa5f9975b8,basketball_nba,2026-02-06T01:00:00Z,Houston Rockets,Charlotte Hornets,betonlineag,,,3.0,-105,-3.0,-115,218.5,-110,-110
+5a8b449155f22260aabd2f130cbbe7b1,basketball_nba,2026-02-06T03:10:00Z,Phoenix Suns,Golden State Warriors,fanduel,210.0,-255.0,6.5,-110,-6.5,-110,220.5,-110,-110
+29d21b1015a4f76d386601af48083a64,basketball_nba,2026-02-06T03:10:00Z,Los Angeles Lakers,Philadelphia 76ers,fanduel,148.0,-176.0,4.0,-110,-4.0,-110,232.5,-110,-110
