@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 8ddd2769a5ffd8dccf14da6c31f1fc1c,basketball_nba,2026-02-07T00:40:00Z,Boston Celtics,Miami Heat,fanduel,-255,210,-6.5,-108,6.5,-112,226.5,-110,-110
 69d971ab3826cab2feb87672c81b99cc,basketball_nba,2026-02-07T00:40:00Z,Detroit Pistons,New York Knicks,fanduel,-156,132,-3.5,-106,3.5,-114,219.5,-110,-110
-c9fbb4841a8939ef25c00d8012bf66d1,basketball_nba,2026-02-07T01:10:00Z,Milwaukee Bucks,Indiana Pacers,fanduel,102,-120,1.5,-115,-1.5,-105,222.5,-112,-108
-ca2f6578b0d06d2a06e2eb5cee12fd8e,basketball_nba,2026-02-07T01:10:00Z,Minnesota Timberwolves,New Orleans Pelicans,fanduel,-420,330,-10.0,-110,10.0,-110,236.5,-114,-106
+c9fbb4841a8939ef25c00d8012bf66d1,basketball_nba,2026-02-07T01:10:00Z,Milwaukee Bucks,Indiana Pacers,fanduel,100,-118,1.5,-115,-1.5,-105,222.5,-112,-108
+ca2f6578b0d06d2a06e2eb5cee12fd8e,basketball_nba,2026-02-07T01:10:00Z,Minnesota Timberwolves,New Orleans Pelicans,fanduel,-450,350,-10.0,-110,10.0,-110,236.5,-114,-106
 ef8ae24fd705cab52010cac25b6abbba,basketball_nba,2026-02-07T03:00:00Z,Portland Trail Blazers,Memphis Grizzlies,draftkings,-298,240,-8.5,-118,8.5,-102,232.5,-110,-110
-e3d5928f680f116697bc4e6bb16f5862,basketball_nba,2026-02-07T03:10:00Z,Sacramento Kings,Los Angeles Clippers,fanduel,148,-176,3.5,-108,-3.5,-112,222.5,-110,-110
+e3d5928f680f116697bc4e6bb16f5862,basketball_nba,2026-02-07T03:10:00Z,Sacramento Kings,Los Angeles Clippers,fanduel,150,-178,3.5,-105,-3.5,-115,222.5,-110,-110
