@@ -1,11 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 b321b271a38a3a225bb32d4cda89c2ca,basketball_nba,2026-02-07T20:10:00Z,Brooklyn Nets,Washington Wizards,fanduel,-205,172,-5.0,-110,5.0,-110,219.5,-110,-110
-734128222c2a03269132090adb3c593d,basketball_nba,2026-02-07T20:40:00Z,Oklahoma City Thunder,Houston Rockets,fanduel,-142,120,-2.5,-114,2.5,-106,211.5,-108,-112
-b69d85cac76c01181ada3299bc50ed54,basketball_nba,2026-02-07T23:10:00Z,San Antonio Spurs,Dallas Mavericks,fanduel,-420,330,-10.5,-108,10.5,-112,230.5,-110,-110
+734128222c2a03269132090adb3c593d,basketball_nba,2026-02-07T20:40:00Z,Oklahoma City Thunder,Houston Rockets,fanduel,-138,118,-2.5,-114,2.5,-106,211.5,-108,-112
+b69d85cac76c01181ada3299bc50ed54,basketball_nba,2026-02-07T23:10:00Z,San Antonio Spurs,Dallas Mavericks,fanduel,-370,295,-9.5,-112,9.5,-108,230.5,-110,-110
 a54af649958eb60284f57114fdeeb472,basketball_nba,2026-02-08T00:10:00Z,Orlando Magic,Utah Jazz,fanduel,-295,240,-8.0,-106,8.0,-114,237.5,-110,-110
 05cf7fd60949a0c52340284b261ae851,basketball_nba,2026-02-08T00:40:00Z,Atlanta Hawks,Charlotte Hornets,fanduel,110,-130,2.0,-114,-2.0,-106,231.5,-110,-110
 e9a14346272a3fc89154cc1bf1c5da1b,basketball_nba,2026-02-08T01:10:00Z,Chicago Bulls,Denver Nuggets,fanduel,168,-200,5.5,-112,-5.5,-108,232.5,-110,-110
-076f5eadf0573f4dd2ace4f26ae28ef2,basketball_nba,2026-02-08T01:40:00Z,Los Angeles Lakers,Golden State Warriors,fanduel,-144,122,-3.0,-106,3.0,-114,221.5,-114,-106
+076f5eadf0573f4dd2ace4f26ae28ef2,basketball_nba,2026-02-08T01:40:00Z,Los Angeles Lakers,Golden State Warriors,fanduel,-144,122,-3.0,-106,3.0,-114,221.5,-108,-112
 a809adbd88558364e25c834bbb5a88f0,basketball_nba,2026-02-08T02:10:00Z,Phoenix Suns,Philadelphia 76ers,fanduel,-124,106,-1.5,-110,1.5,-110,223.5,-114,-106
 7b28a8f5733ef01c824181e1b5a42341,basketball_nba,2026-02-08T03:10:00Z,Sacramento Kings,Cleveland Cavaliers,fanduel,490,-670,12.0,-106,-12.0,-114,234.5,-110,-110
 e4c99c288d8e1b1baf8bd7af1678ddb5,basketball_nba,2026-02-08T03:10:00Z,Portland Trail Blazers,Memphis Grizzlies,fanduel,-360,290,-9.5,-110,9.5,-110,234.5,-114,-106
