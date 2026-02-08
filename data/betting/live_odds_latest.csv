@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-c2aacc97e9c2f14777db6a947e5b0772,basketball_nba,2026-02-08T17:41:00Z,Boston Celtics,New York Knicks,fanduel,162,-210,5.5,-138,-5.5,104,222.5,102,-136
-c7739a581c938fedf4dd128cb53f31dc,basketball_nba,2026-02-08T19:10:00Z,Washington Wizards,Miami Heat,fanduel,490,-670,13.0,-110,-13.0,-110,236.5,-112,-108
-9a4bb2e3bc9fd308b6e40f29e43ab2f1,basketball_nba,2026-02-08T20:10:00Z,Toronto Raptors,Indiana Pacers,fanduel,-400,310,-9.5,-112,9.5,-108,225.5,-106,-114
+c2aacc97e9c2f14777db6a947e5b0772,basketball_nba,2026-02-08T17:41:00Z,Boston Celtics,New York Knicks,fanduel,116,-148,3.5,-144,-3.5,108,219.5,-104,-128
+c7739a581c938fedf4dd128cb53f31dc,basketball_nba,2026-02-08T19:10:00Z,Washington Wizards,Miami Heat,fanduel,490,-670,13.0,-110,-13.0,-110,236.5,-108,-112
+9a4bb2e3bc9fd308b6e40f29e43ab2f1,basketball_nba,2026-02-08T20:10:00Z,Toronto Raptors,Indiana Pacers,fanduel,-405,320,-9.5,-112,9.5,-108,225.5,-106,-114
 8864122f2c28fd6b7621c0ee000c41fc,basketball_nba,2026-02-08T20:10:00Z,Minnesota Timberwolves,Los Angeles Clippers,fanduel,-370,295,-9.0,-112,9.0,-108,223.5,-106,-114
 28ed7bb63c7bfb49becafe83b0b89e75,basketball_nba,2026-02-10T00:10:00Z,Charlotte Hornets,Detroit Pistons,fanduel,114,-134,2.0,-108,-2.0,-112,223.5,-110,-110
