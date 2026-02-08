@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-c2aacc97e9c2f14777db6a947e5b0772,basketball_nba,2026-02-08T17:40:00Z,Boston Celtics,New York Knicks,fanduel,-164,138,-3.5,-112,3.5,-108,214.5,-112,-108
+c2aacc97e9c2f14777db6a947e5b0772,basketball_nba,2026-02-08T17:40:00Z,Boston Celtics,New York Knicks,fanduel,-162,136,-3.5,-112,3.5,-108,214.5,-112,-108
 c7739a581c938fedf4dd128cb53f31dc,basketball_nba,2026-02-08T19:10:00Z,Washington Wizards,Miami Heat,fanduel,385,-500,11.0,-112,-11.0,-108,235.5,-110,-110
 9a4bb2e3bc9fd308b6e40f29e43ab2f1,basketball_nba,2026-02-08T20:10:00Z,Toronto Raptors,Indiana Pacers,fanduel,-355,285,-8.5,-114,8.5,-106,225.5,-106,-114
 8864122f2c28fd6b7621c0ee000c41fc,basketball_nba,2026-02-08T20:10:00Z,Minnesota Timberwolves,Los Angeles Clippers,fanduel,-330,265,-8.5,-110,8.5,-110,223.5,-106,-114
