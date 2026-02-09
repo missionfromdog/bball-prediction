@@ -1,6 +1,11 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-c2aacc97e9c2f14777db6a947e5b0772,basketball_nba,2026-02-08T17:41:00Z,Boston Celtics,New York Knicks,fanduel,116,-148,3.5,-144,-3.5,108,219.5,-104,-128
-c7739a581c938fedf4dd128cb53f31dc,basketball_nba,2026-02-08T19:10:00Z,Washington Wizards,Miami Heat,fanduel,490,-670,13.0,-110,-13.0,-110,236.5,-108,-112
-9a4bb2e3bc9fd308b6e40f29e43ab2f1,basketball_nba,2026-02-08T20:10:00Z,Toronto Raptors,Indiana Pacers,fanduel,-405,320,-9.5,-112,9.5,-108,225.5,-106,-114
-8864122f2c28fd6b7621c0ee000c41fc,basketball_nba,2026-02-08T20:10:00Z,Minnesota Timberwolves,Los Angeles Clippers,fanduel,-370,295,-9.0,-112,9.0,-108,223.5,-106,-114
-28ed7bb63c7bfb49becafe83b0b89e75,basketball_nba,2026-02-10T00:10:00Z,Charlotte Hornets,Detroit Pistons,fanduel,114,-134,2.0,-108,-2.0,-112,223.5,-110,-110
+28ed7bb63c7bfb49becafe83b0b89e75,basketball_nba,2026-02-10T00:10:00Z,Charlotte Hornets,Detroit Pistons,fanduel,124,-146,2.5,-106,-2.5,-114,223.5,-110,-110
+1c83af4e3fb93fe6584ef5a9e1351f2b,basketball_nba,2026-02-10T00:40:00Z,Brooklyn Nets,Chicago Bulls,fanduel,140,-166,3.5,-106,-3.5,-114,223.5,-110,-110
+87c446233100a0e10c8a9ae223b3d859,basketball_nba,2026-02-10T00:40:00Z,Miami Heat,Utah Jazz,fanduel,-335,270,-9.0,-106,9.0,-114,244.5,-110,-110
+d7da0d0be9b38cafad30bd7ed2a6c674,basketball_nba,2026-02-10T00:40:00Z,Orlando Magic,Milwaukee Bucks,fanduel,-400,315,-9.5,-110,9.5,-110,218.5,-110,-110
+b664e9dae2af4118d7572e95a333b93e,basketball_nba,2026-02-10T01:10:00Z,Minnesota Timberwolves,Atlanta Hawks,fanduel,-240,198,-6.5,-110,6.5,-110,237.5,-108,-112
+f3e4369053da36c11257f3b1498bd0e6,basketball_nba,2026-02-10T01:10:00Z,New Orleans Pelicans,Sacramento Kings,fanduel,-240,198,-6.0,-110,6.0,-110,232.5,-114,-106
+55ce3994bdb669f780eb1021014461cf,basketball_nba,2026-02-10T02:10:00Z,Denver Nuggets,Cleveland Cavaliers,fanduel,-104,-112,1.5,-114,-1.5,-106,234.5,-110,-110
+52fefc6f39b3b91682e5f266233d1088,basketball_nba,2026-02-10T03:10:00Z,Golden State Warriors,Memphis Grizzlies,fanduel,-290,235,-7.0,-112,7.0,-108,226.5,-108,-112
+fe43ece4642dde1bcd2610c18f0cfc27,basketball_nba,2026-02-10T03:10:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,180,-215,6.0,-114,-6.0,-106,219.5,-106,-114
+7c8edd09283c5268205c6029a589798f,basketball_nba,2026-02-10T03:10:00Z,Portland Trail Blazers,Philadelphia 76ers,fanduel,124,-144,3.0,-114,-3.0,-106,230.5,-110,-110
