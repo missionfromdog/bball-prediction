@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-28ed7bb63c7bfb49becafe83b0b89e75,basketball_nba,2026-02-10T00:10:00Z,Charlotte Hornets,Detroit Pistons,fanduel,130,-154,3.0,-110,-3.0,-110,223.5,-108,-112
+28ed7bb63c7bfb49becafe83b0b89e75,basketball_nba,2026-02-10T00:10:00Z,Charlotte Hornets,Detroit Pistons,fanduel,128,-152,3.0,-114,-3.0,-106,223.5,-108,-112
 1c83af4e3fb93fe6584ef5a9e1351f2b,basketball_nba,2026-02-10T00:40:00Z,Brooklyn Nets,Chicago Bulls,fanduel,152,-180,4.0,-108,-4.0,-112,223.5,-110,-110
-87c446233100a0e10c8a9ae223b3d859,basketball_nba,2026-02-10T00:40:00Z,Miami Heat,Utah Jazz,fanduel,-320,260,-8.0,-110,8.0,-110,242.5,-110,-110
-d7da0d0be9b38cafad30bd7ed2a6c674,basketball_nba,2026-02-10T00:40:00Z,Orlando Magic,Milwaukee Bucks,fanduel,-450,350,-10.5,-110,10.5,-110,218.5,-114,-106
+87c446233100a0e10c8a9ae223b3d859,basketball_nba,2026-02-10T00:40:00Z,Miami Heat,Utah Jazz,fanduel,-300,245,-8.0,-110,8.0,-110,242.5,-110,-110
+d7da0d0be9b38cafad30bd7ed2a6c674,basketball_nba,2026-02-10T00:40:00Z,Orlando Magic,Milwaukee Bucks,fanduel,-490,380,-10.5,-112,10.5,-108,218.5,-108,-112
 b664e9dae2af4118d7572e95a333b93e,basketball_nba,2026-02-10T01:10:00Z,Minnesota Timberwolves,Atlanta Hawks,fanduel,-240,198,-6.5,-110,6.5,-110,238.5,-112,-108
-f3e4369053da36c11257f3b1498bd0e6,basketball_nba,2026-02-10T01:10:00Z,New Orleans Pelicans,Sacramento Kings,fanduel,-295,240,-7.5,-110,7.5,-110,231.5,-110,-110
+f3e4369053da36c11257f3b1498bd0e6,basketball_nba,2026-02-10T01:10:00Z,New Orleans Pelicans,Sacramento Kings,fanduel,-300,245,-7.5,-110,7.5,-110,231.5,-110,-110
 55ce3994bdb669f780eb1021014461cf,basketball_nba,2026-02-10T02:10:00Z,Denver Nuggets,Cleveland Cavaliers,fanduel,-108,-108,1.0,-112,-1.0,-108,237.5,-110,-110
 52fefc6f39b3b91682e5f266233d1088,basketball_nba,2026-02-10T03:10:00Z,Golden State Warriors,Memphis Grizzlies,fanduel,-270,220,-7.0,-110,7.0,-110,224.5,-106,-114
 fe43ece4642dde1bcd2610c18f0cfc27,basketball_nba,2026-02-10T03:10:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,200,-245,6.5,-106,-6.5,-114,221.5,-114,-106
