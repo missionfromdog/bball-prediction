@@ -1,4 +1,4 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 1c3809071b6a6e313c87dee15e46bdc1,basketball_nba,2026-02-13T00:40:00Z,Oklahoma City Thunder,Milwaukee Bucks,fanduel,450,-600,13.0,-110,-13.0,-110,215.5,-110,-110
-ad2db051928cbc4c1ed6a3b861ac4538,basketball_nba,2026-02-13T02:10:00Z,Utah Jazz,Portland Trail Blazers,fanduel,-300,245,-8.0,-108,8.0,-112,238.5,-106,-114
-fdb123a858af8d533d901707df45960f,basketball_nba,2026-02-13T03:10:00Z,Los Angeles Lakers,Dallas Mavericks,fanduel,205,-250,6.5,-106,-6.5,-114,232.5,-108,-112
+ad2db051928cbc4c1ed6a3b861ac4538,basketball_nba,2026-02-13T02:10:00Z,Utah Jazz,Portland Trail Blazers,fanduel,-290,235,-7.5,-110,7.5,-110,239.5,-106,-114
+fdb123a858af8d533d901707df45960f,basketball_nba,2026-02-13T03:10:00Z,Los Angeles Lakers,Dallas Mavericks,fanduel,260,-320,7.5,-106,-7.5,-114,234.5,-112,-108
