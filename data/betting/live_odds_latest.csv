@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-c93f72cb146ef69c7bd4a79f03481123,basketball_nba,2026-02-20T00:00:00Z,Washington Wizards,Indiana Pacers,betrivers,-132,107,-2.0,-114,2.0,-109,234.5,-113,-110
+c93f72cb146ef69c7bd4a79f03481123,basketball_nba,2026-02-20T00:00:00Z,Washington Wizards,Indiana Pacers,fanduel,-148,126,-2.5,-114,2.5,-106,234.5,-110,-110
 d647541d42648749f3bde601547fa1be,basketball_nba,2026-02-20T00:10:00Z,Philadelphia 76ers,Atlanta Hawks,fanduel,166,-198,5.0,-112,-5.0,-108,235.5,-110,-110
 24a92d49df82923f29b3e9cda4d57446,basketball_nba,2026-02-20T00:10:00Z,Cleveland Cavaliers,Brooklyn Nets,fanduel,560,-800,13.5,-108,-13.5,-112,226.5,-108,-112
 97031eee2ea39d890bf5046a1c57c7a7,basketball_nba,2026-02-20T00:10:00Z,Charlotte Hornets,Houston Rockets,fanduel,-138,118,-2.0,-112,2.0,-108,214.5,-110,-110

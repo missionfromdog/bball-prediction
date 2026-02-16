@@ -1,4 +1,5 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
+c93f72cb146ef69c7bd4a79f03481123,Washington Wizards,Indiana Pacers,2026-02-20T00:00:00Z,FanDuel,fanduel,126,-148,3.9252069654581945,-2.5,-114,2.5,-106,4.727338716994822,234.5,-110,-110,4.761904761904767
 c93f72cb146ef69c7bd4a79f03481123,Washington Wizards,Indiana Pacers,2026-02-20T00:00:00Z,BetRivers,betrivers,107,-132,5.20573046809929,-2.0,-114,2.0,-109,5.424138085230057,234.5,-113,-110,5.432595573440646
 c93f72cb146ef69c7bd4a79f03481123,Washington Wizards,Indiana Pacers,2026-02-20T00:00:00Z,DraftKings,draftkings,114,-135,4.175780473255131,-2.5,-110,2.5,-110,4.761904761904767,233.5,-110,-110,4.761904761904767
 d647541d42648749f3bde601547fa1be,Philadelphia 76ers,Atlanta Hawks,2026-02-20T00:10:00Z,FanDuel,fanduel,-198,166,4.036937982540234,5.0,-112,-5.0,-108,4.75326560232221,235.5,-110,-110,4.761904761904767
