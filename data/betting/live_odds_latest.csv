@@ -1,11 +1,12 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
+c93f72cb146ef69c7bd4a79f03481123,basketball_nba,2026-02-20T00:00:00Z,Washington Wizards,Indiana Pacers,betrivers,-132,107,-2.0,-114,2.0,-109,234.5,-113,-110
 d647541d42648749f3bde601547fa1be,basketball_nba,2026-02-20T00:10:00Z,Philadelphia 76ers,Atlanta Hawks,fanduel,166,-198,5.0,-112,-5.0,-108,235.5,-110,-110
 24a92d49df82923f29b3e9cda4d57446,basketball_nba,2026-02-20T00:10:00Z,Cleveland Cavaliers,Brooklyn Nets,fanduel,560,-800,13.5,-108,-13.5,-112,226.5,-108,-112
 97031eee2ea39d890bf5046a1c57c7a7,basketball_nba,2026-02-20T00:10:00Z,Charlotte Hornets,Houston Rockets,fanduel,-138,118,-2.0,-112,2.0,-108,214.5,-110,-110
-c93f72cb146ef69c7bd4a79f03481123,basketball_nba,2026-02-20T00:10:00Z,Washington Wizards,Indiana Pacers,fanduel,-146,124,-2.5,-114,2.5,-106,234.5,-110,-110
-0ea61c4bb159036d242d6aa077216586,basketball_nba,2026-02-20T00:40:00Z,New York Knicks,Detroit Pistons,fanduel,130,-154,3.0,-114,-3.0,-106,221.5,-114,-106
-537f72a12ccf54596ce42c638bacb485,basketball_nba,2026-02-20T01:10:00Z,Chicago Bulls,Toronto Raptors,fanduel,-190,160,-4.5,-110,4.5,-110,230.5,-110,-110
+0ea61c4bb159036d242d6aa077216586,basketball_nba,2026-02-20T00:40:00Z,New York Knicks,Detroit Pistons,fanduel,132,-156,3.0,-114,-3.0,-106,221.5,-114,-106
+537f72a12ccf54596ce42c638bacb485,basketball_nba,2026-02-20T01:10:00Z,Chicago Bulls,Toronto Raptors,fanduel,-184,154,-4.5,-110,4.5,-110,230.5,-110,-110
 d34f8e76f10dd65a684c9bd6301e667e,basketball_nba,2026-02-20T01:40:00Z,San Antonio Spurs,Phoenix Suns,fanduel,215,-260,6.5,-106,-6.5,-114,225.5,-110,-110
 7bb1dc8e7e0b6a77195533729951d187,basketball_nba,2026-02-20T03:10:00Z,Golden State Warriors,Boston Celtics,fanduel,-156,132,-3.0,-110,3.0,-110,223.5,-110,-110
-fc4ef6fdb917bca80f99940665442e96,basketball_nba,2026-02-20T03:10:00Z,Sacramento Kings,Orlando Magic,fanduel,-520,400,-11.5,-110,11.5,-110,223.5,-110,-110
+fc4ef6fdb917bca80f99940665442e96,basketball_nba,2026-02-20T03:10:00Z,Sacramento Kings,Orlando Magic,fanduel,-560,420,-11.5,-110,11.5,-110,223.5,-110,-110
 13c088a4f279e674bf80e4cb06d231a9,basketball_nba,2026-02-20T03:40:00Z,Los Angeles Clippers,Denver Nuggets,fanduel,-158,134,-3.5,-110,3.5,-110,225.5,-112,-108
+79eb6c4e1c2997c28d23ce515d513081,basketball_nba,2026-02-21T00:10:00Z,Washington Wizards,Indiana Pacers,fanduel,-148,126,-2.5,-114,2.5,-106,234.5,-110,-110
