@@ -2,7 +2,7 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_s
 c93f72cb146ef69c7bd4a79f03481123,basketball_nba,2026-02-20T00:00:00Z,Washington Wizards,Indiana Pacers,fanduel,-126,108,-2.5,-108,2.5,-112,232.5,-110,-110
 d647541d42648749f3bde601547fa1be,basketball_nba,2026-02-20T00:10:00Z,Philadelphia 76ers,Atlanta Hawks,fanduel,-104,-112,1.5,-114,-1.5,-106,237.5,-110,-110
 24a92d49df82923f29b3e9cda4d57446,basketball_nba,2026-02-20T00:10:00Z,Cleveland Cavaliers,Brooklyn Nets,fanduel,750,-1200,16.5,-108,-16.5,-112,229.5,-112,-108
-97031eee2ea39d890bf5046a1c57c7a7,basketball_nba,2026-02-20T00:10:00Z,Charlotte Hornets,Houston Rockets,fanduel,-184,154,-4.5,-106,4.5,-114,216.5,-108,-112
+97031eee2ea39d890bf5046a1c57c7a7,basketball_nba,2026-02-20T00:10:00Z,Charlotte Hornets,Houston Rockets,fanduel,-180,152,-4.5,-106,4.5,-114,219.5,-108,-112
 0ea61c4bb159036d242d6aa077216586,basketball_nba,2026-02-20T00:40:00Z,New York Knicks,Detroit Pistons,fanduel,140,-166,4.0,-110,-4.0,-110,220.5,-110,-110
 537f72a12ccf54596ce42c638bacb485,basketball_nba,2026-02-20T01:10:00Z,Chicago Bulls,Toronto Raptors,fanduel,-230,190,-6.0,-108,6.0,-112,231.5,-108,-112
 d34f8e76f10dd65a684c9bd6301e667e,basketball_nba,2026-02-20T01:40:00Z,San Antonio Spurs,Phoenix Suns,fanduel,235,-290,7.5,-108,-7.5,-112,229.5,-110,-110
