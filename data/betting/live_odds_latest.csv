@@ -4,9 +4,9 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_s
 782bd538baddbe08fa942761254729cf,basketball_nba,2026-02-22T20:40:00Z,Golden State Warriors,Denver Nuggets,fanduel,-230,190,-6.0,-110,6.0,-110,229.5,-114,-106
 7b90ac67ff251c150cfaec7dad0c57fb,basketball_nba,2026-02-22T20:40:00Z,Milwaukee Bucks,Toronto Raptors,fanduel,-152,128,-3.0,-110,3.0,-110,220.5,-114,-106
 c58609240b6495b450250cabc147e1ac,basketball_nba,2026-02-22T22:10:00Z,Indiana Pacers,Dallas Mavericks,fanduel,-126,108,-2.0,-108,2.0,-112,233.5,-110,-110
-a347a356427b6eb7be0785a1fe56c0ef,basketball_nba,2026-02-22T23:10:00Z,Washington Wizards,Charlotte Hornets,fanduel,-590,430,-11.5,-108,11.5,-112,226.5,-114,-106
-17acdc05db1e8ba29fd2f420dcdf9bcc,basketball_nba,2026-02-22T23:40:00Z,Los Angeles Lakers,Boston Celtics,fanduel,-126,108,-2.0,-106,2.0,-114,227.5,-114,-106
-439a6986fb7fa87228b403c29d22f4b6,basketball_nba,2026-02-23T00:10:00Z,Minnesota Timberwolves,Philadelphia 76ers,fanduel,280,-350,9.0,-110,-9.0,-110,237.5,-114,-106
-ded265e6250d4401a3786f34c967bc8b,basketball_nba,2026-02-23T01:10:00Z,Chicago Bulls,New York Knicks,fanduel,-490,380,-10.5,-112,10.5,-108,231.5,-110,-110
+a347a356427b6eb7be0785a1fe56c0ef,basketball_nba,2026-02-22T23:10:00Z,Washington Wizards,Charlotte Hornets,fanduel,-620,460,-12.0,-110,12.0,-110,226.5,-114,-106
+17acdc05db1e8ba29fd2f420dcdf9bcc,basketball_nba,2026-02-22T23:40:00Z,Los Angeles Lakers,Boston Celtics,fanduel,-124,106,-1.5,-110,1.5,-110,227.5,-114,-106
+439a6986fb7fa87228b403c29d22f4b6,basketball_nba,2026-02-23T00:10:00Z,Minnesota Timberwolves,Philadelphia 76ers,fanduel,275,-340,9.0,-112,-9.0,-108,237.5,-114,-106
+ded265e6250d4401a3786f34c967bc8b,basketball_nba,2026-02-23T01:10:00Z,Chicago Bulls,New York Knicks,fanduel,-460,360,-10.5,-108,10.5,-112,231.5,-110,-110
 14255f77d428aeeedddf9c964b461b3d,basketball_nba,2026-02-23T01:10:00Z,Phoenix Suns,Portland Trail Blazers,fanduel,-162,136,-3.5,-110,3.5,-110,222.5,-114,-106
-e553a415ff6fd8af818c5f4bc50fe23d,basketball_nba,2026-02-23T02:10:00Z,Los Angeles Clippers,Orlando Magic,fanduel,128,-152,3.5,-110,-3.5,-110,215.5,-114,-106
+e553a415ff6fd8af818c5f4bc50fe23d,basketball_nba,2026-02-23T02:10:00Z,Los Angeles Clippers,Orlando Magic,fanduel,130,-154,3.5,-114,-3.5,-106,215.5,-114,-106
