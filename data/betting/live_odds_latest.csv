@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-a9dd69be152e9e5ad8597c9b96f16a53,basketball_nba,2026-02-24T00:10:00Z,Detroit Pistons,San Antonio Spurs,fanduel,-118,100,-1.5,-110,1.5,-110,230.5,-106,-114
+a9dd69be152e9e5ad8597c9b96f16a53,basketball_nba,2026-02-24T00:10:00Z,Detroit Pistons,San Antonio Spurs,fanduel,-118,100,-1.5,-110,1.5,-110,230.5,-114,-106
 f21cba43c1660e818758a990b2912830,basketball_nba,2026-02-24T01:10:00Z,Memphis Grizzlies,Sacramento Kings,fanduel,-194,162,-4.5,-112,4.5,-108,233.5,-106,-114
 b283b125c7b26126854be1e5ad045f3f,basketball_nba,2026-02-24T02:40:00Z,Houston Rockets,Utah Jazz,fanduel,-820,570,-13.5,-114,13.5,-106,227.5,-114,-106
 9309db11d70c5cca506e8df2ce5e1fb3,basketball_nba,2026-02-25T00:40:00Z,Toronto Raptors,Oklahoma City Thunder,fanduel,112,-132,1.5,-106,-1.5,-114,217.5,-112,-108
