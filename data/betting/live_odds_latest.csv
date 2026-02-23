@@ -1,8 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-a9dd69be152e9e5ad8597c9b96f16a53,basketball_nba,2026-02-24T00:10:00Z,Detroit Pistons,San Antonio Spurs,fanduel,-118,100,-1.5,-110,1.5,-110,230.5,-114,-106
-f21cba43c1660e818758a990b2912830,basketball_nba,2026-02-24T01:10:00Z,Memphis Grizzlies,Sacramento Kings,fanduel,-194,162,-4.5,-112,4.5,-108,233.5,-106,-114
-b283b125c7b26126854be1e5ad045f3f,basketball_nba,2026-02-24T02:40:00Z,Houston Rockets,Utah Jazz,fanduel,-820,570,-13.5,-114,13.5,-106,227.5,-114,-106
+a9dd69be152e9e5ad8597c9b96f16a53,basketball_nba,2026-02-24T00:10:00Z,Detroit Pistons,San Antonio Spurs,fanduel,-118,100,-1.5,-108,1.5,-112,232.5,-108,-112
+f21cba43c1660e818758a990b2912830,basketball_nba,2026-02-24T01:10:00Z,Memphis Grizzlies,Sacramento Kings,fanduel,-148,126,-3.0,-110,3.0,-110,232.5,-108,-112
+b283b125c7b26126854be1e5ad045f3f,basketball_nba,2026-02-24T02:40:00Z,Houston Rockets,Utah Jazz,fanduel,-900,610,-13.5,-110,13.5,-110,228.5,-110,-110
+56d8ed44cdc3ee05a77edd2ecb4a516b,basketball_nba,2026-02-25T00:10:00Z,Indiana Pacers,Philadelphia 76ers,fanduel,215,-260,7.0,-112,-7.0,-108,235.5,-110,-110
+9b47a98c27ee6ad7706c0e3a34887d12,basketball_nba,2026-02-25T00:40:00Z,Atlanta Hawks,Washington Wizards,fanduel,-770,530,-13.5,-112,13.5,-108,237.5,-110,-110
 9309db11d70c5cca506e8df2ce5e1fb3,basketball_nba,2026-02-25T00:40:00Z,Toronto Raptors,Oklahoma City Thunder,fanduel,112,-132,1.5,-106,-1.5,-114,217.5,-112,-108
-a4f9fe2c493fda08ff19d7c349948824,basketball_nba,2026-02-25T01:10:00Z,Cleveland Cavaliers,New York Knicks,fanduel,-166,140,-3.5,-108,3.5,-112,229.5,-110,-110
+a4f9fe2c493fda08ff19d7c349948824,basketball_nba,2026-02-25T01:10:00Z,Cleveland Cavaliers,New York Knicks,fanduel,-166,140,-3.5,-110,3.5,-110,229.5,-110,-110
 0bd210b80d8411885dccc7164a922234,basketball_nba,2026-02-25T02:10:00Z,Phoenix Suns,Boston Celtics,fanduel,205,-250,6.5,-106,-6.5,-114,210.5,-110,-110
-19016c4fd819260622e9fbaf8070d66a,basketball_nba,2026-02-25T03:40:00Z,Los Angeles Lakers,Orlando Magic,fanduel,-235,194,-6.5,-108,6.5,-112,227.5,-112,-108
+19016c4fd819260622e9fbaf8070d66a,basketball_nba,2026-02-25T03:40:00Z,Los Angeles Lakers,Orlando Magic,fanduel,-230,190,-6.0,-110,6.0,-110,229.5,-110,-110
