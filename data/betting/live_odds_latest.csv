@@ -1,15 +1,11 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-23f7e8ebef76ec1b639f412eccfdfda4,basketball_nba,2026-03-03T00:12:00Z,Washington Wizards,Houston Rockets,fanduel,-50000,3500,-17.5,-106,17.5,-125,230.5,-112,-118
-3a1ef5b1bd5afc1ee417ba3992167357,basketball_nba,2026-03-03T00:41:00Z,Milwaukee Bucks,Boston Celtics,fanduel,-3500,1060,-16.5,-106,16.5,-125,204.5,-112,-118
-1804ec1ea561b137f3b6a151af196bef,basketball_nba,2026-03-03T02:10:00Z,Utah Jazz,Denver Nuggets,fanduel,-620,460,-12.0,-108,12.0,-112,242.5,-110,-110
-48deab86651d256447d6bb35a3d9939c,basketball_nba,2026-03-03T03:10:00Z,Golden State Warriors,Los Angeles Clippers,fanduel,-118,100,-1.5,-108,1.5,-112,215.5,-110,-110
-2213458a287cb0b1ffa4d46d3ed430b3,basketball_nba,2026-03-04T00:10:00Z,Charlotte Hornets,Dallas Mavericks,fanduel,450,-600,11.5,-106,-11.5,-114,229.5,-110,-110
-b6df29b0fdf2fd3b00b97b1e81870cca,basketball_nba,2026-03-04T00:10:00Z,Cleveland Cavaliers,Detroit Pistons,fanduel,-120,102,-1.0,-108,1.0,-112,228.5,-110,-110
-7a292e434c91c398eb8db7bf1008b671,basketball_nba,2026-03-04T00:10:00Z,Orlando Magic,Washington Wizards,fanduel,700,-1100,15.5,-110,-15.5,-110,226.5,-112,-108
-637bb875ffdc47533ca3ed42d7bbcaa7,basketball_nba,2026-03-04T00:40:00Z,Miami Heat,Brooklyn Nets,fanduel,500,-700,12.5,-106,-12.5,-114,226.5,-114,-106
-6e039621e88bb0b022d5b0d3eafd9596,basketball_nba,2026-03-04T00:40:00Z,Toronto Raptors,New York Knicks,fanduel,-130,110,-1.5,-114,1.5,-106,225.5,-110,-110
-6178a340912ea77ebb5169a9c65f3ec7,basketball_nba,2026-03-04T01:10:00Z,Chicago Bulls,Oklahoma City Thunder,fanduel,-500,385,-11.0,-114,11.0,-106,229.5,-110,-110
-5b3a7e855054866a44f6443710ea000b,basketball_nba,2026-03-04T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,610,-900,14.5,-110,-14.5,-110,239.5,-110,-110
-fe9fbae6e69b1684995b2fa8f45fb691,basketball_nba,2026-03-04T01:10:00Z,Philadelphia 76ers,San Antonio Spurs,fanduel,-290,235,-7.5,-110,7.5,-110,232.5,-110,-110
-63d7f24774bdc95465206323a257aa73,basketball_nba,2026-03-04T03:40:00Z,Los Angeles Lakers,New Orleans Pelicans,fanduel,315,-400,10.0,-110,-10.0,-110,235.5,-112,-108
-1da265a6a1035935a4d2f806af7c3a74,basketball_nba,2026-03-04T04:10:00Z,Sacramento Kings,Phoenix Suns,fanduel,-450,350,-10.5,-110,10.5,-110,227.5,-110,-110
+game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
+2213458a287cb0b1ffa4d46d3ed430b3,basketball_nba,2026-03-04T00:10:00Z,Charlotte Hornets,Dallas Mavericks,fanduel,-620,460,-12.5,-112,12.5,-108,229.5,-110,-110
+b6df29b0fdf2fd3b00b97b1e81870cca,basketball_nba,2026-03-04T00:10:00Z,Cleveland Cavaliers,Detroit Pistons,fanduel,104,-122,1.5,-115,-1.5,-105,227.5,-106,-114
+7a292e434c91c398eb8db7bf1008b671,basketball_nba,2026-03-04T00:10:00Z,Orlando Magic,Washington Wizards,fanduel,-1100,700,-15.5,-110,15.5,-110,227.5,-110,-110
+637bb875ffdc47533ca3ed42d7bbcaa7,basketball_nba,2026-03-04T00:40:00Z,Miami Heat,Brooklyn Nets,fanduel,-650,480,-12.5,-114,12.5,-106,227.5,-106,-114
+6e039621e88bb0b022d5b0d3eafd9596,basketball_nba,2026-03-04T00:40:00Z,Toronto Raptors,New York Knicks,fanduel,116,-136,2.0,-108,-2.0,-112,223.5,-110,-110
+6178a340912ea77ebb5169a9c65f3ec7,basketball_nba,2026-03-04T01:10:00Z,Chicago Bulls,Oklahoma City Thunder,fanduel,350,-450,10.5,-110,-10.5,-110,227.5,-110,-110
+5b3a7e855054866a44f6443710ea000b,basketball_nba,2026-03-04T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,fanduel,-800,560,-14.5,-110,14.5,-110,237.5,-114,-106
+fe9fbae6e69b1684995b2fa8f45fb691,basketball_nba,2026-03-04T01:10:00Z,Philadelphia 76ers,San Antonio Spurs,fanduel,235,-290,7.5,-110,-7.5,-110,232.5,-110,-110
+63d7f24774bdc95465206323a257aa73,basketball_nba,2026-03-04T03:40:00Z,Los Angeles Lakers,New Orleans Pelicans,fanduel,-335,270,-8.5,-114,8.5,-106,237.5,-114,-106
+1da265a6a1035935a4d2f806af7c3a74,basketball_nba,2026-03-04T04:10:00Z,Sacramento Kings,Phoenix Suns,fanduel,350,-450,10.5,-110,-10.5,-110,224.5,-114,-106
