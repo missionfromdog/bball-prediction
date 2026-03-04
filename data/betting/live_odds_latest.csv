@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 5e27bbc527b9df8725ac9fcf03174b8c,basketball_nba,2026-03-05T00:10:00Z,New York Knicks,Oklahoma City Thunder,fanduel,154,-184,4.5,-110,-4.5,-110,222.5,-110,-110
-205af1eb3893119c935c720bddf95254,basketball_nba,2026-03-05T00:40:00Z,Boston Celtics,Charlotte Hornets,fanduel,-245,200,-6.5,-114,6.5,-106,212.5,-114,-106
+205af1eb3893119c935c720bddf95254,basketball_nba,2026-03-05T00:40:00Z,Boston Celtics,Charlotte Hornets,fanduel,-250,205,-6.5,-114,6.5,-106,212.5,-114,-106
 417802e27d447db450466ad4fd7a4f8d,basketball_nba,2026-03-05T00:40:00Z,Philadelphia 76ers,Utah Jazz,fanduel,-420,330,-9.5,-110,9.5,-110,239.5,-110,-110
 2a2434eaef59c9cbb34c5410c32f2529,basketball_nba,2026-03-05T01:10:00Z,Memphis Grizzlies,Portland Trail Blazers,fanduel,270,-335,8.5,-106,-8.5,-114,237.5,-108,-112
-e94b132f71de8a19ec817d79677921d9,basketball_nba,2026-03-05T02:40:00Z,Milwaukee Bucks,Atlanta Hawks,fanduel,-116,-102,-1.0,-110,1.0,-110,233.5,-108,-112
+e94b132f71de8a19ec817d79677921d9,basketball_nba,2026-03-05T02:40:00Z,Milwaukee Bucks,Atlanta Hawks,fanduel,-120,102,-1.0,-114,1.0,-106,233.5,-108,-112
 4a6dcac94e4279ba0acbd1f6376b6df2,basketball_nba,2026-03-05T03:40:00Z,Los Angeles Clippers,Indiana Pacers,fanduel,-670,490,-12.5,-108,12.5,-112,226.5,-106,-114
