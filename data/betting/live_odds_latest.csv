@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-9433b263c495c0f5968b95317cc639f6,basketball_nba,2026-03-06T00:10:00Z,Orlando Magic,Dallas Mavericks,fanduel,320,-405,9.5,-112,-9.5,-108,230.5,-112,-108
+9433b263c495c0f5968b95317cc639f6,basketball_nba,2026-03-06T00:10:00Z,Orlando Magic,Dallas Mavericks,fanduel,315,-400,9.5,-112,-9.5,-108,230.5,-112,-108
 bc0cdadc5e95e588b0a1ea210243fa52,basketball_nba,2026-03-06T00:10:00Z,Washington Wizards,Utah Jazz,draftkings,145,-175,4.5,-112,-4.5,-108,241.5,-110,-110
 9096d55ba6f3120da3126b404e48d023,basketball_nba,2026-03-06T00:40:00Z,Miami Heat,Brooklyn Nets,fanduel,560,-800,13.0,-108,-13.0,-112,226.5,-112,-108
 f7585c5c396d85403879fd5cd3097302,basketball_nba,2026-03-06T00:40:00Z,Houston Rockets,Golden State Warriors,fanduel,285,-355,8.5,-110,-8.5,-110,213.5,-112,-108
