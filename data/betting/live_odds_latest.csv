@@ -1,8 +1,9 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-ab266816a618acf42cd468f0c03d88df,basketball_nba,2026-03-07T00:10:00Z,Boston Celtics,Dallas Mavericks,fanduel,-1150,730,-15.0,-110,15.0,-110,223.5,-108,-112
-d30140ada41fcf347a70f0627144f910,basketball_nba,2026-03-07T00:10:00Z,Charlotte Hornets,Miami Heat,fanduel,-290,235,-7.5,-106,7.5,-114,229.5,-106,-114
-5bb88919ee7f5580d891b5f0cb5aef6e,basketball_nba,2026-03-07T01:10:00Z,Houston Rockets,Portland Trail Blazers,fanduel,-230,190,-6.0,-110,6.0,-110,220.5,-106,-114
-30131455f152309d83d6dd4173318b47,basketball_nba,2026-03-07T02:10:00Z,Denver Nuggets,New York Knicks,fanduel,102,-120,1.5,-114,-1.5,-106,230.5,-106,-114
-54eca7bdce16aefb75a9905bac119cbc,basketball_nba,2026-03-07T02:10:00Z,Phoenix Suns,New Orleans Pelicans,fanduel,-235,194,-6.0,-108,6.0,-112,225.5,-114,-106
-cba1963a5da2997abeeecb331594f3d1,basketball_nba,2026-03-07T02:40:00Z,San Antonio Spurs,Los Angeles Clippers,fanduel,-320,260,-8.0,-106,8.0,-114,223.5,-106,-114
-84b2ef875ad19e935b2b1dd513de5fb3,basketball_nba,2026-03-07T03:40:00Z,Los Angeles Lakers,Indiana Pacers,fanduel,-450,350,-10.0,-110,10.0,-110,236.5,-106,-114
+ab266816a618acf42cd468f0c03d88df,basketball_nba,2026-03-07T00:10:00Z,Boston Celtics,Dallas Mavericks,fanduel,-1000,660,-15.5,-105,15.5,-115,224.5,-110,-110
+d30140ada41fcf347a70f0627144f910,basketball_nba,2026-03-07T00:10:00Z,Charlotte Hornets,Miami Heat,fanduel,-330,265,-8.0,-110,8.0,-110,229.5,-112,-108
+5bb88919ee7f5580d891b5f0cb5aef6e,basketball_nba,2026-03-07T01:10:00Z,Houston Rockets,Portland Trail Blazers,fanduel,-245,200,-6.0,-110,6.0,-110,218.5,-114,-106
+30131455f152309d83d6dd4173318b47,basketball_nba,2026-03-07T02:10:00Z,Denver Nuggets,New York Knicks,fanduel,104,-122,1.5,-112,-1.5,-108,229.5,-114,-106
+54eca7bdce16aefb75a9905bac119cbc,basketball_nba,2026-03-07T02:10:00Z,Phoenix Suns,New Orleans Pelicans,fanduel,-215,180,-5.5,-110,5.5,-110,226.5,-108,-112
+cba1963a5da2997abeeecb331594f3d1,basketball_nba,2026-03-07T02:40:00Z,San Antonio Spurs,Los Angeles Clippers,fanduel,-260,215,-6.5,-114,6.5,-106,222.5,-114,-106
+84b2ef875ad19e935b2b1dd513de5fb3,basketball_nba,2026-03-07T03:40:00Z,Los Angeles Lakers,Indiana Pacers,fanduel,-460,360,-9.5,-110,9.5,-110,235.5,-110,-110
+ad1dc68e34d3d8c8c69f10ea02d1b55a,basketball_nba,2026-03-07T20:10:00Z,Minnesota Timberwolves,Orlando Magic,fanduel,-270,220,-7.0,-110,7.0,-110,225.5,-112,-108
