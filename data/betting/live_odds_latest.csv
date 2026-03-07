@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-ad1dc68e34d3d8c8c69f10ea02d1b55a,basketball_nba,2026-03-07T20:10:00Z,Minnesota Timberwolves,Orlando Magic,fanduel,-245,200,-6.5,-106,6.5,-114,226.5,-110,-110
-d2465617bbd58c113358fb2053afcd30,basketball_nba,2026-03-07T23:10:00Z,Atlanta Hawks,Philadelphia 76ers,fanduel,-240,198,-6.5,-110,6.5,-110,233.5,-110,-110
-d504db9034e7831de4702ce8e4a2ece6,basketball_nba,2026-03-07T23:10:00Z,Detroit Pistons,Brooklyn Nets,fanduel,-850,590,-14.0,-110,14.0,-110,215.5,-110,-110
-6ca48b4df9d476b04ce89d5f8f0c3806,basketball_nba,2026-03-08T01:10:00Z,Memphis Grizzlies,Los Angeles Clippers,fanduel,194,-230,6.0,-114,-6.0,-106,226.5,-110,-110
-c9d52de279acc38e1e943eadce685110,basketball_nba,2026-03-08T01:10:00Z,Milwaukee Bucks,Utah Jazz,fanduel,-500,385,-10.5,-110,10.5,-110,235.5,-110,-110
-92a72f11c9b0e34500cf18430b89aabd,basketball_nba,2026-03-08T01:40:00Z,Oklahoma City Thunder,Golden State Warriors,fanduel,-770,540,-14.5,-105,14.5,-115,219.5,-110,-110
+ad1dc68e34d3d8c8c69f10ea02d1b55a,basketball_nba,2026-03-07T20:10:00Z,Minnesota Timberwolves,Orlando Magic,fanduel,-250,205,-6.5,-106,6.5,-114,226.5,-114,-106
+d2465617bbd58c113358fb2053afcd30,basketball_nba,2026-03-07T23:10:00Z,Atlanta Hawks,Philadelphia 76ers,fanduel,-260,215,-6.5,-114,6.5,-106,233.5,-110,-110
+d504db9034e7831de4702ce8e4a2ece6,basketball_nba,2026-03-07T23:10:00Z,Detroit Pistons,Brooklyn Nets,fanduel,-1000,660,-14.0,-110,14.0,-110,216.5,-110,-110
+6ca48b4df9d476b04ce89d5f8f0c3806,basketball_nba,2026-03-08T01:10:00Z,Memphis Grizzlies,Los Angeles Clippers,fanduel,215,-260,6.0,-110,-6.0,-110,227.5,-114,-106
+c9d52de279acc38e1e943eadce685110,basketball_nba,2026-03-08T01:10:00Z,Milwaukee Bucks,Utah Jazz,fanduel,-460,360,-10.0,-110,10.0,-110,234.5,-110,-110
+92a72f11c9b0e34500cf18430b89aabd,basketball_nba,2026-03-08T01:40:00Z,Oklahoma City Thunder,Golden State Warriors,fanduel,-900,610,-14.5,-114,14.5,-106,219.5,-110,-110
