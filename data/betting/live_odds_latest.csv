@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 f72fef0133914afa77933a8229c6f3b6,basketball_nba,2026-03-08T17:10:00Z,Cleveland Cavaliers,Boston Celtics,fanduel,-106,-110,1.0,-106,-1.0,-114,224.5,-110,-110
-eb2b99ecfa9d75e8e25ce5b0d036f373,basketball_nba,2026-03-08T19:40:00Z,Los Angeles Lakers,New York Knicks,fanduel,-154,130,-3.5,-105,3.5,-115,227.5,-108,-112
+eb2b99ecfa9d75e8e25ce5b0d036f373,basketball_nba,2026-03-08T19:40:00Z,Los Angeles Lakers,New York Knicks,fanduel,-152,128,-3.5,-105,3.5,-115,227.5,-108,-112
 1f7f16be27b4d4686fb80a5ca7952320,basketball_nba,2026-03-08T22:10:00Z,Toronto Raptors,Dallas Mavericks,fanduel,350,-450,10.0,-106,-10.0,-114,228.5,-110,-110
 006622ec4db6bee347f96611117716b1,basketball_nba,2026-03-08T22:10:00Z,Miami Heat,Detroit Pistons,fanduel,-126,108,-1.5,-108,1.5,-112,229.5,-108,-112
 3eecd922fd730ebc566975991090dd48,basketball_nba,2026-03-08T23:10:00Z,New Orleans Pelicans,Washington Wizards,fanduel,310,-390,9.0,-106,-9.0,-114,242.5,-110,-110
