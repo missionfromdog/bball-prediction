@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-45df97b54d688962ca73235c4837a580,basketball_nba,2026-03-09T23:10:00Z,Cleveland Cavaliers,Philadelphia 76ers,fanduel,-590,440,-11.5,-114,11.5,-106,227.5,-108,-112
+45df97b54d688962ca73235c4837a580,basketball_nba,2026-03-09T23:10:00Z,Cleveland Cavaliers,Philadelphia 76ers,fanduel,-700,500,-12.5,-110,12.5,-110,227.5,-108,-112
 cb3e1961956f4bc06c934db6acb30b32,basketball_nba,2026-03-09T23:40:00Z,Brooklyn Nets,Memphis Grizzlies,fanduel,106,-124,1.5,-110,-1.5,-110,221.5,-110,-110
-0b99caf66dc0e57b0a2bb492e66e9b48,basketball_nba,2026-03-09T23:40:00Z,Oklahoma City Thunder,Denver Nuggets,fanduel,-270,220,-7.0,-106,7.0,-114,231.5,-114,-106
+0b99caf66dc0e57b0a2bb492e66e9b48,basketball_nba,2026-03-09T23:40:00Z,Oklahoma City Thunder,Denver Nuggets,fanduel,-275,225,-7.0,-106,7.0,-114,231.5,-114,-106
 e9b7eed293592882faf41217d4cdfea9,basketball_nba,2026-03-10T01:10:00Z,Utah Jazz,Golden State Warriors,fanduel,205,-250,6.0,-110,-6.0,-110,226.5,-114,-106
 1fc5f15b45f76793f11e64508b1222c3,basketball_nba,2026-03-10T02:10:00Z,Los Angeles Clippers,New York Knicks,fanduel,114,-134,2.5,-112,-2.5,-108,220.5,-110,-110
