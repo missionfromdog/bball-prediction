@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-e735f6e9e8e98e8b92c380f09760ec3f,basketball_nba,2026-03-10T23:10:00Z,Philadelphia 76ers,Memphis Grizzlies,fanduel,142,-168,3.5,-114,-3.5,-106,227.5,-110,-110
+e735f6e9e8e98e8b92c380f09760ec3f,basketball_nba,2026-03-10T23:10:00Z,Philadelphia 76ers,Memphis Grizzlies,fanduel,140,-166,3.5,-114,-3.5,-106,227.5,-112,-108
 abc7626b6e289bd9003f66cd3df84349,basketball_nba,2026-03-10T23:40:00Z,Atlanta Hawks,Dallas Mavericks,fanduel,285,-355,9.0,-110,-9.0,-110,239.5,-112,-108
 9421796c001c679383541d472b15be1f,basketball_nba,2026-03-10T23:40:00Z,Brooklyn Nets,Detroit Pistons,fanduel,-1200,750,-15.0,-110,15.0,-110,218.5,-110,-110
 565b25ab007865785e752c67dfb61e99,basketball_nba,2026-03-10T23:40:00Z,Miami Heat,Washington Wizards,fanduel,750,-1200,15.5,-110,-15.5,-110,242.5,-110,-110
 e989d01a7b748cf7e0c892b5259ea99d,basketball_nba,2026-03-11T00:10:00Z,San Antonio Spurs,Boston Celtics,fanduel,128,-152,3.0,-108,-3.0,-112,222.5,-106,-114
-f9792224d24b63aa28a24224ea099225,basketball_nba,2026-03-11T00:10:00Z,Houston Rockets,Toronto Raptors,fanduel,158,-188,5.0,-115,-5.0,-105,217.5,-110,-110
+f9792224d24b63aa28a24224ea099225,basketball_nba,2026-03-11T00:10:00Z,Houston Rockets,Toronto Raptors,fanduel,168,-200,5.0,-110,-5.0,-110,217.5,-110,-110
 133cc0d0b8283948b909c38cc93d2d62,basketball_nba,2026-03-11T00:10:00Z,Milwaukee Bucks,Phoenix Suns,fanduel,-118,100,-1.5,-108,1.5,-112,217.5,-108,-112
 25729251b2eb774717c748181096b0be,basketball_nba,2026-03-11T02:10:00Z,Portland Trail Blazers,Charlotte Hornets,fanduel,-154,130,-3.0,-110,3.0,-110,227.5,-114,-106
 c248f3294c1e35f27919ab0f49322752,basketball_nba,2026-03-11T02:10:00Z,Golden State Warriors,Chicago Bulls,fanduel,200,-245,6.5,-110,-6.5,-110,227.5,-114,-106
