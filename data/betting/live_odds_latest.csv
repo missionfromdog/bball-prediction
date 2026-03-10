@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-e735f6e9e8e98e8b92c380f09760ec3f,basketball_nba,2026-03-10T23:10:00Z,Philadelphia 76ers,Memphis Grizzlies,fanduel,128,-152,3.0,-115,-3.0,-105,227.5,-108,-112
-abc7626b6e289bd9003f66cd3df84349,basketball_nba,2026-03-10T23:40:00Z,Atlanta Hawks,Dallas Mavericks,fanduel,340,-430,10.0,-108,-10.0,-112,240.5,-112,-108
-9421796c001c679383541d472b15be1f,basketball_nba,2026-03-10T23:40:00Z,Brooklyn Nets,Detroit Pistons,fanduel,-1100,700,-14.5,-108,14.5,-112,216.5,-110,-110
+e735f6e9e8e98e8b92c380f09760ec3f,basketball_nba,2026-03-10T23:10:00Z,Philadelphia 76ers,Memphis Grizzlies,fanduel,124,-146,3.0,-115,-3.0,-105,227.5,-106,-114
+abc7626b6e289bd9003f66cd3df84349,basketball_nba,2026-03-10T23:40:00Z,Atlanta Hawks,Dallas Mavericks,fanduel,320,-405,10.0,-110,-10.0,-110,240.5,-112,-108
+9421796c001c679383541d472b15be1f,basketball_nba,2026-03-10T23:40:00Z,Brooklyn Nets,Detroit Pistons,fanduel,-1150,730,-14.5,-112,14.5,-108,216.5,-110,-110
 565b25ab007865785e752c67dfb61e99,basketball_nba,2026-03-10T23:40:00Z,Miami Heat,Washington Wizards,fanduel,730,-1150,16.0,-112,-16.0,-108,237.5,-110,-110
 e989d01a7b748cf7e0c892b5259ea99d,basketball_nba,2026-03-11T00:10:00Z,San Antonio Spurs,Boston Celtics,fanduel,132,-156,3.5,-110,-3.5,-110,221.5,-110,-110
 f9792224d24b63aa28a24224ea099225,basketball_nba,2026-03-11T00:10:00Z,Houston Rockets,Toronto Raptors,fanduel,166,-198,5.0,-110,-5.0,-110,219.5,-110,-110
