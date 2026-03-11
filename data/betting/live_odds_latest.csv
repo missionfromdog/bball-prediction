@@ -3,5 +3,5 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_s
 f017158f6d19c234ca36c9f4158a2dd7,basketball_nba,2026-03-12T00:10:00Z,New Orleans Pelicans,Toronto Raptors,fanduel,-126,108,-1.5,-110,1.5,-110,232.5,-112,-108
 6df2d79d5f33a116e65cebdf6b58df62,basketball_nba,2026-03-12T01:10:00Z,Utah Jazz,New York Knicks,fanduel,-850,590,-13.5,-110,13.5,-110,229.5,-112,-108
 9456ca1700b88516e897b6814de3681c,basketball_nba,2026-03-12T02:10:00Z,Sacramento Kings,Charlotte Hornets,fanduel,-700,500,-12.5,-114,12.5,-106,225.5,-112,-108
-dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,194,-235,5.5,-106,-5.5,-114,230.5,-112,-108
+dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,194,-230,5.5,-106,-5.5,-114,230.5,-112,-108
 93eb0e796df39c4bd0667f1bbc5a1cb1,basketball_nba,2026-03-12T02:40:00Z,Los Angeles Clippers,Minnesota Timberwolves,fanduel,108,-126,1.5,-106,-1.5,-114,225.5,-110,-110
