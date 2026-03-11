@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
 2b7e07f92609e7a5ad0edcfe650d99e8,basketball_nba,2026-03-11T23:40:00Z,Orlando Magic,Cleveland Cavaliers,fanduel,-168,142,-3.5,-110,3.5,-110,226.5,-110,-110
-f017158f6d19c234ca36c9f4158a2dd7,basketball_nba,2026-03-12T00:10:00Z,New Orleans Pelicans,Toronto Raptors,fanduel,-132,112,-2.0,-110,2.0,-110,234.5,-110,-110
+f017158f6d19c234ca36c9f4158a2dd7,basketball_nba,2026-03-12T00:10:00Z,New Orleans Pelicans,Toronto Raptors,fanduel,-144,124,-2.5,-110,2.5,-110,234.5,-110,-110
 6df2d79d5f33a116e65cebdf6b58df62,basketball_nba,2026-03-12T01:10:00Z,Utah Jazz,New York Knicks,fanduel,-1100,700,-14.0,-112,14.0,-108,230.5,-110,-110
-9456ca1700b88516e897b6814de3681c,basketball_nba,2026-03-12T02:10:00Z,Sacramento Kings,Charlotte Hornets,fanduel,-770,530,-13.0,-110,13.0,-110,224.5,-110,-110
-dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,240,-295,7.5,-114,-7.5,-106,230.5,-112,-108
+9456ca1700b88516e897b6814de3681c,basketball_nba,2026-03-12T02:10:00Z,Sacramento Kings,Charlotte Hornets,fanduel,-720,520,-13.0,-108,13.0,-112,224.5,-110,-110
+dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,225,-275,7.5,-114,-7.5,-106,230.5,-112,-108
 93eb0e796df39c4bd0667f1bbc5a1cb1,basketball_nba,2026-03-12T02:40:00Z,Los Angeles Clippers,Minnesota Timberwolves,fanduel,108,-126,1.5,-106,-1.5,-114,226.5,-110,-110
