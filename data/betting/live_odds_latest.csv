@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-2b7e07f92609e7a5ad0edcfe650d99e8,basketball_nba,2026-03-11T23:40:00Z,Orlando Magic,Cleveland Cavaliers,fanduel,-152,128,-3.0,-112,3.0,-108,226.5,-110,-110
-f017158f6d19c234ca36c9f4158a2dd7,basketball_nba,2026-03-12T00:10:00Z,New Orleans Pelicans,Toronto Raptors,fanduel,-120,102,-1.0,-112,1.0,-108,232.5,-112,-108
-6df2d79d5f33a116e65cebdf6b58df62,basketball_nba,2026-03-12T01:10:00Z,Utah Jazz,New York Knicks,fanduel,-720,520,-12.5,-110,12.5,-110,229.5,-112,-108
-9456ca1700b88516e897b6814de3681c,basketball_nba,2026-03-12T02:10:00Z,Sacramento Kings,Charlotte Hornets,fanduel,-720,520,-12.5,-110,12.5,-110,226.5,-110,-110
-dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,172,-205,5.0,-106,-5.0,-114,228.5,-114,-106
-93eb0e796df39c4bd0667f1bbc5a1cb1,basketball_nba,2026-03-12T02:40:00Z,Los Angeles Clippers,Minnesota Timberwolves,fanduel,120,-142,2.5,-112,-2.5,-108,225.5,-110,-110
+2b7e07f92609e7a5ad0edcfe650d99e8,basketball_nba,2026-03-11T23:40:00Z,Orlando Magic,Cleveland Cavaliers,fanduel,-166,140,-3.5,-110,3.5,-110,226.5,-110,-110
+f017158f6d19c234ca36c9f4158a2dd7,basketball_nba,2026-03-12T00:10:00Z,New Orleans Pelicans,Toronto Raptors,fanduel,-126,108,-1.5,-110,1.5,-110,232.5,-112,-108
+6df2d79d5f33a116e65cebdf6b58df62,basketball_nba,2026-03-12T01:10:00Z,Utah Jazz,New York Knicks,fanduel,-850,590,-13.5,-110,13.5,-110,229.5,-112,-108
+9456ca1700b88516e897b6814de3681c,basketball_nba,2026-03-12T02:10:00Z,Sacramento Kings,Charlotte Hornets,fanduel,-700,500,-12.5,-114,12.5,-106,225.5,-112,-108
+dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,194,-235,5.5,-106,-5.5,-114,230.5,-112,-108
+93eb0e796df39c4bd0667f1bbc5a1cb1,basketball_nba,2026-03-12T02:40:00Z,Los Angeles Clippers,Minnesota Timberwolves,fanduel,108,-126,1.5,-106,-1.5,-114,225.5,-110,-110
