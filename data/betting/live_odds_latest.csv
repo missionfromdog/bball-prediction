@@ -1,12 +1,15 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-e735f6e9e8e98e8b92c380f09760ec3f,basketball_nba,2026-03-10T23:10:00Z,Philadelphia 76ers,Memphis Grizzlies,fanduel,124,-146,3.0,-115,-3.0,-105,227.5,-106,-114
-abc7626b6e289bd9003f66cd3df84349,basketball_nba,2026-03-10T23:40:00Z,Atlanta Hawks,Dallas Mavericks,fanduel,320,-405,10.0,-110,-10.0,-110,240.5,-112,-108
-9421796c001c679383541d472b15be1f,basketball_nba,2026-03-10T23:40:00Z,Brooklyn Nets,Detroit Pistons,fanduel,-1150,730,-14.5,-112,14.5,-108,216.5,-110,-110
-565b25ab007865785e752c67dfb61e99,basketball_nba,2026-03-10T23:40:00Z,Miami Heat,Washington Wizards,fanduel,730,-1150,16.0,-112,-16.0,-108,237.5,-110,-110
-e989d01a7b748cf7e0c892b5259ea99d,basketball_nba,2026-03-11T00:10:00Z,San Antonio Spurs,Boston Celtics,fanduel,132,-156,3.5,-110,-3.5,-110,221.5,-110,-110
-f9792224d24b63aa28a24224ea099225,basketball_nba,2026-03-11T00:10:00Z,Houston Rockets,Toronto Raptors,fanduel,166,-198,5.0,-110,-5.0,-110,219.5,-110,-110
-133cc0d0b8283948b909c38cc93d2d62,basketball_nba,2026-03-11T00:10:00Z,Milwaukee Bucks,Phoenix Suns,fanduel,-122,104,-1.5,-105,1.5,-115,218.5,-105,-115
-25729251b2eb774717c748181096b0be,basketball_nba,2026-03-11T02:10:00Z,Portland Trail Blazers,Charlotte Hornets,fanduel,-158,134,-3.0,-112,3.0,-108,227.5,-110,-110
-c248f3294c1e35f27919ab0f49322752,basketball_nba,2026-03-11T02:10:00Z,Golden State Warriors,Chicago Bulls,fanduel,198,-240,6.5,-114,-6.5,-106,227.5,-114,-106
-eacde0007a133dae3e1eee3630c04a60,basketball_nba,2026-03-11T02:10:00Z,Sacramento Kings,Indiana Pacers,fanduel,130,-154,3.0,-112,-3.0,-108,236.5,-114,-106
-4df738bb19716e5b1ea6f389fa1fd60d,basketball_nba,2026-03-11T03:10:00Z,Los Angeles Lakers,Minnesota Timberwolves,fanduel,-142,120,-3.0,-108,3.0,-112,233.5,-110,-110
+e735f6e9e8e98e8b92c380f09760ec3f,basketball_nba,2026-03-10T23:12:00Z,Philadelphia 76ers,Memphis Grizzlies,fanduel,250.0,-340.0,3.5,-102,-3.5,-130,267.5,-136,102
+9421796c001c679383541d472b15be1f,basketball_nba,2026-03-10T23:41:00Z,Brooklyn Nets,Detroit Pistons,fanduel,,,-33.5,-118,33.5,-112,223.5,-106,-125
+565b25ab007865785e752c67dfb61e99,basketball_nba,2026-03-10T23:41:00Z,Miami Heat,Washington Wizards,fanduel,,,27.5,-122,-27.5,-108,263.5,-130,-102
+abc7626b6e289bd9003f66cd3df84349,basketball_nba,2026-03-10T23:42:00Z,Atlanta Hawks,Dallas Mavericks,fanduel,400.0,-620.0,7.5,-128,-7.5,-104,243.5,-110,-120
+133cc0d0b8283948b909c38cc93d2d62,basketball_nba,2026-03-11T00:10:00Z,Milwaukee Bucks,Phoenix Suns,fanduel,118.0,-150.0,2.5,-114,-2.5,-114,235.5,-106,-125
+f9792224d24b63aa28a24224ea099225,basketball_nba,2026-03-11T00:12:00Z,Houston Rockets,Toronto Raptors,fanduel,360.0,-530.0,8.5,-102,-8.5,-130,219.5,-114,-114
+e989d01a7b748cf7e0c892b5259ea99d,basketball_nba,2026-03-11T00:13:00Z,San Antonio Spurs,Boston Celtics,fanduel,186.0,-245.0,3.5,106,-3.5,-140,223.5,-114,-114
+25729251b2eb774717c748181096b0be,basketball_nba,2026-03-11T02:10:00Z,Portland Trail Blazers,Charlotte Hornets,fanduel,-152.0,128.0,-3.5,-108,3.5,-112,227.5,-114,-106
+c248f3294c1e35f27919ab0f49322752,basketball_nba,2026-03-11T02:10:00Z,Golden State Warriors,Chicago Bulls,fanduel,188.0,-225.0,6.0,-112,-6.0,-108,226.5,-106,-114
+eacde0007a133dae3e1eee3630c04a60,basketball_nba,2026-03-11T02:10:00Z,Sacramento Kings,Indiana Pacers,fanduel,136.0,-162.0,3.5,-110,-3.5,-110,236.5,-114,-106
+4df738bb19716e5b1ea6f389fa1fd60d,basketball_nba,2026-03-11T03:10:00Z,Los Angeles Lakers,Minnesota Timberwolves,fanduel,-144.0,122.0,-3.0,-110,3.0,-110,228.5,-108,-112
+2b7e07f92609e7a5ad0edcfe650d99e8,basketball_nba,2026-03-11T23:40:00Z,Orlando Magic,Cleveland Cavaliers,fanduel,-142.0,120.0,-2.5,-110,2.5,-110,226.5,-112,-108
+dc635f9b3f854e9881597341b126a1ff,basketball_nba,2026-03-12T02:10:00Z,Denver Nuggets,Houston Rockets,fanduel,166.0,-198.0,5.0,-110,-5.0,-110,228.5,-106,-114
+93eb0e796df39c4bd0667f1bbc5a1cb1,basketball_nba,2026-03-12T02:40:00Z,Los Angeles Clippers,Minnesota Timberwolves,fanduel,100.0,-118.0,1.5,-114,-1.5,-106,226.5,-115,-105
