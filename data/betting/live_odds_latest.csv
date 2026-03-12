@@ -4,7 +4,7 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_s
 cd2e1d8b7576bcfeb478f6e35d9b3981,basketball_nba,2026-03-12T23:10:00Z,Orlando Magic,Washington Wizards,fanduel,-1150,730,-14.5,-110,14.5,-110,233.5,-114,-106
 262c75be6af3afb9a3e942e061ca61b4,basketball_nba,2026-03-12T23:40:00Z,Atlanta Hawks,Brooklyn Nets,fanduel,-1200,750,-15.5,-112,15.5,-108,226.5,-108,-112
 4c710b46284886c35732575897017b19,basketball_nba,2026-03-12T23:40:00Z,Miami Heat,Milwaukee Bucks,fanduel,-260,215,-6.5,-112,6.5,-108,234.5,-114,-106
-8139b5bfd0d6cb35977cd039afbbbc06,basketball_nba,2026-03-13T00:10:00Z,Memphis Grizzlies,Dallas Mavericks,fanduel,166,-198,4.5,-105,-4.5,-115,239.5,-110,-110
-bb77f1e69f95b7403a2ab81b5bcc7a2d,basketball_nba,2026-03-13T01:10:00Z,San Antonio Spurs,Denver Nuggets,fanduel,-205,172,-5.5,-106,5.5,-114,238.5,-114,-106
+8139b5bfd0d6cb35977cd039afbbbc06,basketball_nba,2026-03-13T00:10:00Z,Memphis Grizzlies,Dallas Mavericks,fanduel,168,-200,5.0,-110,-5.0,-110,239.5,-110,-110
+bb77f1e69f95b7403a2ab81b5bcc7a2d,basketball_nba,2026-03-13T01:10:00Z,San Antonio Spurs,Denver Nuggets,fanduel,-196,164,-5.0,-108,5.0,-112,238.5,-114,-106
 54729c42f16b535d7db5602607b652cb,basketball_nba,2026-03-13T01:40:00Z,Oklahoma City Thunder,Boston Celtics,fanduel,-270,220,-7.5,-108,7.5,-112,216.5,-106,-114
 4aee4f2701274412ad8157cdfea22caf,basketball_nba,2026-03-13T02:40:00Z,Los Angeles Lakers,Chicago Bulls,fanduel,-550,420,-11.0,-112,11.0,-108,238.5,-110,-110
