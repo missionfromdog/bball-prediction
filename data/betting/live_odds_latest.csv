@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 05abd26b6e3a0a9e4317e3948c06a097,basketball_nba,2026-03-12T23:10:00Z,Detroit Pistons,Philadelphia 76ers,fanduel,-1200,750,-15.0,-115,15.0,-105,222.5,-106,-114
-934acadeb7fcd3d3c1d79fd8b324040c,basketball_nba,2026-03-12T23:10:00Z,Indiana Pacers,Phoenix Suns,fanduel,290,-360,9.0,-114,-9.0,-106,225.5,-110,-110
+934acadeb7fcd3d3c1d79fd8b324040c,basketball_nba,2026-03-12T23:10:00Z,Indiana Pacers,Phoenix Suns,fanduel,295,-370,9.0,-114,-9.0,-106,225.5,-110,-110
 cd2e1d8b7576bcfeb478f6e35d9b3981,basketball_nba,2026-03-12T23:10:00Z,Orlando Magic,Washington Wizards,fanduel,-1200,750,-15.0,-112,15.0,-108,233.5,-110,-110
 262c75be6af3afb9a3e942e061ca61b4,basketball_nba,2026-03-12T23:40:00Z,Atlanta Hawks,Brooklyn Nets,fanduel,-1100,700,-14.5,-114,14.5,-106,226.5,-114,-106
 4c710b46284886c35732575897017b19,basketball_nba,2026-03-12T23:40:00Z,Miami Heat,Milwaukee Bucks,fanduel,-250,205,-6.0,-114,6.0,-106,232.5,-106,-114
