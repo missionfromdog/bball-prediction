@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-fff92660471a227787e69030342c161a,basketball_nba,2026-03-13T23:40:00Z,Dallas Mavericks,Cleveland Cavaliers,fanduel,-850,590,-14.0,-110,14.0,-110,236.5,-108,-112
+fff92660471a227787e69030342c161a,basketball_nba,2026-03-13T23:40:00Z,Dallas Mavericks,Cleveland Cavaliers,fanduel,-820,570,-14.0,-110,14.0,-110,236.5,-108,-112
 9f90f0cfcf3b921f77ede1f83724a96f,basketball_nba,2026-03-13T23:40:00Z,Detroit Pistons,Memphis Grizzlies,fanduel,810,-1400,15.5,-106,-15.5,-114,233.5,-112,-108
 aef5ba1e4c95ece8672f8bb0672fe17d,basketball_nba,2026-03-13T23:40:00Z,Indiana Pacers,New York Knicks,fanduel,-800,560,-13.0,-114,13.0,-106,226.5,-110,-110
 9d9b5899c3a11e2fb35194811631cd40,basketball_nba,2026-03-13T23:40:00Z,Toronto Raptors,Phoenix Suns,fanduel,162,-194,4.5,-108,-4.5,-112,218.5,-106,-114
@@ -7,4 +7,4 @@ aef5ba1e4c95ece8672f8bb0672fe17d,basketball_nba,2026-03-13T23:40:00Z,Indiana Pac
 8f70af8b76f27c4f0a7a6957464edf9d,basketball_nba,2026-03-14T02:10:00Z,Golden State Warriors,Minnesota Timberwolves,fanduel,-250,205,-6.5,-106,6.5,-114,224.5,-106,-114
 d935250226e658edb6e7a0f1eaf4edea,basketball_nba,2026-03-14T02:10:00Z,Portland Trail Blazers,Utah Jazz,fanduel,810,-1350,15.5,-110,-15.5,-110,236.5,-110,-110
 3e5d3f236671e27e0921615898f5f035,basketball_nba,2026-03-14T02:40:00Z,Los Angeles Clippers,Chicago Bulls,fanduel,540,-770,13.5,-110,-13.5,-110,234.5,-112,-108
-5b7467a257447a40f885525e863992a5,basketball_nba,2026-03-14T22:40:00Z,Los Angeles Lakers,Denver Nuggets,fanduel,-122,104,-1.5,-110,1.5,-110,242.5,-108,-112
+5b7467a257447a40f885525e863992a5,basketball_nba,2026-03-14T22:40:00Z,Los Angeles Lakers,Denver Nuggets,fanduel,-122,104,-1.5,-110,1.5,-110,241.5,-114,-106
