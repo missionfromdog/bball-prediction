@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-689cb75979724773a16b617332228d55,basketball_nba,2026-03-15T17:10:00Z,Oklahoma City Thunder,Minnesota Timberwolves,fanduel,315,-400,9.5,-114,-9.5,-106,224.5,-112,-108
+689cb75979724773a16b617332228d55,basketball_nba,2026-03-15T17:10:00Z,Oklahoma City Thunder,Minnesota Timberwolves,fanduel,310,-390,8.5,-108,-8.5,-112,224.5,-112,-108
 45f9fc1bf871b54d2392e9ec6506097f,basketball_nba,2026-03-15T19:40:00Z,Cleveland Cavaliers,Dallas Mavericks,fanduel,700,-1100,16.5,-112,-16.5,-108,236.5,-114,-106
 ee20dd8148c700589a380b7f5b5c1010,basketball_nba,2026-03-15T19:40:00Z,Toronto Raptors,Detroit Pistons,fanduel,-162,136,-3.5,-108,3.5,-112,221.5,-114,-106
 4d87f60750a28b81c5a82803e3b412a7,basketball_nba,2026-03-15T19:40:00Z,Milwaukee Bucks,Indiana Pacers,fanduel,235,-290,7.5,-110,-7.5,-110,228.5,-110,-110
