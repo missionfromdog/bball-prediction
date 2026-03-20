@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-9dec9fb17fd32b89e42c5060a469312a,basketball_nba,2026-03-20T23:40:00Z,Brooklyn Nets,New York Knicks,fanduel,1100,-2200,18.0,-110,-18.0,-110,215.5,-110,-110
-f381a9f3443b5155e9e74cbdb8c0c849,basketball_nba,2026-03-20T23:40:00Z,Detroit Pistons,Golden State Warriors,draftkings,-245,200,-6.5,-112,6.5,-108,217.5,-112,-108
-bf9a522d732a5622666e8bae89203de1,basketball_nba,2026-03-21T00:10:00Z,Houston Rockets,Atlanta Hawks,fanduel,-172,144,-4.0,-110,4.0,-110,227.5,-114,-106
-62da7cf8935f70ca97e56996eda2dd1a,basketball_nba,2026-03-21T00:10:00Z,Memphis Grizzlies,Boston Celtics,fanduel,640,-950,15.0,-110,-15.0,-110,229.5,-106,-114
-ad2565936a516016f0e5cde775d11ad0,basketball_nba,2026-03-21T00:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,fanduel,-152,128,-3.0,-110,3.0,-110,229.5,-110,-110
-1bcdb9dabad4bb99e11958b30508dc78,basketball_nba,2026-03-21T01:10:00Z,Denver Nuggets,Toronto Raptors,fanduel,-260,215,-7.0,-110,7.0,-110,235.5,-110,-110
+9dec9fb17fd32b89e42c5060a469312a,basketball_nba,2026-03-20T23:40:00Z,Brooklyn Nets,New York Knicks,fanduel,1100,-2200,18.0,-110,-18.0,-110,215.5,-106,-114
+f381a9f3443b5155e9e74cbdb8c0c849,basketball_nba,2026-03-20T23:40:00Z,Detroit Pistons,Golden State Warriors,draftkings,-218,180,-5.5,-110,5.5,-110,217.5,-105,-115
+bf9a522d732a5622666e8bae89203de1,basketball_nba,2026-03-21T00:10:00Z,Houston Rockets,Atlanta Hawks,fanduel,-158,134,-3.5,-110,3.5,-110,227.5,-114,-106
+62da7cf8935f70ca97e56996eda2dd1a,basketball_nba,2026-03-21T00:10:00Z,Memphis Grizzlies,Boston Celtics,fanduel,810,-1350,15.0,-106,-15.0,-114,229.5,-114,-106
+ad2565936a516016f0e5cde775d11ad0,basketball_nba,2026-03-21T00:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,fanduel,-138,118,-2.5,-110,2.5,-110,230.5,-110,-110
+1bcdb9dabad4bb99e11958b30508dc78,basketball_nba,2026-03-21T01:10:00Z,Denver Nuggets,Toronto Raptors,fanduel,-270,220,-7.0,-110,7.0,-110,237.5,-112,-108
 041a208c3a53186e8bc0983045ab66f7,basketball_nba,2026-03-21T23:11:00Z,Orlando Magic,Los Angeles Lakers,fanduel,132,-156,2.5,-110,-2.5,-110,231.5,-110,-110
