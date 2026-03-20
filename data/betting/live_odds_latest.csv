@@ -1,9 +1,14 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-570e79a6a678168c3cb3e69098069448,basketball_nba,2026-03-19T23:10:00Z,Washington Wizards,Detroit Pistons,fanduel,-1100,700,-14.0,-114,14.0,-106,231.5,-110,-110
-ec3ff082cb50037d2f7bb5258b1e2d41,basketball_nba,2026-03-19T23:15:00Z,Charlotte Hornets,Orlando Magic,fanduel,190,-230,5.5,-106,-5.5,-114,227.5,-110,-110
-53d402557ce913ced0dbf5fe564b0ebb,basketball_nba,2026-03-20T00:10:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,-550,410,-11.0,-110,11.0,-110,238.5,-112,-108
-dea454fe13c4c2e0254013f35efaceaf,basketball_nba,2026-03-20T00:10:00Z,New Orleans Pelicans,Los Angeles Clippers,fanduel,118,-138,2.5,-114,-2.5,-106,229.5,-110,-110
-b438071ab82326fa2fa702112ad04536,basketball_nba,2026-03-20T00:10:00Z,Miami Heat,Los Angeles Lakers,fanduel,188,-220,6.0,-114,-6.0,-106,240.5,-110,-110
-08972bedbb384ff5c67374d76d71c61b,basketball_nba,2026-03-20T00:10:00Z,San Antonio Spurs,Phoenix Suns,fanduel,350,-450,9.5,-106,-9.5,-114,228.5,-108,-112
-c9330059cfdf19891d9b4ecfa62d54c5,basketball_nba,2026-03-20T01:10:00Z,Utah Jazz,Milwaukee Bucks,fanduel,-230,190,-5.0,-114,5.0,-106,229.5,-110,-110
-34058ad6afd721c206c16f9d0eb7c77d,basketball_nba,2026-03-20T02:10:00Z,Sacramento Kings,Philadelphia 76ers,fanduel,-142,120,-2.5,-110,2.5,-110,225.5,-114,-106
+game_id,sport,commence_time,home_team,away_team,bookmaker,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds,away_ml,home_ml
+ec3ff082cb50037d2f7bb5258b1e2d41,basketball_nba,2026-03-19T23:11:00Z,Charlotte Hornets,Orlando Magic,fanduel,-24.5,106,24.5,-140,246.5,-152,114,,
+570e79a6a678168c3cb3e69098069448,basketball_nba,2026-03-19T23:11:00Z,Washington Wizards,Detroit Pistons,fanduel,23.5,-136,-23.5,102,215.5,-102,-130,,
+08972bedbb384ff5c67374d76d71c61b,basketball_nba,2026-03-20T00:10:00Z,San Antonio Spurs,Phoenix Suns,fanduel,-2.5,102,2.5,-136,216.5,-106,-122,114.0,-146.0
+53d402557ce913ced0dbf5fe564b0ebb,basketball_nba,2026-03-20T00:11:00Z,Chicago Bulls,Cleveland Cavaliers,fanduel,17.5,-108,-17.5,-122,224.5,-122,-108,-6000.0,1400.0
+dea454fe13c4c2e0254013f35efaceaf,basketball_nba,2026-03-20T00:11:00Z,New Orleans Pelicans,Los Angeles Clippers,fanduel,-5.5,-148,5.5,112,222.5,100,-132,265.0,-370.0
+b438071ab82326fa2fa702112ad04536,basketball_nba,2026-03-20T00:11:00Z,Miami Heat,Los Angeles Lakers,fanduel,1.5,-148,-1.5,112,247.5,112,-148,-106.0,-120.0
+c9330059cfdf19891d9b4ecfa62d54c5,basketball_nba,2026-03-20T01:11:00Z,Utah Jazz,Milwaukee Bucks,fanduel,2.5,-118,-2.5,-112,223.5,102,-136,-156.0,122.0
+34058ad6afd721c206c16f9d0eb7c77d,basketball_nba,2026-03-20T02:10:00Z,Sacramento Kings,Philadelphia 76ers,fanduel,2.5,-112,-2.5,-108,228.5,-106,-114,-144.0,122.0
+9dec9fb17fd32b89e42c5060a469312a,basketball_nba,2026-03-20T23:40:00Z,Brooklyn Nets,New York Knicks,fanduel,18.0,-110,-18.0,-110,215.5,-106,-114,-2000.0,1040.0
+bf9a522d732a5622666e8bae89203de1,basketball_nba,2026-03-21T00:10:00Z,Houston Rockets,Atlanta Hawks,fanduel,-4.0,-110,4.0,-110,226.5,-110,-110,148.0,-176.0
+62da7cf8935f70ca97e56996eda2dd1a,basketball_nba,2026-03-21T00:10:00Z,Memphis Grizzlies,Boston Celtics,fanduel,15.0,-110,-15.0,-110,226.5,-110,-110,-950.0,640.0
+ad2565936a516016f0e5cde775d11ad0,basketball_nba,2026-03-21T00:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,fanduel,-2.5,-110,2.5,-110,229.5,-110,-110,120.0,-142.0
+1bcdb9dabad4bb99e11958b30508dc78,basketball_nba,2026-03-21T01:10:00Z,Denver Nuggets,Toronto Raptors,fanduel,-7.0,-112,7.0,-108,233.5,-110,-110,220.0,-270.0
