@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-289fb44a6171fe5e7365b05dca97889e,basketball_nba,2026-04-02T23:10:00Z,Charlotte Hornets,Phoenix Suns,fanduel,-210,176,-5.5,-110,5.5,-110,221.5,-112,-108
-b70520c84d1db67fb83d5d3666ef1d46,basketball_nba,2026-04-02T23:10:00Z,Detroit Pistons,Minnesota Timberwolves,fanduel,-164,138,-3.5,-108,3.5,-112,225.5,-110,-110
-97f990a7956a23f16f9298270f5b556e,basketball_nba,2026-04-03T01:40:00Z,Oklahoma City Thunder,Los Angeles Lakers,fanduel,-330,265,-9.0,-110,9.0,-110,228.5,-114,-106
-67a88265216bd48208f38288dba434ba,basketball_nba,2026-04-03T02:10:00Z,Golden State Warriors,Cleveland Cavaliers,fanduel,340,-430,10.5,-114,-10.5,-106,226.5,-114,-106
-52a9bdfa0493e80275ae71f49de1146f,basketball_nba,2026-04-03T02:10:00Z,Portland Trail Blazers,New Orleans Pelicans,fanduel,-245,200,-6.5,-110,6.5,-110,232.5,-106,-114
-8acdc53c485cd361a907edc8d53091f2,basketball_nba,2026-04-03T02:40:00Z,Los Angeles Clippers,San Antonio Spurs,fanduel,150,-178,4.5,-114,-4.5,-106,231.5,-110,-110
+289fb44a6171fe5e7365b05dca97889e,basketball_nba,2026-04-02T23:10:00Z,Charlotte Hornets,Phoenix Suns,fanduel,-215,180,-5.5,-114,5.5,-106,222.5,-114,-106
+b70520c84d1db67fb83d5d3666ef1d46,basketball_nba,2026-04-02T23:10:00Z,Detroit Pistons,Minnesota Timberwolves,fanduel,-158,134,-3.5,-110,3.5,-110,225.5,-106,-114
+97f990a7956a23f16f9298270f5b556e,basketball_nba,2026-04-03T01:40:00Z,Oklahoma City Thunder,Los Angeles Lakers,fanduel,-370,295,-9.0,-110,9.0,-110,230.5,-110,-110
+67a88265216bd48208f38288dba434ba,basketball_nba,2026-04-03T02:10:00Z,Golden State Warriors,Cleveland Cavaliers,fanduel,350,-460,10.5,-114,-10.5,-106,227.5,-110,-110
+52a9bdfa0493e80275ae71f49de1146f,basketball_nba,2026-04-03T02:10:00Z,Portland Trail Blazers,New Orleans Pelicans,fanduel,-250,205,-6.5,-108,6.5,-112,232.5,-106,-114
+8acdc53c485cd361a907edc8d53091f2,basketball_nba,2026-04-03T02:40:00Z,Los Angeles Clippers,San Antonio Spurs,fanduel,144,-172,4.0,-110,-4.0,-110,230.5,-114,-106
