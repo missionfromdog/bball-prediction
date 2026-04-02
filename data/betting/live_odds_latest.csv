@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 289fb44a6171fe5e7365b05dca97889e,basketball_nba,2026-04-02T23:10:00Z,Charlotte Hornets,Phoenix Suns,fanduel,-220,184,-5.5,-114,5.5,-106,224.5,-114,-106
-b70520c84d1db67fb83d5d3666ef1d46,basketball_nba,2026-04-02T23:10:00Z,Detroit Pistons,Minnesota Timberwolves,fanduel,-168,140,-3.5,-110,3.5,-110,224.5,-110,-110
+b70520c84d1db67fb83d5d3666ef1d46,basketball_nba,2026-04-02T23:10:00Z,Detroit Pistons,Minnesota Timberwolves,fanduel,-168,142,-3.5,-110,3.5,-110,224.5,-110,-110
 97f990a7956a23f16f9298270f5b556e,basketball_nba,2026-04-03T01:40:00Z,Oklahoma City Thunder,Los Angeles Lakers,fanduel,-375,300,-9.0,-110,9.0,-110,231.5,-114,-106
 67a88265216bd48208f38288dba434ba,basketball_nba,2026-04-03T02:10:00Z,Golden State Warriors,Cleveland Cavaliers,fanduel,370,-480,10.0,-108,-10.0,-112,227.5,-110,-110
 52a9bdfa0493e80275ae71f49de1146f,basketball_nba,2026-04-03T02:10:00Z,Portland Trail Blazers,New Orleans Pelicans,fanduel,-255,210,-6.5,-110,6.5,-110,232.5,-108,-112
