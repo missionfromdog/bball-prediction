@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 53273367f28e360f2e7814dd06e29a24,basketball_nba,2026-04-04T19:10:00Z,Denver Nuggets,San Antonio Spurs,fanduel,108,-126,1.5,-108,-1.5,-112,243.5,-110,-110
-b146607a8fe26fe467294dfdbaa0ff2b,basketball_nba,2026-04-04T19:10:00Z,Miami Heat,Washington Wizards,fanduel,-2500,1200,-18.0,-110,18.0,-110,247.5,-108,-112
-dc7b446ad8c325394b7d604d3e17ad7b,basketball_nba,2026-04-04T23:10:00Z,Philadelphia 76ers,Detroit Pistons,fanduel,120,-142,2.5,-108,-2.5,-112,225.5,-114,-106
+b146607a8fe26fe467294dfdbaa0ff2b,basketball_nba,2026-04-04T19:10:00Z,Miami Heat,Washington Wizards,fanduel,-2500,1200,-18.0,-112,18.0,-108,247.5,-110,-110
+dc7b446ad8c325394b7d604d3e17ad7b,basketball_nba,2026-04-04T23:10:00Z,Philadelphia 76ers,Detroit Pistons,fanduel,126,-148,2.5,-106,-2.5,-114,225.5,-114,-106
 6f1339b3519de542ab74c59857bfeff1,basketball_nba,2026-04-05T19:40:00Z,Boston Celtics,Toronto Raptors,fanduel,-500,385,-10.5,-110,10.5,-110,220.5,-112,-108
 8071f80d106d512c88016b240e766d84,basketball_nba,2026-04-05T19:40:00Z,Chicago Bulls,Phoenix Suns,fanduel,385,-500,10.0,-106,-10.0,-114,235.5,-112,-108
 8bce3373da945128589ce3cabae25443,basketball_nba,2026-04-05T23:10:00Z,Minnesota Timberwolves,Charlotte Hornets,fanduel,-126,108,-1.5,-110,1.5,-110,228.5,-108,-112
