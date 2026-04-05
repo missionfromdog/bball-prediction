@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-6f1339b3519de542ab74c59857bfeff1,basketball_nba,2026-04-05T19:40:00Z,Boston Celtics,Toronto Raptors,fanduel,-460,360,-9.5,-114,9.5,-106,219.5,-114,-106
+6f1339b3519de542ab74c59857bfeff1,basketball_nba,2026-04-05T19:40:00Z,Boston Celtics,Toronto Raptors,fanduel,-450,350,-9.5,-114,9.5,-106,219.5,-114,-106
 c1b3d187f022b0870bfa7128e1d02ae5,basketball_nba,2026-04-05T19:40:00Z,Brooklyn Nets,Washington Wizards,fanduel,-166,140,-3.5,-108,3.5,-112,230.5,-110,-110
 8071f80d106d512c88016b240e766d84,basketball_nba,2026-04-05T19:40:00Z,Chicago Bulls,Phoenix Suns,fanduel,400,-520,10.5,-112,-10.5,-108,238.5,-112,-108
-5ce196844b4f956a3c6961eec5bc859b,basketball_nba,2026-04-05T19:40:00Z,Milwaukee Bucks,Memphis Grizzlies,fanduel,-220,184,-5.5,-110,5.5,-110,227.5,-114,-106
-4f3d29a0317850ac56b0c6db31223705,basketball_nba,2026-04-05T22:10:00Z,Cleveland Cavaliers,Indiana Pacers,fanduel,-1800,980,-16.5,-114,16.5,-106,239.5,-110,-110
-8bce3373da945128589ce3cabae25443,basketball_nba,2026-04-05T23:10:00Z,Minnesota Timberwolves,Charlotte Hornets,fanduel,108,-126,1.5,-106,-1.5,-114,227.5,-110,-110
+5ce196844b4f956a3c6961eec5bc859b,basketball_nba,2026-04-05T19:40:00Z,Milwaukee Bucks,Memphis Grizzlies,fanduel,-225,188,-5.5,-112,5.5,-108,227.5,-114,-106
+4f3d29a0317850ac56b0c6db31223705,basketball_nba,2026-04-05T22:10:00Z,Cleveland Cavaliers,Indiana Pacers,fanduel,-1800,980,-16.5,-114,16.5,-106,240.5,-110,-110
+8bce3373da945128589ce3cabae25443,basketball_nba,2026-04-05T23:10:00Z,Minnesota Timberwolves,Charlotte Hornets,fanduel,110,-130,1.5,-106,-1.5,-114,227.5,-110,-110
 9f54cd277a7d7a9fe0de35d568dfa4af,basketball_nba,2026-04-05T23:10:00Z,New Orleans Pelicans,Orlando Magic,fanduel,158,-190,4.5,-106,-4.5,-114,236.5,-114,-106
 5441d9423f924c9a489ca00a7e321466,basketball_nba,2026-04-05T23:10:00Z,Oklahoma City Thunder,Utah Jazz,fanduel,-4500,1600,-22.5,-110,22.5,-110,238.5,-110,-110
 c6dfafffbada89cc908addd3a1f7748b,basketball_nba,2026-04-05T23:40:00Z,Dallas Mavericks,Los Angeles Lakers,fanduel,108,-126,2.0,-114,-2.0,-106,233.5,-110,-110
