@@ -1,6 +1,6 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,home_spread,home_spread_odds,away_spread,away_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
 dce0f3f389617fa7daa990c209ee8acc,Atlanta Hawks,New York Knicks,2026-04-06T23:10:00Z,FanDuel,fanduel,-126,108,3.8291354663036126,-1.5,-112,1.5,-108,4.75326560232221,229.5,-110,-110,4.761904761904767
-dce0f3f389617fa7daa990c209ee8acc,Atlanta Hawks,New York Knicks,2026-04-06T23:10:00Z,DraftKings,draftkings,-122,102,4.4599054500044755,-1.5,-115,1.5,-105,4.707884288145214,228.5,-115,-105,4.707884288145214
+dce0f3f389617fa7daa990c209ee8acc,Atlanta Hawks,New York Knicks,2026-04-06T23:10:00Z,DraftKings,draftkings,-122,102,4.4599054500044755,-1.5,-115,1.5,-105,4.707884288145214,229.5,-105,-115,4.707884288145214
 dce0f3f389617fa7daa990c209ee8acc,Atlanta Hawks,New York Knicks,2026-04-06T23:10:00Z,BetMGM,betmgm,-120,100,4.545454545454541,-1.5,-110,1.5,-110,4.761904761904767,229.5,-110,-110,4.761904761904767
 ec27c42246b5e40c34f4c2d93930ed20,Orlando Magic,Detroit Pistons,2026-04-06T23:10:00Z,FanDuel,fanduel,140,-166,4.07268170426065,3.0,-106,-3.0,-114,4.727338716994822,225.5,-110,-110,4.761904761904767
 ec27c42246b5e40c34f4c2d93930ed20,Orlando Magic,Detroit Pistons,2026-04-06T23:10:00Z,DraftKings,draftkings,130,-155,4.262574595055413,3.5,-112,-3.5,-108,4.75326560232221,225.5,-110,-110,4.761904761904767
