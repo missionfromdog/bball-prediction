@@ -1,10 +1,10 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-dce0f3f389617fa7daa990c209ee8acc,basketball_nba,2026-04-06T23:10:00Z,Atlanta Hawks,New York Knicks,fanduel,-120,102,-1.5,-108,1.5,-112,227.5,-108,-112
+dce0f3f389617fa7daa990c209ee8acc,basketball_nba,2026-04-06T23:10:00Z,Atlanta Hawks,New York Knicks,fanduel,-118,100,-1.5,-108,1.5,-112,227.5,-106,-114
 ec27c42246b5e40c34f4c2d93930ed20,basketball_nba,2026-04-06T23:10:00Z,Orlando Magic,Detroit Pistons,fanduel,108,-126,1.5,-112,-1.5,-108,221.5,-114,-106
-c2ff7eb921314ca5ebc2ad18db189374,basketball_nba,2026-04-07T00:10:00Z,Memphis Grizzlies,Cleveland Cavaliers,fanduel,660,-1000,13.5,-115,-13.5,-105,231.5,-110,-110
-14dede373d304abbddc590d2bcc81e4e,basketball_nba,2026-04-07T00:10:00Z,San Antonio Spurs,Philadelphia 76ers,fanduel,-390,310,-8.5,-112,8.5,-108,237.5,-108,-112
+c2ff7eb921314ca5ebc2ad18db189374,basketball_nba,2026-04-07T00:10:00Z,Memphis Grizzlies,Cleveland Cavaliers,fanduel,640,-950,13.5,-115,-13.5,-105,231.5,-110,-110
+14dede373d304abbddc590d2bcc81e4e,basketball_nba,2026-04-07T00:10:00Z,San Antonio Spurs,Philadelphia 76ers,fanduel,-375,300,-8.5,-112,8.5,-108,237.5,-108,-112
 76e52ccb4140e4936de62dbadae0808d,basketball_nba,2026-04-07T01:10:00Z,Denver Nuggets,Portland Trail Blazers,fanduel,-330,265,-7.5,-108,7.5,-112,237.5,-110,-110
-9aaa887e3f4a853902d6613072b2f35b,basketball_nba,2026-04-07T23:40:00Z,Toronto Raptors,Miami Heat,fanduel,-132,112,-2.5,-105,2.5,-115,238.5,-110,-110
+9aaa887e3f4a853902d6613072b2f35b,basketball_nba,2026-04-07T23:40:00Z,Toronto Raptors,Miami Heat,fanduel,106,-124,1.5,-115,-1.5,-105,239.5,-110,-110
 96d26f7a098eba89636e1a99c7c79d8d,basketball_nba,2026-04-08T00:10:00Z,Boston Celtics,Charlotte Hornets,fanduel,-245,200,-6.5,-110,6.5,-110,220.5,-105,-115
 3133467540e08b88d68625ed9e975399,basketball_nba,2026-04-08T02:40:00Z,Los Angeles Clippers,Dallas Mavericks,fanduel,-520,400,-11.0,-110,11.0,-110,235.5,-114,-106
 01f002eb30dfd24045740d4fbf68207e,basketball_nba,2026-04-08T02:40:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,810,-1350,14.5,-110,-14.5,-110,224.5,-110,-110
