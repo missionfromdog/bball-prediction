@@ -1,8 +1,8 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-3fe42fd427985fed1fee7c2e58935a67,basketball_nba,2026-04-08T23:10:00Z,Cleveland Cavaliers,Atlanta Hawks,fanduel,106,-124,1.5,-110,-1.5,-110,236.5,-112,-108
-c14b4c18b6b1e91a53302fdcc32910f2,basketball_nba,2026-04-08T23:10:00Z,Detroit Pistons,Milwaukee Bucks,draftkings,1000,-1800,18.5,-105,-18.5,-115,221.5,-110,-110
-cc5e682d9f44baa1c9d41eb3fd1c89b0,basketball_nba,2026-04-08T23:10:00Z,Orlando Magic,Minnesota Timberwolves,draftkings,185,-225,6.5,-118,-6.5,-102,227.5,-115,-105
-08c9fd2b6b80f1f763e2c2eb3e935208,basketball_nba,2026-04-09T00:10:00Z,San Antonio Spurs,Portland Trail Blazers,fanduel,146,-174,3.5,-110,-3.5,-110,234.5,-106,-114
-41c07b1937b8a59703253dc470ca4ddb,basketball_nba,2026-04-09T01:10:00Z,Denver Nuggets,Memphis Grizzlies,fanduel,1400,-3500,22.5,-112,-22.5,-108,245.5,-106,-114
-3e95057b94b2d930c8cc201db634eaf8,basketball_nba,2026-04-09T02:10:00Z,Phoenix Suns,Dallas Mavericks,draftkings,425,-575,10.5,-118,-10.5,-102,230.5,-112,-108
-68ab4a35de88dba88af31eeb3ba710fb,basketball_nba,2026-04-09T02:10:00Z,Los Angeles Clippers,Oklahoma City Thunder,draftkings,-270,220,-6.5,-112,6.5,-108,226.5,-105,-115
+3fe42fd427985fed1fee7c2e58935a67,basketball_nba,2026-04-08T23:10:00Z,Cleveland Cavaliers,Atlanta Hawks,fanduel,104,-122,1.5,-110,-1.5,-110,236.5,-106,-114
+c14b4c18b6b1e91a53302fdcc32910f2,basketball_nba,2026-04-08T23:10:00Z,Detroit Pistons,Milwaukee Bucks,draftkings,1000,-1800,18.5,-105,-18.5,-115,220.5,-115,-105
+cc5e682d9f44baa1c9d41eb3fd1c89b0,basketball_nba,2026-04-08T23:10:00Z,Orlando Magic,Minnesota Timberwolves,draftkings,185,-225,6.5,-115,-6.5,-105,229.5,-108,-112
+08c9fd2b6b80f1f763e2c2eb3e935208,basketball_nba,2026-04-09T00:10:00Z,San Antonio Spurs,Portland Trail Blazers,fanduel,142,-168,3.5,-110,-3.5,-110,229.5,-110,-110
+41c07b1937b8a59703253dc470ca4ddb,basketball_nba,2026-04-09T01:10:00Z,Denver Nuggets,Memphis Grizzlies,fanduel,1500,-4000,22.5,-112,-22.5,-108,244.5,-110,-110
+3e95057b94b2d930c8cc201db634eaf8,basketball_nba,2026-04-09T02:10:00Z,Phoenix Suns,Dallas Mavericks,draftkings,425,-575,10.5,-105,-10.5,-115,230.5,-112,-108
+68ab4a35de88dba88af31eeb3ba710fb,basketball_nba,2026-04-09T02:10:00Z,Los Angeles Clippers,Oklahoma City Thunder,draftkings,-270,220,-7.5,100,7.5,-120,225.5,-115,-105
