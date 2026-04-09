@@ -1,9 +1,11 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_spread,away_spread_odds,home_spread,home_spread_odds,home_ml,away_ml,total,over_odds,under_odds
-3fe42fd427985fed1fee7c2e58935a67,basketball_nba,2026-04-08T23:13:00Z,Cleveland Cavaliers,Atlanta Hawks,fanduel,6.5,-114,-6.5,-114,,,,,
-c14b4c18b6b1e91a53302fdcc32910f2,basketball_nba,2026-04-08T23:13:17Z,Detroit Pistons,Milwaukee Bucks,draftkings,26.5,-110,-26.5,-120,,,,,
-41c07b1937b8a59703253dc470ca4ddb,basketball_nba,2026-04-09T01:11:00Z,Denver Nuggets,Memphis Grizzlies,fanduel,20.5,-130,-20.5,-102,-5000.0,1300.0,251.5,-104.0,-128.0
-08c9fd2b6b80f1f763e2c2eb3e935208,basketball_nba,2026-04-09T01:43:00Z,San Antonio Spurs,Portland Trail Blazers,fanduel,2.5,-136,-2.5,102,-128.0,-102.0,225.5,-120.0,-110.0
-3e95057b94b2d930c8cc201db634eaf8,basketball_nba,2026-04-09T02:10:00Z,Phoenix Suns,Dallas Mavericks,draftkings,12.5,-110,-12.5,-110,-675.0,490.0,233.5,-115.0,-105.0
-68ab4a35de88dba88af31eeb3ba710fb,basketball_nba,2026-04-09T02:10:00Z,Los Angeles Clippers,Oklahoma City Thunder,draftkings,-8.5,-102,8.5,-118,270.0,-340.0,224.5,-115.0,-105.0
-0852cffec341701f6a0dde8619ae9f56,basketball_nba,2026-04-09T23:10:00Z,Washington Wizards,Chicago Bulls,draftkings,-5.5,-110,5.5,-110,180.0,-218.0,244.5,-110.0,-110.0
-53b49bbe56f8581f353bbbb5c6179ac5,basketball_nba,2026-04-09T23:10:00Z,Toronto Raptors,Miami Heat,draftkings,4.5,-105,-4.5,-115,-192.0,160.0,236.5,-110.0,-110.0
+game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
+41c07b1937b8a59703253dc470ca4ddb,basketball_nba,2026-04-09T01:11:00Z,Denver Nuggets,Memphis Grizzlies,fanduel,-4000,1100,-15.5,-148,15.5,112,254.5,-108,-122
+08c9fd2b6b80f1f763e2c2eb3e935208,basketball_nba,2026-04-09T01:43:00Z,San Antonio Spurs,Portland Trail Blazers,fanduel,-156,122,-2.5,-114,2.5,-114,227.5,110,-146
+3e95057b94b2d930c8cc201db634eaf8,basketball_nba,2026-04-09T02:10:00Z,Phoenix Suns,Dallas Mavericks,draftkings,-700,500,-12.5,-110,12.5,-110,234.5,-105,-115
+68ab4a35de88dba88af31eeb3ba710fb,basketball_nba,2026-04-09T02:10:00Z,Los Angeles Clippers,Oklahoma City Thunder,draftkings,295,-375,8.5,-105,-8.5,-115,223.5,-112,-108
+0852cffec341701f6a0dde8619ae9f56,basketball_nba,2026-04-09T23:10:00Z,Washington Wizards,Chicago Bulls,draftkings,190,-230,5.5,-105,-5.5,-115,244.5,-110,-110
+53b49bbe56f8581f353bbbb5c6179ac5,basketball_nba,2026-04-09T23:10:00Z,Toronto Raptors,Miami Heat,draftkings,-185,154,-4.5,-110,4.5,-110,236.5,-110,-110
+bf30a732402325cab54ab666ee0f5c11,basketball_nba,2026-04-09T23:40:00Z,New York Knicks,Boston Celtics,draftkings,-155,130,-3.5,-110,3.5,-110,217.5,-110,-110
+625bbdf7bc0bdf1d57b3f97742908221,basketball_nba,2026-04-09T23:40:00Z,Brooklyn Nets,Indiana Pacers,draftkings,114,-135,2.5,-115,-2.5,-105,223.5,-110,-110
+30b372ff1973370201b644c207be2dd3,basketball_nba,2026-04-10T00:10:00Z,Houston Rockets,Philadelphia 76ers,draftkings,-162,136,-3.5,-115,3.5,-105,226.5,-105,-115
+29fe17f5b19da82ce2957c3683a10aa7,basketball_nba,2026-04-10T02:10:00Z,Golden State Warriors,Los Angeles Lakers,draftkings,-205,170,-5.5,-105,5.5,-115,225.5,-110,-110
