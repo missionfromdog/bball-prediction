@@ -3,5 +3,5 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_s
 53b49bbe56f8581f353bbbb5c6179ac5,basketball_nba,2026-04-09T23:10:00Z,Toronto Raptors,Miami Heat,draftkings,140,-166,3.5,-105,-3.5,-115,236.5,-112,-108
 bf30a732402325cab54ab666ee0f5c11,basketball_nba,2026-04-09T23:40:00Z,New York Knicks,Boston Celtics,draftkings,180,-218,5.5,-110,-5.5,-110,212.5,-110,-110
 625bbdf7bc0bdf1d57b3f97742908221,basketball_nba,2026-04-09T23:40:00Z,Brooklyn Nets,Indiana Pacers,draftkings,-162,136,-3.5,-108,3.5,-112,224.5,-110,-110
-30b372ff1973370201b644c207be2dd3,basketball_nba,2026-04-10T00:10:00Z,Houston Rockets,Philadelphia 76ers,draftkings,180,-218,5.5,-110,-5.5,-110,226.5,-110,-110
+30b372ff1973370201b644c207be2dd3,basketball_nba,2026-04-10T00:10:00Z,Houston Rockets,Philadelphia 76ers,draftkings,195,-238,6.5,-112,-6.5,-108,226.5,-112,-108
 29fe17f5b19da82ce2957c3683a10aa7,basketball_nba,2026-04-10T02:10:00Z,Golden State Warriors,Los Angeles Lakers,draftkings,124,-148,2.5,-108,-2.5,-112,223.5,-110,-110
