@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-0852cffec341701f6a0dde8619ae9f56,basketball_nba,2026-04-09T23:10:00Z,Washington Wizards,Chicago Bulls,draftkings,-250,205,-6.5,-105,6.5,-115,246.5,-112,-108
-53b49bbe56f8581f353bbbb5c6179ac5,basketball_nba,2026-04-09T23:10:00Z,Toronto Raptors,Miami Heat,draftkings,142,-170,3.5,-102,-3.5,-118,238.5,-110,-110
-bf30a732402325cab54ab666ee0f5c11,basketball_nba,2026-04-09T23:40:00Z,New York Knicks,Boston Celtics,draftkings,145,-175,3.5,-105,-3.5,-115,216.5,-110,-110
-625bbdf7bc0bdf1d57b3f97742908221,basketball_nba,2026-04-09T23:40:00Z,Brooklyn Nets,Indiana Pacers,draftkings,-162,136,-3.5,-108,3.5,-112,223.5,-112,-108
-30b372ff1973370201b644c207be2dd3,basketball_nba,2026-04-10T00:10:00Z,Houston Rockets,Philadelphia 76ers,draftkings,145,-175,3.5,-105,-3.5,-115,225.5,-112,-108
-29fe17f5b19da82ce2957c3683a10aa7,basketball_nba,2026-04-10T02:10:00Z,Golden State Warriors,Los Angeles Lakers,draftkings,160,-192,4.5,-110,-4.5,-110,225.5,-110,-110
+0852cffec341701f6a0dde8619ae9f56,basketball_nba,2026-04-09T23:10:00Z,Washington Wizards,Chicago Bulls,draftkings,-250,205,-6.5,-105,6.5,-115,247.5,-110,-110
+53b49bbe56f8581f353bbbb5c6179ac5,basketball_nba,2026-04-09T23:10:00Z,Toronto Raptors,Miami Heat,draftkings,150,-180,4.5,-112,-4.5,-108,239.5,-102,-118
+bf30a732402325cab54ab666ee0f5c11,basketball_nba,2026-04-09T23:40:00Z,New York Knicks,Boston Celtics,draftkings,145,-175,4.5,-110,-4.5,-110,215.5,-105,-115
+625bbdf7bc0bdf1d57b3f97742908221,basketball_nba,2026-04-09T23:40:00Z,Brooklyn Nets,Indiana Pacers,draftkings,-162,136,-3.5,-112,3.5,-108,223.5,-115,-105
+30b372ff1973370201b644c207be2dd3,basketball_nba,2026-04-10T00:10:00Z,Houston Rockets,Philadelphia 76ers,draftkings,145,-175,3.5,-102,-3.5,-118,225.5,-112,-108
+29fe17f5b19da82ce2957c3683a10aa7,basketball_nba,2026-04-10T02:10:00Z,Golden State Warriors,Los Angeles Lakers,draftkings,154,-185,4.5,-110,-4.5,-110,225.5,-110,-110
