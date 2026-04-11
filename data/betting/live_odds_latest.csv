@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-22dcb3e32847c7eab5774e8927016216,basketball_nba,2026-04-12T22:10:00Z,Miami Heat,Atlanta Hawks,fanduel,-240,198,-6.5,-106,6.5,-114,243.5,-112,-108
+22dcb3e32847c7eab5774e8927016216,basketball_nba,2026-04-12T22:10:00Z,Miami Heat,Atlanta Hawks,fanduel,-245,200,-6.5,-110,6.5,-110,243.5,-112,-108
 f78d40af453b24c39e18559579894d14,basketball_nba,2026-04-12T22:10:00Z,Boston Celtics,Orlando Magic,fanduel,-174,146,-4.0,-114,4.0,-106,217.5,-108,-112
 d55bfef33abc5dc6dba0717236d0ee80,basketball_nba,2026-04-12T22:10:00Z,Toronto Raptors,Brooklyn Nets,fanduel,1400,-3500,19.0,-110,-19.0,-110,217.5,-110,-110
 38b10a0526d5b246097a502269bcdf71,basketball_nba,2026-04-12T22:10:00Z,New York Knicks,Charlotte Hornets,fanduel,-295,240,-7.5,-110,7.5,-110,215.5,-110,-110
