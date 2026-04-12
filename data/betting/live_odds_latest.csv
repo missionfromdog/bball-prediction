@@ -3,7 +3,7 @@ game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_s
 f78d40af453b24c39e18559579894d14,basketball_nba,2026-04-12T22:10:00Z,Boston Celtics,Orlando Magic,fanduel,-800,560,-13.0,-108,13.0,-112,221.5,-108,-112
 d55bfef33abc5dc6dba0717236d0ee80,basketball_nba,2026-04-12T22:10:00Z,Toronto Raptors,Brooklyn Nets,fanduel,2500,-10000,23.5,-110,-23.5,-110,219.5,-106,-114
 38b10a0526d5b246097a502269bcdf71,basketball_nba,2026-04-12T22:10:00Z,New York Knicks,Charlotte Hornets,fanduel,-900,610,-14.0,-114,14.0,-106,217.5,-106,-114
-ad75b36adad0af42dea87b9bcdfa91f8,basketball_nba,2026-04-12T22:10:00Z,Cleveland Cavaliers,Washington Wizards,fanduel,430,-590,11.0,-114,-11.0,-106,235.5,-106,-114
+ad75b36adad0af42dea87b9bcdfa91f8,basketball_nba,2026-04-12T22:10:00Z,Cleveland Cavaliers,Washington Wizards,fanduel,420,-560,11.0,-114,-11.0,-106,235.5,-106,-114
 4675acfb68965858aa571a0493a222da,basketball_nba,2026-04-12T22:10:00Z,Indiana Pacers,Detroit Pistons,fanduel,-950,640,-14.0,-110,14.0,-110,231.0,-110,-110
 23c66e71d25675800d939e532e38bcd2,basketball_nba,2026-04-12T22:10:00Z,Philadelphia 76ers,Milwaukee Bucks,betrivers,650,-1115,15.5,-110,-15.5,-113,226.0,-113,-110
 c8cde1aa908581185caf0bb87659055a,basketball_nba,2026-04-13T00:40:00Z,Dallas Mavericks,Chicago Bulls,fanduel,205,-250,6.5,-110,-6.5,-110,249.5,-112,-108
