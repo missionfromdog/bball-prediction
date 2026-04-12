@@ -1,16 +1,16 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-22dcb3e32847c7eab5774e8927016216,basketball_nba,2026-04-12T22:10:00Z,Miami Heat,Atlanta Hawks,fanduel,150,-178,4.0,-110,-4.0,-110,242.5,-110,-110
-f78d40af453b24c39e18559579894d14,basketball_nba,2026-04-12T22:10:00Z,Boston Celtics,Orlando Magic,fanduel,-770,540,-12.0,-114,12.0,-106,217.5,-110,-110
-d55bfef33abc5dc6dba0717236d0ee80,basketball_nba,2026-04-12T22:10:00Z,Toronto Raptors,Brooklyn Nets,fanduel,1600,-4500,21.5,-106,-21.5,-114,219.5,-106,-114
-38b10a0526d5b246097a502269bcdf71,basketball_nba,2026-04-12T22:10:00Z,New York Knicks,Charlotte Hornets,fanduel,-820,570,-13.0,-110,13.0,-110,218.5,-110,-110
-ad75b36adad0af42dea87b9bcdfa91f8,basketball_nba,2026-04-12T22:10:00Z,Cleveland Cavaliers,Washington Wizards,fanduel,385,-500,10.5,-106,-10.5,-114,235.5,-110,-110
-4675acfb68965858aa571a0493a222da,basketball_nba,2026-04-12T22:10:00Z,Indiana Pacers,Detroit Pistons,fanduel,-900,610,-13.5,-110,13.5,-110,228.5,-110,-110
-23c66e71d25675800d939e532e38bcd2,basketball_nba,2026-04-12T22:10:00Z,Philadelphia 76ers,Milwaukee Bucks,betrivers,700,-1250,16.0,-112,-16.0,-112,227.5,-109,-114
-c8cde1aa908581185caf0bb87659055a,basketball_nba,2026-04-13T00:40:00Z,Dallas Mavericks,Chicago Bulls,fanduel,220,-270,7.0,-114,-7.0,-106,245.5,-110,-110
-09604d4c311c1eb2215317d12154f42a,basketball_nba,2026-04-13T00:40:00Z,San Antonio Spurs,Denver Nuggets,fanduel,400,-520,11.5,-110,-11.5,-110,232.5,-105,-115
-06ccc7d0ba2acaf031c7d42eea09672c,basketball_nba,2026-04-13T00:40:00Z,Los Angeles Clippers,Golden State Warriors,fanduel,205,-250,6.5,-112,-6.5,-108,224.5,-114,-106
-fdd561cce076bab5eb0f0651d1d0f8e4,basketball_nba,2026-04-13T00:40:00Z,Houston Rockets,Memphis Grizzlies,fanduel,520,-720,13.5,-115,-13.5,-105,223.5,-110,-110
-3f3bec3a69985062b105b5fe8bf06fe9,basketball_nba,2026-04-13T00:40:00Z,Los Angeles Lakers,Utah Jazz,fanduel,750,-1200,15.0,-115,-15.0,-105,237.5,-108,-112
-47ede7b5685ae38218b5c2ea1ffd1699,basketball_nba,2026-04-13T00:40:00Z,Minnesota Timberwolves,New Orleans Pelicans,fanduel,220,-270,6.5,-110,-6.5,-110,235.5,-114,-106
-8c4fafe262a5424f243a130d7ab60e82,basketball_nba,2026-04-13T00:40:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,188,-225,5.5,-110,-5.5,-110,212.5,-106,-114
+22dcb3e32847c7eab5774e8927016216,basketball_nba,2026-04-12T22:10:00Z,Miami Heat,Atlanta Hawks,fanduel,154,-184,4.5,-110,-4.5,-110,242.5,-112,-108
+f78d40af453b24c39e18559579894d14,basketball_nba,2026-04-12T22:10:00Z,Boston Celtics,Orlando Magic,fanduel,-770,540,-13.0,-108,13.0,-112,219.5,-114,-106
+d55bfef33abc5dc6dba0717236d0ee80,basketball_nba,2026-04-12T22:10:00Z,Toronto Raptors,Brooklyn Nets,fanduel,2200,-8000,23.0,-110,-23.0,-110,219.5,-106,-114
+38b10a0526d5b246097a502269bcdf71,basketball_nba,2026-04-12T22:10:00Z,New York Knicks,Charlotte Hornets,fanduel,-820,570,-13.5,-110,13.5,-110,218.5,-110,-110
+ad75b36adad0af42dea87b9bcdfa91f8,basketball_nba,2026-04-12T22:10:00Z,Cleveland Cavaliers,Washington Wizards,fanduel,390,-510,10.5,-112,-10.5,-108,235.5,-110,-110
+4675acfb68965858aa571a0493a222da,basketball_nba,2026-04-12T22:10:00Z,Indiana Pacers,Detroit Pistons,fanduel,-950,640,-14.0,-110,14.0,-110,229.5,-104,-118
+23c66e71d25675800d939e532e38bcd2,basketball_nba,2026-04-12T22:10:00Z,Philadelphia 76ers,Milwaukee Bucks,betrivers,650,-1115,15.5,-112,-15.5,-112,227.5,-112,-110
+c8cde1aa908581185caf0bb87659055a,basketball_nba,2026-04-13T00:40:00Z,Dallas Mavericks,Chicago Bulls,fanduel,210,-255,6.5,-110,-6.5,-110,245.5,-110,-110
+09604d4c311c1eb2215317d12154f42a,basketball_nba,2026-04-13T00:40:00Z,San Antonio Spurs,Denver Nuggets,fanduel,385,-500,11.5,-114,-11.5,-106,232.5,-105,-115
+06ccc7d0ba2acaf031c7d42eea09672c,basketball_nba,2026-04-13T00:40:00Z,Los Angeles Clippers,Golden State Warriors,fanduel,210,-255,6.5,-110,-6.5,-110,225.5,-110,-110
+fdd561cce076bab5eb0f0651d1d0f8e4,basketball_nba,2026-04-13T00:40:00Z,Houston Rockets,Memphis Grizzlies,fanduel,640,-950,13.5,-108,-13.5,-112,224.5,-110,-110
+3f3bec3a69985062b105b5fe8bf06fe9,basketball_nba,2026-04-13T00:40:00Z,Los Angeles Lakers,Utah Jazz,fanduel,750,-1200,15.0,-115,-15.0,-105,236.5,-110,-110
+47ede7b5685ae38218b5c2ea1ffd1699,basketball_nba,2026-04-13T00:40:00Z,Minnesota Timberwolves,New Orleans Pelicans,fanduel,215,-260,6.5,-114,-6.5,-106,235.5,-114,-106
+8c4fafe262a5424f243a130d7ab60e82,basketball_nba,2026-04-13T00:40:00Z,Oklahoma City Thunder,Phoenix Suns,fanduel,188,-225,5.5,-114,-5.5,-106,212.5,-114,-106
 3f5adb3e93b0c63eb14ed1d0e8b90a43,basketball_nba,2026-04-13T00:40:00Z,Portland Trail Blazers,Sacramento Kings,fanduel,870,-1500,16.5,-110,-16.5,-110,228.5,-110,-110
