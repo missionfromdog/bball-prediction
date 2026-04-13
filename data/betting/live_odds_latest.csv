@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-25f53495c4044a1d8fb682e3715eb7b3,basketball_nba,2026-04-14T23:30:00Z,Charlotte Hornets,Miami Heat,fanduel,-210,176,-5.5,-110,5.5,-110,226.5,-110,-110
+25f53495c4044a1d8fb682e3715eb7b3,basketball_nba,2026-04-14T23:30:00Z,Charlotte Hornets,Miami Heat,fanduel,-205,172,-5.5,-110,5.5,-110,226.5,-110,-110
 0999cb23cd03811476b378dd4045ea16,basketball_nba,2026-04-15T02:10:00Z,Phoenix Suns,Portland Trail Blazers,draftkings,-180,150,-4.5,-105,4.5,-115,219.5,-110,-110
 f7264c00c662a127d58f4ab12fc498bc,basketball_nba,2026-04-15T23:30:00Z,Philadelphia 76ers,Orlando Magic,fanduel,-118,100,-1.0,-110,1.0,-110,219.5,-110,-110
 7cfae0891b99865ef7fc9d357b69ca28,basketball_nba,2026-04-16T02:10:00Z,Los Angeles Clippers,Golden State Warriors,draftkings,-170,142,-3.5,-115,3.5,-105,220.5,-110,-110
