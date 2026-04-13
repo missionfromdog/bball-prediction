@@ -1,9 +1,9 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-25f53495c4044a1d8fb682e3715eb7b3,basketball_nba,2026-04-14T23:30:00Z,Charlotte Hornets,Miami Heat,fanduel,-205,172,-5.5,-110,5.5,-110,226.5,-110,-110
-0999cb23cd03811476b378dd4045ea16,basketball_nba,2026-04-15T02:10:00Z,Phoenix Suns,Portland Trail Blazers,draftkings,-180,150,-4.5,-105,4.5,-115,219.5,-110,-110
+25f53495c4044a1d8fb682e3715eb7b3,basketball_nba,2026-04-14T23:30:00Z,Charlotte Hornets,Miami Heat,fanduel,-210,176,-5.5,-110,5.5,-110,227.5,-110,-110
+0999cb23cd03811476b378dd4045ea16,basketball_nba,2026-04-15T02:10:00Z,Phoenix Suns,Portland Trail Blazers,draftkings,-180,150,-4.5,-105,4.5,-115,218.5,-110,-110
 f7264c00c662a127d58f4ab12fc498bc,basketball_nba,2026-04-15T23:30:00Z,Philadelphia 76ers,Orlando Magic,fanduel,-118,100,-1.0,-110,1.0,-110,219.5,-110,-110
-7cfae0891b99865ef7fc9d357b69ca28,basketball_nba,2026-04-16T02:10:00Z,Los Angeles Clippers,Golden State Warriors,draftkings,-170,142,-3.5,-115,3.5,-105,220.5,-110,-110
+7cfae0891b99865ef7fc9d357b69ca28,basketball_nba,2026-04-16T02:10:00Z,Los Angeles Clippers,Golden State Warriors,draftkings,-166,140,-3.5,-115,3.5,-105,220.5,-110,-110
 2a8e5a45f1bcb477a6f9cbd7739d005e,basketball_nba,2026-04-18T17:00:00Z,Cleveland Cavaliers,Toronto Raptors,fanduel,-290,235,-7.5,-105,7.5,-115,217.5,-115,-105
-526f783434e5dabca25ee032d8fee612,basketball_nba,2026-04-18T19:40:00Z,Denver Nuggets,Minnesota Timberwolves,draftkings,-225,185,-5.5,-115,5.5,-105,230.5,-110,-110
+526f783434e5dabca25ee032d8fee612,basketball_nba,2026-04-18T19:40:00Z,Denver Nuggets,Minnesota Timberwolves,draftkings,-258,210,-6.5,-115,6.5,-105,230.5,-110,-110
 bee2c9ea4bf8df373aa45af7005b583d,basketball_nba,2026-04-18T22:00:00Z,New York Knicks,Atlanta Hawks,fanduel,-198,166,-5.0,-110,5.0,-110,215.5,-110,-110
 1a9383105929a09e5662227ad45554b8,basketball_nba,2026-04-19T00:40:00Z,Los Angeles Lakers,Houston Rockets,draftkings,160,-192,4.5,-105,-4.5,-115,208.5,-105,-115
