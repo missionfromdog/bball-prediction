@@ -1,5 +1,5 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-f7264c00c662a127d58f4ab12fc498bc,Philadelphia 76ers,Orlando Magic,2026-04-15T23:40:00Z,FanDuel,fanduel,-130,110,4.140786749482395,2.5,-115,-2.5,-105,4.707884288145214,223.5,-110,-110,4.761904761904767
+f7264c00c662a127d58f4ab12fc498bc,Philadelphia 76ers,Orlando Magic,2026-04-15T23:40:00Z,FanDuel,fanduel,-126,108,3.8291354663036126,2.5,-115,-2.5,-105,4.707884288145214,223.5,-110,-110,4.761904761904767
 f7264c00c662a127d58f4ab12fc498bc,Philadelphia 76ers,Orlando Magic,2026-04-15T23:40:00Z,DraftKings,draftkings,-130,110,4.140786749482395,2.5,-115,-2.5,-105,4.707884288145214,222.5,-110,-110,4.761904761904767
 f7264c00c662a127d58f4ab12fc498bc,Philadelphia 76ers,Orlando Magic,2026-04-15T23:40:00Z,BetRivers,betrivers,-136,108,5.704041720990882,2.0,-110,-2.0,-113,5.432595573440646,223.5,-110,-113,5.432595573440646
 7cfae0891b99865ef7fc9d357b69ca28,Los Angeles Clippers,Golden State Warriors,2026-04-16T02:10:00Z,DraftKings,draftkings,-205,170,4.2501517911353925,5.5,-115,-5.5,-105,4.707884288145214,221.5,-110,-110,4.761904761904767
