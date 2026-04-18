@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-2a8e5a45f1bcb477a6f9cbd7739d005e,basketball_nba,2026-04-18T17:09:17Z,Cleveland Cavaliers,Toronto Raptors,fanduel,-4000,1100,-14.5,-132,14.5,100,225.5,-108,-122
+2a8e5a45f1bcb477a6f9cbd7739d005e,basketball_nba,2026-04-18T17:09:17Z,Cleveland Cavaliers,Toronto Raptors,fanduel,-50000,3000,-22.5,106,22.5,-140,225.5,-106,-125
 526f783434e5dabca25ee032d8fee612,basketball_nba,2026-04-18T19:40:00Z,Denver Nuggets,Minnesota Timberwolves,draftkings,-265,215,-6.5,-115,6.5,-105,232.5,-110,-110
 bee2c9ea4bf8df373aa45af7005b583d,basketball_nba,2026-04-18T22:10:00Z,New York Knicks,Atlanta Hawks,fanduel,-260,215,-6.0,-112,6.0,-108,217.5,-112,-108
 1a9383105929a09e5662227ad45554b8,basketball_nba,2026-04-19T00:40:00Z,Los Angeles Lakers,Houston Rockets,draftkings,170,-205,4.5,-102,-4.5,-118,208.5,-112,-108
