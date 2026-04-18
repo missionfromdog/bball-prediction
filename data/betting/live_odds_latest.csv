@@ -1,7 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
 2a8e5a45f1bcb477a6f9cbd7739d005e,basketball_nba,2026-04-18T17:10:00Z,Cleveland Cavaliers,Toronto Raptors,fanduel,-355,285,-8.0,-114,8.0,-106,219.5,-110,-110
 526f783434e5dabca25ee032d8fee612,basketball_nba,2026-04-18T19:40:00Z,Denver Nuggets,Minnesota Timberwolves,draftkings,-258,210,-6.5,-115,6.5,-105,231.5,-110,-110
-bee2c9ea4bf8df373aa45af7005b583d,basketball_nba,2026-04-18T22:10:00Z,New York Knicks,Atlanta Hawks,fanduel,-215,180,-5.5,-105,5.5,-115,216.5,-108,-112
+bee2c9ea4bf8df373aa45af7005b583d,basketball_nba,2026-04-18T22:10:00Z,New York Knicks,Atlanta Hawks,fanduel,-210,176,-5.5,-105,5.5,-115,216.5,-108,-112
 1a9383105929a09e5662227ad45554b8,basketball_nba,2026-04-19T00:40:00Z,Los Angeles Lakers,Houston Rockets,draftkings,170,-205,5.5,-115,-5.5,-105,207.5,-105,-115
 00d1efd43d0790297fb68684a9171191,basketball_nba,2026-04-19T17:10:00Z,Boston Celtics,Philadelphia 76ers,draftkings,-800,550,-12.5,-110,12.5,-110,212.5,-115,-105
 ef6021edff80a85fe2dae5cf3530d9d4,basketball_nba,2026-04-19T19:40:00Z,Oklahoma City Thunder,Phoenix Suns,draftkings,-900,600,-13.5,-110,13.5,-110,215.5,-110,-110
