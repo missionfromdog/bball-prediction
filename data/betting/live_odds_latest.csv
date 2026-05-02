@@ -1,6 +1,6 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-88e10294c54deffd6e9e6efcba249d2c,basketball_nba,2026-05-01T23:10:00Z,Orlando Magic,Detroit Pistons,draftkings,-170,142,-3.5,-112,3.5,-108,210.5,-110,-110
-d1938a9c13602a661e894f996f2680e8,basketball_nba,2026-05-01T23:40:00Z,Toronto Raptors,Cleveland Cavaliers,draftkings,-192,160,-4.5,-110,4.5,-110,218.5,-110,-110
-c361a0b8c035a055bd9497b52674e3fb,basketball_nba,2026-05-02T01:40:00Z,Houston Rockets,Los Angeles Lakers,draftkings,136,-162,3.5,-112,-3.5,-108,205.5,-105,-115
-a37e80a2e3cf3aaa3ae84a9124987058,basketball_nba,2026-05-02T23:40:00Z,Boston Celtics,Philadelphia 76ers,draftkings,250,-310,7.5,-108,-7.5,-112,206.5,-110,-110
-219920e3a715ceb3dc69f3638f7571d5,basketball_nba,2026-05-05T01:30:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,650,-1000,14.5,-110,-14.5,-110,217.5,-110,-110
+game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
+d1938a9c13602a661e894f996f2680e8,basketball_nba,2026-05-01T23:41:07Z,Toronto Raptors,Cleveland Cavaliers,draftkings,185,-245,,,,,,,
+c361a0b8c035a055bd9497b52674e3fb,basketball_nba,2026-05-02T01:48:34Z,Houston Rockets,Los Angeles Lakers,draftkings,-125,-105,1.5,-120.0,-1.5,-110.0,199.5,-115.0,-115.0
+a37e80a2e3cf3aaa3ae84a9124987058,basketball_nba,2026-05-02T23:40:00Z,Boston Celtics,Philadelphia 76ers,draftkings,235,-290,-7.5,-115.0,7.5,-105.0,205.5,-110.0,-110.0
+be60e6f50fc77fc3a3cf6925472bad91,basketball_nba,2026-05-03T17:00:00Z,Detroit Pistons,Orlando Magic,draftkings,310,-395,-9.5,-105.0,9.5,-115.0,203.5,-110.0,-110.0
+219920e3a715ceb3dc69f3638f7571d5,basketball_nba,2026-05-05T01:30:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,650,-1000,-14.5,-110.0,14.5,-110.0,217.5,-110.0,-110.0
