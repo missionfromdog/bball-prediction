@@ -1,6 +1,6 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-a37e80a2e3cf3aaa3ae84a9124987058,basketball_nba,2026-05-02T23:40:00Z,Boston Celtics,Philadelphia 76ers,draftkings,-290,235,-7.5,-115,7.5,-105,205.5,-105,-115
-be60e6f50fc77fc3a3cf6925472bad91,basketball_nba,2026-05-03T19:40:00Z,Detroit Pistons,Orlando Magic,draftkings,-410,320,-9.5,-105,9.5,-115,203.5,-105,-115
-a463f640631f8b0580966b909965de14,basketball_nba,2026-05-03T23:40:00Z,Cleveland Cavaliers,Toronto Raptors,draftkings,-278,225,-7.5,-110,7.5,-110,211.5,-110,-110
-219920e3a715ceb3dc69f3638f7571d5,basketball_nba,2026-05-05T01:30:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,-900,600,-13.5,-115,13.5,-105,217.5,-110,-110
-689b4554b0b10e67f46872eb2e74b98d,basketball_nba,2026-05-05T23:10:00Z,Oklahoma City Thunder,Los Angeles Lakers,draftkings,-1000,650,-15.5,-105,15.5,-115,214.5,-110,-110
+a37e80a2e3cf3aaa3ae84a9124987058,basketball_nba,2026-05-02T23:40:00Z,Boston Celtics,Philadelphia 76ers,draftkings,-265,215,-7.5,-118,7.5,-102,205.5,-110,-110
+be60e6f50fc77fc3a3cf6925472bad91,basketball_nba,2026-05-03T19:40:00Z,Detroit Pistons,Orlando Magic,draftkings,-355,280,-8.5,-112,8.5,-108,203.5,-105,-115
+a463f640631f8b0580966b909965de14,basketball_nba,2026-05-03T23:40:00Z,Cleveland Cavaliers,Toronto Raptors,draftkings,-278,225,-7.5,-110,7.5,-110,210.5,-110,-110
+219920e3a715ceb3dc69f3638f7571d5,basketball_nba,2026-05-05T01:40:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,-900,600,-13.5,-115,13.5,-105,217.5,-110,-110
+689b4554b0b10e67f46872eb2e74b98d,basketball_nba,2026-05-06T01:40:00Z,Oklahoma City Thunder,Los Angeles Lakers,draftkings,-900,600,-14.5,-110,14.5,-110,213.5,-110,-110
