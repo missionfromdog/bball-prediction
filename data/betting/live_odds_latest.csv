@@ -1,6 +1,7 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-d1938a9c13602a661e894f996f2680e8,basketball_nba,2026-05-01T23:41:07Z,Toronto Raptors,Cleveland Cavaliers,draftkings,185,-245,,,,,,,
-c361a0b8c035a055bd9497b52674e3fb,basketball_nba,2026-05-02T01:48:34Z,Houston Rockets,Los Angeles Lakers,draftkings,-125,-105,1.5,-120.0,-1.5,-110.0,199.5,-115.0,-115.0
+d1938a9c13602a661e894f996f2680e8,basketball_nba,2026-05-01T23:41:07Z,Toronto Raptors,Cleveland Cavaliers,draftkings,500,-810,,,,,,,
+c361a0b8c035a055bd9497b52674e3fb,basketball_nba,2026-05-02T01:48:34Z,Houston Rockets,Los Angeles Lakers,draftkings,-580,380,9.5,-110.0,-9.5,-120.0,187.5,-110.0,-120.0
 a37e80a2e3cf3aaa3ae84a9124987058,basketball_nba,2026-05-02T23:40:00Z,Boston Celtics,Philadelphia 76ers,draftkings,235,-290,-7.5,-115.0,7.5,-105.0,205.5,-110.0,-110.0
+a463f640631f8b0580966b909965de14,basketball_nba,2026-05-03T17:00:00Z,Cleveland Cavaliers,Toronto Raptors,draftkings,235,-290,-7.5,-110.0,7.5,-110.0,211.5,-110.0,-110.0
 be60e6f50fc77fc3a3cf6925472bad91,basketball_nba,2026-05-03T17:00:00Z,Detroit Pistons,Orlando Magic,draftkings,310,-395,-9.5,-105.0,9.5,-115.0,203.5,-110.0,-110.0
 219920e3a715ceb3dc69f3638f7571d5,basketball_nba,2026-05-05T01:30:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,650,-1000,-14.5,-110.0,14.5,-110.0,217.5,-110.0,-110.0
