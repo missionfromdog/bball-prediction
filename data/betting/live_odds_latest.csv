@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-30d614c5d781b768faf9cf885e890851,basketball_nba,2026-05-08T23:10:00Z,Philadelphia 76ers,New York Knicks,fanduel,100,-118,1.5,-108,-1.5,-112,213.5,-114,-106
-1b5c084f510006e8f30cd6cac40e231d,basketball_nba,2026-05-09T01:40:00Z,Minnesota Timberwolves,San Antonio Spurs,fanduel,-194,162,-4.5,-106,4.5,-114,216.5,-110,-110
-2734c350b90f332dbece882dd10b204e,basketball_nba,2026-05-09T19:10:00Z,Cleveland Cavaliers,Detroit Pistons,fanduel,148,-176,4.5,-118,-4.5,-104,211.5,-110,-110
-40c8a29efb894c4dd6bf6acc5025c9cb,basketball_nba,2026-05-10T00:40:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,-360,290,-9.5,-104,9.5,-118,211.5,-110,-110
+30d614c5d781b768faf9cf885e890851,basketball_nba,2026-05-08T23:10:00Z,Philadelphia 76ers,New York Knicks,fanduel,102,-120,1.5,-108,-1.5,-112,213.5,-114,-106
+1b5c084f510006e8f30cd6cac40e231d,basketball_nba,2026-05-09T01:40:00Z,Minnesota Timberwolves,San Antonio Spurs,fanduel,-200,168,-4.5,-110,4.5,-110,216.5,-110,-110
+2734c350b90f332dbece882dd10b204e,basketball_nba,2026-05-09T19:10:00Z,Cleveland Cavaliers,Detroit Pistons,fanduel,156,-186,4.5,-110,-4.5,-110,211.5,-110,-110
+40c8a29efb894c4dd6bf6acc5025c9cb,basketball_nba,2026-05-10T00:40:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,-375,300,-8.5,-110,8.5,-110,211.5,-110,-110
