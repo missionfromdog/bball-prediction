@@ -1,5 +1,5 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-1b5c084f510006e8f30cd6cac40e231d,basketball_nba,2026-05-09T01:48:00Z,Minnesota Timberwolves,San Antonio Spurs,fanduel,290,-410,7.5,-112,-7.5,-118,201.5,-120,-110
+1b5c084f510006e8f30cd6cac40e231d,basketball_nba,2026-05-09T01:48:00Z,Minnesota Timberwolves,San Antonio Spurs,fanduel,215,-290,5.5,-114,-5.5,-114,204.5,-112,-118
 2734c350b90f332dbece882dd10b204e,basketball_nba,2026-05-09T19:10:00Z,Cleveland Cavaliers,Detroit Pistons,fanduel,-184,154,-4.5,-106,4.5,-114,211.5,-110,-110
 40c8a29efb894c4dd6bf6acc5025c9cb,basketball_nba,2026-05-10T00:40:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,300,-375,8.5,-108,-8.5,-112,211.5,-112,-108
-878243c543236baba132ad43ae333aae,basketball_nba,2026-05-10T19:40:00Z,Philadelphia 76ers,New York Knicks,fanduel,100,-118,1.5,-118,-1.5,-104,212.5,-110,-110
+878243c543236baba132ad43ae333aae,basketball_nba,2026-05-10T19:40:00Z,Philadelphia 76ers,New York Knicks,fanduel,100,-118,1.5,-114,-1.5,-106,212.5,-110,-110
