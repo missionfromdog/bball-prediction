@@ -1,5 +1,5 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-878243c543236baba132ad43ae333aae,Philadelphia 76ers,New York Knicks,2026-05-10T19:40:00Z,FanDuel,fanduel,100,-118,4.128440366972486,-1.5,-110.0,1.5,-110.0,4.761904761904767,214.5,-106,-114,4.727338716994822
+878243c543236baba132ad43ae333aae,Philadelphia 76ers,New York Knicks,2026-05-10T19:40:00Z,FanDuel,fanduel,106,-124,3.9008321775312105,-1.5,-114.0,1.5,-106.0,4.727338716994822,214.5,-106,-114,4.727338716994822
 878243c543236baba132ad43ae333aae,Philadelphia 76ers,New York Knicks,2026-05-10T19:40:00Z,DraftKings,draftkings,105,-125,4.336043360433606,-1.5,-112.0,1.5,-108.0,4.75326560232221,213.5,-112,-108,4.75326560232221
 878243c543236baba132ad43ae333aae,Philadelphia 76ers,New York Knicks,2026-05-10T19:40:00Z,BetRivers,betrivers,104,-129,5.351485572394887,-2.0,-109.0,2.0,-114.0,5.424138085230057,214.5,-110,-113,5.432595573440646
 878243c543236baba132ad43ae333aae,Philadelphia 76ers,New York Knicks,2026-05-10T19:40:00Z,BetMGM,betmgm,105,-125,4.336043360433606,-1.5,-115.0,1.5,-105.0,4.707884288145214,213.5,-118,-110,6.509392747924858
