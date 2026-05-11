@@ -1,5 +1,4 @@
 game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
-b537062ee0483d20ae932052628b663d,basketball_nba,2026-05-12T00:00:00Z,Cleveland Cavaliers,Detroit Pistons,draftkings,-162,136,-3.5,-110,3.5,-110,212.5,-105,-115
-2dc93da2025b065a6e16162476dce452,basketball_nba,2026-05-12T00:00:00Z,San Antonio Spurs,Minnesota Timberwolves,betrivers,-500,360,-10.5,-109,10.5,-114,216.5,-112,-112
+b537062ee0483d20ae932052628b663d,basketball_nba,2026-05-12T00:00:00Z,Cleveland Cavaliers,Detroit Pistons,draftkings,-155,130,-3.5,-110,3.5,-110,212.5,-110,-110
 0db68bfa022e22873f48b8539addd5ae,basketball_nba,2026-05-12T02:40:00Z,Los Angeles Lakers,Oklahoma City Thunder,fanduel,410,-550,10.5,-104,-10.5,-118,214.5,-106,-114
-09800f9101b348d4a66742a3d8888b82,basketball_nba,2026-05-13T02:00:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,-395,310,-9.5,-115,9.5,-105,216.5,-115,-105
+09800f9101b348d4a66742a3d8888b82,basketball_nba,2026-05-13T02:00:00Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,-410,320,-9.5,-110,9.5,-110,216.5,-115,-105
