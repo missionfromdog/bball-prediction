@@ -1,6 +1,6 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
 c3531530e77a4ada542bdbff23de5409,Detroit Pistons,Cleveland Cavaliers,2026-05-14T00:10:00Z,DraftKings,draftkings,-180,150,4.285714285714293,3.5,-102,-3.5,-118,4.623489871922981,212.5,-112,-108,4.75326560232221
-c3531530e77a4ada542bdbff23de5409,Detroit Pistons,Cleveland Cavaliers,2026-05-14T00:10:00Z,BetMGM,betmgm,-185,150,4.912280701754401,3.5,-105,-3.5,-115,4.707884288145214,212.5,-110,-110,4.761904761904767
+c3531530e77a4ada542bdbff23de5409,Detroit Pistons,Cleveland Cavaliers,2026-05-14T00:10:00Z,BetMGM,betmgm,-185,150,4.912280701754401,3.5,-102,-3.5,-118,4.623489871922981,212.5,-110,-110,4.761904761904767
 c3531530e77a4ada542bdbff23de5409,Detroit Pistons,Cleveland Cavaliers,2026-05-14T00:10:00Z,FanDuel,fanduel,-174,146,4.154056139101536,3.5,-104,-3.5,-118,5.108832523835227,212.5,-114,-106,4.727338716994822
 c3531530e77a4ada542bdbff23de5409,Detroit Pistons,Cleveland Cavaliers,2026-05-14T00:10:00Z,BetRivers,betrivers,-177,140,5.565583634175697,4.0,-112,-4.0,-110,5.211141060197666,212.5,-113,-110,5.432595573440646
 1bd4432ce20bc61756180bf2d1c59c91,Minnesota Timberwolves,San Antonio Spurs,2026-05-16T01:40:00Z,FanDuel,fanduel,166,-198,4.036937982540234,-4.5,-118,4.5,-104,5.108832523835227,218.5,-110,-110,4.761904761904767
