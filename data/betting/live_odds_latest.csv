@@ -1,3 +1,4 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds,away_ml,home_ml
-09800f9101b348d4a66742a3d8888b82,basketball_nba,2026-05-13T00:13:52Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,18.5,-105,-18.5,-125,222.5,-110,-120,,
-c3531530e77a4ada542bdbff23de5409,basketball_nba,2026-05-14T00:10:00Z,Detroit Pistons,Cleveland Cavaliers,draftkings,3.5,-108,-3.5,-112,212.5,-108,-112,142.0,-170.0
+game_id,sport,commence_time,home_team,away_team,bookmaker,away_spread,away_spread_odds,home_spread,home_spread_odds,away_ml,home_ml,total,over_odds,under_odds
+09800f9101b348d4a66742a3d8888b82,basketball_nba,2026-05-13T00:13:52Z,San Antonio Spurs,Minnesota Timberwolves,draftkings,28.5,154,-28.5,-200,,,,,
+c3531530e77a4ada542bdbff23de5409,basketball_nba,2026-05-14T00:10:00Z,Detroit Pistons,Cleveland Cavaliers,draftkings,3.5,-108,-3.5,-112,142.0,-170.0,212.5,-108.0,-112.0
+1bd4432ce20bc61756180bf2d1c59c91,basketball_nba,2026-05-16T01:40:00Z,Minnesota Timberwolves,San Antonio Spurs,fanduel,-5.5,-106,5.5,-114,-210.0,176.0,218.5,-110.0,-110.0
