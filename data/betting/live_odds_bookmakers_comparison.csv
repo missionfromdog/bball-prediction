@@ -1,9 +1,9 @@
-game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,home_spread,home_spread_odds,away_spread,away_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-924fe1c270c7ccb9e7a9cfa3002bdf05,Oklahoma City Thunder,San Antonio Spurs,2026-05-19T00:37:11Z,DraftKings,draftkings,-110,-120,6.926406926406914,1.5,-160.0,-1.5,124.0,6.181318681318682,201.5,-115.0,-115.0,6.976744186046502
-924fe1c270c7ccb9e7a9cfa3002bdf05,Oklahoma City Thunder,San Antonio Spurs,2026-05-19T00:37:11Z,FanDuel,fanduel,-106,-120,6.001765225066191,,,,,,,,,
-924fe1c270c7ccb9e7a9cfa3002bdf05,Oklahoma City Thunder,San Antonio Spurs,2026-05-19T00:37:11Z,BetRivers,betrivers,-108,-124,7.280219780219799,,,,,,,,,
-924fe1c270c7ccb9e7a9cfa3002bdf05,Oklahoma City Thunder,San Antonio Spurs,2026-05-19T00:37:11Z,BetMGM,betmgm,-110,-115,5.8693244739756345,1.5,-160.0,-1.5,125.0,5.982905982905984,,,,
-7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,DraftKings,draftkings,-265,215,4.348771472059143,-7.5,-105.0,7.5,-115.0,4.707884288145214,217.5,-105.0,-115.0,4.707884288145214
-7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,BetRivers,betrivers,-286,220,5.34326424870466,-7.0,-115.0,7.0,-108.0,5.411449016100178,217.5,-109.0,-114.0,5.424138085230057
-7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,FanDuel,fanduel,-270,220,4.222972972972983,-7.5,-105.0,7.5,-115.0,4.707884288145214,217.5,-112.0,-108.0,4.75326560232221
-7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,BetMGM,betmgm,-275,220,4.583333333333339,-7.5,-105.0,7.5,-115.0,4.707884288145214,217.5,-110.0,-110.0,4.761904761904767
+game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
+7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,DraftKings,draftkings,-265,215,4.348771472059143,7.5,-115,-7.5,-105,4.707884288145214,217.5,-110,-110,4.761904761904767
+7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,BetRivers,betrivers,-295,225,5.452775073028238,7.5,-114,-7.5,-109,5.424138085230057,217.0,-112,-112,5.660377358490565
+7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,FanDuel,fanduel,-250,205,4.215456674473073,7.5,-115,-7.5,-105,4.707884288145214,217.5,-112,-108,4.75326560232221
+7e2d40a6d3b163e318b7abbe026c40c1,New York Knicks,Cleveland Cavaliers,2026-05-20T00:10:00Z,BetMGM,betmgm,-275,220,4.583333333333339,7.5,-115,-7.5,-105,4.707884288145214,217.5,-115,-105,4.707884288145214
+51176769d0f89d3e39adc8e90922f84d,Oklahoma City Thunder,San Antonio Spurs,2026-05-21T00:40:00Z,BetRivers,betrivers,-265,200,5.936073059360725,6.5,-112,-6.5,-112,5.660377358490565,215.0,-112,-110,5.211141060197666
+51176769d0f89d3e39adc8e90922f84d,Oklahoma City Thunder,San Antonio Spurs,2026-05-21T00:40:00Z,FanDuel,fanduel,-225,188,3.952991452991439,6.5,-108,-6.5,-112,4.75326560232221,215.5,-110,-110,4.761904761904767
+51176769d0f89d3e39adc8e90922f84d,Oklahoma City Thunder,San Antonio Spurs,2026-05-21T00:40:00Z,DraftKings,draftkings,-238,195,4.312506268177718,6.5,-110,-6.5,-110,4.761904761904767,215.5,-110,-110,4.761904761904767
+51176769d0f89d3e39adc8e90922f84d,Oklahoma City Thunder,San Antonio Spurs,2026-05-21T00:40:00Z,BetMGM,betmgm,-250,200,4.761904761904767,6.5,-110,-6.5,-110,4.761904761904767,216.5,-105,-115,4.707884288145214
