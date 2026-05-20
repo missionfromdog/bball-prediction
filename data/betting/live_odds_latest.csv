@@ -1,3 +1,3 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_spread,away_spread_odds,home_spread,home_spread_odds,home_ml,away_ml,total,over_odds,under_odds
-7e2d40a6d3b163e318b7abbe026c40c1,basketball_nba,2026-05-20T00:13:43Z,New York Knicks,Cleveland Cavaliers,draftkings,9.5,-115,-9.5,-115,,,,,
-51176769d0f89d3e39adc8e90922f84d,basketball_nba,2026-05-21T00:40:00Z,Oklahoma City Thunder,San Antonio Spurs,betrivers,6.5,-110,-6.5,-113,-250.0,195.0,215.5,-112.0,-112.0
+game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
+51176769d0f89d3e39adc8e90922f84d,basketball_nba,2026-05-21T00:40:00Z,Oklahoma City Thunder,San Antonio Spurs,betrivers,-250,195,-6.5,-110,6.5,-113,216.0,-113,-110
+dc45982e3723fb38d8477a1a75395594,basketball_nba,2026-05-22T00:10:00Z,New York Knicks,Cleveland Cavaliers,fanduel,-230,190,-6.5,-106,6.5,-114,214.5,-110,-110
