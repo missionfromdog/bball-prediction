@@ -1,2 +1,2 @@
-game_id,sport,commence_time,home_team,away_team,bookmaker,away_ml,home_ml,away_spread,away_spread_odds,home_spread,home_spread_odds,total,over_odds,under_odds
-2852e944f8ef0bc3eba79f883b9101ba,basketball_nba,2026-06-06T00:44:00Z,San Antonio Spurs,New York Knicks,fanduel,-350,255,-5.5,102,5.5,-136,210.5,-148,112
+game_id,sport,commence_time,home_team,away_team,bookmaker,home_ml,away_ml,home_spread,home_spread_odds,away_spread,away_spread_odds,total,over_odds,under_odds
+0707c5b20ff523e730c85090c7faffdf,basketball_nba,2026-06-09T00:40:00Z,New York Knicks,San Antonio Spurs,fanduel,-132,112,-2.5,-108,2.5,-112,216.5,-106,-114
