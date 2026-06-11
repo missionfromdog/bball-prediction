@@ -1,8 +1,5 @@
-game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,home_spread,home_spread_odds,away_spread,away_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-9ea306ebbe68ff94dfa5b88d1e250b37,New York Knicks,San Antonio Spurs,2026-06-11T00:43:00Z,FanDuel,fanduel,-850,480,6.715063520871145,,,,,,,,,
-9ea306ebbe68ff94dfa5b88d1e250b37,New York Knicks,San Antonio Spurs,2026-06-11T00:43:00Z,BetRivers,betrivers,190,-265,7.085498346717056,,,,,,,,,
-9ea306ebbe68ff94dfa5b88d1e250b37,New York Knicks,San Antonio Spurs,2026-06-11T00:43:00Z,DraftKings,draftkings,-810,500,5.67765567765568,,,,,,,,,
-9ea306ebbe68ff94dfa5b88d1e250b37,New York Knicks,San Antonio Spurs,2026-06-11T00:43:00Z,BetMGM,betmgm,-625,400,6.206896551724128,1.5,-900.0,-1.5,500.0,6.666666666666665,214.5,-155.0,118.0,6.6558733585177166
-6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,FanDuel,fanduel,-205,172,3.9778206364513125,-5.5,-112.0,5.5,-108.0,4.75326560232221,217.5,-110.0,-110.0,4.761904761904767
-6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,DraftKings,draftkings,-205,170,4.2501517911353925,-5.5,-110.0,5.5,-110.0,4.761904761904767,216.5,-110.0,-110.0,4.761904761904767
-6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,BetRivers,betrivers,-220,175,5.113636363636376,-5.5,-108.0,5.5,-115.0,5.411449016100178,217.5,-112.0,-112.0,5.660377358490565
+game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
+6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,FanDuel,fanduel,-200,168,3.9800995024875663,5.5,-110,-5.5,-110,4.761904761904767,216.5,-112,-108,4.75326560232221
+6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,DraftKings,draftkings,-198,164,4.3217408989221,5.5,-112,-5.5,-108,4.75326560232221,216.5,-110,-110,4.761904761904767
+6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,BetRivers,betrivers,-210,165,5.477784540474739,5.0,-108,-5.0,-115,5.411449016100178,216.5,-110,-113,5.432595573440646
+6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,BetMGM,betmgm,-200,165,4.402515723270439,5.5,-115,-5.5,-105,4.707884288145214,216.5,-105,-115,4.707884288145214
