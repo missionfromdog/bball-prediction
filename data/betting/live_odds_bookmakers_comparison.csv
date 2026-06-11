@@ -1,5 +1,5 @@
 game_id,home_team,away_team,commence_time,bookmaker,bookmaker_key,home_ml,away_ml,ml_vig,away_spread,away_spread_odds,home_spread,home_spread_odds,spread_vig,total,over_odds,under_odds,total_vig
-6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,FanDuel,fanduel,-200,168,3.9800995024875663,5.5,-112,-5.5,-108,4.75326560232221,216.5,-112,-108,4.75326560232221
+6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,FanDuel,fanduel,-198,166,4.036937982540234,5.5,-112,-5.5,-108,4.75326560232221,216.5,-112,-108,4.75326560232221
 6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,DraftKings,draftkings,-198,164,4.3217408989221,5.5,-112,-5.5,-108,4.75326560232221,216.5,-110,-110,4.761904761904767
 6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,BetRivers,betrivers,-210,165,5.477784540474739,5.5,-115,-5.5,-108,5.411449016100178,216.5,-112,-112,5.660377358490565
 6cc5c3b9cfcb1d94bed9f3ca972b3114,San Antonio Spurs,New York Knicks,2026-06-14T00:40:00Z,BetMGM,betmgm,-200,165,4.402515723270439,5.5,-115,-5.5,-105,4.707884288145214,216.5,-110,-110,4.761904761904767
